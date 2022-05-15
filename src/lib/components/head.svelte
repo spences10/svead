@@ -1,11 +1,13 @@
 <script lang="ts">
-  export let name: string
-  export let website: string
-  export let title: string
-  export let description: string
-  export let image: string
-  export let url: string
-  export let paymentPointer: string
+  // required props
+  export let website: string // website URL
+  export let title: string // page title
+  export let description: string // page description
+  export let url: string // Full URL of the current page
+  // optional props
+  export let authorName: string = '' // Author Name
+  export let image: string = '' // Open Graph image
+  export let paymentPointer: string = '' // Web Monetisation Payment pointer
 </script>
 
 <!-- 
@@ -16,17 +18,23 @@
 
 <svelte:head>
   <link rel="canonical" href={url} />
-  <!-- Meta Tags Generated via https://heymeta.com -->
+  <!-- Meta Tags Generated with the help of
+     https://heymeta.com 
+     https://metatags.io/
+  -->
 
   <!-- HTML Meta Tags -->
   <title>{title}</title>
+  <meta name="title" content={title} />
   <meta name="description" content={description} />
-  <meta name="author" content={name} />
+  <meta name="author" content={authorName} />
 
   <!-- Google / Search Engine Tags -->
-  <meta itemprop="name" content={title} />
-  <meta itemprop="description" content={description} />
-  <meta itemprop="image" content={image} />
+  {#if image.length > 0}
+    <meta itemprop="name" content={title} />
+    <meta itemprop="description" content={description} />
+    <meta itemprop="image" content={image} />
+  {/if}
 
   <!-- Facebook Meta Tags -->
   <meta property="og:url" content={url} />
@@ -44,5 +52,6 @@
   <meta name="twitter:image" content={image} />
 
   <!-- Monetisation -->
+  <!-- https://webmonetization.org/docs/uphold/ -->
   <meta name="monetization" content={paymentPointer} />
 </svelte:head>
