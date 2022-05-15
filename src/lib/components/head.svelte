@@ -37,21 +37,27 @@
   {/if}
 
   <!-- Facebook Meta Tags -->
-  <meta property="og:url" content={url} />
-  <meta property="og:type" content="website" />
-  <meta property="og:title" content={title} />
-  <meta property="og:description" content={description} />
-  <meta property="og:image" content={image} />
+  {#if image.length > 0}
+    <meta property="og:url" content={url} />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={image} />
+  {/if}
 
   <!-- Twitter Meta Tags -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta property="twitter:domain" content={website} />
-  <meta property="twitter:url" content={url} />
-  <meta name="twitter:title" content={title} />
-  <meta name="twitter:description" content={description} />
-  <meta name="twitter:image" content={image} />
+  {#if image.length > 0}
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta property="twitter:domain" content={website} />
+    <meta property="twitter:url" content={url} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={image} />
+  {/if}
 
   <!-- Monetisation -->
   <!-- https://webmonetization.org/docs/uphold/ -->
-  <meta name="monetization" content={paymentPointer} />
+  {#if paymentPointer.length > 0}
+    <meta name="monetization" content={paymentPointer} />
+  {/if}
 </svelte:head>
