@@ -1,5 +1,6 @@
 {
   "name": "svead",
+  "description": "Svead, a component that allows you to set head meta information, canonical, title, Twitter and Facebook Open Graph tags.",
   "version": "0.0.1",
   "author": {
     "name": "Scott Spence",
@@ -51,5 +52,14 @@
     "tslib": "^2.3.1",
     "typescript": "~4.6.2"
   },
-  "type": "module"
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/spences10/svead.git"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/spences10/svead/issues"
+  },
+  "homepage": "https://github.com/spences10/svead#readme"
 }
