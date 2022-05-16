@@ -1,10 +1,10 @@
 <script lang="ts">
   // required props
-  export let website: string // website URL
+  export let url: string // Full URL of the current page
   export let title: string // page title
   export let description: string // page description
-  export let url: string // Full URL of the current page
   // optional props
+  export let website: string = '' // website URL
   export let authorName: string = '' // Author Name
   export let image: string = '' // Open Graph image
   export let paymentPointer: string = '' // Web Monetisation Payment pointer
