@@ -47,7 +47,7 @@
     "svead": "0.0.3",
     "svelte": "3.48.0",
     "svelte-check": "2.7.1",
-    "svelte-preprocess": "4.10.6",
+    "svelte-preprocess": "4.10.7",
     "svelte2tsx": "0.5.10",
     "tslib": "2.4.0",
     "typescript": "4.7.3"
