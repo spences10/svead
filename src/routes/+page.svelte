@@ -17,3 +17,4 @@
   Visit <a href="https://github.com/spences10/svead">GitHub</a> to contrubute
   to this project.
 </p>
+<p>View source to see all the head goodness.</p>
