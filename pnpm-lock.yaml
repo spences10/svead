@@ -15,7 +15,7 @@ specifiers:
   pretty-quick: 3.1.3
   svead: ^0.0.3
   svelte: 3.53.1
-  svelte-check: 2.9.2
+  svelte-check: 2.10.0
   svelte-preprocess: 4.10.7
   svelte2tsx: 0.5.20
   tslib: 2.4.1
@@ -37,7 +37,7 @@ devDependencies:
   pretty-quick: 3.1.3_prettier@2.8.0
   svead: 0.0.3
   svelte: 3.53.1
-  svelte-check: 2.9.2_svelte@3.53.1
+  svelte-check: 2.10.0_svelte@3.53.1
   svelte-preprocess: 4.10.7_7dvewpees4iyn2tkw2qzal77a4
   svelte2tsx: 0.5.20_7dvewpees4iyn2tkw2qzal77a4
   tslib: 2.4.1
@@ -1749,8 +1749,8 @@ packages:
     resolution: {integrity: sha512-hYkqSpBbprCUIqmAsL95jshM0hp83yRtezZjep9p4Ukd5yICcFZ04OAp+5fPw7GnArSD6W7t6a1EUDYzoiF/6w==}
     dev: true
 
-  /svelte-check/2.9.2_svelte@3.53.1:
-    resolution: {integrity: sha512-DRi8HhnCiqiGR2YF9ervPGvtoYrheE09cXieCTEqeTPOTJzfoa54Py8rovIBv4bH4n5HgZYIyTQ3DDLHQLl2uQ==}
+  /svelte-check/2.10.0_svelte@3.53.1:
+    resolution: {integrity: sha512-5iLCoja/WsithyRkNtIeDQ0euJlgWj3Zzo2IA6iuHMuuX9D9OrRYZj2WlA5ACnAFQnN5L9mxWcwUW9VxDNEoGg==}
     hasBin: true
     peerDependencies:
       svelte: ^3.24.0
