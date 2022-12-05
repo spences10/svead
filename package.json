@@ -1,66 +1,73 @@
 {
-  "name": "svead",
-  "description": "Svead, a component that allows you to set head meta information, canonical, title, Twitter and Facebook Open Graph tags.",
-  "version": "0.0.2",
-  "author": {
-    "name": "Scott Spence",
-    "email": "yo@scottspence.dev",
-    "url": "https://scottspence.com"
-  },
-  "keywords": [
-    "svelte",
-    "sveltekit",
-    "head",
-    "meta-tags"
-  ],
-  "scripts": {
-    "dev": "vite dev",
-    "build": "pnpm un svead && pnpm i -D svead && vite build",
-    "package": "svelte-kit package",
-    "preview": "vite preview",
-    "prepare": "svelte-kit sync",
-    "test": "playwright test",
-    "check": "svelte-check --tsconfig ./tsconfig.json",
-    "check:watch": "svelte-check --tsconfig ./tsconfig.json --watch",
-    "lint": "prettier --ignore-path .gitignore --check --plugin-search-dir=. . && eslint --ignore-path .gitignore .",
-    "format": "pretty-quick",
-    "package:local": "svelte-kit package && pnpm i -D ./package"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "pretty-quick --staged"
-    }
-  },
-  "devDependencies": {
-    "@playwright/test": "1.28.1",
-    "@sveltejs/adapter-auto": "next",
-    "@sveltejs/kit": "next",
-    "@typescript-eslint/eslint-plugin": "5.45.0",
-    "@typescript-eslint/parser": "5.45.0",
-    "eslint": "8.29.0",
-    "eslint-config-prettier": "8.5.0",
-    "eslint-plugin-svelte3": "4.0.0",
-    "husky": "8.0.2",
-    "prettier": "2.8.0",
-    "prettier-plugin-svelte": "2.8.1",
-    "pretty-quick": "3.1.3",
-    "svead": "^0.0.3",
-    "svelte": "3.53.1",
-    "svelte-check": "2.10.0",
-    "svelte-preprocess": "4.10.7",
-    "svelte2tsx": "0.5.21",
-    "tslib": "2.4.1",
-    "typescript": "4.9.3",
-    "vite": "3.2.4"
-  },
-  "type": "module",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/spences10/svead.git"
-  },
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/spences10/svead/issues"
-  },
-  "homepage": "https://github.com/spences10/svead#readme"
+	"name": "svead",
+	"description": "Svead, a component that allows you to set head meta information, canonical, title, Twitter and Facebook Open Graph tags.",
+	"version": "0.0.2",
+	"author": {
+		"name": "Scott Spence",
+		"email": "yo@scottspence.dev",
+		"url": "https://scottspence.com"
+	},
+	"keywords": [
+		"svelte",
+		"sveltekit",
+		"head",
+		"meta-tags"
+	],
+	"scripts": {
+		"dev": "vite dev",
+		"build": "pnpm un svead && pnpm i -D svead && vite build",
+		"package": "svelte-kit package",
+		"preview": "vite preview",
+		"test": "playwright test",
+		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
+		"test:unit": "vitest",
+		"lint": "prettier --plugin-search-dir . --check . && eslint .",
+		"format": "pretty-quick",
+		"package:local": "svelte-kit package && pnpm i -D ./package"
+	},
+	"husky": {
+		"hooks": {
+			"pre-commit": "pretty-quick --staged"
+		}
+	},
+	"devDependencies": {
+		"@playwright/test": "^1.28.1",
+		"@sveltejs/adapter-auto": "next",
+		"@sveltejs/kit": "next",
+		"@tailwindcss/typography": "^0.5.3",
+		"@typescript-eslint/eslint-plugin": "^5.45.0",
+		"@typescript-eslint/parser": "^5.45.0",
+		"autoprefixer": "^10.4.7",
+		"daisyui": "^2.18.1",
+		"eslint": "^8.28.0",
+		"eslint-config-prettier": "^8.5.0",
+		"eslint-plugin-svelte3": "^4.0.0",
+		"husky": "^8.0.2",
+		"mdsvex": "^0.10.6",
+		"postcss": "^8.4.14",
+		"postcss-load-config": "^4.0.1",
+		"prettier": "^2.8.0",
+		"prettier-plugin-svelte": "^2.8.1",
+		"pretty-quick": "^3.1.3",
+		"svead": "^0.0.3",
+		"svelte": "^3.53.1",
+		"svelte-check": "^2.9.2",
+		"svelte-preprocess": "^4.10.7",
+		"tailwindcss": "^3.1.5",
+		"tslib": "^2.4.1",
+		"typescript": "^4.9.3",
+		"vite": "^3.2.4",
+		"vitest": "^0.25.3"
+	},
+	"type": "module",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/spences10/svead.git"
+	},
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/spences10/svead/issues"
+	},
+	"homepage": "https://github.com/spences10/svead#readme"
 }
