@@ -1,6 +1,6 @@
 # https://snyk.io/blog/how-to-add-playwright-tests-pr-ci-github-actions/
-name: "Tests: E2E"
-on: 
+name: 'Tests: E2E'
+on:
   - push
   - pull_request
 jobs:
