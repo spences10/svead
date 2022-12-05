@@ -12,9 +12,9 @@
 
 <Head {title} {description} {image} {url} {website} />
 
-<h1>Welcome to Svead</h1>
-<p>
-	Visit <a href="https://github.com/spences10/svead">GitHub</a> to contrubute
-	to this project.
-</p>
-<p>View source to see all the head goodness.</p>
+## Welcome to Svead
+
+Visit <a href="https://github.com/spences10/svead">GitHub</a> to
+contrubute to this project.
+
+View source to see all the head goodness.
