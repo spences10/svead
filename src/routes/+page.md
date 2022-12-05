@@ -12,7 +12,7 @@
 
 <Head {title} {description} {image} {url} {website} />
 
-## Welcome to Svead
+# Welcome to Svead
 
 Visit <a href="https://github.com/spences10/svead">GitHub</a> to
 contrubute to this project.
