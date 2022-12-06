@@ -30,7 +30,7 @@
 		<div class="flex-none items-center">
 			<a
 				aria-label="Github"
-				on:click={() => Fathom.trackGoal(`WNWCZIRF`, 0)}
+				on:click={() => Fathom.trackGoal(`WNWCZIRF`, 1)}
 				target="_blank"
 				href="https://github.com/spences10/svead"
 				rel="noopener noreferrer"
