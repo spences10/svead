@@ -65,6 +65,7 @@
 			Made with <span role="img" aria-label="red heart">❤️</span> by
 			<a
 				class="link transition hover:text-secondary"
+				on:click={() => Fathom.trackGoal(`VDR2FTJB`, 1)}
 				href="https://scottspence.com"
 				target="_blank"
 				rel="noopener noreferrer"
@@ -81,6 +82,7 @@
 		<div class="grid grid-flow-col gap-4">
 			<a
 				aria-label="Twitter"
+				on:click={() => Fathom.trackGoal(`HGJHQROG`, 1)}
 				target="_blank"
 				rel="noopener noreferrer"
 				href="https://twitter.com/spences10"
@@ -89,6 +91,7 @@
 			</a>
 			<a
 				aria-label="GitHub"
+				on:click={() => Fathom.trackGoal(`S49BM68P`, 1)}
 				target="_blank"
 				rel="noopener noreferrer"
 				href="https://github.com/spences10"
@@ -97,6 +100,7 @@
 			</a>
 			<a
 				aria-label="YouTube"
+				on:click={() => Fathom.trackGoal(`MQSXN6NV`, 1)}
 				target="_blank"
 				rel="noopener noreferrer"
 				href="https://ss10/yt"
