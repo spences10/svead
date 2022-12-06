@@ -24,7 +24,9 @@
 		"test:unit": "vitest",
 		"lint": "prettier --plugin-search-dir . --check . && eslint .",
 		"format": "pretty-quick",
-		"package:local": "svelte-kit package && pnpm i -D ./package"
+		"package:local": "svelte-kit package && pnpm i -D ./package",
+		"contributors:add": "all-contributors add",
+		"contributors:generate": "all-contributors generate"
 	},
 	"husky": {
 		"hooks": {
@@ -39,6 +41,7 @@
 		"@tailwindcss/typography": "^0.5.3",
 		"@typescript-eslint/eslint-plugin": "^5.45.0",
 		"@typescript-eslint/parser": "^5.45.0",
+		"all-contributors-cli": "^6.24.0",
 		"autoprefixer": "^10.4.7",
 		"daisyui": "^2.18.1",
 		"eslint": "^8.28.0",
