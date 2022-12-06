@@ -88,7 +88,6 @@ Import it into your Svelte pages and use:
 		name="description"
 		content="Svead, a component that allows you to set head meta information, canonical, title, Twitter and Facebook Open Graph tags."
 	/>
-	<meta name="author" content="" />
 	<meta
 		itemprop="name"
 		content="This is Svead a Svelte Head Component"
@@ -99,7 +98,7 @@ Import it into your Svelte pages and use:
 	/>
 	<meta
 		itemprop="image"
-		content="https://og.tailgraph.com/og?fontFamily=Roboto&amp;title=This+is+Svead&amp;titleTailwind=text-gray-800+font-bold+text-6xl&amp;text=Set+Head+meta+tag+information&amp;textTailwind=text-gray-700+text-2xl+mt-4&amp;logoTailwind=h-8&amp;bgTailwind=bg-white&amp;footer=svead.vercel.app&amp;footerTailwind=text-teal-600"
+		content="https://og.tailgraph.com/og?fontFamily=Roboto&title=This+is+Svead&titleTailwind=text-gray-800+font-bold+text-6xl&text=Set+Head+meta+tag+information&textTailwind=text-gray-700+text-2xl+mt-4&logoTailwind=h-8&bgTailwind=bg-white&footer=svead.vercel.app&footerTailwind=text-teal-600"
 	/>
 	<meta property="og:url" content="https://svead.vercel.app/" />
 	<meta property="og:type" content="website" />
@@ -113,7 +112,7 @@ Import it into your Svelte pages and use:
 	/>
 	<meta
 		property="og:image"
-		content="https://og.tailgraph.com/og?fontFamily=Roboto&amp;title=This+is+Svead&amp;titleTailwind=text-gray-800+font-bold+text-6xl&amp;text=Set+Head+meta+tag+information&amp;textTailwind=text-gray-700+text-2xl+mt-4&amp;logoTailwind=h-8&amp;bgTailwind=bg-white&amp;footer=svead.vercel.app&amp;footerTailwind=text-teal-600"
+		content="https://og.tailgraph.com/og?fontFamily=Roboto&title=This+is+Svead&titleTailwind=text-gray-800+font-bold+text-6xl&text=Set+Head+meta+tag+information&textTailwind=text-gray-700+text-2xl+mt-4&logoTailwind=h-8&bgTailwind=bg-white&footer=svead.vercel.app&footerTailwind=text-teal-600"
 	/>
 	<meta name="twitter:card" content="summary_large_image" />
 	<meta
@@ -131,7 +130,7 @@ Import it into your Svelte pages and use:
 	/>
 	<meta
 		name="twitter:image"
-		content="https://og.tailgraph.com/og?fontFamily=Roboto&amp;title=This+is+Svead&amp;titleTailwind=text-gray-800+font-bold+text-6xl&amp;text=Set+Head+meta+tag+information&amp;textTailwind=text-gray-700+text-2xl+mt-4&amp;logoTailwind=h-8&amp;bgTailwind=bg-white&amp;footer=svead.vercel.app&amp;footerTailwind=text-teal-600"
+		content="https://og.tailgraph.com/og?fontFamily=Roboto&title=This+is+Svead&titleTailwind=text-gray-800+font-bold+text-6xl&text=Set+Head+meta+tag+information&textTailwind=text-gray-700+text-2xl+mt-4&logoTailwind=h-8&bgTailwind=bg-white&footer=svead.vercel.app&footerTailwind=text-teal-600"
 	/>
 </head>
 ```

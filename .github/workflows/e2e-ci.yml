@@ -19,3 +19,6 @@ jobs:
         run: npx playwright install --with-deps
       - name: npm run test
         run: npm run test
+        env:
+          PUBLIC_FATHOM_ID: ${{ secrets.PUBLIC_FATHOM_ID }}
+          PUBLIC_FATHOM_URL: ${{ secrets.PUBLIC_FATHOM_URL }}
