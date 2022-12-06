@@ -15,6 +15,9 @@ jobs:
       - uses: actions/setup-node@v3
       - name: install dependencies
         run: npm i && npm ci
+      env:
+        PUBLIC_FATHOM_ID: ${{ secrets.PUBLIC_FATHOM_ID }}
+        PUBLIC_FATHOM_URL: ${{ secrets.PUBLIC_FATHOM_URL }}
       - name: install playwright browsers
         run: npx playwright install --with-deps
       - name: npm run test
