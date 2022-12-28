@@ -19,9 +19,10 @@
 		"package": "svelte-package",
 		"preview": "vite preview",
 		"test": "playwright test",
+		"test:ci": "vitest run",
+		"test:unit": "vitest",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
-		"test:unit": "vitest",
 		"lint": "prettier --plugin-search-dir . --check . && eslint .",
 		"format": "pretty-quick",
 		"package:local": "svelte-kit package && pnpm i -D ./package",
@@ -63,7 +64,7 @@
 		"tslib": "^2.4.1",
 		"typescript": "^4.9.4",
 		"vite": "^4.0.0",
-		"vitest": "^0.25.7"
+		"vitest": "^0.26.0"
 	},
 	"type": "module",
 	"repository": {
