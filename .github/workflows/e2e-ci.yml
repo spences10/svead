@@ -14,7 +14,7 @@ jobs:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
       - name: install dependencies
-        run: pnpm i && pnpm ci
+        run: pnpm i && pnpm test:ci
       - name: install playwright browsers
         run: npx playwright install --with-deps
       - name: pnpm run test
