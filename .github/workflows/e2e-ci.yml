@@ -14,11 +14,11 @@ jobs:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
       - name: install dependencies
-        run: npm i && npm ci
+        run: pnpm i && pnpm ci
       - name: install playwright browsers
         run: npx playwright install --with-deps
-      - name: npm run test
-        run: npm run test
+      - name: pnpm run test
+        run: pnpm run test
         env:
           PUBLIC_FATHOM_ID: ${{ secrets.PUBLIC_FATHOM_ID }}
           PUBLIC_FATHOM_URL: ${{ secrets.PUBLIC_FATHOM_URL }}
