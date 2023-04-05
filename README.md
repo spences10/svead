@@ -52,18 +52,54 @@ Import it into your Svelte pages and use:
 <Head {title} {description} {image} {url} />
 ```
 
-## Developing locally
+## Packaging for NPM
 
-If you have cloned this locally and are making changes to the
-component, install it locally (`link:package`) with:
+Scott, this is here for you to remember how to do this 🙃
+
+Although I detailed this in
+[Making npm Packages with SvelteKit](https://scottspence.com/posts/making-npm-packages-with-sveltekit)
+I think it's best to put it here as I always come to the README and
+the instructions are never there! 😅
+
+**Publish the project to NPM**
 
 ```bash
-# package with sveltkit
+# authenticate with npm
+npm login
+# bump version with npm
+npm version 0.0.8
+# package with sveltekit
 pnpm run package
-# install local package
-pnpm i -D ./package
-# orr use the script
-pnpm package:local
+# publish
+npm publish
+# push tags to github
+git push --tags
+```
+
+**Publish @next package**
+
+Same procedure except use the `--tag` flag:
+
+```bash
+# authenticate with npm
+npm login
+# bump version with npm
+npm version 0.0.13
+# package with sveltekit
+pnpm run package
+# publish with tag
+npm publish --tag next
+# push tags to github
+git push --tags
+```
+
+**Move @next package to latest**
+
+```bash
+# authenticate with npm
+npm login
+# move @next to latest
+npm dist-tag add sveltekit-embed@0.0.13 latest
 ```
 
 ## Contributors ✨
