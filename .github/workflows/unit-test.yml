@@ -1,4 +1,4 @@
-name: 'Tests: E2E'
+name: 'Tests: Unit'
 on:
   push:
     branches: [main]
@@ -7,9 +7,10 @@ on:
     types: [opened, synchronize]
 
 jobs:
-  tests_e2e:
-    name: Run end-to-end tests
+  unit_tests:
+    name: Run unit tests
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/cache@v3
         with:
@@ -25,11 +26,9 @@ jobs:
         with:
           node-version: 18.x
       - name: Install dependencies
-        run: pnpm i
-      - name: Install playwright browsers
-        run: npx playwright install --with-deps
-      - name: Test
-        run: pnpm run test
+        run: pnpm install
+      - name: Run unit tests
+        run: pnpm run test:unit
         env:
           PUBLIC_FATHOM_ID: ${{ secrets.PUBLIC_FATHOM_ID }}
           PUBLIC_FATHOM_URL: ${{ secrets.PUBLIC_FATHOM_URL }}
