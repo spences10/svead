@@ -1,13 +1,55 @@
 <script lang="ts">
-	// required props
+	import type {
+		AuthorType,
+		ContentType,
+		MainEntityType,
+		PublisherType,
+	} from '../../types'
+
+	// Required props
 	export let url: string // Full URL of the current page
-	export let title: string // page title
-	export let description: string // page description
-	// optional props
-	export let website: string = '' // website URL
-	export let authorName: string = '' // Author Name
-	export let image: string = '' // Open Graph image
-	export let paymentPointer: string = '' // Web Monetisation Payment pointer
+	export let title: string // Page title
+	export let description: string // Page description
+
+	// Optional props
+	export let website: string = '' // Website URL
+	export let authorName: string = '' // Author name
+	export let image: string = '' // Open Graph image URL
+	export let paymentPointer: string = '' // Web Monetization payment pointer
+
+	// JSON-LD data
+	export let datePublished: string = '' // Date published in ISO 8601 format
+	export let dateModified: string = '' // Date modified in ISO 8601 format
+	export let contentType: ContentType = 'WebPage' // Content type for JSON-LD
+	export let mainEntity: MainEntityType = 'Article' // Main content type for JSON-LD
+	export let language: string = 'en' // Language code (default: 'en' for English)
+	export let authorType: AuthorType = 'Person' // Author type for JSON-LD
+	export let publisherType: PublisherType = 'Organization' // Publisher type for JSON-LD
+
+	// JSON-LD object construction
+	const jsonLd = {
+		'@context': 'https://schema.org',
+		'@type': contentType,
+		url: url,
+		name: title,
+		description: description,
+		author: {
+			'@type': authorType,
+			name: authorName,
+		},
+		publisher: {
+			'@type': publisherType,
+			name: website,
+			logo: {
+				'@type': 'ImageObject',
+				url: image,
+			},
+		},
+		image: image,
+		datePublished: datePublished,
+		dateModified: dateModified,
+		inLanguage: language,
+	}
 </script>
 
 <!-- 
@@ -18,10 +60,6 @@
 
 <svelte:head>
 	<link rel="canonical" href={url} />
-	<!-- Meta Tags Generated with the help of
-     https://heymeta.com 
-     https://metatags.io/
-  -->
 
 	<!-- HTML Meta Tags -->
 	<title>{title}</title>
@@ -60,8 +98,16 @@
 	{/if}
 
 	<!-- Monetisation -->
-	<!-- https://webmonetization.org/docs/uphold/ -->
 	{#if paymentPointer.length > 0}
 		<meta name="monetization" content={paymentPointer} />
 	{/if}
+
+	<!-- JSON-LD -->
+	<meta itemprop="mainEntityOfPage" content={mainEntity} />
+
+	<script type="application/ld+json">
+		{
+			JSON.stringify(jsonLd)
+		}
+	</script>
 </svelte:head>
