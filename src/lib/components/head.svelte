@@ -1,10 +1,11 @@
 <script lang="ts">
 	import type {
 		AuthorType,
-		ContentType,
+		MainEntity,
 		MainEntityType,
-		PublisherType,
 	} from '../../types'
+	import type { SchemaOrgProps } from './schema-org-props'
+	import SchemaOrg from './schema-org.svelte'
 
 	// Required props
 	export let url: string // Full URL of the current page
@@ -16,47 +17,50 @@
 	export let authorName: string = '' // Author name
 	export let image: string = '' // Open Graph image URL
 	export let paymentPointer: string = '' // Web Monetization payment pointer
+	export let datePublished: string = '' // ISO 8601 format
+	export let dateModified: string = '' // ISO 8601 format
+	export let contentType: MainEntityType = 'WebPage'
+	export let language: string = 'en'
+	export let authorType: AuthorType = 'Person'
+	export let authorUrl: string = ''
 
-	// JSON-LD data
-	export let datePublished: string = '' // Date published in ISO 8601 format
-	export let dateModified: string = '' // Date modified in ISO 8601 format
-	export let contentType: ContentType = 'WebPage' // Content type for JSON-LD
-	export let mainEntity: MainEntityType = 'Article' // Main content type for JSON-LD
-	export let language: string = 'en' // Language code (default: 'en' for English)
-	export let authorType: AuthorType = 'Person' // Author type for JSON-LD
-	export let publisherType: PublisherType = 'Organization' // Publisher type for JSON-LD
-
-	// JSON-LD object construction
-	const jsonLd = {
-		'@context': 'https://schema.org',
-		'@type': contentType,
-		url: url,
+	const mainEntity: MainEntity = {
+		type: contentType,
 		name: title,
-		description: description,
+		url,
+		headline: title,
+		description,
+		image,
+		datePublished,
+		dateModified,
 		author: {
-			'@type': authorType,
+			type: authorType,
 			name: authorName,
+			url: authorUrl,
 		},
 		publisher: {
-			'@type': publisherType,
+			type: 'Organization',
 			name: website,
-			logo: {
-				'@type': 'ImageObject',
-				url: image,
-			},
+			logo: '', // You may want to add a publisher logo property if needed.
 		},
-		image: image,
-		datePublished: datePublished,
-		dateModified: dateModified,
-		inLanguage: language,
+	}
+
+	const schemaOrgProps: SchemaOrgProps = {
+		url,
+		title,
+		description,
+		website,
+		authorName,
+		authorType,
+		authorUrl,
+		image,
+		datePublished,
+		dateModified,
+		language,
+		mainEntity,
+		breadcrumbs: [],
 	}
 </script>
-
-<!-- 
-  Ahrefs guidance:
-  - Generally recommended <title> length is between 50 and 60 characters  
-  - A general recommendation today is to keep your page <description> between 110 and 160 characters
--->
 
 <svelte:head>
 	<link rel="canonical" href={url} />
@@ -70,14 +74,14 @@
 	{/if}
 
 	<!-- Google / Search Engine Tags -->
-	{#if image.length > 0}
+	{#if image}
 		<meta itemprop="name" content={title} />
 		<meta itemprop="description" content={description} />
 		<meta itemprop="image" content={image} />
 	{/if}
 
 	<!-- Facebook Meta Tags -->
-	{#if image.length > 0}
+	{#if image}
 		<meta property="og:url" content={url} />
 		<meta property="og:type" content="website" />
 		<meta property="og:title" content={title} />
@@ -86,7 +90,7 @@
 	{/if}
 
 	<!-- Twitter Meta Tags -->
-	{#if image.length > 0}
+	{#if image}
 		<meta name="twitter:card" content="summary_large_image" />
 		{#if website}
 			<meta property="twitter:domain" content={website} />
@@ -98,16 +102,9 @@
 	{/if}
 
 	<!-- Monetisation -->
-	{#if paymentPointer.length > 0}
+	{#if paymentPointer}
 		<meta name="monetization" content={paymentPointer} />
 	{/if}
-
-	<!-- JSON-LD -->
-	<meta itemprop="mainEntityOfPage" content={mainEntity} />
-
-	<script type="application/ld+json">
-		{
-			JSON.stringify(jsonLd)
-		}
-	</script>
 </svelte:head>
+
+<SchemaOrg {schemaOrgProps} />
