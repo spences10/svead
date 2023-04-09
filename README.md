@@ -11,24 +11,27 @@
 Svead, a component that allows you to set head meta information,
 canonical, title, Twitter and Facebook Open Graph tags.
 
+Also supports JSON-LD for SEO.
+
 ![svead](.github/svead.jpg)
 
 ## Props
 
 It takes the following props:
 
-**Required props**
-
-- `title` => page title
-- `description` => page description
-- `url` => Full URL of the current page
-
-**Optional props**
-
-- `authorName` => Author Name
-- `image` => Open Graph image for use in Twitter, Facebook, etc.
-- `paymentPointer` => Web Monetisation Payment pointer
-- `website` => Website URL for use in Twitter metatag content.
+| Prop           | Type           | Description                       | Required |
+| -------------- | -------------- | --------------------------------- | -------- |
+| url            | string         | Full URL of the current page      | Yes      |
+| title          | string         | Page title                        | Yes      |
+| description    | string         | Page description                  | Yes      |
+| website        | string         | Website URL                       | Optional |
+| authorName     | string         | Author name                       | Optional |
+| image          | string         | Open Graph image URL              | Optional |
+| paymentPointer | string         | Web Monetization payment pointer  | Optional |
+| datePublished  | string         | Date published in ISO 8601 format | Optional |
+| dateModified   | string         | Date modified in ISO 8601 format  | Optional |
+| contentType    | MainEntityType | Content type of the page          | Optional |
+| language       | string         | Language of the page              | Optional |
 
 ## Use it
 
