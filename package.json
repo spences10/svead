@@ -1,7 +1,7 @@
 {
 	"name": "svead",
 	"description": "Svead, a component that allows you to set head meta information, canonical, title, Twitter and Facebook Open Graph tags.",
-	"version": "0.0.5",
+	"version": "0.0.7",
 	"author": {
 		"name": "Scott Spence",
 		"email": "yo@scottspence.dev",
