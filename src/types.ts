@@ -1,11 +1,4 @@
-export type MainEntityType =
-	| 'WebPage'
-	| 'Article'
-	| 'Blog'
-	| 'BlogPosting'
-	| 'NewsArticle'
-	| 'ScholarlyArticle'
-	| 'TechArticle'
+import type { MainEntityType } from './main-entity-types'
 
 export type AuthorType = 'Person' | 'Organization'
 

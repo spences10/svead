@@ -1,9 +1,6 @@
 <script lang="ts">
-	import type {
-		AuthorType,
-		MainEntity,
-		MainEntityType,
-	} from '../../types'
+	import type { MainEntityType } from '../../main-entity-types'
+	import type { AuthorType, MainEntity } from '../../types'
 	import type { SchemaOrgProps } from './schema-org-props'
 	import SchemaOrg from './schema-org.svelte'
 
