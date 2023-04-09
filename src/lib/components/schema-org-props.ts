@@ -1,4 +1,4 @@
-import type { AuthorType, MainEntity } from '../../types'
+import type { AuthorType, MainEntity } from '$lib/types'
 
 export interface BreadcrumbItem {
 	name: string

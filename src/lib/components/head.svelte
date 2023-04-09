@@ -1,6 +1,6 @@
 <script lang="ts">
-	import type { MainEntityType } from '../../main-entity-types'
-	import type { AuthorType, MainEntity } from '../../types'
+	import type { AuthorType, MainEntity } from '$lib/types'
+	import type { MainEntityType } from '../main-entity-types'
 	import type { SchemaOrgProps } from './schema-org-props'
 	import SchemaOrg from './schema-org.svelte'
 
@@ -38,7 +38,7 @@
 		publisher: {
 			type: 'Organization',
 			name: website,
-			logo: '', // You may want to add a publisher logo property if needed.
+			logo: '',
 		},
 	}
 
