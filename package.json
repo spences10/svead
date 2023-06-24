@@ -47,7 +47,7 @@
 		"@sveltejs/kit": "^1.15.1",
 		"@sveltejs/package": "^2.0.2",
 		"@tailwindcss/typography": "^0.5.9",
-		"@testing-library/svelte": "^3.2.2",
+		"@testing-library/svelte": "^4.0.0",
 		"@typescript-eslint/eslint-plugin": "^5.57.1",
 		"@typescript-eslint/parser": "^5.57.1",
 		"all-contributors-cli": "^6.24.0",
