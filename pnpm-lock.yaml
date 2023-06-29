@@ -1,4 +1,4 @@
-lockfileVersion: '6.1'
+lockfileVersion: '6.0'
 
 settings:
   autoInstallPeers: true
@@ -54,8 +54,8 @@ devDependencies:
     specifier: ^22.0.0
     version: 22.0.0
   mdsvex:
-    specifier: ^0.10.6
-    version: 0.10.6(svelte@3.58.0)
+    specifier: ^0.11.0
+    version: 0.11.0(svelte@3.58.0)
   postcss:
     specifier: ^8.4.21
     version: 8.4.21
@@ -2251,10 +2251,10 @@ packages:
       blueimp-md5: 2.19.0
     dev: true
 
-  /mdsvex@0.10.6(svelte@3.58.0):
-    resolution: {integrity: sha512-aGRDY0r5jx9+OOgFdyB9Xm3EBr9OUmcrTDPWLB7a7g8VPRxzPy4MOBmcVYgz7ErhAJ7bZ/coUoj6aHio3x/2mA==}
+  /mdsvex@0.11.0(svelte@3.58.0):
+    resolution: {integrity: sha512-gJF1s0N2nCmdxcKn8HDn0LKrN8poStqAicp6bBcsKFd/zkUBGLP5e7vnxu+g0pjBbDFOscUyI1mtHz+YK2TCDw==}
     peerDependencies:
-      svelte: 3.x
+      svelte: '>=3 <5'
     dependencies:
       '@types/unist': 2.0.6
       prism-svelte: 0.4.7
