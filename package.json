@@ -43,7 +43,7 @@
 	},
 	"devDependencies": {
 		"@playwright/test": "^1.36.2",
-		"@sveltejs/adapter-auto": "^2.1.0",
+		"@sveltejs/adapter-vercel": "^3.0.3",
 		"@sveltejs/kit": "^1.22.4",
 		"@sveltejs/package": "^2.2.0",
 		"@tailwindcss/typography": "^0.5.9",
