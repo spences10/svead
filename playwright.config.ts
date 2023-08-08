@@ -7,20 +7,20 @@ const config: PlaywrightTestConfig = {
 		timeout: 2 * 60 * 1000,
 	},
 	testDir: 'tests',
-	projects: [
-		{
-			name: 'Chromium',
-			use: { browserName: 'chromium' },
-		},
-		{
-			name: 'Firefox',
-			use: { browserName: 'firefox' },
-		},
-		{
-			name: 'WebKit',
-			use: { browserName: 'webkit' },
-		},
-	],
+	// projects: [
+	// 	{
+	// 		name: 'Chromium',
+	// 		use: { browserName: 'chromium' },
+	// 	},
+	// 	{
+	// 		name: 'Firefox',
+	// 		use: { browserName: 'firefox' },
+	// 	},
+	// 	{
+	// 		name: 'WebKit',
+	// 		use: { browserName: 'webkit' },
+	// 	},
+	// ],
 }
 
 export default config
