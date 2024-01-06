@@ -8,9 +8,8 @@ on:
 
 jobs:
   tests_e2e:
-    name: Run end-to-end tests for Web App
+    name: Run end-to-end tests
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -26,11 +25,10 @@ jobs:
         with:
           version: 6.0.2
       - name: Install dependencies
-        run: pnpm recursive install
-      - name: Install Playwright
-        run: cd apps/web && pnpm add playwright
+        run: pnpm i
+        working-directory: apps/web
       - name: Install playwright browsers
-        run: npx playwright install
+        run: npx playwright install --with-deps
         working-directory: apps/web
       - name: Test
         run: pnpm run test
