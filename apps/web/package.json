@@ -4,7 +4,7 @@
 	"private": true,
 	"scripts": {
 		"dev": "vite dev",
-		"build": "vite build",
+		"build": "pnpm run build:packages && vite build",
 		"preview": "vite preview",
 		"test": "npm run test:integration && npm run test:unit",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
@@ -13,7 +13,8 @@
 		"format": "prettier --write .",
 		"test:integration": "playwright test",
 		"test:unit": "vitest",
-		"coverage": "vitest run --coverage"
+		"coverage": "vitest run --coverage",
+		"build:packages": "pnpm -r --filter=\"../../packages/*\" run build"
 	},
 	"devDependencies": {
 		"@playwright/test": "^1.28.1",
