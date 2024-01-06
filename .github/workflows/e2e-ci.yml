@@ -26,7 +26,9 @@ jobs:
           version: '^8.0.0'
       - name: Install dependencies
         run: pnpm i
-        working-directory: apps/web
+      - name: Build svead package
+        run: pnpm run build
+        working-directory: packages/svead
       - name: Install playwright browsers
         run: npx playwright install --with-deps
         working-directory: apps/web
