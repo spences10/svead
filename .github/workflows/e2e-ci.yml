@@ -28,7 +28,7 @@ jobs:
       - name: Install dependencies
         run: pnpm recursive install
       - name: Install playwright browsers
-        run: npx playwright install --with-deps
+        run: pnpm exec playwright install --with-deps
       - name: Test
         run: pnpm run test
         working-directory: apps/web
