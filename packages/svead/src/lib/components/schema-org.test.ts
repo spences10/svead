@@ -1,6 +1,41 @@
 import { render } from '@testing-library/svelte';
 import { afterEach, describe, expect, it } from 'vitest';
+import type { SchemaOrgProps } from './schema-org-props.js';
 import SchemaOrg from './schema-org.svelte';
+
+const commonSchemaOrgProps: SchemaOrgProps = {
+	url: 'https://example.com',
+	title: 'Test Title',
+	description: 'Test Description',
+	authorName: 'Test Author',
+	authorType: 'Person',
+	authorUrl: 'https://example.com/authors/test-author',
+	image: 'https://example.com/test-image.jpg',
+	datePublished: '2023-04-05T10:00:00Z',
+	dateModified: '2023-04-05T12:00:00Z',
+	language: 'en',
+	mainEntity: {
+		'@type': 'Article',
+		name: 'Test Title',
+		url: 'https://example.com',
+		headline: 'Test Title',
+		description: 'Test Description',
+		image: 'https://example.com/test-image.jpg',
+		datePublished: '2023-04-05T10:00:00Z',
+		dateModified: '2023-04-05T12:00:00Z',
+		author: {
+			'@type': 'Person',
+			name: 'Test Author',
+			url: 'https://example.com/authors/test-author',
+		},
+		publisher: {
+			'@type': 'Organization',
+			name: 'https://example.com',
+			logo: '',
+		},
+	},
+	breadcrumbs: [],
+};
 
 describe('SchemaOrg', () => {
 	afterEach(() => {
@@ -9,39 +44,7 @@ describe('SchemaOrg', () => {
 
 	it('renders the correct JSON-LD script with the provided properties', async () => {
 		const { container } = render(SchemaOrg, {
-			schemaOrgProps: {
-				url: 'https://example.com',
-				title: 'Test Title',
-				description: 'Test Description',
-				authorName: 'Test Author',
-				authorType: 'Person',
-				authorUrl: 'https://example.com/authors/test-author',
-				image: 'https://example.com/test-image.jpg',
-				datePublished: '2023-04-05T10:00:00Z',
-				dateModified: '2023-04-05T12:00:00Z',
-				language: 'en',
-				mainEntity: {
-					'@type': 'Article',
-					name: 'Test Title',
-					url: 'https://example.com',
-					headline: 'Test Title',
-					description: 'Test Description',
-					image: 'https://example.com/test-image.jpg',
-					datePublished: '2023-04-05T10:00:00Z',
-					dateModified: '2023-04-05T12:00:00Z',
-					author: {
-						'@type': 'Person',
-						name: 'Test Author',
-						url: 'https://example.com/authors/test-author',
-					},
-					publisher: {
-						'@type': 'Organization',
-						name: 'https://example.com',
-						logo: '',
-					},
-				},
-				breadcrumbs: [],
-			},
+			schemaOrgProps: commonSchemaOrgProps,
 		});
 
 		const jsonLdScriptElement = container.querySelector(

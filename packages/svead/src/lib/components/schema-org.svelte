@@ -16,16 +16,15 @@
 		datePublished,
 		dateModified,
 		language,
-		mainEntity: { type, headline },
+		mainEntity,
 		breadcrumbs,
 	} = schemaOrgProps;
 
 	const jsonLd: JsonLdMainEntity = {
 		'@context': 'https://schema.org',
-		'@type': type,
-		type: type,
+		'@type': mainEntity['@type'],
 		name: title,
-		headline: headline,
+		headline: mainEntity.headline,
 		description: description,
 		url: url,
 		image: image || '',

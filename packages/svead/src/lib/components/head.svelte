@@ -22,7 +22,7 @@
 	export let authorUrl: string = '';
 
 	const mainEntity: MainEntity = {
-		type: contentType,
+		'@type': contentType,
 		name: title,
 		url,
 		headline: title,

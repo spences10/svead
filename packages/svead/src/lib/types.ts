@@ -14,7 +14,6 @@ interface CommonEntity {
 
 export interface AuthorEntity {
 	'@type': AuthorType;
-	type?: AuthorType;
 	name: string;
 	url: string;
 }
@@ -32,7 +31,7 @@ export interface BreadcrumbItem {
 }
 
 export interface MainEntity extends CommonEntity {
-	type: MainEntityType;
+	'@type': MainEntityType;
 	author: AuthorEntity;
 	publisher: PublisherEntity;
 	breadcrumb?: {
