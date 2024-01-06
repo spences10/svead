@@ -1,13 +1,17 @@
 {
-  "private": true,
-  "scripts": {
-    "dev:web": "pnpm run build:packages && pnpm --filter=web dev",
-    "dev:svead": "pnpm run build:packages && pnpm --filter=svead dev",
-    "coverage:web": "pnpm --filter=web coverage",
-    "coverage:svead": "pnpm --filter=svead coverage",
-    "build:packages": "pnpm -r --filter=\"./packages/*\" run build",
-    "format": "pnpm -r --filter=\"./apps/*\" --filter=\"./packages/*\" run format",
-    "lint": "pnpm -r --filter=\"./apps/*\" --filter=\"./packages/*\" run lint"
-  },
-  "devDependencies": {}
+	"private": true,
+	"scripts": {
+		"dev:web": "pnpm run build:packages && pnpm --filter=web dev",
+		"build:web": "pnpm run build:packages && pnpm --filter=web build",
+		"preview:web": "pnpm run build:packages && pnpm --filter=web preview",
+		"dev:svead": "pnpm run build:packages && pnpm --filter=svead dev",
+		"build:svead": "pnpm run build:packages && pnpm --filter=svead build",
+		"test:svead": "pnpm run build:packages && pnpm --filter=svead test:unit",
+		"coverage:web": "pnpm run build:packages && pnpm --filter=web coverage",
+		"coverage:svead": "pnpm run build:packages && pnpm --filter=svead coverage",
+		"build:packages": "pnpm -r --filter=\"./packages/*\" run build",
+		"format": "pnpm -r --filter=\"./apps/*\" --filter=\"./packages/*\" run format",
+		"lint": "pnpm -r --filter=\"./apps/*\" --filter=\"./packages/*\" run lint"
+	},
+	"devDependencies": {}
 }
