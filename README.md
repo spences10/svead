@@ -109,6 +109,14 @@ npm login
 npm dist-tag add sveltekit-embed@0.0.13 latest
 ```
 
+## pnpm workspaces
+
+To add a package to the web workspace:
+
+```bash
+pnpm add -D svead --filter web
+```
+
 ## Contributors ✨
 
 Thanks goes to these wonderful people

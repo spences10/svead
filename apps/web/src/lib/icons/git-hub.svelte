@@ -1,7 +1,13 @@
 <script lang="ts">
-	export let width: string = '25';
-	export let height: string = '25';
-	export let fill: string = 'fill-current';
+	const {
+		width = '25',
+		height = '25',
+		fill = 'fill-current',
+	} = $props<{
+		width?: string;
+		height?: string;
+		fill?: string;
+	}>();
 
 	let svgClass: string = `${fill} text-primary-content transition hover:text-secondary-focus`;
 </script>

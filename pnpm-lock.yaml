@@ -76,8 +76,11 @@ importers:
       prettier-plugin-tailwindcss:
         specifier: ^0.5.9
         version: 0.5.10(prettier-plugin-svelte@3.1.2)(prettier@3.1.1)
+      svead:
+        specifier: workspace:^
+        version: link:../../packages/svead
       svelte:
-        specifier: ^5.0.0-next.1
+        specifier: 5.0.0-next.29
         version: 5.0.0-next.29
       svelte-check:
         specifier: ^3.6.0

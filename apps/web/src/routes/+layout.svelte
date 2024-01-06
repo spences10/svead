@@ -31,7 +31,7 @@
 				target="_blank"
 				href="https://github.com/spences10/svead"
 				rel="noopener noreferrer"
-				class="btn btn-ghost drawer-button btn-square normal-case"
+				class="btn btn-square btn-ghost drawer-button normal-case"
 			>
 				<GitHub
 					height="30"
@@ -44,13 +44,13 @@
 </header>
 
 <main
-	class="prose prose-xl container mx-auto mb-20 max-w-3xl flex-grow px-4"
+	class="container prose prose-xl mx-auto mb-20 max-w-3xl flex-grow px-4"
 >
 	<slot />
 </main>
 
 <footer
-	class="footer bg-primary text-primary-content footer-center p-10"
+	class="footer footer-center bg-primary p-10 text-primary-content"
 >
 	<div class="text-xl">
 		<img
@@ -61,7 +61,7 @@
 		<p class="font-bold">
 			Made with <span role="img" aria-label="red heart">❤️</span> by
 			<a
-				class="link hover:text-secondary transition"
+				class="link transition hover:text-secondary"
 				on:click={() => Fathom.trackGoal(`VDR2FTJB`, 1)}
 				href="https://scottspence.com"
 				target="_blank"

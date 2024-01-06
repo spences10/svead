@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { page } from '$app/stores';
-	import Head from '$lib/components/head.svelte';
+	import { Head } from 'svead';
 
 	export let data;
 	let { Copy } = data;

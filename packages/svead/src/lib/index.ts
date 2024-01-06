@@ -1,1 +1,1 @@
-// Reexport your entry components here
+export { default as Head } from './components/head.svelte';

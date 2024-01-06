@@ -11,7 +11,7 @@ const config = {
 
 	plugins: [typography, daisyui],
 
-		daisyui: {
+	daisyui: {
 		themes: ['night', 'winter'],
 	},
 };

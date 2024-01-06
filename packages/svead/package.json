@@ -1,6 +1,27 @@
 {
 	"name": "svead",
-	"version": "0.0.1",
+	"version": "0.0.9",
+	"author": {
+		"name": "Scott Spence",
+		"email": "svead@scottspence.dev",
+		"url": "https://scottspence.com"
+	},
+	"keywords": [
+		"svelte",
+		"sveltekit",
+		"head",
+		"meta-tags",
+		"seo",
+		"social",
+		"twitter",
+		"facebook",
+		"og",
+		"open-graph",
+		"schema",
+		"json-ld",
+		"jsonld",
+		"structured-data"
+	],
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build && npm run package",
@@ -27,7 +48,7 @@
 		"!dist/**/*.spec.*"
 	],
 	"peerDependencies": {
-		"svelte": "^4.0.0"
+		"svelte": "5.0.0-next.29"
 	},
 	"devDependencies": {
 		"@playwright/test": "^1.40.1",
@@ -54,5 +75,14 @@
 	},
 	"svelte": "./dist/index.js",
 	"types": "./dist/index.d.ts",
-	"type": "module"
+	"type": "module",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/spences10/svead.git"
+	},
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/spences10/svead/issues"
+	},
+	"homepage": "https://github.com/spences10/svead#readme"
 }
