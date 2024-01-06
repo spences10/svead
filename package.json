@@ -2,7 +2,7 @@
 	"private": true,
 	"scripts": {
 		"dev:web": "pnpm run build:packages && pnpm --filter=web dev",
-		"build:web": "pnpm run build:packages && pnpm --filter=web build",
+		"build:web": "pnpm run build:packages && pnpm --filter=web build && mv apps/web/.vercel/output apps/web/output",
 		"preview:web": "pnpm run build:packages && pnpm --filter=web preview",
 		"test:unit:web": "pnpm run build:packages && pnpm --filter=web test:unit",
 		"test:int:web": "pnpm run build:packages && pnpm --filter=web test:integration",
