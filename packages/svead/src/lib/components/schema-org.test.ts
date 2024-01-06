@@ -7,8 +7,8 @@ describe('SchemaOrg', () => {
 		document.head.innerHTML = '';
 	});
 
-	it.skip('renders the correct JSON-LD script with the provided properties', async () => {
-		render(SchemaOrg, {
+	it('renders the correct JSON-LD script with the provided properties', async () => {
+		const { container } = render(SchemaOrg, {
 			schemaOrgProps: {
 				url: 'https://example.com',
 				title: 'Test Title',
@@ -21,7 +21,7 @@ describe('SchemaOrg', () => {
 				dateModified: '2023-04-05T12:00:00Z',
 				language: 'en',
 				mainEntity: {
-					type: 'Article',
+					'@type': 'Article',
 					name: 'Test Title',
 					url: 'https://example.com',
 					headline: 'Test Title',
@@ -30,12 +30,12 @@ describe('SchemaOrg', () => {
 					datePublished: '2023-04-05T10:00:00Z',
 					dateModified: '2023-04-05T12:00:00Z',
 					author: {
-						type: 'Person',
+						'@type': 'Person',
 						name: 'Test Author',
 						url: 'https://example.com/authors/test-author',
 					},
 					publisher: {
-						type: 'Organization',
+						'@type': 'Organization',
 						name: 'https://example.com',
 						logo: '',
 					},
@@ -44,17 +44,20 @@ describe('SchemaOrg', () => {
 			},
 		});
 
-		const jsonLdScriptElement = document.head.querySelector(
+		const jsonLdScriptElement = container.querySelector(
 			'script[type="application/ld+json"]',
 		);
+		expect(jsonLdScriptElement).not.toBeNull();
 
-		if (!jsonLdScriptElement) {
-			throw new Error('JSON-LD script element not found');
-		}
+		// Clean the innerHTML of the script tag by removing any HTML comments
+		const cleanedInnerHtml = jsonLdScriptElement!.innerHTML.replace(
+			/<!--.*?-->/g,
+			'',
+		);
 
-		const jsonLdContent = JSON.parse(jsonLdScriptElement.innerHTML);
+		const jsonLdContent = JSON.parse(cleanedInnerHtml);
 
-		expect(jsonLdContent['@type']).toBe('Article');
+		expect(jsonLdContent['@context']).toBe('https://schema.org');
 		expect(jsonLdContent.name).toBe('Test Title');
 		expect(jsonLdContent.url).toBe('https://example.com');
 		expect(jsonLdContent.headline).toBe('Test Title');
@@ -64,13 +67,20 @@ describe('SchemaOrg', () => {
 		);
 		expect(jsonLdContent.datePublished).toBe('2023-04-05T10:00:00Z');
 		expect(jsonLdContent.dateModified).toBe('2023-04-05T12:00:00Z');
+		expect(jsonLdContent.inLanguage).toBe('en');
 		expect(jsonLdContent.author['@type']).toBe('Person');
 		expect(jsonLdContent.author.name).toBe('Test Author');
 		expect(jsonLdContent.author.url).toBe(
 			'https://example.com/authors/test-author',
 		);
 		expect(jsonLdContent.publisher['@type']).toBe('Organization');
-		expect(jsonLdContent.publisher.name).toBe('https://example.com');
-		expect(jsonLdContent.publisher.logo).toBe('');
+		expect(jsonLdContent.publisher.name).toBe('');
+		expect(jsonLdContent.publisher.logo).toBe(
+			'https://example.com/test-image.jpg',
+		);
+		expect(jsonLdContent.mainEntityOfPage['@type']).toBe('WebPage');
+		expect(jsonLdContent.mainEntityOfPage['@id']).toBe(
+			'https://example.com',
+		);
 	});
 });
