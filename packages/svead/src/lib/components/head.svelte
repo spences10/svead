@@ -1,7 +1,7 @@
 <script lang="ts">
-	import type { AuthorType, MainEntity } from '$lib/types';
-	import type { MainEntityType } from '../main-entity-types';
-	import type { SchemaOrgProps } from './schema-org-props';
+	import type { AuthorType, MainEntity } from '$lib/types.js';
+	import type { MainEntityType } from '../main-entity-types.js';
+	import type { SchemaOrgProps } from './schema-org-props.js';
 	import SchemaOrg from './schema-org.svelte';
 
 	// Required props
@@ -31,12 +31,12 @@
 		datePublished,
 		dateModified,
 		author: {
-			type: authorType,
+			'@type': authorType,
 			name: authorName,
 			url: authorUrl,
 		},
 		publisher: {
-			type: 'Organization',
+			'@type': 'Organization',
 			name: website,
 			logo: '',
 		},

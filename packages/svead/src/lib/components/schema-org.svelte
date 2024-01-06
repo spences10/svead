@@ -1,39 +1,72 @@
 <script lang="ts">
+	import type { JsonLdMainEntity } from '$lib/types.js';
 	import type { SchemaOrgProps } from './schema-org-props.js';
 
 	export let schemaOrgProps: SchemaOrgProps;
 
-	const mainEntity = schemaOrgProps.mainEntity;
-	const jsonLd = {
+	const {
+		url,
+		title,
+		description,
+		website,
+		authorName,
+		authorType,
+		authorUrl,
+		image,
+		datePublished,
+		dateModified,
+		language,
+		mainEntity: { type, headline },
+		breadcrumbs,
+	} = schemaOrgProps;
+
+	const jsonLd: JsonLdMainEntity = {
 		'@context': 'https://schema.org',
-		'@type': mainEntity.type,
-		name: mainEntity.name,
-		url: mainEntity.url,
-		headline: mainEntity.headline,
-		description: mainEntity.description,
-		image: mainEntity.image,
-		datePublished: mainEntity.datePublished,
-		dateModified: mainEntity.dateModified,
+		'@type': type,
+		type: type,
+		name: title,
+		headline: headline,
+		description: description,
+		url: url,
+		image: image || '',
+		datePublished: datePublished || '',
+		dateModified: dateModified || '',
+		inLanguage: language,
 		author: {
-			'@type': mainEntity.author.type,
-			name: mainEntity.author.name,
-			url: mainEntity.author.url,
+			'@type': authorType || 'Person',
+			name: authorName || '',
+			url: authorUrl || '',
 		},
 		publisher: {
-			'@type': mainEntity.publisher.type,
-			name: mainEntity.publisher.name,
-			logo: mainEntity.publisher.logo,
+			'@type': 'Organization',
+			name: website || '',
+			url: url,
+			logo: image || '',
 		},
+		mainEntityOfPage: {
+			'@type': 'WebPage',
+			'@id': url,
+		},
+		// ... include additional properties as needed
 	};
 
-	const jsonLdString = JSON.stringify(jsonLd);
-	const jsonLdScript = `
-    <script type="application/ld+json">
-      ${jsonLdString}
-		${'<'}/script>
-  `;
+	// Adding breadcrumbs if they exist
+	if (breadcrumbs && breadcrumbs.length) {
+		jsonLd['breadcrumb'] = {
+			'@type': 'BreadcrumbList',
+			itemListElement: breadcrumbs.map((item, index) => ({
+				'@type': 'ListItem',
+				position: index + 1,
+				item: {
+					'@id': item.url,
+					name: item.name,
+					url: item.url,
+				},
+			})),
+		};
+	}
 </script>
 
-<svelte:head>
-	{@html jsonLdScript}
-</svelte:head>
+<svelte:element this="script" type="application/ld+json">
+	{@html JSON.stringify(jsonLd)}
+</svelte:element>
