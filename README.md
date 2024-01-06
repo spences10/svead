@@ -47,17 +47,71 @@ Import it into your Svelte pages and use:
 
 ```svelte
 <script>
-	import { page } from '$app/stores'
-	import { Head } from 'svead'
+	import { page } from '$app/stores';
+	import { Head } from 'svead';
 
-	let title = 'This is Svead a Svelte Head Component'
+	let title = 'This is Svead a Svelte Head Component';
 	let description =
-		'Svead, a component that allows you to set head meta information, canonical, title, Twitter and Facebook Open Graph tags.'
-	let url = $page.url.toString()
+		'Svead, a component that allows you to set head meta information, canonical, title, Twitter and Facebook Open Graph tags.';
+	let url = $page.url.toString();
 </script>
 
 <Head {title} {description} {image} {url} />
 ```
+
+## Managing the `lang` Attribute in `app.html`
+
+The `lang` attribute in your SvelteKit application is crucial for
+specifying the primary language of your content. This attribute is
+essential for accessibility and SEO, as it helps search engines and
+assistive technologies understand the language of your text.
+
+### Default Language Setting
+
+Typically, the `lang` attribute is set in the `app.html` file of your
+SvelteKit project. Here's a typical example:
+
+```html
+<!doctype html>
+<html lang="en">
+	<!-- ... other tags ... -->
+</html>
+```
+
+In this snippet, `lang="en"` sets the language of the document to
+English.
+
+### Customizing the Language
+
+To customize the language for your application:
+
+1. **Static Setting:** If your site is primarily in one language,
+   simply replace the `en` in `lang="en"` with the appropriate
+   language code (e.g., `fr` for French).
+
+2. **Dynamic Setting:** If your site supports multiple languages and
+   you need to change the language dynamically based on user
+   preferences or other criteria, you'll need to handle this at the
+   server level or through client-side scripting. Here are some
+   strategies:
+
+- **Server-Side Rendering (SSR):** Adapt your SSR setup to insert the
+  correct `lang` attribute based on the request's context or user
+  settings.
+- **Client-Side Script:** Use client-side JavaScript to set
+  `document.documentElement.lang` based on user interaction or other
+  indicators. This method is less preferred due to potential SEO and
+  user experience implications.
+
+### Note on svead Usage
+
+The svead package is designed to enhance your application's SEO and
+accessibility through structured data and other optimizations.
+However, managing the `lang` attribute in the `app.html` file is
+outside the scope of svead. As such, you'll need to manage this
+attribute as part of your general SvelteKit application setup.
+Following the best practices for setting the `lang` attribute will
+complement the enhancements provided by svead.
 
 ## Packaging for NPM
 
@@ -107,6 +161,14 @@ git push --tags
 npm login
 # move @next to latest
 npm dist-tag add sveltekit-embed@0.0.13 latest
+```
+
+## pnpm workspaces
+
+To add a package to the web workspace:
+
+```bash
+pnpm add -D svead --filter web
 ```
 
 ## Contributors ✨
