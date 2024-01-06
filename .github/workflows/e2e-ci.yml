@@ -27,10 +27,11 @@ jobs:
           version: 6.0.2
       - name: Install dependencies
         run: pnpm recursive install
-      - name: Check installed binaries
-        run: ls node_modules/.bin
+      - name: Install Playwright
+        run: cd apps/web && pnpm add playwright
       - name: Install playwright browsers
-        run: node node_modules/playwright/install.js
+        run: npx playwright install
+        working-directory: apps/web
       - name: Test
         run: pnpm run test
         working-directory: apps/web
