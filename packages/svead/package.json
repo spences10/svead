@@ -35,6 +35,7 @@
 		"format": "prettier --write .",
 		"test:integration": "playwright test",
 		"test:unit": "vitest",
+		"test:ci": "vitest run",
 		"coverage": "vitest run --coverage",
 		"postinstall": "patch-package"
 	},
