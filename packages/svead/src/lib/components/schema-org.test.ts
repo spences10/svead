@@ -3,7 +3,7 @@ import { afterEach, describe, expect, it } from 'vitest';
 import type { SchemaOrgProps } from './schema-org-props.js';
 import SchemaOrg from './schema-org.svelte';
 
-const commonSchemaOrgProps: SchemaOrgProps = {
+const schema_org_props: SchemaOrgProps = {
 	url: 'https://example.com',
 	title: 'Test Title',
 	description: 'Test Description',
@@ -37,6 +37,10 @@ const commonSchemaOrgProps: SchemaOrgProps = {
 	breadcrumbs: [],
 };
 
+const clean_html_content = (content: string): string => {
+	return content.replace(/<!--[\s\S]*?-->/g, '');
+};
+
 describe('SchemaOrg', () => {
 	afterEach(() => {
 		document.head.innerHTML = '';
@@ -44,7 +48,7 @@ describe('SchemaOrg', () => {
 
 	it('renders the correct JSON-LD script with the provided properties', async () => {
 		const { container } = render(SchemaOrg, {
-			schemaOrgProps: commonSchemaOrgProps,
+			schema_org_props: schema_org_props,
 		});
 
 		const jsonLdScriptElement = container.querySelector(
@@ -53,9 +57,8 @@ describe('SchemaOrg', () => {
 		expect(jsonLdScriptElement).not.toBeNull();
 
 		// Clean the innerHTML of the script tag by removing any HTML comments
-		const cleanedInnerHtml = jsonLdScriptElement!.innerHTML.replace(
-			/<!--.*?-->/g,
-			'',
+		const cleanedInnerHtml = clean_html_content(
+			jsonLdScriptElement!.innerHTML,
 		);
 
 		const jsonLdContent = JSON.parse(cleanedInnerHtml);
