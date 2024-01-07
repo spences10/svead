@@ -20,7 +20,7 @@
 		breadcrumbs,
 	} = schema_org_props;
 
-	const jsonLd: JsonLdMainEntity = {
+	const json_ld: JsonLdMainEntity = {
 		'@context': 'https://schema.org',
 		'@type': mainEntity['@type'],
 		name: title,
@@ -46,12 +46,11 @@
 			'@type': 'WebPage',
 			'@id': url,
 		},
-		// ... include additional properties as needed
 	};
 
 	// Adding breadcrumbs if they exist
 	if (breadcrumbs && breadcrumbs.length) {
-		jsonLd['breadcrumb'] = {
+		json_ld['breadcrumb'] = {
 			'@type': 'BreadcrumbList',
 			itemListElement: breadcrumbs.map((item, index) => ({
 				'@type': 'ListItem',
@@ -67,5 +66,5 @@
 </script>
 
 <svelte:element this="script" type="application/ld+json">
-	{@html JSON.stringify(jsonLd)}
+	{@html JSON.stringify(json_ld)}
 </svelte:element>
