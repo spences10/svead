@@ -2,7 +2,7 @@
 	import type { JsonLdMainEntity } from '$lib/types.js';
 	import type { SchemaOrgProps } from './schema-org-props.js';
 
-	export let schemaOrgProps: SchemaOrgProps;
+	export let schema_org_props: SchemaOrgProps;
 
 	const {
 		url,
@@ -18,7 +18,7 @@
 		language,
 		mainEntity,
 		breadcrumbs,
-	} = schemaOrgProps;
+	} = schema_org_props;
 
 	const jsonLd: JsonLdMainEntity = {
 		'@context': 'https://schema.org',
