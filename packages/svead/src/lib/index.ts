@@ -1,2 +1,7 @@
 export { default as Head } from './components/head.svelte';
-export type { SeoConfig } from './types.js';
+export type {
+	AuthorEntity,
+	BreadcrumbItem,
+	PublisherEntity,
+	SeoConfig,
+} from './types.js';
