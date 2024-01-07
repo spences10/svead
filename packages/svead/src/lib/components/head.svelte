@@ -3,7 +3,7 @@
 	import type { SchemaOrgProps } from './schema-org-props.js';
 	import SchemaOrg from './schema-org.svelte';
 
-	export let seo_config: SeoConfig;
+	const { seo_config } = $props<{ seo_config: SeoConfig }>();
 
 	// Derived properties for SchemaOrg
 	let schema_org_props: SchemaOrgProps = {
@@ -13,10 +13,10 @@
 		website: seo_config.website,
 		authorName: seo_config.author_name,
 		authorType: seo_config.author_type,
-		authorUrl: '',
+		authorUrl: seo_config.author_url,
 		image: seo_config.image,
-		datePublished: '',
-		dateModified: '',
+		datePublished: seo_config.date_published,
+		dateModified: seo_config.date_modified,
 		language: seo_config.language,
 		mainEntity: seo_config.main_entity as MainEntity,
 		breadcrumbs: seo_config.breadcrumbs,
@@ -77,4 +77,6 @@
 	{/if}
 </svelte:head>
 
-<SchemaOrg {schema_org_props} />
+{#if schema_org_props.url && schema_org_props.title && schema_org_props.description && schema_org_props.mainEntity}
+	<SchemaOrg {schema_org_props} />
+{/if}
