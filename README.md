@@ -37,6 +37,42 @@ It takes the following props:
 | contentType    | MainEntityType | Content type of the page          | Optional |
 | language       | string         | Language of the page              | Optional |
 
+## JSON-LD Properties
+
+The following table lists the JSON-LD properties supported by 'svead'.
+These properties help you structure your metadata in a way that is
+recognized by search engines, enhancing your SEO and the way your
+content is understood and presented in search results.
+
+| Property Name   | Type     | Description                                                                   | Example Value                                                                                                   |
+| --------------- | -------- | ----------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
+| `url`           | `string` | The URL of the item.                                                          | `"https://example.com/article"`                                                                                 |
+| `title`         | `string` | The title of the item.                                                        | `"My Awesome Article"`                                                                                          |
+| `description`   | `string` | A brief description of the item.                                              | `"This is an awesome article about..."`                                                                         |
+| `image`         | `string` | URL of an image representing the item.                                        | `"https://example.com/image.jpg"`                                                                               |
+| `datePublished` | `string` | The date the item was published, in ISO 8601 format.                          | `"2020-05-10T17:30:00Z"`                                                                                        |
+| `dateModified`  | `string` | The date the item was last modified, in ISO 8601 format.                      | `"2020-06-10T17:30:00Z"`                                                                                        |
+| `authorName`    | `string` | Name of the author.                                                           | `"Jane Doe"`                                                                                                    |
+| `authorType`    | `string` | Type of author (e.g., Person or Organization).                                | `"Person"`                                                                                                      |
+| `authorUrl`     | `string` | URL of the author's webpage.                                                  | `"https://example.com/janedoe"`                                                                                 |
+| `language`      | `string` | The language of the item. ISO 639-1 format.                                   | `"en"`                                                                                                          |
+| `breadcrumbs`   | `array`  | A list of breadcrumb items representing the page's position in the hierarchy. | `[{"name": "Home", "url": "https://example.com"}, {"name": "Articles", "url": "https://example.com/articles"}]` |
+
+### Additional Notes:
+
+- **Refer to Schema Documentation**: For a detailed understanding of
+  each property and how it's used in structured data, refer to the
+  [schema.org documentation](https://schema.org).
+- **Advanced Configuration**: Some properties accept complex objects
+  or arrays. Please refer to the respective schema definitions for
+  such cases.
+- **Best Practices**: Ensure the accuracy and relevance of the
+  information provided for each property to maximize SEO benefits.
+
+This table is not exhaustive and may be updated as new properties are
+added or existing ones are modified. Stay tuned to the project's
+repository for the latest updates.
+
 ## Use it
 
 ```bash
@@ -160,12 +196,12 @@ git push --tags
 # authenticate with npm
 npm login
 # move @next to latest
-npm dist-tag add sveltekit-embed@0.0.13 latest
+npm dist-tag add svead@0.0.13 latest
 ```
 
 ## pnpm workspaces
 
-To add a package to the web workspace:
+To add the `svead` package to the `web` workspace:
 
 ```bash
 pnpm add -D svead --filter web
