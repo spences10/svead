@@ -1,107 +1,80 @@
 <script lang="ts">
-	import type { AuthorType, MainEntity } from '$lib/types.js';
-	import type { MainEntityType } from '../main-entity-types.js';
+	import type { MainEntity, SeoConfig } from '$lib/types.js';
 	import type { SchemaOrgProps } from './schema-org-props.js';
 	import SchemaOrg from './schema-org.svelte';
 
-	// Required props
-	export let url: string; // Full URL of the current page
-	export let title: string; // Page title
-	export let description: string; // Page description
+	export let seo_config: SeoConfig;
 
-	// Optional props
-	export let website: string = ''; // Website URL
-	export let authorName: string = ''; // Author name
-	export let image: string = ''; // Open Graph image URL
-	export let paymentPointer: string = ''; // Web Monetization payment pointer
-	export let datePublished: string = ''; // ISO 8601 format
-	export let dateModified: string = ''; // ISO 8601 format
-	export let contentType: MainEntityType = 'WebPage';
-	export let language: string = 'en';
-	export let authorType: AuthorType = 'Person';
-	export let authorUrl: string = '';
-
-	const mainEntity: MainEntity = {
-		'@type': contentType,
-		name: title,
-		url,
-		headline: title,
-		description,
-		image,
-		datePublished,
-		dateModified,
-		author: {
-			'@type': authorType,
-			name: authorName,
-			url: authorUrl,
-		},
-		publisher: {
-			'@type': 'Organization',
-			name: website,
-			logo: '',
-		},
-	};
-
-	const schemaOrgProps: SchemaOrgProps = {
-		url,
-		title,
-		description,
-		website,
-		authorName,
-		authorType,
-		authorUrl,
-		image,
-		datePublished,
-		dateModified,
-		language,
-		mainEntity,
-		breadcrumbs: [],
+	// Derived properties for SchemaOrg
+	let schema_org_props: SchemaOrgProps = {
+		url: seo_config.url,
+		title: seo_config.title,
+		description: seo_config.description,
+		website: seo_config.website,
+		authorName: seo_config.author_name,
+		authorType: seo_config.author_type,
+		authorUrl: '',
+		image: seo_config.image,
+		datePublished: '',
+		dateModified: '',
+		language: seo_config.language,
+		mainEntity: seo_config.main_entity as MainEntity,
+		breadcrumbs: seo_config.breadcrumbs,
 	};
 </script>
 
 <svelte:head>
-	<link rel="canonical" href={url} />
+	<link rel="canonical" href={seo_config.url} />
 
 	<!-- HTML Meta Tags -->
-	<title>{title}</title>
-	<meta name="title" content={title} />
-	<meta name="description" content={description} />
-	{#if authorName}
-		<meta name="author" content={authorName} />
+	<title>{seo_config.title}</title>
+	<meta name="title" content={seo_config.title} />
+	<meta name="description" content={seo_config.description} />
+	{#if schema_org_props.authorName}
+		<meta name="author" content={schema_org_props.authorName} />
 	{/if}
 
 	<!-- Google / Search Engine Tags -->
-	{#if image}
-		<meta itemprop="name" content={title} />
-		<meta itemprop="description" content={description} />
-		<meta itemprop="image" content={image} />
+	{#if schema_org_props.image}
+		<meta itemprop="name" content={seo_config.title} />
+		<meta itemprop="description" content={seo_config.description} />
+		<meta itemprop="image" content={schema_org_props.image} />
 	{/if}
 
 	<!-- Facebook Meta Tags -->
-	{#if image}
-		<meta property="og:url" content={url} />
+	{#if schema_org_props.image}
+		<meta property="og:url" content={seo_config.url} />
 		<meta property="og:type" content="website" />
-		<meta property="og:title" content={title} />
-		<meta property="og:description" content={description} />
-		<meta property="og:image" content={image} />
+		<meta property="og:title" content={seo_config.title} />
+		<meta
+			property="og:description"
+			content={seo_config.description}
+		/>
+		<meta property="og:image" content={schema_org_props.image} />
 	{/if}
 
 	<!-- Twitter Meta Tags -->
-	{#if image}
+	{#if schema_org_props.image}
 		<meta name="twitter:card" content="summary_large_image" />
-		{#if website}
-			<meta property="twitter:domain" content={website} />
+		{#if schema_org_props.website}
+			<meta
+				property="twitter:domain"
+				content={schema_org_props.website}
+			/>
 		{/if}
-		<meta property="twitter:url" content={url} />
-		<meta name="twitter:title" content={title} />
-		<meta name="twitter:description" content={description} />
-		<meta name="twitter:image" content={image} />
+		<meta property="twitter:url" content={seo_config.url} />
+		<meta name="twitter:title" content={seo_config.title} />
+		<meta
+			name="twitter:description"
+			content={seo_config.description}
+		/>
+		<meta name="twitter:image" content={schema_org_props.image} />
 	{/if}
 
 	<!-- Monetisation -->
-	{#if paymentPointer}
-		<meta name="monetization" content={paymentPointer} />
+	{#if seo_config.payment_pointer}
+		<meta name="monetization" content={seo_config.payment_pointer} />
 	{/if}
 </svelte:head>
 
-<SchemaOrg {schemaOrgProps} />
+<SchemaOrg {schema_org_props} />
