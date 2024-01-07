@@ -23,19 +23,27 @@ Also supports JSON-LD for SEO.
 
 It takes the following props:
 
-| Prop           | Type           | Description                       | Required |
-| -------------- | -------------- | --------------------------------- | -------- |
-| url            | string         | Full URL of the current page      | Yes      |
-| title          | string         | Page title                        | Yes      |
-| description    | string         | Page description                  | Yes      |
-| website        | string         | Website URL                       | Optional |
-| authorName     | string         | Author name                       | Optional |
-| image          | string         | Open Graph image URL              | Optional |
-| paymentPointer | string         | Web Monetization payment pointer  | Optional |
-| datePublished  | string         | Date published in ISO 8601 format | Optional |
-| dateModified   | string         | Date modified in ISO 8601 format  | Optional |
-| contentType    | MainEntityType | Content type of the page          | Optional |
-| language       | string         | Language of the page              | Optional |
+### `SeoConfig` Props
+
+| Property          | Type             | Description                                                  | Required |
+| ----------------- | ---------------- | ------------------------------------------------------------ | -------- |
+| `title`           | string           | The title of the page.                                       | Yes      |
+| `description`     | string           | A brief description of the page's content.                   | Yes      |
+| `url`             | string           | The full URL of the current page.                            | Yes      |
+| `language`        | string \| 'en'   | The language for SchemaOrg.                                  | No       |
+| `image`           | string           | Open Graph image URL.                                        | No       |
+| `website`         | string           | Website URL.                                                 | No       |
+| `author_name`     | string           | Author name.                                                 | No       |
+| `author_type`     | AuthorType       | Type of the author (Person or Organization).                 | No       |
+| `author_url`      | string           | URL of the author's webpage.                                 | No       |
+| `date_published`  | string           | Date when the entity was first published in ISO 8601 format. | No       |
+| `date_modified`   | string           | Date when the entity was last modified in ISO 8601 format.   | No       |
+| `publisher_name`  | string           | Name of the publisher.                                       | No       |
+| `publisher_url`   | string           | URL of the publisher.                                        | No       |
+| `publisher_logo`  | string           | Logo URL of the publisher.                                   | No       |
+| `payment_pointer` | string           | Web Monetisation payment pointer.                            | No       |
+| `breadcrumbs`     | BreadcrumbItem[] | Array of breadcrumb items.                                   | No       |
+| `main_entity`     | MainEntity       | Main entity of the page.                                     | No       |
 
 ## JSON-LD Properties
 
@@ -44,19 +52,29 @@ These properties help you structure your metadata in a way that is
 recognized by search engines, enhancing your SEO and the way your
 content is understood and presented in search results.
 
-| Property Name   | Type     | Description                                                                   | Example Value                                                                                                   |
-| --------------- | -------- | ----------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
-| `url`           | `string` | The URL of the item.                                                          | `"https://example.com/article"`                                                                                 |
-| `title`         | `string` | The title of the item.                                                        | `"My Awesome Article"`                                                                                          |
-| `description`   | `string` | A brief description of the item.                                              | `"This is an awesome article about..."`                                                                         |
-| `image`         | `string` | URL of an image representing the item.                                        | `"https://example.com/image.jpg"`                                                                               |
-| `datePublished` | `string` | The date the item was published, in ISO 8601 format.                          | `"2020-05-10T17:30:00Z"`                                                                                        |
-| `dateModified`  | `string` | The date the item was last modified, in ISO 8601 format.                      | `"2020-06-10T17:30:00Z"`                                                                                        |
-| `authorName`    | `string` | Name of the author.                                                           | `"Jane Doe"`                                                                                                    |
-| `authorType`    | `string` | Type of author (e.g., Person or Organization).                                | `"Person"`                                                                                                      |
-| `authorUrl`     | `string` | URL of the author's webpage.                                                  | `"https://example.com/janedoe"`                                                                                 |
-| `language`      | `string` | The language of the item. ISO 639-1 format.                                   | `"en"`                                                                                                          |
-| `breadcrumbs`   | `array`  | A list of breadcrumb items representing the page's position in the hierarchy. | `[{"name": "Home", "url": "https://example.com"}, {"name": "Articles", "url": "https://example.com/articles"}]` |
+### `AuthorEntity` Props
+
+| Property | Type                       | Description                              | Required |
+| -------- | -------------------------- | ---------------------------------------- | -------- |
+| `@type`  | 'Person' \| 'Organization' | Type of author (Person or Organization). | Yes      |
+| `name`   | string                     | Name of the author.                      | Yes      |
+| `url`    | string                     | URL of the author's webpage.             | Yes      |
+
+### `BreadcrumbItem` Props
+
+| Property | Type   | Description             | Required |
+| -------- | ------ | ----------------------- | -------- |
+| `name`   | string | Name of the breadcrumb. | Yes      |
+| `url`    | string | URL of the breadcrumb.  | Yes      |
+
+### `PublisherEntity` Props
+
+| Property | Type           | Description                               | Required |
+| -------- | -------------- | ----------------------------------------- | -------- |
+| `@type`  | 'Organization' | Type of publisher, always 'Organization'. | Yes      |
+| `name`   | string         | Name of the organization.                 | Yes      |
+| `logo`   | string         | URL to the logo of the organization.      | Yes      |
+| `url`    | string         | URL of the organization. (Optional)       | No       |
 
 ### Additional Notes:
 
@@ -82,17 +100,19 @@ npm install svead
 Import it into your Svelte pages and use:
 
 ```svelte
-<script>
-	import { page } from '$app/stores';
-	import { Head } from 'svead';
+<script lang="ts">
+	import { Head, type SeoConfig } from 'svead';
 
-	let title = 'This is Svead a Svelte Head Component';
-	let description =
-		'Svead, a component that allows you to set head meta information, canonical, title, Twitter and Facebook Open Graph tags.';
-	let url = $page.url.toString();
+	const seo_config: SeoConfig = {
+		url: 'https://example.com/web-page',
+		title: 'Web Page',
+		description: 'This is a sample web page.',
+		date_published: '2023-04-05T10:00:00Z',
+		date_modified: '2023-04-05T12:00:00Z',
+	};
 </script>
 
-<Head {title} {description} {image} {url} />
+<Head {seo_config} />
 ```
 
 ## Managing the `lang` Attribute in `app.html`
