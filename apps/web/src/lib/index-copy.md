@@ -61,7 +61,7 @@ Import it into your Svelte pages and use:
 ```html
 <head>
   <title>This is Svead a Svelte Head Component</title>
-  <link rel="canonical" href="https://svead.vercel.app/" />
+  <link rel="canonical" href="https://svead.vercel.app" />
   <meta
     name="title"
     content="This is Svead a Svelte Head Component"
