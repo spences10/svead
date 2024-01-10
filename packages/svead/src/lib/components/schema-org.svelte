@@ -1,8 +1,10 @@
 <script lang="ts">
 	import type { JsonLdMainEntity } from '$lib/types.js';
-	import type { SchemaOrgProps } from './schema-org-props.js';
+	import type { SchemaOrgProps } from './schema-org-props/index.js';
 
-	export let schema_org_props: SchemaOrgProps;
+	const { schema_org_props } = $props<{
+		schema_org_props: SchemaOrgProps;
+	}>();
 
 	const {
 		url,
@@ -65,6 +67,8 @@
 	}
 </script>
 
-<svelte:element this="script" type="application/ld+json">
-	{@html JSON.stringify(json_ld)}
-</svelte:element>
+<svelte:head>
+	<svelte:element this="script" type="application/ld+json">
+		{@html JSON.stringify(json_ld)}
+	</svelte:element>
+</svelte:head>

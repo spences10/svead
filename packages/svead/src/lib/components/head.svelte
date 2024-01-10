@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { MainEntity, SeoConfig } from '$lib/types.js';
-	import type { SchemaOrgProps } from './schema-org-props.js';
+	import type { SchemaOrgProps } from './schema-org-props/index.js';
 	import SchemaOrg from './schema-org.svelte';
 
 	const { seo_config } = $props<{ seo_config: SeoConfig }>();
@@ -21,6 +21,17 @@
 		mainEntity: seo_config.main_entity as MainEntity,
 		breadcrumbs: seo_config.breadcrumbs,
 	};
+
+	const is_schema_org_props_valid = (
+		props: SchemaOrgProps,
+	): boolean => {
+		return (
+			props.url != null &&
+			props.title != null &&
+			props.description != null &&
+			props.mainEntity != null
+		);
+	};
 </script>
 
 <svelte:head>
@@ -30,6 +41,7 @@
 	<title>{seo_config.title}</title>
 	<meta name="title" content={seo_config.title} />
 	<meta name="description" content={seo_config.description} />
+
 	{#if schema_org_props.authorName}
 		<meta name="author" content={schema_org_props.authorName} />
 	{/if}
@@ -77,6 +89,6 @@
 	{/if}
 </svelte:head>
 
-{#if schema_org_props.url && schema_org_props.title && schema_org_props.description && schema_org_props.mainEntity}
+{#if is_schema_org_props_valid(schema_org_props)}
 	<SchemaOrg {schema_org_props} />
 {/if}
