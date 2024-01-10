@@ -11,7 +11,7 @@ const base_config: SeoConfig = {
 	author_name: 'Test Author',
 	author_type: 'Person',
 	author_url: 'https://example.com/author',
-	image: 'https://example.com/test-image.jpg',
+	open_graph_image: 'https://example.com/test-image.jpg',
 	publisher_name: 'Test Publisher',
 	publisher_url: 'https://example.com/publisher',
 	publisher_logo: 'https://example.com/publisher-logo.png',
@@ -88,10 +88,10 @@ describe('Head', () => {
 			base_config.author_name,
 		);
 		expect(og_image_element?.getAttribute('content')).toBe(
-			base_config.image,
+			base_config.open_graph_image,
 		);
 		expect(twitter_image_element?.getAttribute('content')).toBe(
-			base_config.image,
+			base_config.open_graph_image,
 		);
 	});
 
@@ -128,7 +128,7 @@ describe('Head', () => {
 				url: 'https://example.com',
 				title: 'Test Title',
 				description: 'Test Description',
-				image: 'https://example.com/test-image.jpg',
+				open_graph_image: 'https://example.com/test-image.jpg',
 			},
 		});
 

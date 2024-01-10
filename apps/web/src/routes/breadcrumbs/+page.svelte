@@ -41,6 +41,7 @@
 		url: 'https://example.com/web-page',
 		title: 'Web Page',
 		description: 'This is a sample web page.',
+		open_graph_image: 'https://example.com/images/sample-image.jpg',
 		main_entity: {
 			name: 'Web Page Title',
 			url: 'https://example.com/web-page',

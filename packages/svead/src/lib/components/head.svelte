@@ -14,7 +14,7 @@
 		authorName: seo_config.author_name,
 		authorType: seo_config.author_type,
 		authorUrl: seo_config.author_url,
-		image: seo_config.image,
+		image: seo_config.open_graph_image,
 		datePublished: seo_config.date_published,
 		dateModified: seo_config.date_modified,
 		language: seo_config.language,
