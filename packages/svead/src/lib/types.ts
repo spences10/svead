@@ -3,224 +3,414 @@ import type { MainEntityType } from './main-entity-types.js';
 export type AuthorType = 'Person' | 'Organization';
 
 /**
- * Common properties for all entities.
+ * Defines common properties shared by various entities in the
+ * context of SEO metadata.
+ * These properties are used to describe general attributes of an
+ * entity like a person, organization, or a webpage.
  */
 interface CommonEntity {
-	/** The name of the entity. */
+	/**
+	 * The name of the entity. This is generally displayed in search
+	 * results and social media shares.
+	 */
 	name: string;
 
-	/** The URL of the entity. */
+	/**
+	 * The URL associated with the entity. It helps in identifying the
+	 * entity's landing page or relevant link.
+	 */
 	url: string;
 
-	/** A headline for the entity. */
+	/**
+	 * A headline or title for the entity. This is typically used in
+	 * search snippets or social media descriptions.
+	 */
 	headline: string;
 
-	/** A brief description of the entity. */
+	/**
+	 * A short description of the entity. This summary can influence
+	 * SEO and user engagement.
+	 */
 	description: string;
 
-	/** URL of an image representing the entity. */
+	/**
+	 * URL of an image representing the entity. Used in visual previews
+	 * on search engines and social media.
+	 */
 	image: string;
 
 	/**
-	 * Date when the entity was first published
-	 * in ISO 8601 format (e.g., 2021-03-10 or 2021-03-10T15:05:01Z).
+	 * The date when the entity was first published.
+	 * This date is displayed in search results to indicate the
+	 * original publication time.
+	 * Format: ISO 8601 (e.g., 2021-03-10 or 2021-03-10T15:05:01Z).
 	 */
 	datePublished: string;
 
 	/**
-	 * Date when the entity was last modified
-	 * in ISO 8601 format (e.g., 2021-03-10 or 2021-03-10T15:05:01Z).
+	 * The date when the entity was last modified.
+	 * Helps users and search engines understand the freshness of the
+	 * content.
+	 * Format: ISO 8601 (e.g., 2021-03-10 or 2021-03-10T15:05:01Z).
 	 */
 	dateModified: string;
 }
 
 /**
- * Represents an author of the content.
+ * Describes an author of the content, used in both Schema.org and
+ * JSON-LD metadata.
+ * This interface helps search engines and social media platforms
+ * identify the author of a piece of content.
  */
 export interface AuthorEntity {
-	/** Type of author (Person or Organization). */
+	/**
+	 * The type of author, which can be either a 'Person' or an
+	 * 'Organization'.
+	 */
 	'@type': AuthorType;
 
-	/** Name of the author. */
+	/**
+	 * The name of the author. Displayed in authorship metadata.
+	 */
 	name: string;
 
-	/** URL of the author's webpage. */
+	/**
+	 * The URL of the author's webpage. Provides a link to the author's
+	 *  profile or personal site.
+	 */
 	url: string;
 }
 
 /**
- * Represents the publisher of the content.
+ * Details the publisher of the content, typically used in Schema.org
+ * and JSON-LD metadata.
+ * This information is important for search engines to identify the
+ * organization responsible for publishing the content.
  */
 export interface PublisherEntity {
-	/** Type of publisher, always 'Organization'. */
+	/**
+	 * The type of publisher, which is always set to 'Organization' in
+	 * this context.
+	 */
 	'@type': 'Organization';
 
-	/** Name of the organization. */
+	/**
+	 * The name of the publishing organization. This name is displayed
+	 * in search results and social shares.
+	 */
 	name: string;
 
-	/** URL to the logo of the organization. */
+	/** The URL to the logo of the publishing organization. Used in
+	 * visual representations in search results and social shares.
+	 */
 	logo: string;
 
-	/** Optional URL of the organization. */
+	/**
+	 * An optional URL of the organization. Provides additional
+	 * information about the publisher.
+	 */
 	url?: string;
 }
 
 /**
  * Represents a single breadcrumb in a breadcrumb trail.
+ * Breadcrumbs are used for SEO to provide a clear path for users to
+ * follow back to the home page of the site.
  */
 export interface BreadcrumbItem {
-	/** Name of the breadcrumb. */
+	/**
+	 * The name of the breadcrumb. Displayed in the breadcrumb trail on
+	 * search engines and websites.
+	 */
 	name: string;
 
-	/** URL of the breadcrumb. */
+	/**
+	 * The URL of the breadcrumb. Links back to the corresponding page
+	 * in the breadcrumb trail.
+	 */
 	url: string;
 }
 
 /**
- * The main entity of a web page, including details for
- * structured data and SEO.
+ * Describes the main entity of a web page, incorporating elements
+ * essential for structured data and SEO.
+ * This includes Schema.org and JSON-LD metadata which are vital for
+ * search engines to understand the content's context.
  */
 export interface MainEntity extends CommonEntity {
-	/** Specific type of the main entity. */
+	/**
+	 * The specific type of the main entity, as defined in
+	 * MainEntityType. Helps in categorizing the content.
+	 */
 	'@type': MainEntityType;
 
-	/** The author of the content. */
+	/**
+	 * The author of the content. Provides authorship information to
+	 * search engines and social media platforms.
+	 */
 	author: AuthorEntity;
 
-	/** The publisher of the content. */
+	/**
+	 * The publisher of the content. Indicates the entity responsible
+	 * for publishing the content.
+	 */
 	publisher: PublisherEntity;
 
-	/** Breadcrumb list for the content. */
+	/**
+	 * An optional breadcrumb list for the content. Enhances site
+	 * navigation and SEO through structured pathways.
+	 */
 	breadcrumb?: {
-		/** Type of breadcrumb list. */
+		/** The type of breadcrumb list, set as 'BreadcrumbList'. */
 		'@type': 'BreadcrumbList';
 
-		/** Elements of the breadcrumb list. */
+		/**
+		 * Elements of the breadcrumb list, each representing a step in
+		 * the navigation path.
+		 */
 		itemListElement: {
-			/** Type of list item. */
+			/**
+			 * The type of each list item, set as 'ListItem'.
+			 */
 			'@type': 'ListItem';
 
-			/** Position of the breadcrumb in the trail. */
+			/**
+			 * The position of the breadcrumb in the trail. Helps in
+			 * structuring the breadcrumb navigation.
+			 */
 			position: number;
 
-			/** The breadcrumb item. */
+			/**
+			 * The breadcrumb item detailing the name and URL of the
+			 * breadcrumb.
+			 */
 			item: BreadcrumbItem;
 		}[];
 	};
 }
 
 /**
- * Represents the main entity of a web page in JSON-LD format.
+ * Extends the MainEntity interface for use in JSON-LD structured
+ * data.
+ * This interface is specifically tailored for JSON-LD formatting,
+ * which is crucial for SEO and enhancing search engine
+ * understanding of the page content.
  */
 export interface JsonLdMainEntity extends MainEntity {
-	/** Context of the JSON-LD data. */
+	/**
+	 * The context of the JSON-LD data, typically set to
+	 * 'https://schema.org'. This indicates the vocabulary used for the
+	 * JSON-LD data.
+	 */
 	'@context': string;
 
-	/** Specific type of the main entity. */
+	/**
+	 * The specific type of the main entity, crucial for categorizing
+	 * the content in a structured format.
+	 */
 	'@type': MainEntityType;
 
-	/** Language of the content. */
+	/**
+	 * The language of the content, important for regional SEO and user
+	 * understanding.
+	 */
 	inLanguage?: string;
 
-	/** Breadcrumb list for the content. */
+	/**
+	 * An optional breadcrumb list for the content in JSON-LD format.
+	 * Enhances navigability and context in search results.
+	 */
 	breadcrumb?: {
-		/** Type of breadcrumb list. */
+		/**
+		 * The type of breadcrumb list, set as 'BreadcrumbList' in
+		 * JSON-LD format.
+		 */
 		'@type': 'BreadcrumbList';
 
-		/** Elements of the breadcrumb list. */
+		/**
+		 * Elements of the breadcrumb list, structured for JSON-LD.
+		 */
 		itemListElement: {
-			/** Type of list item. */
+			/**
+			 * The type of each list item, set as 'ListItem' in JSON-LD
+			 * format.
+			 */
 			'@type': 'ListItem';
 
-			/** Position of the breadcrumb in the trail. */
+			/**
+			 * The position of the breadcrumb in the trail, important for
+			 * structuring the navigation path in JSON-LD.
+			 */
 			position: number;
 
-			/** The breadcrumb item. */
+			/**
+			 * The breadcrumb item detailing the name and URL of the
+			 * breadcrumb in JSON-LD format.
+			 */
 			item: BreadcrumbItem;
 		}[];
 	};
-	/** Main entity of the page identifier. */
+
+	/**
+	 * An optional property to specify the main entity of the page
+	 * identifier in JSON-LD format.
+	 */
 	mainEntityOfPage?: {
-		/** Type of the main entity of the page. */
+		/**
+		 * The type of the main entity of the page, assisting in
+		 * categorizing the page content in JSON-LD.
+		 */
 		'@type': string;
 
-		/** Unique identifier of the main entity. */
+		/**
+		 * A unique identifier for the main entity, often a URL, to
+		 * distinctively identify the content in JSON-LD.
+		 */
 		'@id': string;
 	};
 }
 
 /**
  * SEO configuration options for a web page.
+ * Used to generate the page's metadata, this is the primary
+ * configuration object.
+ *
+ * Configuration covers:
+ * - Basic SEO (Required tags)
+ * - Open Graph (OG) for social media platforms like Twitter,
+ * Facebook, LinkedIn, etc.
+ * - Schema.org for Google Rich Results, etc.
+ * - JSON-LD for structured data
  */
 export interface SeoConfig {
 	/**
-	 * Required | The title of the page.
-	 * Recommended to be between 50-60 characters for optimal SEO performance.
+	 * Required | Page Title
+	 * The title of the web page. It is crucial for SEO and should be
+	 * concise.
+	 * Recommended character count: 50-60 for optimal search engine
+	 * display.
 	 */
 	title: string;
 
 	/**
-	 * Required | A brief description of the page's content.
-	 * Recommended to be between 150-160 characters for optimal SEO performance.
+	 * Required | Page Description
+	 * A brief description of the page's content. Key for SEO and user
+	 * click-through rates.
+	 * Recommended character count: 150-160 for optimal search engine
+	 * display.
 	 */
 	description: string;
 
-	/** Required | The full URL of the current page. */
+	/**
+	 * Required | Page URL
+	 * The full canonical URL of the current page. Essential for SEO
+	 * and to prevent duplicate content issues.
+	 */
 	url: string;
 
-	/** Optional | The language for SchemaOrg */
+	/**
+	 * Optional | Schema.org Language
+	 * The language of the content, used primarily in SchemaOrg and
+	 * JSON-LD markup.
+	 * Defaults to 'en' if not specified.
+	 */
 	language?: string | 'en';
 
 	/**
-	 * Optional | Open Graph image URL. The image should
-	 * ideally be at least 1200 x 627 pixels for best display
-	 * on high-resolution devices.
+	 * Optional | Open Graph Image URL
+	 * URL of an image for Open Graph tags, used when the page is
+	 * shared on social media.
+	 * Recommended dimensions: at least 1200 x 627 pixels for
+	 * high-resolution displays.
 	 */
-	image?: string;
+	open_graph_image?: string;
 
-	/** Optional | website URL. */
+	/**
+	 * Optional | Website URL
+	 * The base URL of the website. Used in various SEO contexts,
+	 * including Schema.org and JSON-LD.
+	 */
 	website?: string;
 
-	/** Optional | author name. */
+	/**
+	 * Optional | Author Name
+	 * The name of the content's author. Important for authorship
+	 * metadata in Schema.org and JSON-LD.
+	 */
 	author_name?: string;
 
-	/** Optional | Type of the author (Person or Organization). */
+	/**
+	 * Optional | Author Type
+	 * Specifies the type of the author - either 'Person' or
+	 * 'Organization'.
+	 */
 	author_type?: AuthorType;
 
-	/** Optional | URL of the author's webpage. */
+	/**
+	 * Optional | Author URL
+	 * URL to the author's personal or professional webpage. Enhances
+	 * the authorship information in Schema.org and JSON-LD.
+	 */
 	author_url?: string;
 
-	/** Optional | Date when the entity was first published in ISO 8601 format. */
+	/**
+	 * Optional | Publication Date
+	 * The date when the content was first published, in ISO 8601
+	 * format. Vital for Schema.org and JSON-LD metadata.
+	 */
 	date_published?: string;
 
-	/** Optional | Date when the entity was last modified in ISO 8601 format. */
+	/**
+	 * Optional | Last Modified Date
+	 * The date when the content was last modified, in ISO 8601 format.
+	 * Important for keeping Schema.org and JSON-LD metadata current.
+	 */
 	date_modified?: string;
 
-	/** Optional | Name of the publisher. */
+	/**
+	 * Optional | Publisher Name
+	 * The name of the publishing entity. Important for Schema.org and
+	 * JSON-LD metadata.
+	 */
 	publisher_name?: string;
 
-	/** Optional | URL of the publisher. */
+	/**
+	 * Optional | Publisher URL
+	 * The URL of the publishing entity. Contributes to the credibility
+	 * and metadata in Schema.org and JSON-LD.
+	 */
 	publisher_url?: string;
 
-	/** Optional | Logo URL of the publisher. */
+	/**
+	 * Optional | Publisher Logo URL
+	 * URL of the publisher's logo. Used in Schema.org and JSON-LD for
+	 * visual representation of the publisher.
+	 */
 	publisher_logo?: string;
 
-	/** Optional | Web Monetisation payment pointer. */
+	/**
+	 * Optional | Web Monetisation
+	 * A payment pointer for Web Monetisation. Not directly related to
+	 * SEO but useful for monetising web content.
+	 */
 	payment_pointer?: string;
 
 	/**
-	 * Optional | array of breadcrumb items.
-	 * Breadcrumbs help with site navigation and SEO.
-	 * The datePublished and dateModified properties
-	 * of each breadcrumb item should be in ISO 8601 format.
+	 * Optional | Breadcrumbs
+	 * Array of breadcrumb items for site navigation and SEO.
+	 * Breadcrumbs are structured in Schema.org and JSON-LD format.
+	 * Each breadcrumb item's datePublished and dateModified should be
+	 * in ISO 8601 format.
 	 */
 	breadcrumbs?: BreadcrumbItem[];
 
 	/**
-	 * Optional | Main entity of the page. This is used for
-	 * structured data and SEO. It should be one of the specific
-	 * types extended from MainEntity. The datePublished and
-	 * dateModified properties should be in ISO 8601 format.
+	 * Optional | Main Entity
+	 * The primary subject of the page, used for structured data and
+	 * SEO in Schema.org and JSON-LD.
+	 * Should be a specific type extended from MainEntity.
+	 * The datePublished and dateModified properties should be in ISO
+	 * 8601 format.
 	 */
 	main_entity?: MainEntity;
 }
