@@ -2,11 +2,11 @@
 	import { browser } from '$app/environment';
 	import { page } from '$app/stores';
 	import { env } from '$env/dynamic/public';
+	import { GitHub, Twitter, YouTube } from '$lib';
 	import * as Fathom from 'fathom-client';
 	import { onMount } from 'svelte';
 	import '../app.postcss';
 	import '../prism.css';
-	import { GitHub, Twitter, YouTube } from '$lib';
 
 	const { PUBLIC_FATHOM_ID, PUBLIC_FATHOM_URL } = env;
 
@@ -27,7 +27,8 @@
 		<div class="flex-none items-center">
 			<a
 				aria-label="Github"
-				on:click={() => Fathom.trackGoal(`WNWCZIRF`, 1)}
+				on:click={() =>
+					Fathom.trackEvent(`GitHub svead project clicked`)}
 				target="_blank"
 				href="https://github.com/spences10/svead"
 				rel="noopener noreferrer"
@@ -44,13 +45,13 @@
 </header>
 
 <main
-	class="container prose prose-xl mx-auto mb-20 max-w-3xl flex-grow px-4"
+	class="prose prose-xl container mx-auto mb-20 max-w-3xl flex-grow px-4"
 >
 	<slot />
 </main>
 
 <footer
-	class="footer footer-center bg-primary p-10 text-primary-content"
+	class="footer footer-center bg-primary text-primary-content p-10"
 >
 	<div class="text-xl">
 		<img
@@ -61,8 +62,8 @@
 		<p class="font-bold">
 			Made with <span role="img" aria-label="red heart">❤️</span> by
 			<a
-				class="link transition hover:text-secondary"
-				on:click={() => Fathom.trackGoal(`VDR2FTJB`, 1)}
+				class="link hover:text-secondary transition"
+				on:click={() => Fathom.trackEvent(`scottspence.com clicked`)}
 				href="https://scottspence.com"
 				target="_blank"
 				rel="noopener noreferrer"
@@ -72,14 +73,14 @@
 		</p>
 		<p>
 			Copyright © {`${new Date().getFullYear()}`} - All rights reserved
-			<span role="img" aria-label="shruggin emoji">🤷</span>
+			<span role="img" aria-label="shrugging emoji">🤷</span>
 		</p>
 	</div>
 	<div>
 		<div class="grid grid-flow-col gap-4">
 			<a
 				aria-label="Twitter"
-				on:click={() => Fathom.trackGoal(`HGJHQROG`, 1)}
+				on:click={() => Fathom.trackEvent(`Twitter clicked`)}
 				target="_blank"
 				rel="noopener noreferrer"
 				href="https://twitter.com/spences10"
@@ -88,7 +89,7 @@
 			</a>
 			<a
 				aria-label="GitHub"
-				on:click={() => Fathom.trackGoal(`S49BM68P`, 1)}
+				on:click={() => Fathom.trackEvent(`GitHub clicked`)}
 				target="_blank"
 				rel="noopener noreferrer"
 				href="https://github.com/spences10"
@@ -97,7 +98,7 @@
 			</a>
 			<a
 				aria-label="YouTube"
-				on:click={() => Fathom.trackGoal(`MQSXN6NV`, 1)}
+				on:click={() => Fathom.trackEvent(`YouTube clicked`)}
 				target="_blank"
 				rel="noopener noreferrer"
 				href="https://ss10/yt"

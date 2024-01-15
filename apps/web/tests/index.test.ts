@@ -75,7 +75,7 @@ test.describe('meta tags', () => {
 		);
 		await expect(metaTwitterDomain.first()).toHaveAttribute(
 			'content',
-			'https://svead.vercel.app/',
+			'https://svead.vercel.app',
 		);
 	});
 

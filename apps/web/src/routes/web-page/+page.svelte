@@ -1,14 +1,13 @@
 <script lang="ts">
-	import { Head } from 'svead';
+	import { Head, type SeoConfig } from 'svead';
+
+	const seo_config: SeoConfig = {
+		url: 'https://example.com/web-page',
+		title: 'Web Page',
+		description: 'This is a sample web page.',
+		date_published: '2023-04-05T10:00:00Z',
+		date_modified: '2023-04-05T12:00:00Z',
+	};
 </script>
 
-<Head
-	url="https://example.com/web-page"
-	title="Web Page"
-	description="This is a sample web page."
-	contentType="WebPage"
-	authorName="Jane Webwriter"
-	authorUrl="https://example.com/authors/jane-webwriter"
-	datePublished="2023-04-05T10:00:00Z"
-	dateModified="2023-04-05T12:00:00Z"
-/>
+<Head {seo_config} />
