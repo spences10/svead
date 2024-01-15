@@ -1,7 +1,11 @@
 export { default as Head } from './components/head.svelte';
 export type {
-	AuthorEntity,
-	BreadcrumbItem,
-	PublisherEntity,
+	SchemaOrgArticle,
+	SchemaOrgBreadcrumbList,
+	SchemaOrgEntity,
+	SchemaOrgImageObject,
+	SchemaOrgPublisher,
+	SchemaOrgWebPage,
+	SchemaOrgWebsite,
 	SeoConfig,
-} from './types.js';
+} from './types/index.js';

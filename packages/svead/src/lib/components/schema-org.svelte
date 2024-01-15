@@ -1,74 +1,207 @@
+<!-- 
+	A lot of the inspiration for this component comes from Rodney Lab:
+	https://github.com/rodneylab/sveltekit-blog-mdx/blob/a7d79aaff79132284dc300e592a98cc33043c4c2/src/lib/components/SEO/SchemaOrg.svelte
+ -->
+
 <script lang="ts">
-	import type { JsonLdMainEntity } from '$lib/types.js';
-	import type { SchemaOrgProps } from './schema-org-props/index.js';
+	import type { SeoConfig } from '$lib/types/index.js';
+	import type {
+		SchemaOrgArticle,
+		SchemaOrgBreadcrumbList,
+		SchemaOrgEntity,
+		SchemaOrgImageObject,
+		SchemaOrgPublisher,
+		SchemaOrgWebPage,
+		SchemaOrgWebsite,
+	} from '$lib/types/schema-org.js';
 
 	const { schema_org_props } = $props<{
-		schema_org_props: SchemaOrgProps;
+		schema_org_props: SeoConfig;
 	}>();
 
 	const {
-		url,
 		title,
 		description,
+		url,
 		website,
-		authorName,
-		authorType,
-		authorUrl,
-		image,
-		datePublished,
-		dateModified,
 		language,
-		mainEntity,
-		breadcrumbs,
+		author_name,
+		schema_org_entity,
+		same_as,
+		schema_org_website,
+		schema_org_image_object,
+		schema_org_breadcrumb_list,
+		schema_org_webpage,
+		schema_org_article,
+		schema_org_publisher,
 	} = schema_org_props;
 
-	const json_ld: JsonLdMainEntity = {
-		'@context': 'https://schema.org',
-		'@type': mainEntity['@type'],
-		name: title,
-		headline: mainEntity.headline,
-		description: description,
-		url: url,
-		image: image || '',
-		datePublished: datePublished || '',
-		dateModified: dateModified || '',
-		inLanguage: language,
-		author: {
-			'@type': authorType || 'Person',
-			name: authorName || '',
-			url: authorUrl || '',
+	// Generate SchemaOrgEntity
+	const org_entity: SchemaOrgEntity = {
+		'@type': ['Person', 'Organization'],
+		'@id': `${website}/#/schema/person/`,
+		name: author_name || '',
+		image: {
+			'@type': 'ImageObject',
+			'@id': `${website}/#personlogo`,
+			inLanguage: language || 'en',
+			url: schema_org_entity?.image.url || '',
+			width: schema_org_entity?.image.width || 0,
+			height: schema_org_entity?.image.height || 0,
+			caption: schema_org_entity?.image.caption || '',
 		},
-		publisher: {
-			'@type': 'Organization',
-			name: website || '',
-			url: url,
-			logo: image || '',
+		logo: {
+			'@id': `${website}/#personlogo`,
 		},
-		mainEntityOfPage: {
-			'@type': 'WebPage',
-			'@id': url,
-		},
+		sameAs: same_as || [],
 	};
 
-	// Adding breadcrumbs if they exist
-	if (breadcrumbs && breadcrumbs.length) {
-		json_ld['breadcrumb'] = {
-			'@type': 'BreadcrumbList',
-			itemListElement: breadcrumbs.map((item, index) => ({
-				'@type': 'ListItem',
-				position: index + 1,
-				item: {
-					'@id': item.url,
-					name: item.name,
-					url: item.url,
-				},
-			})),
+	// Generate SchemaOrgWebsite
+	const org_website: SchemaOrgWebsite = {
+		'@type': 'WebSite',
+		'@id': `${website}/#website`,
+		url: website || '',
+		name: schema_org_website?.name || '',
+		description: schema_org_website?.description || '',
+		publisher: {
+			'@id': `${website}/#/schema/person`,
+		},
+		potentialAction: [
+			{
+				'@type': 'SearchAction',
+				target: `${website}/?s={search_term_string}`,
+				'query-input': 'required name=search_term_string',
+			},
+		],
+		inLanguage: language || 'en',
+	};
+
+	// Generate SchemaOrgImageObject
+	const org_image_object: SchemaOrgImageObject = {
+		'@type': 'ImageObject',
+		'@id': `${url}#primaryimage`,
+		inLanguage: language || 'en',
+		url: schema_org_image_object?.url || '',
+		contentUrl: schema_org_image_object?.url || '',
+		width: schema_org_image_object?.width || 0,
+		height: schema_org_image_object?.height || 0,
+		caption: schema_org_image_object?.caption || '',
+	};
+
+	// Generate SchemaOrgBreadcrumbList
+	const org_breadcrumb_list: SchemaOrgBreadcrumbList = {
+		'@type': 'BreadcrumbList',
+		'@id': `${url}#breadcrumb`,
+		itemListElement:
+			schema_org_breadcrumb_list?.itemListElement.map(
+				(element, index) => ({
+					'@type': 'ListItem',
+					position: index + 1,
+					item: { '@id': `${element.item}` },
+					name: element.name,
+					url: `${element.item}`,
+				}),
+			) || [],
+	};
+
+	// Generate SchemaOrgWebPage
+	const org_web_page: SchemaOrgWebPage = {
+		'@type': 'WebPage',
+		'@id': `${schema_org_webpage?.url}#webpage`,
+		url,
+		name: title,
+		isPartOf: {
+			'@id': `${schema_org_webpage?.url}/#website`,
+		},
+		primaryImageOfPage: {
+			'@id': `${schema_org_webpage?.url}#primaryimage`,
+		},
+		datePublished: schema_org_webpage?.datePublished || '',
+		dateModified: schema_org_webpage?.dateModified || '',
+		author: {
+			'@id': `${schema_org_webpage?.author}/#/schema/person`,
+		},
+		description: schema_org_webpage?.description || '',
+		breadcrumb: {
+			'@id': `${schema_org_webpage?.url}#breadcrumb`,
+		},
+		inLanguage: language || 'en',
+		potentialAction: [
+			{
+				'@type': 'ReadAction',
+				target: [schema_org_webpage?.url!],
+			},
+		],
+	};
+
+	// Generate SchemaOrgArticle
+	let org_article: SchemaOrgArticle | null = null;
+	let article = false;
+	if (article) {
+		org_article = {
+			'@type': 'Article',
+			'@id': `${url}#article`,
+			isPartOf: {
+				'@id': `${url}#webpage`,
+			},
+			author: {
+				'@id': `${website}/#/schema/person`,
+			},
+			headline: title,
+			datePublished: schema_org_article?.datePublished || '',
+			dateModified: schema_org_article?.dateModified || '',
+			mainEntityOfPage: {
+				'@id': `${url}#webpage`,
+			},
+			publisher: {
+				'@id': `${website}/#/schema/person`,
+			},
+			image: {
+				'@id': `${url}#primaryimage`,
+			},
+			articleSection: ['blog'],
+			inLanguage: language || 'en',
 		};
 	}
+
+	// Generate SchemaOrgPublisher
+	const org_publisher: SchemaOrgPublisher = {
+		'@type': ['Person', 'Organization'],
+		'@id': `${website}/#/schema/person`,
+		name: schema_org_publisher?.name || '',
+		image: {
+			'@type': 'ImageObject',
+			'@id': `${website}/#personlogo`,
+			inLanguage: language || 'en',
+			url: `${website}/assets/rodneylab-logo.png`,
+			contentUrl: `${website}/assets/rodneylab-logo.png`,
+			width: 512,
+			height: 512,
+			caption: schema_org_publisher?.image?.caption || '',
+		},
+		logo: {
+			'@id': `${website}/#personlogo`,
+		},
+		sameAs: same_as || [],
+	};
+
+	const schema_org_array = [
+		org_entity,
+		org_website,
+		org_image_object,
+		org_web_page,
+		org_breadcrumb_list,
+		...(article ? [org_article] : []),
+		org_publisher,
+	];
+	const schema_org_object = {
+		'@context': 'https://schema.org',
+		'@graph': schema_org_array,
+	};
 </script>
 
 <svelte:head>
 	<svelte:element this="script" type="application/ld+json">
-		{@html JSON.stringify(json_ld)}
+		{@html JSON.stringify(schema_org_object)}
 	</svelte:element>
 </svelte:head>
