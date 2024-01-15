@@ -55,12 +55,6 @@ interface ListItem {
 	};
 }
 
-interface WebPage extends Identifiable {
-	'@type': 'WebPage';
-	url: string;
-	name: string;
-}
-
 export interface SchemaOrgWebPage extends Identifiable {
 	'@type': 'WebPage';
 	url: string;
@@ -101,13 +95,6 @@ export interface SchemaOrgPublisher extends Identifiable {
 	image: SchemaOrgImageObject;
 	logo: Identifiable;
 	sameAs: string[];
-}
-
-export interface MainEntity extends Identifiable {
-	'@type': MainEntityType[];
-	name: string;
-	description: string;
-	url: string;
 }
 
 export interface AuthorType extends Identifiable {

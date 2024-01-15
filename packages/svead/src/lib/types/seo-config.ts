@@ -1,6 +1,5 @@
 import type {
 	AuthorType,
-	MainEntity,
 	SchemaOrgArticle,
 	SchemaOrgBreadcrumbList,
 	SchemaOrgEntity,
@@ -39,9 +38,6 @@ export interface SeoConfig {
 	publisher_name?: string;
 	publisher_url?: string;
 	publisher_logo?: string;
-
-	// Main Entity for Schema.org
-	main_entity?: MainEntity;
 
 	// Array of URLs for Schema.org's sameAs property
 	same_as?: string[];

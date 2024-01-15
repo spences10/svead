@@ -97,9 +97,12 @@
 				(element, index) => ({
 					'@type': 'ListItem',
 					position: index + 1,
-					item: { '@id': `${element.item}` },
-					name: element.name,
-					url: `${element.item}`,
+					item: {
+						'@id': `${element.item}`,
+						'@type': 'WebPage',
+						name: element.item.name,
+						url: `${element.item.url}`,
+					},
 				}),
 			) || [],
 	};
