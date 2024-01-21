@@ -33,7 +33,7 @@
 		"eslint-config-prettier": "^9.1.0",
 		"eslint-plugin-svelte": "^2.35.1",
 		"fathom-client": "^3.6.0",
-		"jsdom": "^23.1.0",
+		"jsdom": "^24.0.0",
 		"mdsvex": "^0.11.0",
 		"postcss": "^8.4.33",
 		"postcss-load-config": "^5.0.2",
