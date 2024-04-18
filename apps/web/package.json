@@ -23,7 +23,7 @@
 		"@sveltejs/vite-plugin-svelte": "^3.0.1",
 		"@tailwindcss/typography": "^0.5.10",
 		"@testing-library/svelte": "^4.0.5",
-		"@types/eslint": "8.56.1",
+		"@types/eslint": "8.56.10",
 		"@typescript-eslint/eslint-plugin": "^6.18.0",
 		"@typescript-eslint/parser": "^6.18.0",
 		"@vitest/coverage-v8": "^1.1.3",
