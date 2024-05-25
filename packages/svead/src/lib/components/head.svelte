@@ -2,14 +2,17 @@
 	import type { SeoConfig } from '$lib/types/index.js';
 	import SchemaOrg from './schema-org.svelte';
 
-	const { seo_config } = $props<{ seo_config: SeoConfig }>();
+	const { seo_config }: { seo_config: SeoConfig } = $props();
 
 	const is_schema_org_props_valid = (props: SeoConfig): boolean => {
-		// TODO: Validate if schema.org props are there
 		return (
-			props.url != null &&
-			props.title != null &&
-			props.description != null
+			props.schema_org_article !== undefined &&
+			props.schema_org_website !== undefined &&
+			props.schema_org_webpage !== undefined &&
+			props.schema_org_entity !== undefined &&
+			props.schema_org_publisher !== undefined &&
+			props.schema_org_image_object !== undefined &&
+			props.schema_org_breadcrumb_list !== undefined
 		);
 	};
 </script>
