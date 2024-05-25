@@ -9,7 +9,7 @@ import {
 	type SeoConfig,
 } from '$lib/index.js';
 import { generate_breadcrumbs } from '$lib/utils/generate-breadcrumbs.js';
-import { render } from '@testing-library/svelte';
+import { render } from '@testing-library/svelte/svelte5';
 import { afterEach, describe, expect, it } from 'vitest';
 import SchemaOrg from './schema-org.svelte';
 

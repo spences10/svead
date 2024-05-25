@@ -15,9 +15,11 @@
 		SchemaOrgWebsite,
 	} from '$lib/types/schema-org.js';
 
-	const { schema_org_props } = $props<{
+	const {
+		schema_org_props,
+	}: {
 		schema_org_props: SeoConfig;
-	}>();
+	} = $props();
 
 	const {
 		title,
@@ -211,7 +213,7 @@
 </script>
 
 <svelte:head>
-	<svelte:element this="script" type="application/ld+json">
-		{@html JSON.stringify(schema_org_object)}
-	</svelte:element>
+	{@html `<script type="application/ld+json">${JSON.stringify(
+		schema_org_object,
+	)}</scr` + `ipt>`}
 </svelte:head>
