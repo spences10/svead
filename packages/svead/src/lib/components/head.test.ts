@@ -16,6 +16,18 @@ describe('Head component tests', () => {
 	});
 
 	describe('Meta Tags', () => {
+		it('renders canonical link correctly', async () => {
+			render(Head, { seo_config: base_config });
+
+			const canonicalLink = document.head.querySelector(
+				'link[rel="canonical"]',
+			);
+			expect(canonicalLink).toBeDefined();
+			expect(canonicalLink?.getAttribute('href')).toBe(
+				base_config.url,
+			);
+		});
+
 		it('renders the correct meta tags with the provided properties', async () => {
 			// Rendering the component with base configuration
 			render(Head, { seo_config: base_config });
@@ -121,7 +133,63 @@ describe('Head component tests', () => {
 				'$example.wallet/test',
 			);
 		});
+
+		describe('Social Media Links', () => {
+			it('renders social media links correctly', async () => {
+				render(Head, { seo_config: base_config });
+
+				const twitter_link = document.head.querySelector(
+					'link[rel="me"][href*="twitter"]',
+				);
+				const facebook_link = document.head.querySelector(
+					'link[rel="me"][href*="facebook"]',
+				);
+
+				expect(twitter_link).toBeDefined();
+				expect(facebook_link).toBeDefined();
+
+				if (twitter_link && facebook_link) {
+					expect(twitter_link.getAttribute('href')).toContain(
+						'https://twitter.com/example',
+					);
+					expect(facebook_link.getAttribute('href')).toContain(
+						'https://facebook.com/example',
+					);
+				}
+			});
+		});
 	});
+
+	describe('Open Graph Protocol', () => {
+		it('renders Open Graph tags correctly', async () => {
+			render(Head, { seo_config: base_config });
+
+			const ogTitle = document.head.querySelector(
+				'meta[property="og:title"]',
+			);
+			const ogDescription = document.head.querySelector(
+				'meta[property="og:description"]',
+			);
+			const ogImage = document.head.querySelector(
+				'meta[property="og:image"]',
+			);
+
+			expect(ogTitle).toBeDefined();
+			expect(ogDescription).toBeDefined();
+			expect(ogImage).toBeDefined();
+
+			expect(ogTitle?.getAttribute('content')).toBe(
+				base_config.title,
+			);
+			expect(ogDescription?.getAttribute('content')).toBe(
+				base_config.description,
+			);
+			expect(ogImage?.getAttribute('content')).toBe(
+				base_config.open_graph_image,
+			);
+		});
+	});
+
 	describe('SchemaOrg Component', () => {
 		it('does not render the SchemaOrg component when any necessary properties are missing', async () => {
 			const seo_config_without_schema_org: SeoConfig = {
