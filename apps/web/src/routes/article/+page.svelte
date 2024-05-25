@@ -5,7 +5,7 @@
 		url: 'https://example.com/article',
 		title: 'Article',
 		description: 'This is a sample article.',
-		main_entity: {
+		org_article: {
 			name: 'Article',
 			url: 'https://example.com/article',
 			description: 'This is a sample article.',

@@ -8,7 +8,7 @@
 		image: 'https://example.com/images/news-article-image.jpg',
 		date_published: '2023-04-05T10:00:00Z',
 		date_modified: '2023-04-05T12:00:00Z',
-		main_entity: {
+		org_article: {
 			name: 'News Article Title',
 			url: 'https://example.com/news-article',
 			description: 'This is a sample news article.',

@@ -1,71 +1,58 @@
 <script lang="ts">
-	import {
-		Head,
-		type AuthorEntity,
-		type BreadcrumbItem,
-		type PublisherEntity,
-		type SeoConfig,
-	} from 'svead';
+	import type { SeoConfig } from 'svead';
+	import { Head } from 'svead';
 
-	// Define the breadcrumb items
-	const breadcrumbs: BreadcrumbItem[] = [
-		{ name: 'Home', url: 'https://example.com/' },
-		{ name: 'Category', url: 'https://example.com/category' },
-		{
-			name: 'Subcategory',
-			url: 'https://example.com/category/subcategory',
-		},
-		// The last item usually represents the current page
-		{
-			name: 'Current Page',
-			url: 'https://example.com/category/subcategory/current-page',
-		},
-	];
+	// Example data for the webpage
+	const page_title = 'Sample Web Page';
+	const page_description =
+		'This is an example of a web page with enhanced SEO features.';
+	const page_url = 'https://example.com/sample-page';
+	const open_graph_image = 'https://example.com/images/og-image.jpg';
 
-	// Define the author
-	const author: AuthorEntity = {
-		'@type': 'Person',
-		name: 'Jane Webwriter',
-		url: 'https://example.com/authors/jane-webwriter',
-	};
-
-	// Define the publisher
-	const publisher: PublisherEntity = {
-		'@type': 'Organization',
-		name: 'Example Publisher',
-		url: 'https://example.com',
-		logo: 'https://example.com/images/logo.png',
-	};
+	const example_website_url = 'https://example.com';
+	const example_image_url = 'https://example.com/image.jpg';
+	const example_article_url = 'https://example.com/article';
 
 	const seo_config: SeoConfig = {
-		url: 'https://example.com/web-page',
-		title: 'Web Page',
-		description: 'This is a sample web page.',
-		open_graph_image: 'https://example.com/images/sample-image.jpg',
-		main_entity: {
-			name: 'Web Page Title',
-			url: 'https://example.com/web-page',
-			description: 'This is a sample web page.',
-			'@type': 'WebPage',
-			headline: 'Sample Web Page Headline',
-			image: 'https://example.com/images/sample-image.jpg',
-			author,
-			publisher,
-			datePublished: '2023-04-05T10:00:00Z',
-			dateModified: '2023-04-05T12:00:00Z',
-			breadcrumb: {
-				'@type': 'BreadcrumbList',
-				itemListElement: breadcrumbs.map((item, index) => ({
-					'@type': 'ListItem',
-					position: index + 1,
-					item,
-				})),
+		title: 'Example Page Title',
+		description: 'This is an example description of the web page.',
+		url: 'https://www.example.com/page-url',
+		open_graph_image: 'https://www.example.com/og-image.jpg',
+		language: 'en',
+
+		// Add more properties as needed for your specific page
+		author_name: 'Author Name',
+		author_url: 'https://www.example.com/author',
+		date_published: '2024-01-15',
+		date_modified: '2024-01-16',
+		publisher_name: 'Publisher Name',
+		publisher_url: 'https://www.example.com/publisher',
+
+		same_as: [
+			'https://www.facebook.com/example',
+			'https://www.twitter.com/example',
+			// ... more social URLs
+		],
+		schema_org_article: {
+			'@type': 'Article',
+			'@id': 'https://www.example.com/article#article',
+			isPartOf: { '@id': 'https://www.example.com' },
+			author: { '@id': 'https://www.example.com/author#author' },
+			headline: 'Example Article Headline',
+			datePublished: '2024-01-15',
+			dateModified: '2024-01-16',
+			mainEntityOfPage: { '@id': 'https://www.example.com/article' },
+			publisher: {
+				'@id': 'https://www.example.com/publisher#publisher',
 			},
+			image: { '@id': 'https://www.example.com/image#image' },
+			articleSection: ['News', 'Technology'],
+			inLanguage: 'en',
 		},
 	};
 </script>
 
 <Head {seo_config} />
 
-<h1>Current Page</h1>
-<p>This is the content of the current page.</p>
+<h1>{page_title}</h1>
+<p>{page_description}</p>

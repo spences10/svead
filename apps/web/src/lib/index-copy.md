@@ -74,6 +74,7 @@ Import it into your Svelte pages and use:
 
 Explore how Svead works with different content types:
 
+- [Breadcrumbs](/breadcrumbs)
 - [Article](/article)
 - [Blog Posting](/blog-posting)
 - [News Article](/news-article)
