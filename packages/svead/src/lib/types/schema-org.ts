@@ -25,10 +25,16 @@ export interface SchemaOrgEntity {
 	sameAs: string[];
 }
 
+interface PropertyValueSpecification {
+	'@type': 'PropertyValueSpecification';
+	valueRequired: boolean;
+	valueName: string;
+}
+
 interface SearchAction {
 	'@type': 'SearchAction';
 	target: string;
-	'query-input': string;
+	'query-input': PropertyValueSpecification;
 }
 
 export interface SchemaOrgWebsite extends Identifiable {
@@ -46,7 +52,7 @@ export interface SchemaOrgBreadcrumbList extends Identifiable {
 	itemListElement: ListItem[];
 }
 
-interface ListItem {
+export interface ListItem {
 	'@type': 'ListItem';
 	position: number;
 	item: Identifiable & {

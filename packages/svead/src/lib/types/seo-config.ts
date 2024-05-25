@@ -42,6 +42,9 @@ export interface SeoConfig {
 	// Array of URLs for Schema.org's sameAs property
 	same_as?: string[];
 
+	// Schema.org potentialAction search URL template
+	schema_org_search_url_template?: string;
+
 	// Schema.org structured data
 	schema_org_article?: SchemaOrgArticle;
 	schema_org_website?: SchemaOrgWebsite;

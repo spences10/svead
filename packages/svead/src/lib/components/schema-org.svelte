@@ -29,6 +29,7 @@
 		schema_org_entity,
 		same_as,
 		schema_org_website,
+		schema_org_search_url_template = `${website}/?s={search_term_string}`,
 		schema_org_image_object,
 		schema_org_breadcrumb_list,
 		schema_org_webpage,
@@ -66,13 +67,19 @@
 		publisher: {
 			'@id': `${website}/#/schema/person`,
 		},
-		potentialAction: [
-			{
-				'@type': 'SearchAction',
-				target: `${website}/?s={search_term_string}`,
-				'query-input': 'required name=search_term_string',
-			},
-		],
+		potentialAction: schema_org_search_url_template
+			? [
+					{
+						'@type': 'SearchAction',
+						target: schema_org_search_url_template,
+						'query-input': {
+							'@type': 'PropertyValueSpecification',
+							valueRequired: true,
+							valueName: 'search_term_string',
+						},
+					},
+				]
+			: [],
 		inLanguage: language || 'en',
 	};
 
@@ -139,7 +146,7 @@
 
 	// Generate SchemaOrgArticle
 	let org_article: SchemaOrgArticle | null = null;
-	let article = false;
+	let article = true;
 	if (article) {
 		org_article = {
 			'@type': 'Article',
