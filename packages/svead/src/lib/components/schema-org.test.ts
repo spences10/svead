@@ -338,9 +338,6 @@ describe('SchemaOrg', () => {
 			(entity: any) => entity['@type'] === 'WebSite',
 		);
 
-		console.log('=====================');
-		console.log(website_entity);
-		console.log('=====================');
 		expect(website_entity).toBeDefined();
 
 		// Testing if SchemaOrgWebsite properties are correctly set
@@ -509,13 +506,13 @@ describe('SchemaOrg', () => {
 		expect(jsonLdScriptElement).not.toBeNull();
 
 		const cleaned_inner_html = clean_html_content(
-			jsonLdScriptElement.innerHTML,
+			jsonLdScriptElement?.innerHTML || '',
 		);
 		const json_ld_content = JSON.parse(cleaned_inner_html);
 
 		// Locate the BreadcrumbList in the @graph array
 		const breadcrumbList = json_ld_content['@graph'].find(
-			element => element['@type'] === 'BreadcrumbList',
+			(element: any) => element['@type'] === 'BreadcrumbList',
 		);
 		expect(breadcrumbList).toBeDefined();
 
@@ -549,10 +546,6 @@ describe('SchemaOrg', () => {
 					typeof breadcrumbList.itemListElement[index].item['@id'],
 				).toBe('string');
 
-				console.log('=====================');
-				console.dir(item);
-
-				console.log('=====================');
 				// expect(
 				// 	breadcrumbList.itemListElement[index].item['@id'],
 				// ).toBe(item.item['@id']);
