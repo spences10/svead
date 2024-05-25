@@ -3,11 +3,11 @@
 		width = '25',
 		height = '25',
 		fill = 'fill-current',
-	} = $props<{
+	}: {
 		width?: string;
 		height?: string;
 		fill?: string;
-	}>();
+	} = $props();
 
 	let svgClass: string = `${fill} text-primary-content transition hover:text-secondary-focus`;
 </script>

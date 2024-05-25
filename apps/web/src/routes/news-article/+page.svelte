@@ -5,29 +5,33 @@
 		url: 'https://example.com/news-article',
 		title: 'News Article',
 		description: 'This is a sample news article.',
-		image: 'https://example.com/images/news-article-image.jpg',
+		open_graph_image:
+			'https://example.com/images/news-article-image.jpg',
 		date_published: '2023-04-05T10:00:00Z',
 		date_modified: '2023-04-05T12:00:00Z',
-		org_article: {
-			name: 'News Article Title',
-			url: 'https://example.com/news-article',
-			description: 'This is a sample news article.',
-			'@type': 'NewsArticle',
-			headline: 'News Article Headline',
-			image: 'https://example.com/images/news-article-image.jpg',
+		schema_org_article: {
+			'@type': 'Article',
+			'@id': 'https://example.com/article',
+			isPartOf: {
+				'@id': 'https://example.com',
+			},
 			author: {
-				'@type': 'Person',
-				name: 'John Smith',
-				url: 'https://example.com/authors/john-smith',
+				'@id': 'https://example.com/author',
+			},
+			headline: 'Test Article Headline',
+			datePublished: '2023-05-25',
+			dateModified: '2023-05-25',
+			mainEntityOfPage: {
+				'@id': 'https://example.com/article',
 			},
 			publisher: {
-				'@type': 'Organization',
-				name: 'News Publisher', // Replace with your actual news publisher name
-				url: 'https://example.com', // Replace with your actual news publisher URL
-				logo: 'https://example.com/images/logo.png', // Replace with your actual news publisher logo
+				'@id': 'https://example.com/publisher',
 			},
-			datePublished: '2023-04-05T10:00:00Z',
-			dateModified: '2023-04-05T12:00:00Z',
+			image: {
+				'@id': 'https://example.com/article-image.jpg',
+			},
+			articleSection: ['News', 'Technology'],
+			inLanguage: 'en',
 		},
 	};
 </script>

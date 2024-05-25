@@ -5,29 +5,33 @@
 		url: 'https://example.com/blog',
 		title: 'Blog',
 		description: 'This is a sample blog post.',
-		image: 'https://example.com/images/blog-post-image.jpg',
+		open_graph_image:
+			'https://example.com/images/blog-post-image.jpg',
 		date_published: '2023-04-05T10:00:00Z',
 		date_modified: '2023-04-05T12:00:00Z',
-		org_article: {
-			name: 'Blog Post Title',
-			url: 'https://example.com/blog',
-			description: 'This is a sample blog post.',
-			'@type': 'BlogPosting',
-			headline: 'Blog Post Headline',
-			image: 'https://example.com/images/blog-post-image.jpg',
+		schema_org_article: {
+			'@type': 'Article',
+			'@id': 'https://example.com/article',
+			isPartOf: {
+				'@id': 'https://example.com',
+			},
 			author: {
-				'@type': 'Person',
-				name: 'Jane Doe',
-				url: 'https://example.com/authors/jane-doe',
+				'@id': 'https://example.com/author',
+			},
+			headline: 'Test Article Headline',
+			datePublished: '2023-05-25',
+			dateModified: '2023-05-25',
+			mainEntityOfPage: {
+				'@id': 'https://example.com/article',
 			},
 			publisher: {
-				'@type': 'Organization',
-				name: 'Blog Publisher',
-				url: 'https://example.com',
-				logo: 'https://example.com/images/logo.png',
+				'@id': 'https://example.com/publisher',
 			},
-			datePublished: '2023-04-05T10:00:00Z',
-			dateModified: '2023-04-05T12:00:00Z',
+			image: {
+				'@id': 'https://example.com/article-image.jpg',
+			},
+			articleSection: ['News', 'Technology'],
+			inLanguage: 'en',
 		},
 	};
 </script>

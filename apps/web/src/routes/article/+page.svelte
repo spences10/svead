@@ -5,26 +5,29 @@
 		url: 'https://example.com/article',
 		title: 'Article',
 		description: 'This is a sample article.',
-		org_article: {
-			name: 'Article',
-			url: 'https://example.com/article',
-			description: 'This is a sample article.',
+		schema_org_article: {
 			'@type': 'Article',
-			headline: 'Article Headline',
-			image: 'https://example.com/images/article-image.jpg', // Added dummy image URL
+			'@id': 'https://example.com/article',
+			isPartOf: {
+				'@id': 'https://example.com',
+			},
 			author: {
-				'@type': 'Person',
-				name: 'John Doe',
-				url: 'https://example.com/authors/john-doe',
+				'@id': 'https://example.com/author',
+			},
+			headline: 'Test Article Headline',
+			datePublished: '2023-05-25',
+			dateModified: '2023-05-25',
+			mainEntityOfPage: {
+				'@id': 'https://example.com/article',
 			},
 			publisher: {
-				'@type': 'Organization',
-				name: 'Example Publisher',
-				url: 'https://example.com',
-				logo: 'https://example.com/images/logo.png',
+				'@id': 'https://example.com/publisher',
 			},
-			datePublished: '2023-04-05T10:00:00Z',
-			dateModified: '2023-04-05T12:00:00Z',
+			image: {
+				'@id': 'https://example.com/article-image.jpg',
+			},
+			articleSection: ['News', 'Technology'],
+			inLanguage: 'en',
 		},
 	};
 </script>
