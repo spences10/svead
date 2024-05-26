@@ -82,7 +82,14 @@ interface ReadAction {
 }
 
 export interface SchemaOrgArticle extends Identifiable {
-	'@type': 'Article';
+	'@type': Extract<
+		MainEntityType,
+		| 'Article'
+		| 'BlogPosting'
+		| 'NewsArticle'
+		| 'ScholarlyArticle'
+		| 'TechArticle'
+	>;
 	isPartOf: Identifiable;
 	author: Identifiable;
 	headline: string;
