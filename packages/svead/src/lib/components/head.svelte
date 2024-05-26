@@ -6,12 +6,12 @@
 
 	const is_schema_org_props_valid = (props: SeoConfig): boolean => {
 		return (
-			props.schema_org_article !== undefined &&
-			props.schema_org_website !== undefined &&
-			props.schema_org_webpage !== undefined &&
-			props.schema_org_entity !== undefined &&
-			props.schema_org_publisher !== undefined &&
-			props.schema_org_image_object !== undefined &&
+			props.schema_org_article !== undefined ||
+			props.schema_org_website !== undefined ||
+			props.schema_org_webpage !== undefined ||
+			props.schema_org_entity !== undefined ||
+			props.schema_org_publisher !== undefined ||
+			props.schema_org_image_object !== undefined ||
 			props.schema_org_breadcrumb_list !== undefined
 		);
 	};
