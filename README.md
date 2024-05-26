@@ -27,7 +27,7 @@ of Svelte + Mead
 ## v0.0.4 vs v1
 
 v1 is currently available via `pnpm i -D svead@next` and will be that
-way until Svelte 5 goes to v5 out of RC phase.
+way until Svelte 5 comes out of RC phase.
 
 v1 has changed compared to v0.0.4. The main change is that the there's
 only one config object now with `SeoConfig` as the type. This is
