@@ -3,6 +3,7 @@
 
 	const seo_config: SeoConfig = {
 		url: 'https://example.com/web-page',
+		website: 'https://example.com',
 		title: 'Sample Web Page',
 		description:
 			'This is an example of a simple web page showcasing the usage of the svead package for SEO optimization.',

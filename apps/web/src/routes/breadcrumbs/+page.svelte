@@ -11,6 +11,7 @@
 		title: 'Example Page Title',
 		description: 'This is an example description of the web page.',
 		url: 'https://www.example.com/page-url',
+		website: 'https://www.example.com',
 		open_graph_image: 'https://www.example.com/og-image.jpg',
 		language: 'en',
 		author_name: 'Author Name',

@@ -3,6 +3,7 @@
 
 	const seo_config: SeoConfig = {
 		url: 'https://example.com/blog/my-blog-post',
+		website: 'https://example.com',
 		title: 'My Blog Post',
 		description:
 			'This is an example blog post showcasing the usage of the svead package.',

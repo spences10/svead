@@ -3,6 +3,7 @@
 
 	const seo_config: SeoConfig = {
 		url: 'https://example.com/news/breaking-news',
+		website: 'https://example.com',
 		title: 'Breaking News: Major Event Unfolds',
 		description:
 			'A significant event has taken place, impacting the lives of many. Read our latest news article for detailed coverage and analysis.',
