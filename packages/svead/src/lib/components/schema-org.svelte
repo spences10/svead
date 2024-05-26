@@ -31,7 +31,7 @@
 		schema_org_entity,
 		same_as,
 		schema_org_website,
-		schema_org_search_url_template = `${website}/?s={search_term_string}`,
+		schema_org_search_url_template,
 		schema_org_image_object,
 		schema_org_breadcrumb_list,
 		schema_org_webpage,
@@ -44,14 +44,14 @@
 		'@type': ['Person', 'Organization'],
 		'@id': `${website}/#/schema/person/`,
 		name: author_name || '',
-		image: {
+		image: schema_org_entity?.image || {
 			'@type': 'ImageObject',
 			'@id': `${website}/#personlogo`,
 			inLanguage: language || 'en',
-			url: schema_org_entity?.image.url || '',
-			width: schema_org_entity?.image.width || 0,
-			height: schema_org_entity?.image.height || 0,
-			caption: schema_org_entity?.image.caption || '',
+			url: schema_org_entity?.image?.url || '',
+			width: schema_org_entity?.image?.width || 0,
+			height: schema_org_entity?.image?.height || 0,
+			caption: schema_org_entity?.image?.caption || '',
 		},
 		logo: {
 			'@id': `${website}/#personlogo`,
@@ -107,10 +107,10 @@
 					'@type': 'ListItem',
 					position: index + 1,
 					item: {
-						'@id': `${element.item}`,
+						'@id': element.item['@id'],
 						'@type': 'WebPage',
 						name: element.item.name,
-						url: `${element.item.url}`,
+						url: element.item.url,
 					},
 				}),
 			) || [],
@@ -131,7 +131,7 @@
 		datePublished: schema_org_webpage?.datePublished || '',
 		dateModified: schema_org_webpage?.dateModified || '',
 		author: {
-			'@id': `${schema_org_webpage?.author}/#/schema/person`,
+			'@id': `${schema_org_webpage?.author['@id']}`,
 		},
 		description: schema_org_webpage?.description || '',
 		breadcrumb: {
@@ -148,8 +148,7 @@
 
 	// Generate SchemaOrgArticle
 	let org_article: SchemaOrgArticle | null = null;
-	let article = true;
-	if (article) {
+	if (schema_org_article) {
 		org_article = {
 			'@type': 'Article',
 			'@id': `${url}#article`,
@@ -171,7 +170,7 @@
 			image: {
 				'@id': `${url}#primaryimage`,
 			},
-			articleSection: ['blog'],
+			articleSection: schema_org_article?.articleSection || ['blog'],
 			inLanguage: language || 'en',
 		};
 	}
@@ -181,14 +180,13 @@
 		'@type': ['Person', 'Organization'],
 		'@id': `${website}/#/schema/person`,
 		name: schema_org_publisher?.name || '',
-		image: {
+		image: schema_org_publisher?.image || {
 			'@type': 'ImageObject',
 			'@id': `${website}/#personlogo`,
 			inLanguage: language || 'en',
-			url: `${website}/assets/rodneylab-logo.png`,
-			contentUrl: `${website}/assets/rodneylab-logo.png`,
-			width: 512,
-			height: 512,
+			url: schema_org_publisher?.image?.url || '',
+			width: schema_org_publisher?.image?.width || 0,
+			height: schema_org_publisher?.image?.height || 0,
 			caption: schema_org_publisher?.image?.caption || '',
 		},
 		logo: {
@@ -203,7 +201,7 @@
 		org_image_object,
 		org_web_page,
 		org_breadcrumb_list,
-		...(article ? [org_article] : []),
+		...(org_article ? [org_article] : []),
 		org_publisher,
 	];
 	const schema_org_object = {
