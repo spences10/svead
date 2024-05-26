@@ -1,4 +1,4 @@
-# Svead - Svelte Head Component
+# Svead 🍺 - Svelte Head Component
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 
@@ -17,7 +17,22 @@ canonical, title, Twitter and Facebook Open Graph tags.
 
 Also supports JSON-LD for SEO.
 
-![svead](.github/svead.jpg)
+![svead](.github/svead.svg)
+
+## Name
+
+The name was meant to be Svelte + Head, but I like Puru's suggestion
+of Svelte + Mead
+
+## v0.0.4 vs v1
+
+v1 is currently available via `pnpm i -D svead@next` and will be that
+way until Svelte 5 goes to v5 out of RC phase.
+
+v1 has changed compared to v0.0.4. The main change is that the there's
+only one config object now with `SeoConfig` as the type. This is
+because the `schema_org_*` props are now optional and can be set
+directly on the `SeoConfig` object.
 
 ## Props
 
@@ -25,56 +40,139 @@ It takes the following props:
 
 ### `SeoConfig` Props
 
-| Property          | Type             | Description                                                  | Required |
-| ----------------- | ---------------- | ------------------------------------------------------------ | -------- |
-| `title`           | string           | The title of the page.                                       | Yes      |
-| `description`     | string           | A brief description of the page's content.                   | Yes      |
-| `url`             | string           | The full URL of the current page.                            | Yes      |
-| `language`        | string \| 'en'   | The language for SchemaOrg.                                  | No       |
-| `image`           | string           | Open Graph image URL.                                        | No       |
-| `website`         | string           | Website URL.                                                 | No       |
-| `author_name`     | string           | Author name.                                                 | No       |
-| `author_type`     | AuthorType       | Type of the author (Person or Organization).                 | No       |
-| `author_url`      | string           | URL of the author's webpage.                                 | No       |
-| `date_published`  | string           | Date when the entity was first published in ISO 8601 format. | No       |
-| `date_modified`   | string           | Date when the entity was last modified in ISO 8601 format.   | No       |
-| `publisher_name`  | string           | Name of the publisher.                                       | No       |
-| `publisher_url`   | string           | URL of the publisher.                                        | No       |
-| `publisher_logo`  | string           | Logo URL of the publisher.                                   | No       |
-| `payment_pointer` | string           | Web Monetisation payment pointer.                            | No       |
-| `breadcrumbs`     | BreadcrumbItem[] | Array of breadcrumb items.                                   | No       |
-| `main_entity`     | MainEntity       | Main entity of the page.                                     | No       |
+| Property                         | Type                      | Description                                                        | Required |
+| -------------------------------- | ------------------------- | ------------------------------------------------------------------ | -------- |
+| `title`                          | `string`                  | The title of the web page.                                         | Yes      |
+| `description`                    | `string`                  | A description of the web page.                                     | Yes      |
+| `url`                            | `string`                  | The URL of the web page.                                           | Yes      |
+| `website`                        | `string`                  | The website the web page belongs to.                               | No       |
+| `language`                       | `string` \| `'en'`        | The language of the web page. Defaults to 'en'.                    | No       |
+| `open_graph_image`               | `string`                  | The URL of an image to use for Open Graph meta tags.               | No       |
+| `payment_pointer`                | `string`                  | A payment pointer for Web Monetisation.                            | No       |
+| `author_name`                    | `string`                  | The name of the author.                                            | No       |
+| `author_type`                    | `AuthorType`              | The type of the author, either 'Person' or 'Organization'.         | No       |
+| `author_url`                     | `string`                  | A URL for the author.                                              | No       |
+| `date_published`                 | `string`                  | The date the content was published.                                | No       |
+| `date_modified`                  | `string`                  | The date the content was last modified.                            | No       |
+| `publisher_name`                 | `string`                  | The name of the publisher.                                         | No       |
+| `publisher_url`                  | `string`                  | A URL for the publisher.                                           | No       |
+| `publisher_logo`                 | `string`                  | A URL for the publisher's logo.                                    | No       |
+| `same_as`                        | `string[]`                | An array of URLs for the Schema.org sameAs property.               | No       |
+| `schema_org_search_url_template` | `string`                  | A URL template for the Schema.org potentialAction search property. | No       |
+| `schema_org_article`             | `SchemaOrgArticle`        | A SchemaOrgArticle object.                                         | No       |
+| `schema_org_website`             | `SchemaOrgWebsite`        | A SchemaOrgWebsite object.                                         | No       |
+| `schema_org_webpage`             | `SchemaOrgWebPage`        | A SchemaOrgWebPage object.                                         | No       |
+| `schema_org_entity`              | `SchemaOrgEntity`         | A SchemaOrgEntity object.                                          | No       |
+| `schema_org_publisher`           | `SchemaOrgPublisher`      | A SchemaOrgPublisher object.                                       | No       |
+| `schema_org_image_object`        | `SchemaOrgImageObject`    | A SchemaOrgImageObject.                                            | No       |
+| `schema_org_breadcrumb_list`     | `SchemaOrgBreadcrumbList` | A SchemaOrgBreadcrumbList object.                                  | No       |
 
 ## JSON-LD Properties
 
-The following table lists the JSON-LD properties supported by 'svead'.
-These properties help you structure your metadata in a way that is
-recognized by search engines, enhancing your SEO and the way your
-content is understood and presented in search results.
+The following tables lists the JSON-LD properties supported by
+'svead'. These properties help you structure your metadata in a way
+that is recognized by search engines, enhancing your SEO and the way
+your content is understood and presented in search results.
 
-### `AuthorEntity` Props
+### `schema_org_search_url_template`
 
-| Property | Type                       | Description                              | Required |
-| -------- | -------------------------- | ---------------------------------------- | -------- |
-| `@type`  | 'Person' \| 'Organization' | Type of author (Person or Organization). | Yes      |
-| `name`   | string                     | Name of the author.                      | Yes      |
-| `url`    | string                     | URL of the author's webpage.             | Yes      |
+| Property                         | Type     | Description                                                        | Required |
+| -------------------------------- | -------- | ------------------------------------------------------------------ | -------- |
+| `schema_org_search_url_template` | `string` | A URL template for the Schema.org potentialAction search property. | No       |
 
-### `BreadcrumbItem` Props
+### `SchemaOrgArticle` Properties
 
-| Property | Type   | Description             | Required |
-| -------- | ------ | ----------------------- | -------- |
-| `name`   | string | Name of the breadcrumb. | Yes      |
-| `url`    | string | URL of the breadcrumb.  | Yes      |
+| Property           | Type               | Description                                | Required |
+| ------------------ | ------------------ | ------------------------------------------ | -------- |
+| `@type`            | `'Article'`        | The type of the object. Must be 'Article'. | Yes      |
+| `isPartOf`         | `Identifiable`     | The parent object this article is part of. | Yes      |
+| `author`           | `Identifiable`     | The author of the article.                 | Yes      |
+| `headline`         | `string`           | The headline of the article.               | Yes      |
+| `datePublished`    | `Date` \| `string` | The date the article was published.        | Yes      |
+| `dateModified`     | `Date` \| `string` | The date the article was last modified.    | Yes      |
+| `mainEntityOfPage` | `Identifiable`     | The main entity described in the article.  | Yes      |
+| `publisher`        | `Identifiable`     | The publisher of the article.              | Yes      |
+| `image`            | `Identifiable`     | An image that represents the article.      | Yes      |
+| `articleSection`   | `string[]`         | The sections the article belongs to.       | Yes      |
+| `inLanguage`       | `string`           | The language of the article.               | Yes      |
 
-### `PublisherEntity` Props
+### `SchemaOrgWebsite` Properties
 
-| Property | Type           | Description                               | Required |
-| -------- | -------------- | ----------------------------------------- | -------- |
-| `@type`  | 'Organization' | Type of publisher, always 'Organization'. | Yes      |
-| `name`   | string         | Name of the organization.                 | Yes      |
-| `logo`   | string         | URL to the logo of the organization.      | Yes      |
-| `url`    | string         | URL of the organization. (Optional)       | No       |
+| Property          | Type             | Description                                           | Required |
+| ----------------- | ---------------- | ----------------------------------------------------- | -------- |
+| `@type`           | `'WebSite'`      | The type of the object. Must be 'WebSite'.            | Yes      |
+| `url`             | `string`         | The URL of the website.                               | Yes      |
+| `name`            | `string`         | The name of the website.                              | Yes      |
+| `description`     | `string`         | A description of the website.                         | Yes      |
+| `publisher`       | `Identifiable`   | The publisher of the website.                         | Yes      |
+| `potentialAction` | `SearchAction[]` | An array of potential search actions for the website. | Yes      |
+| `inLanguage`      | `string`         | The language of the website.                          | Yes      |
+
+### `SchemaOrgWebPage` Properties
+
+| Property             | Type               | Description                                          | Required |
+| -------------------- | ------------------ | ---------------------------------------------------- | -------- |
+| `@type`              | `'WebPage'`        | The type of the object. Must be 'WebPage'.           | Yes      |
+| `url`                | `string`           | The URL of the web page.                             | Yes      |
+| `name`               | `string`           | The name of the web page.                            | Yes      |
+| `isPartOf`           | `Identifiable`     | The parent website the web page is part of.          | Yes      |
+| `primaryImageOfPage` | `Identifiable`     | The primary image of the web page.                   | Yes      |
+| `datePublished`      | `Date` \| `string` | The date the web page was published.                 | Yes      |
+| `dateModified`       | `Date` \| `string` | The date the web page was last modified.             | Yes      |
+| `author`             | `Identifiable`     | The author of the web page.                          | Yes      |
+| `description`        | `string`           | A description of the web page.                       | Yes      |
+| `breadcrumb`         | `Identifiable`     | The breadcrumb for the web page.                     | Yes      |
+| `inLanguage`         | `string`           | The language of the web page.                        | Yes      |
+| `potentialAction`    | `ReadAction[]`     | An array of potential read actions for the web page. | Yes      |
+
+### `SchemaOrgEntity` Properties
+
+| Property | Type                   | Description                                      | Required |
+| -------- | ---------------------- | ------------------------------------------------ | -------- |
+| `@type`  | `MainEntityType[]`     | An array of types for the entity.                | Yes      |
+| `@id`    | `string`               | A unique identifier for the entity.              | Yes      |
+| `name`   | `string`               | The name of the entity.                          | Yes      |
+| `image`  | `SchemaOrgImageObject` | An image that represents the entity.             | Yes      |
+| `logo`   | `Identifiable`         | A logo associated with the entity.               | Yes      |
+| `sameAs` | `string[]`             | An array of URLs that also represent the entity. | Yes      |
+
+### `SchemaOrgPublisher` Properties
+
+| Property | Type                   | Description                                         | Required |
+| -------- | ---------------------- | --------------------------------------------------- | -------- |
+| `@type`  | `MainEntityType[]`     | An array of types for the publisher.                | Yes      |
+| `name`   | `string`               | The name of the publisher.                          | Yes      |
+| `image`  | `SchemaOrgImageObject` | An image that represents the publisher.             | Yes      |
+| `logo`   | `Identifiable`         | A logo associated with the publisher.               | Yes      |
+| `sameAs` | `string[]`             | An array of URLs that also represent the publisher. | Yes      |
+
+### `SchemaOrgImageObject` Properties
+
+| Property     | Type            | Description                                    | Required |
+| ------------ | --------------- | ---------------------------------------------- | -------- |
+| `@type`      | `'ImageObject'` | The type of the object. Must be 'ImageObject'. | Yes      |
+| `@id`        | `string`        | A unique identifier for the image.             | Yes      |
+| `inLanguage` | `string`        | The language of the image.                     | Yes      |
+| `url`        | `string`        | The URL of the image.                          | Yes      |
+| `contentUrl` | `string`        | An alternative URL for the image.              | No       |
+| `width`      | `number`        | The width of the image in pixels.              | Yes      |
+| `height`     | `number`        | The height of the image in pixels.             | Yes      |
+| `caption`    | `string`        | A caption describing the image.                | Yes      |
+
+### `SchemaOrgBreadcrumbList` Properties
+
+| Property          | Type               | Description                                               | Required |
+| ----------------- | ------------------ | --------------------------------------------------------- | -------- |
+| `@type`           | `'BreadcrumbList'` | The type of the object. Must be 'BreadcrumbList'.         | Yes      |
+| `itemListElement` | `ListItem[]`       | An array of list items representing the breadcrumb trail. | Yes      |
+
+### `ListItem` Properties
+
+| Property   | Type                                            | Description                                 | Required |
+| ---------- | ----------------------------------------------- | ------------------------------------------- | -------- |
+| `@type`    | `'ListItem'`                                    | The type of the object. Must be 'ListItem'. | Yes      |
+| `position` | `number`                                        | The position of the item in the list.       | Yes      |
+| `item`     | `Identifiable & { name: string; url: string; }` | The item represented by this list node.     | Yes      |
 
 ### Additional Notes:
 
