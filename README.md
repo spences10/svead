@@ -279,6 +279,8 @@ the instructions are never there! 😅
 **Publish the project to NPM**
 
 ```bash
+# change to package directory
+cd packages/svead
 # authenticate with npm
 npm login
 # bump version with npm
@@ -296,6 +298,8 @@ git push --tags
 Same procedure except use the `--tag` flag:
 
 ```bash
+# change to package directory
+cd packages/svead
 # authenticate with npm
 npm login
 # bump version with npm
