@@ -77,8 +77,8 @@ importers:
         specifier: ^3.2.3
         version: 3.2.3(prettier@3.3.0)(svelte@5.0.0-next.141)
       prettier-plugin-tailwindcss:
-        specifier: ^0.5.14
-        version: 0.5.14(prettier-plugin-svelte@3.2.3)(prettier@3.3.0)
+        specifier: ^0.6.0
+        version: 0.6.5(prettier-plugin-svelte@3.2.3)(prettier@3.3.0)
       svead:
         specifier: workspace:*
         version: link:../../packages/svead
@@ -3307,8 +3307,8 @@ packages:
       svelte: 5.0.0-next.141
     dev: true
 
-  /prettier-plugin-tailwindcss@0.5.14(prettier-plugin-svelte@3.2.3)(prettier@3.3.0):
-    resolution: {integrity: sha512-Puaz+wPUAhFp8Lo9HuciYKM2Y2XExESjeT+9NQoVFXZsPPnc9VYss2SpxdQ6vbatmt8/4+SN0oe0I1cPDABg9Q==}
+  /prettier-plugin-tailwindcss@0.6.5(prettier-plugin-svelte@3.2.3)(prettier@3.3.0):
+    resolution: {integrity: sha512-axfeOArc/RiGHjOIy9HytehlC0ZLeMaqY09mm8YCkMzznKiDkwFzOpBvtuhuv3xG5qB73+Mj7OCe2j/L1ryfuQ==}
     engines: {node: '>=14.21.3'}
     peerDependencies:
       '@ianvs/prettier-plugin-sort-imports': '*'
