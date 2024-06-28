@@ -87,7 +87,7 @@ importers:
         version: 5.0.0-next.166
       svelte-check:
         specifier: ^3.7.1
-        version: 3.8.1(postcss-load-config@6.0.1)(postcss@8.4.38)(svelte@5.0.0-next.166)
+        version: 3.8.4(postcss-load-config@6.0.1)(postcss@8.4.38)(svelte@5.0.0-next.166)
       tailwindcss:
         specifier: ^3.4.3
         version: 3.4.4
@@ -162,7 +162,7 @@ importers:
         version: 5.0.0-next.166
       svelte-check:
         specifier: ^3.7.1
-        version: 3.8.1(postcss-load-config@6.0.1)(postcss@8.4.38)(svelte@5.0.0-next.166)
+        version: 3.8.4(postcss-load-config@6.0.1)(postcss@8.4.38)(svelte@5.0.0-next.166)
       tslib:
         specifier: ^2.6.2
         version: 2.6.3
@@ -3642,16 +3642,14 @@ packages:
     engines: {node: '>= 0.4'}
     dev: true
 
-  /svelte-check@3.8.1(postcss-load-config@6.0.1)(postcss@8.4.38)(svelte@5.0.0-next.166):
-    resolution: {integrity: sha512-KlQ0TRVe01mdvh49Ylkr9FQxO/UWbQOtaIrccl3gjgkvby1TxY41VkT7ijCl6i29FjaJPE4m6YGmhdqov0MfkA==}
+  /svelte-check@3.8.4(postcss-load-config@6.0.1)(postcss@8.4.38)(svelte@5.0.0-next.166):
+    resolution: {integrity: sha512-61aHMkdinWyH8BkkTX9jPLYxYzaAAz/FK/VQqdr2FiCQQ/q04WCwDlpGbHff1GdrMYTmW8chlTFvRWL9k0A8vg==}
     hasBin: true
     peerDependencies:
       svelte: ^3.55.0 || ^4.0.0-next.0 || ^4.0.0 || ^5.0.0-next.0
     dependencies:
       '@jridgewell/trace-mapping': 0.3.25
       chokidar: 3.6.0
-      fast-glob: 3.3.2
-      import-fresh: 3.3.0
       picocolors: 1.0.1
       sade: 1.8.1
       svelte: 5.0.0-next.166
