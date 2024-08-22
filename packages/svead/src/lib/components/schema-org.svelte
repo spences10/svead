@@ -7,22 +7,23 @@
 <script lang="ts">
 	import type { SchemaOrgProps } from '$lib/types/schema-org.js';
 
-	const { schema }: { schema: SchemaOrgProps } = $props();
+	const { schema }: SchemaOrgProps = $props();
 
-	// Function to add '@context' to schema
-	function add_context<T>(schema: T): T & { '@context': string } {
-		return {
-			'@context': 'https://schema.org',
-			...schema,
-		};
+	// Function to add '@context' to schema if it's missing
+	function process_schema(schema: any): any {
+		const context = { '@context': 'https://schema.org' };
+		if (Array.isArray(schema)) {
+			return [context, ...schema];
+		}
+		return { ...context, ...schema };
 	}
 
-	// Process schema to add context
-	const process_schema = add_context(schema);
+	// Process schema
+	const processed_schema = process_schema(schema);
 
 	// Convert processed schema to JSON-LD script
 	const json_ld_data =
-		`<script type="application/ld+json">${JSON.stringify(process_schema)}</scr` +
+		`<script type="application/ld+json">${JSON.stringify(processed_schema)}</scr` +
 		`ipt>`;
 </script>
 
