@@ -1,236 +1,163 @@
+<script lang="ts">
+  import { Details } from '$lib/components'
+</script>
+
 # Welcome to Svead 🍺
 
-The Svelte Head Component.
+The Svelte Head and Schema.org Component.
 
 Svead is a dynamic component that enhances your SEO by allowing you to
 set head meta information for canonical, title, Twitter, Facebook,
-Open Graph tags and JSON-LD.
+Open Graph tags, and JSON-LD structured data.
 
 Visit [GitHub](https://github.com/spences10/svead) to contribute to
 this project.
 
-View source (`Ctrl+u` or `⌘+⌥+u` on macOS) to see all the head
-goodness in action.
+## Components
 
-Yes, it's `<svelte:head>` with props being passed to it!
+Svead provides two main components:
 
-Having implemented this in several projects with repetitive code, I
-decided to package it up for broader use.
+1. `Head`: For setting meta tags and other head information.
+2. `SchemaOrg`: For adding structured data using JSON-LD.
 
-## Props
+## Head Component
 
-It takes the following props:
-
-**Required props**
-
-```ts
-title: string; // Page title
-description: string; // Page description
-url: string; // Full URL of the current page
-```
-
-**Optional props**
-
-```ts
-website: string = ''; // Website URL
-author_name: string = ''; // Author Name
-open_graph_image: string = ''; // Open Graph image
-payment_pointer: string = ''; // Web Monetisation Payment pointer
-```
-
-## Use it
-
-```bash
-pnpm i -D svead
-```
-
-Import it into your Svelte pages and use it, the config for this page
-looks like this:
+### Usage
 
 ```svelte
 <script lang="ts">
-	import { page } from '$app/stores';
 	import { Head, type SeoConfig } from 'svead';
 
 	const seo_config: SeoConfig = {
-		title: 'This is Svead a Svelte Head Component',
-		description:
-			'Svead, a component that allows you to set head meta information, canonical, title, Twitter and Facebook Open Graph tags.',
-		author_name: 'Scott Spence',
-		open_graph_image:
-			'https://og.tailgraph.com/og?fontFamily=Roboto&title=This+is+Svead&titleTailwind=text-gray-800+font-bold+text-6xl&text=Set+Head+meta+tag+information&textTailwind=text-gray-700+text-2xl+mt-4&logoTailwind=h-8&bgTailwind=bg-white&footer=svead.vercel.app&footerTailwind=text-teal-600',
-		website: 'https://svead.pages.dev',
-		url: $page.url.toString(),
+		title: 'Welcome to My Site',
+		description: 'This is a simple web page example.',
+		url: 'https://example.com/welcome',
 	};
 </script>
 
 <Head {seo_config} />
 ```
 
-## Output
+### `SeoConfig` Props
 
-```html
-<head>
-	<link rel="canonical" href="https://svead.pages.dev/" />
-	<meta
-		name="title"
-		content="This is Svead a Svelte Head Component"
-	/>
-	<meta
-		name="description"
-		content="Svead, a component that allows you to set head meta information, canonical, title, Twitter and Facebook Open Graph tags."
-	/>
-	<meta
-		itemprop="name"
-		content="This is Svead a Svelte Head Component"
-	/>
-	<meta
-		itemprop="description"
-		content="Svead, a component that allows you to set head meta information, canonical, title, Twitter and Facebook Open Graph tags."
-	/>
-	<meta
-		itemprop="image"
-		content="https://og.tailgraph.com/og?fontFamily=Roboto&title=This+is+Svead&titleTailwind=text-gray-800+font-bold+text-6xl&text=Set+Head+meta+tag+information&textTailwind=text-gray-700+text-2xl+mt-4&logoTailwind=h-8&bgTailwind=bg-white&footer=svead.pages.dev&footerTailwind=text-teal-600"
-	/>
-	<meta property="og:url" content="https://svead.pages.dev/" />
-	<meta property="og:type" content="website" />
-	<meta
-		property="og:title"
-		content="This is Svead a Svelte Head Component"
-	/>
-	<meta
-		property="og:description"
-		content="Svead, a component that allows you to set head meta information, canonical, title, Twitter and Facebook Open Graph tags."
-	/>
-	<meta
-		property="og:image"
-		content="https://og.tailgraph.com/og?fontFamily=Roboto&title=This+is+Svead&titleTailwind=text-gray-800+font-bold+text-6xl&text=Set+Head+meta+tag+information&textTailwind=text-gray-700+text-2xl+mt-4&logoTailwind=h-8&bgTailwind=bg-white&footer=svead.pages.dev&footerTailwind=text-teal-600"
-	/>
-	<meta name="twitter:card" content="summary_large_image" />
-	<meta property="twitter:domain" content="https://svead.pages.dev" />
-	<meta property="twitter:url" content="https://svead.pages.dev/" />
-	<meta
-		name="twitter:title"
-		content="This is Svead a Svelte Head Component"
-	/>
-	<meta
-		name="twitter:description"
-		content="Svead, a component that allows you to set head meta information, canonical, title, Twitter and Facebook Open Graph tags."
-	/>
-	<meta
-		name="twitter:image"
-		content="https://og.tailgraph.com/og?fontFamily=Roboto&title=This+is+Svead&titleTailwind=text-gray-800+font-bold+text-6xl&text=Set+Head+meta+tag+information&textTailwind=text-gray-700+text-2xl+mt-4&logoTailwind=h-8&bgTailwind=bg-white&footer=svead.pages.dev&footerTailwind=text-teal-600"
-	/>
-	<title>This is Svead a Svelte Head Component</title>
-</head>
-```
+<Details buttonText="Click to expand">
 
-## Example Routes
+| Property            | Type               | Description                                                  | Required |
+| :------------------ | :----------------- | :----------------------------------------------------------- | :------- |
+| `title`             | `string`           | The title of the web page.                                   | Yes      |
+| `description`       | `string`           | A description of the web page.                               | Yes      |
+| `url`               | `string`           | The URL of the web page.                                     | Yes      |
+| `website`           | `string`           | The website the web page belongs to.                         | No       |
+| `language`          | `string` \| `'en'` | The language of the web page. Defaults to 'en'.              | No       |
+| `open_graph_image`  | `string`           | The URL of an image to use for Open Graph meta tags.         | No       |
+| `payment_pointer`   | `string`           | A payment pointer for Web Monetization.                      | No       |
+| `author_name`       | `string`           | The name of the author.                                      | No       |
+| `site_name`         | `string`           | The name of the site for og:site_name.                       | No       |
+| `twitter_handle`    | `string`           | The Twitter handle of the content creator or site.           | No       |
+| `twitter_card_type` | `string`           | The type of Twitter card. Defaults to 'summary_large_image'. | No       |
 
-Explore how Svead works with different content types:
+</Details>
 
-- [Breadcrumbs](/breadcrumbs)
-- [Article](/article)
-- [Blog Posting](/blog-posting)
-- [News Article](/news-article)
-- [Web Page](/web-page)
-- [Multiple JSON-LD Sections](/multiple-ld-json-sections)
+## SchemaOrg Component
 
-## Advanced Examples
-
-Delve deeper into the capabilities of Svead with these advanced use
-cases:
-
-### Breadcrumbs
-
-Learn how to implement breadcrumbs for enhanced navigation and SEO.
+### Usage
 
 ```svelte
-<script>
-	// Example code for breadcrumbs
+<script lang="ts">
+	import { SchemaOrg, type SchemaOrgProps } from 'svead';
+
+	const schema_org: SchemaOrgProps['schema'] = {
+		'@type': 'BlogPosting',
+		headline: 'My First Blog Post',
+		description: 'This is an example of a blog post using svead.',
+		author: {
+			'@type': 'Person',
+			name: 'John Doe',
+		},
+		datePublished: '2023-08-22T10:00:00Z',
+	};
 </script>
+
+<SchemaOrg schema={schema_org} />
 ```
+
+### `SchemaOrgProps` Props
+
+<Details buttonText="Click to expand">
+
+| Property | Type            | Description                                                 | Required |
+| :------- | :-------------- | :---------------------------------------------------------- | :------- |
+| `schema` | `SchemaOrgType` | The structured data object following schema.org vocabulary. | Yes      |
+
+</Details>
+
+### `SchemaOrgType`
+
+`SchemaOrgType` is extended from
+[schema-dts](https://github.com/google/schema-dts) and is a union type
+that includes:
+
+- `Thing`: Represents the most generic type of item in schema.org.
+- `WithContext<Thing>`: A Thing with an added `@context` property.
+
+You can use any valid schema.org type as defined in the
+[schema.org documentation](https://schema.org).
+
+### Additional Notes:
+
+- The `@context` property is automatically added by the component if
+  not provided.
+- You can include multiple schema types by nesting them within the
+  main schema object.
+- Always validate your structured data using tools like
+  [Google's Rich Results Test](https://search.google.com/test/rich-results)
+  to ensure it's correctly formatted.
+
+## Example with Both Components
+
+```svelte
+<script lang="ts">
+	import { page } from '$app/stores';
+	import {
+		Head,
+		SchemaOrg,
+		type SeoConfig,
+		type SchemaOrgProps,
+	} from 'svead';
+
+	const seo_config: SeoConfig = {
+		title: 'My Blog Post',
+		description: 'This is an example blog post using Svead.',
+		url: $page.url.href,
+		author_name: 'John Doe',
+		site_name: 'My Awesome Blog',
+	};
+
+	const schema_org: SchemaOrgProps['schema'] = {
+		'@type': 'BlogPosting',
+		headline: seo_config.title,
+		description: seo_config.description,
+		author: {
+			'@type': 'Person',
+			name: seo_config.author_name,
+		},
+		datePublished: new Date().toISOString(),
+	};
+</script>
+
+<Head {seo_config} />
+<SchemaOrg schema={schema_org} />
+
+<article>
+	<h1>{seo_config.title}</h1>
+	<p>{seo_config.description}</p>
+	<!-- Rest of your blog post content -->
+</article>
+```
+
+This example demonstrates how to use both the `Head` and `SchemaOrg`
+components together in a Svelte page, providing both meta tags and
+structured data for improved SEO.
 
 For more information and full documentation, visit the
 [Svead GitHub repository](https://github.com/spences10/svead).
-
-### Breadcrumbs Implementation
-
-Breadcrumbs are a great way to enhance user navigation and SEO by
-providing a clear path back to previous pages. Here's how you can
-implement breadcrumbs with Svead:
-
-First, you'll need to define your breadcrumb structure. This is
-typically an array of objects, each representing a step in the path.
-
-```javascript
-const breadcrumbs = [
-	{ name: 'Home', url: '/' },
-	{ name: 'Articles', url: '/articles' },
-	// The current page
-	{ name: 'Current Article', url: '/articles/current-article' },
-];
-```
-
-Next, incorporate the breadcrumb data into the Svead component within
-your Svelte page:
-
-```svelte
-<script>
-	import { Head } from 'svead';
-
-	const title = 'Current Article - My Awesome Site';
-	const description =
-		'This is an article about something really interesting.';
-	const url =
-		'https://www.myawesomesite.com/articles/current-article';
-	const image = 'https://www.myawesomesite.com/path/to/image.jpg';
-
-	// Define breadcrumbs as shown above
-	const breadcrumbs = [
-		{ name: 'Home', url: '/' },
-		{ name: 'Articles', url: '/articles' },
-		{ name: 'Current Article', url: '/articles/current-article' },
-	];
-</script>
-
-<Head {title} {description} {image} {url} {breadcrumbs} />
-```
-
-Finally, you'll need to ensure that Svead is set up to handle the
-`breadcrumbs` prop and render the appropriate JSON-LD structured data.
-Here's an example of what that might look like in your Svead
-component:
-
-```javascript
-// Inside your Svead component
-function generateBreadcrumbJSONLD(breadcrumbs) {
-	const itemListElement = breadcrumbs.map((breadcrumb, index) => ({
-		'@type': 'ListItem',
-		position: index + 1,
-		name: breadcrumb.name,
-		item: breadcrumb.url,
-	}));
-
-	return {
-		'@context': 'https://schema.org',
-		'@type': 'BreadcrumbList',
-		itemListElement: itemListElement,
-	};
-}
-
-// Inside the <script> tag
-export let breadcrumbs = [];
-
-$: breadcrumbJSONLD = breadcrumbs.length
-	? generateBreadcrumbJSONLD(breadcrumbs)
-	: null;
-```
-
-Remember to include the generated JSON-LD data in the head of your
-document. This will provide search engines with the structured data
-they need to understand the breadcrumb trail for your page.
-
-By following these steps, you should have a fully functional
-breadcrumb system integrated with your Svead component, enhancing both
-navigation and SEO for your site.
