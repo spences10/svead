@@ -1,58 +1,88 @@
 <script lang="ts">
-	import { Head, type SeoConfig } from 'svead';
+	import { page } from '$app/stores';
+	import {
+		Head,
+		SchemaOrg,
+		type SchemaOrgProps,
+		type SeoConfig,
+	} from 'svead';
 
 	const seo_config: SeoConfig = {
-		url: 'https://example.com/web-page',
+		url: $page.url.href,
 		website: 'https://example.com',
 		title: 'Sample Web Page',
 		description:
 			'This is an example of a simple web page showcasing the usage of the svead package for SEO optimization.',
 		open_graph_image: 'https://example.com/images/web-page-image.jpg',
-		date_published: '2023-06-03T09:00:00Z',
-		date_modified: '2023-06-03T11:30:00Z',
 		language: 'en',
-		same_as: [
-			'https://twitter.com/example',
-			'https://www.facebook.com/example',
-		],
-		schema_org_webpage: {
-			'@type': 'WebPage',
-			'@id': 'https://example.com/web-page',
-			url: 'https://example.com/web-page',
-			name: 'Sample Web Page',
-			description:
-				'This is an example of a simple web page showcasing the usage of the svead package for SEO optimization.',
-			inLanguage: 'en',
-			isPartOf: {
-				'@id': 'https://example.com',
+		twitter_handle: '@example',
+		site_name: 'Example Site',
+	};
+
+	const schema_org: SchemaOrgProps['schema'] = {
+		'@type': 'WebPage',
+		'@id': $page.url.href,
+		url: $page.url.href,
+		name: seo_config.title,
+		description: seo_config.description,
+		inLanguage: seo_config.language,
+		isPartOf: {
+			'@type': 'WebSite',
+			'@id': seo_config.website,
+		},
+		primaryImageOfPage: {
+			'@type': 'ImageObject',
+			url: seo_config.open_graph_image,
+		},
+		datePublished: '2023-06-03T09:00:00Z',
+		dateModified: '2023-06-03T11:30:00Z',
+		author: {
+			'@type': 'Person',
+			name: 'John Doe',
+			url: `${seo_config.website}/author/john-doe`,
+		},
+		publisher: {
+			'@type': 'Organization',
+			name: seo_config.site_name,
+			url: seo_config.website,
+			logo: {
+				'@type': 'ImageObject',
+				url: `${seo_config.website}/logo.png`,
 			},
-			breadcrumb: {
-				'@id': 'https://example.com/web-page',
-			},
-			primaryImageOfPage: {
-				'@id': 'https://example.com/images/web-page-image.jpg',
-			},
-			datePublished: '2023-06-03T09:00:00Z',
-			dateModified: '2023-06-03T11:30:00Z',
-			author: {
-				'@id': 'https://example.com/author/john-doe',
-			},
-			potentialAction: [
+		},
+		breadcrumb: {
+			'@type': 'BreadcrumbList',
+			'@id': `${$page.url.href}#breadcrumb`,
+			name: 'Breadcrumb',
+			itemListElement: [
 				{
-					'@type': 'ReadAction',
-					target: ['https://example.com/web-page'],
+					'@type': 'ListItem',
+					position: 1,
+					name: 'Home',
+					item: seo_config.website,
+				},
+				{
+					'@type': 'ListItem',
+					position: 2,
+					name: seo_config.title,
+					item: $page.url.href,
 				},
 			],
 		},
+		potentialAction: [
+			{
+				'@type': 'ReadAction',
+				target: $page.url.href,
+			},
+		],
 	};
 </script>
 
 <Head {seo_config} />
+<SchemaOrg schema={schema_org} />
 
 <main>
-	<h1>Welcome to the Sample Web Page</h1>
-	<p>
-		This is a simple web page showcasing the usage of the svead
-		package for SEO optimization.
-	</p>
+	<h1>{seo_config.title}</h1>
+	<p>{seo_config.description}</p>
+	<!-- Rest of your page content -->
 </main>

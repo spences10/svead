@@ -1,88 +1,119 @@
 <script lang="ts">
-	import { Head, type SeoConfig } from 'svead';
+	import { page } from '$app/stores';
+	import {
+		Head,
+		SchemaOrg,
+		type SchemaOrgProps,
+		type SeoConfig,
+	} from 'svead';
 
 	const seo_config: SeoConfig = {
-		url: 'https://example.com/news/breaking-news',
+		url: $page.url.href,
 		website: 'https://example.com',
 		title: 'Breaking News: Major Event Unfolds',
 		description:
 			'A significant event has taken place, impacting the lives of many. Read our latest news article for detailed coverage and analysis.',
 		open_graph_image:
 			'https://example.com/images/breaking-news-image.jpg',
-		date_published: '2023-06-02T09:30:00Z',
-		date_modified: '2023-06-02T11:45:00Z',
 		author_name: 'Jane Smith',
-		author_url: 'https://example.com/author/jane-smith',
-		publisher_name: 'Example News',
-		publisher_url: 'https://example.com',
 		language: 'en',
-		same_as: [
-			'https://twitter.com/examplenews',
-			'https://www.facebook.com/examplenews',
-		],
-		schema_org_article: {
-			'@type': 'NewsArticle',
-			'@id': 'https://example.com/news/breaking-news',
-			isPartOf: {
-				'@id': 'https://example.com',
-			},
-			author: {
-				'@id': 'https://example.com/author/jane-smith',
-			},
-			headline: 'Breaking News: Major Event Unfolds',
-			datePublished: '2023-06-02T09:30:00Z',
-			dateModified: '2023-06-02T11:45:00Z',
-			mainEntityOfPage: {
-				'@id': 'https://example.com/news/breaking-news',
-			},
-			publisher: {
-				'@id': 'https://example.com',
-			},
-			image: {
-				'@id': 'https://example.com/images/breaking-news-image.jpg',
-			},
-			articleSection: ['News', 'Breaking News'],
-			inLanguage: 'en',
+		twitter_handle: '@examplenews',
+		site_name: 'Example News',
+	};
+
+	const schema_org: SchemaOrgProps['schema'] = {
+		'@type': 'WebPage',
+		'@id': $page.url.href,
+		url: $page.url.href,
+		name: seo_config.title,
+		description: seo_config.description,
+		inLanguage: seo_config.language,
+		isPartOf: {
+			'@type': 'WebSite',
+			'@id': seo_config.website,
 		},
-		schema_org_webpage: {
-			'@type': 'WebPage',
-			'@id': 'https://example.com/news/breaking-news',
-			url: 'https://example.com/news/breaking-news',
-			name: 'Breaking News: Major Event Unfolds',
-			description:
-				'A significant event has taken place, impacting the lives of many. Read our latest news article for detailed coverage and analysis.',
-			inLanguage: 'en',
-			isPartOf: {
-				'@id': 'https://example.com',
+		primaryImageOfPage: {
+			'@type': 'ImageObject',
+			url: seo_config.open_graph_image,
+		},
+		datePublished: '2023-06-02T09:30:00Z',
+		dateModified: '2023-06-02T11:45:00Z',
+		author: {
+			'@type': 'Person',
+			name: seo_config.author_name,
+			url: `${seo_config.website}/author/jane-smith`,
+		},
+		publisher: {
+			'@type': 'Organization',
+			name: seo_config.site_name,
+			url: seo_config.website,
+			logo: {
+				'@type': 'ImageObject',
+				url: `${seo_config.website}/logo.png`,
 			},
-			breadcrumb: {
-				'@id': 'https://example.com/news/breaking-news',
-			},
-			primaryImageOfPage: {
-				'@id': 'https://example.com/images/breaking-news-image.jpg',
-			},
-			datePublished: '2023-06-02T09:30:00Z',
-			dateModified: '2023-06-02T11:45:00Z',
-			author: {
-				'@id': 'https://example.com/author/jane-smith',
-			},
-			potentialAction: [
+		},
+		breadcrumb: {
+			'@type': 'BreadcrumbList',
+			'@id': `${$page.url.href}#breadcrumb`,
+			name: 'Breadcrumb',
+			itemListElement: [
 				{
-					'@type': 'ReadAction',
-					target: ['https://example.com/news/breaking-news'],
+					'@type': 'ListItem',
+					position: 1,
+					name: 'Home',
+					item: seo_config.website,
+				},
+				{
+					'@type': 'ListItem',
+					position: 2,
+					name: 'News',
+					item: `${seo_config.website}/news`,
+				},
+				{
+					'@type': 'ListItem',
+					position: 3,
+					name: seo_config.title,
+					item: $page.url.href,
 				},
 			],
+		},
+		mainEntity: {
+			'@type': 'NewsArticle',
+			'@id': `${$page.url.href}#article`,
+			headline: seo_config.title,
+			description: seo_config.description,
+			image: seo_config.open_graph_image,
+			datePublished: '2023-06-02T09:30:00Z',
+			dateModified: '2023-06-02T11:45:00Z',
+			author: {
+				'@type': 'Person',
+				name: seo_config.author_name,
+				url: `${seo_config.website}/author/jane-smith`,
+			},
+			publisher: {
+				'@type': 'Organization',
+				name: seo_config.site_name,
+				url: seo_config.website,
+				logo: {
+					'@type': 'ImageObject',
+					url: `${seo_config.website}/logo.png`,
+				},
+			},
+			mainEntityOfPage: {
+				'@type': 'WebPage',
+				'@id': $page.url.href,
+			},
+			articleSection: ['News', 'Breaking News'],
+			inLanguage: seo_config.language,
 		},
 	};
 </script>
 
 <Head {seo_config} />
+<SchemaOrg schema={schema_org} />
 
 <article>
-	<h1>Breaking News: Major Event Unfolds</h1>
-	<p>
-		A significant event has taken place, impacting the lives of many.
-		Our reporters are on the ground, gathering the latest information
-		and providing in-depth analysis.
-	</p>
+	<h1>{seo_config.title}</h1>
+	<p>{seo_config.description}</p>
+	<!-- Rest of your article content -->
 </article>
