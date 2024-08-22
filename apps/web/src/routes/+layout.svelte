@@ -11,7 +11,7 @@
 	const { PUBLIC_FATHOM_ID, PUBLIC_FATHOM_URL } = env;
 
 	onMount(() => {
-		Fathom.load(PUBLIC_FATHOM_ID, {
+		Fathom.load(PUBLIC_FATHOM_ID!, {
 			url: PUBLIC_FATHOM_URL,
 		});
 	});
