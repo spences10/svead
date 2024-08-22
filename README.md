@@ -40,32 +40,19 @@ It takes the following props:
 
 ### `SeoConfig` Props
 
-| Property                         | Type                      | Description                                                        | Required |
-| -------------------------------- | ------------------------- | ------------------------------------------------------------------ | -------- |
-| `title`                          | `string`                  | The title of the web page.                                         | Yes      |
-| `description`                    | `string`                  | A description of the web page.                                     | Yes      |
-| `url`                            | `string`                  | The URL of the web page.                                           | Yes      |
-| `website`                        | `string`                  | The website the web page belongs to.                               | No       |
-| `language`                       | `string` \| `'en'`        | The language of the web page. Defaults to 'en'.                    | No       |
-| `open_graph_image`               | `string`                  | The URL of an image to use for Open Graph meta tags.               | No       |
-| `payment_pointer`                | `string`                  | A payment pointer for Web Monetisation.                            | No       |
-| `author_name`                    | `string`                  | The name of the author.                                            | No       |
-| `author_type`                    | `AuthorType`              | The type of the author, either 'Person' or 'Organization'.         | No       |
-| `author_url`                     | `string`                  | A URL for the author.                                              | No       |
-| `date_published`                 | `string`                  | The date the content was published.                                | No       |
-| `date_modified`                  | `string`                  | The date the content was last modified.                            | No       |
-| `publisher_name`                 | `string`                  | The name of the publisher.                                         | No       |
-| `publisher_url`                  | `string`                  | A URL for the publisher.                                           | No       |
-| `publisher_logo`                 | `string`                  | A URL for the publisher's logo.                                    | No       |
-| `same_as`                        | `string[]`                | An array of URLs for the Schema.org sameAs property.               | No       |
-| `schema_org_search_url_template` | `string`                  | A URL template for the Schema.org potentialAction search property. | No       |
-| `schema_org_article`             | `SchemaOrgArticle`        | A SchemaOrgArticle object.                                         | No       |
-| `schema_org_website`             | `SchemaOrgWebsite`        | A SchemaOrgWebsite object.                                         | No       |
-| `schema_org_webpage`             | `SchemaOrgWebPage`        | A SchemaOrgWebPage object.                                         | No       |
-| `schema_org_entity`              | `SchemaOrgEntity`         | A SchemaOrgEntity object.                                          | No       |
-| `schema_org_publisher`           | `SchemaOrgPublisher`      | A SchemaOrgPublisher object.                                       | No       |
-| `schema_org_image_object`        | `SchemaOrgImageObject`    | A SchemaOrgImageObject.                                            | No       |
-| `schema_org_breadcrumb_list`     | `SchemaOrgBreadcrumbList` | A SchemaOrgBreadcrumbList object.                                  | No       |
+| Property            | Type               | Description                                                  | Required |
+| ------------------- | ------------------ | ------------------------------------------------------------ | -------- |
+| `title`             | `string`           | The title of the web page.                                   | Yes      |
+| `description`       | `string`           | A description of the web page.                               | Yes      |
+| `url`               | `string`           | The URL of the web page.                                     | Yes      |
+| `website`           | `string`           | The website the web page belongs to.                         | No       |
+| `language`          | `string` \| `'en'` | The language of the web page. Defaults to 'en'.              | No       |
+| `open_graph_image`  | `string`           | The URL of an image to use for Open Graph meta tags.         | No       |
+| `payment_pointer`   | `string`           | A payment pointer for Web Monetization.                      | No       |
+| `author_name`       | `string`           | The name of the author.                                      | No       |
+| `site_name`         | `string`           | The name of the site for og:site_name.                       | No       |
+| `twitter_handle`    | `string`           | The Twitter handle of the content creator or site.           | No       |
+| `twitter_card_type` | `string`           | The type of Twitter card. Defaults to 'summary_large_image'. | No       |
 
 ## JSON-LD Properties
 
