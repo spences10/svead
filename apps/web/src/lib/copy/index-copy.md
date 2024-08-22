@@ -20,6 +20,17 @@ Svead provides two main components:
 1. `Head`: For setting meta tags and other head information.
 2. `SchemaOrg`: For adding structured data using JSON-LD.
 
+## Example Routes
+
+Explore how Svead works with different content types:
+
+- [Breadcrumbs](/breadcrumbs)
+- [Article](/article)
+- [Blog Posting](/blog-posting)
+- [News Article](/news-article)
+- [Web Page](/web-page)
+- [Multiple JSON-LD Sections](/multiple-ld-json-sections)
+
 ## Head Component
 
 ### Usage

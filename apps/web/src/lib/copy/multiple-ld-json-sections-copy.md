@@ -1,3 +1,6 @@
+Here's the code for this page:
+
+```svelte
 <script lang="ts">
 	import { page } from '$app/stores';
 	import {
@@ -156,3 +159,4 @@
 		<p>Published: {new Date().toLocaleDateString()}</p>
 	</footer>
 </article>
+```

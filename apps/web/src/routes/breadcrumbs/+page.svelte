@@ -3,8 +3,11 @@
 	import type { SchemaOrgProps, SeoConfig } from 'svead';
 	import { Head, SchemaOrg } from 'svead';
 
+	export let data;
+	let { Copy } = data;
+
 	// Example data for the webpage
-	const page_title = 'Sample Web Page';
+	const page_title = 'Sample Breadcrumbs Example';
 	const page_description =
 		'This is an example of a web page with enhanced SEO features.';
 
@@ -108,3 +111,5 @@
 
 <h1>{page_title}</h1>
 <p>{page_description}</p>
+
+<Copy />

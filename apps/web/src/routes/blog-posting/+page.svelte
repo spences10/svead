@@ -7,6 +7,9 @@
 		type SeoConfig,
 	} from 'svead';
 
+	export let data;
+	let { Copy } = data;
+
 	const get_current_iso_date = () => new Date().toISOString();
 
 	const seo_config: SeoConfig = {
@@ -101,4 +104,5 @@
 	<h1>{seo_config.title}</h1>
 	<p>{seo_config.description}</p>
 	<!-- Rest of your blog post content -->
+	<Copy />
 </article>

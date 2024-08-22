@@ -1,3 +1,6 @@
+Here's the code for this page:
+
+```svelte
 <script lang="ts">
 	import { page } from '$app/stores';
 	import {
@@ -15,15 +18,15 @@
 	const seo_config: SeoConfig = {
 		url: $page.url.href,
 		website: 'https://example.com',
-		title: 'How to Use Structured Data in SvelteKit',
+		title: 'My Blog Post',
 		description:
-			'Learn how to implement structured data in your SvelteKit project for better SEO.',
+			'This is an example blog post showcasing the usage of the svead package.',
 		open_graph_image:
-			'https://example.com/images/structured-data-cover.jpg',
-		author_name: 'Jane Doe',
+			'https://example.com/images/blog-post-image.jpg',
+		author_name: 'John Doe',
 		language: 'en',
-		twitter_handle: '@janedoe',
-		site_name: 'SvelteKit SEO Guide',
+		twitter_handle: '@johndoe',
+		site_name: 'Example Blog',
 	};
 
 	const schema_org: SchemaOrgProps['schema'] = {
@@ -54,31 +57,12 @@
 				url: `${seo_config.website}/author/${seo_config.author_name?.toLowerCase().replace(' ', '-')}`,
 			}),
 		},
-		breadcrumb: {
-			'@type': 'BreadcrumbList',
-			'@id': `${$page.url.href}#breadcrumb`,
-			name: 'Breadcrumb',
-			itemListElement: [
-				{
-					'@type': 'ListItem',
-					position: 1,
-					name: 'Home',
-					item: seo_config.website,
-				},
-				{
-					'@type': 'ListItem',
-					position: 2,
-					name: 'Blog',
-					item: `${seo_config.website}/blog`,
-				},
-				{
-					'@type': 'ListItem',
-					position: 3,
-					name: seo_config.title,
-					item: $page.url.href,
-				},
-			],
-		},
+		potentialAction: [
+			{
+				'@type': 'ReadAction',
+				target: $page.url.href,
+			},
+		],
 		mainEntity: {
 			'@type': 'BlogPosting',
 			'@id': `${$page.url.href}#article`,
@@ -112,8 +96,6 @@
 				'@id': $page.url.href,
 			},
 			inLanguage: seo_config.language,
-			keywords: ['SvelteKit', 'SEO', 'Structured Data', 'JSON-LD'],
-			articleSection: 'Web Development',
 		},
 	};
 </script>
@@ -122,37 +104,9 @@
 <SchemaOrg schema={schema_org} />
 
 <article>
-	<nav aria-label="Breadcrumb">
-		<ol>
-			<li><a href={seo_config.website}>Home</a></li>
-			<li><a href={`${seo_config.website}/blog`}>Blog</a></li>
-			<li>{seo_config.title}</li>
-		</ol>
-	</nav>
-
 	<h1>{seo_config.title}</h1>
 	<p>{seo_config.description}</p>
-
-	<Copy />
-
 	<!-- Rest of your blog post content -->
-	<section>
-		<h2>Introduction to Structured Data</h2>
-		<p>
-			Structured data helps search engines understand the content of
-			your web pages...
-		</p>
-	</section>
-
-	<section>
-		<h2>Implementing JSON-LD in SvelteKit</h2>
-		<p>Here's how you can add JSON-LD to your SvelteKit project...</p>
-	</section>
-
-	<!-- More sections... -->
-
-	<footer>
-		<p>Author: {seo_config.author_name}</p>
-		<p>Published: {new Date().toLocaleDateString()}</p>
-	</footer>
+	<Copy />
 </article>
+```
