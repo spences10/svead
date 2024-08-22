@@ -134,6 +134,7 @@ Explore how Svead works with different content types:
 - [Blog Posting](/blog-posting)
 - [News Article](/news-article)
 - [Web Page](/web-page)
+- [Multiple JSON-LD Sections](/multiple-ld-json-sections)
 
 ## Advanced Examples
 

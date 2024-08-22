@@ -19,4 +19,4 @@
 
 <Head {seo_config} />
 
-<svelte:component this={Copy} />
+<Copy />
