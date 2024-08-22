@@ -70,6 +70,7 @@
 		"prettier": "^3.3.3",
 		"prettier-plugin-svelte": "^3.2.6",
 		"publint": "^0.2.10",
+		"schema-dts": "^1.1.2",
 		"svelte": "5.0.0-next.203",
 		"svelte-check": "^3.8.5",
 		"tslib": "^2.6.3",
