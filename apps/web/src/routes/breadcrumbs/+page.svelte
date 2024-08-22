@@ -1,6 +1,7 @@
 <script lang="ts">
-	import type { SeoConfig } from 'svead';
-	import { Head } from 'svead';
+	import { page } from '$app/stores';
+	import type { SchemaOrgProps, SeoConfig } from 'svead';
+	import { Head, SchemaOrg } from 'svead';
 
 	// Example data for the webpage
 	const page_title = 'Sample Web Page';
@@ -10,109 +11,100 @@
 	const seo_config: SeoConfig = {
 		title: 'Example Page Title',
 		description: 'This is an example description of the web page.',
-		url: 'https://www.example.com/page-url',
+		url: $page.url.href,
 		website: 'https://www.example.com',
 		open_graph_image: 'https://www.example.com/og-image.jpg',
 		language: 'en',
 		author_name: 'Author Name',
-		author_url: 'https://www.example.com/author',
-		date_published: '2024-01-15',
-		date_modified: '2024-01-16',
-		publisher_name: 'Publisher Name',
-		publisher_url: 'https://www.example.com/publisher',
-		same_as: [
-			'https://www.facebook.com/example',
-			'https://www.twitter.com/example',
-		],
-		schema_org_article: {
-			'@type': 'Article',
-			'@id': 'https://www.example.com/article',
-			isPartOf: {
-				'@id': 'https://www.example.com',
-			},
-			author: {
-				'@id': 'https://www.example.com/author',
-			},
-			headline: 'Example Article Headline',
-			datePublished: '2024-01-15',
-			dateModified: '2024-01-16',
-			mainEntityOfPage: {
-				'@id': 'https://www.example.com/article',
-			},
-			publisher: {
-				'@id': 'https://www.example.com/publisher',
-			},
-			image: {
-				'@id': 'https://www.example.com/image',
-			},
-			articleSection: ['News', 'Technology'],
-			inLanguage: 'en',
+		twitter_handle: '@example',
+		site_name: 'Example Site',
+	};
+
+	// Function to get current date in ISO format
+	const get_current_iso_date = () => new Date().toISOString();
+
+	const schema_org: SchemaOrgProps['schema'] = {
+		'@type': 'WebPage',
+		'@id': $page.url.href,
+		url: $page.url.href,
+		name: 'Example Page Title',
+		description: 'This is an example description of the web page.',
+		inLanguage: 'en',
+		isPartOf: {
+			'@id': 'https://www.example.com',
 		},
-		schema_org_breadcrumb_list: {
+		breadcrumb: {
 			'@type': 'BreadcrumbList',
-			'@id': 'https://www.example.com/page-url',
+			'@id': `${$page.url.href}#breadcrumb`,
+			name: 'Breadcrumb',
 			itemListElement: [
 				{
 					'@type': 'ListItem',
 					position: 1,
-					item: {
-						'@id': 'https://www.example.com',
-						name: 'Home',
-						url: 'https://www.example.com',
-					},
+					name: 'Home',
+					item: 'https://www.example.com',
 				},
 				{
 					'@type': 'ListItem',
 					position: 2,
-					item: {
-						'@id': 'https://www.example.com/category',
-						name: 'Category',
-						url: 'https://www.example.com/category',
-					},
+					name: 'Category',
+					item: 'https://www.example.com/category',
 				},
 				{
 					'@type': 'ListItem',
 					position: 3,
-					item: {
-						'@id': 'https://www.example.com/page-url',
-						name: 'Example Page Title',
-						url: 'https://www.example.com/page-url',
-					},
+					name: 'Example Page Title',
+					item: $page.url.href,
 				},
 			],
 		},
-		schema_org_webpage: {
-			'@type': 'WebPage',
-			'@id': 'https://www.example.com/page-url',
-			url: 'https://www.example.com/page-url',
-			name: 'Example Page Title',
-			description: 'This is an example description of the web page.',
-			inLanguage: 'en',
+		primaryImageOfPage: {
+			'@type': 'ImageObject',
+			url: 'https://www.example.com/og-image.jpg',
+		},
+		datePublished: get_current_iso_date(),
+		dateModified: get_current_iso_date(),
+		author: {
+			'@type': 'Person',
+			name: 'Author Name',
+			url: 'https://www.example.com/author',
+		},
+		potentialAction: [
+			{
+				'@type': 'ReadAction',
+				target: $page.url.href,
+			},
+		],
+		mainEntity: {
+			'@type': 'Article',
+			'@id': `${$page.url.href}#article`,
 			isPartOf: {
 				'@id': 'https://www.example.com',
 			},
-			breadcrumb: {
-				'@id': 'https://www.example.com/page-url',
-			},
-			primaryImageOfPage: {
-				'@id': 'https://www.example.com/image',
-			},
-			datePublished: '2024-01-15',
-			dateModified: '2024-01-16',
 			author: {
-				'@id': 'https://www.example.com/author',
+				'@type': 'Person',
+				name: 'Author Name',
+				url: 'https://www.example.com/author',
 			},
-			potentialAction: [
-				{
-					'@type': 'ReadAction',
-					target: ['https://www.example.com/page-url'],
-				},
-			],
+			headline: 'Example Article Headline',
+			datePublished: get_current_iso_date(),
+			dateModified: get_current_iso_date(),
+			publisher: {
+				'@type': 'Organization',
+				name: 'Publisher Name',
+				url: 'https://www.example.com/publisher',
+			},
+			image: {
+				'@type': 'ImageObject',
+				url: 'https://www.example.com/og-image.jpg',
+			},
+			articleSection: ['News', 'Technology'],
 		},
 	};
 </script>
 
 <Head {seo_config} />
+<SchemaOrg schema={schema_org} />
 
 <h1>{page_title}</h1>
 <p>{page_description}</p>
