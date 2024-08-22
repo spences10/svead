@@ -15,7 +15,7 @@
 Svead, a component that allows you to set head meta information,
 canonical, title, Twitter and Facebook Open Graph tags.
 
-Also supports JSON-LD for SEO.
+Also supports JSON-LD for SEO with the `SchemaOrg` component.
 
 ![svead](.github/svead.svg)
 
@@ -30,9 +30,36 @@ v1 is currently available via `pnpm i -D svead@next` and will be that
 way until Svelte 5 comes out of RC phase.
 
 v1 has changed compared to v0.0.4. The main change is that the there's
-only one config object now with `SeoConfig` as the type. This is
-because the `schema_org_*` props are now optional and can be set
-directly on the `SeoConfig` object.
+one config object with `SeoConfig`.
+
+Separated out the `SchemaOrg` component from the `Head` component
+which can be optionally used to add structured data to your web pages.
+
+```svelte
+<script lang="ts">
+	import { Head, SchemaOrg } from 'svead';
+	import type { SeoConfig, SchemaOrgProps } from 'svead';
+
+	const seo_config: SeoConfig = {
+		title: 'Welcome to My Site',
+		description: 'This is a simple web page example.',
+		url: 'https://example.com/welcome',
+	};
+
+	const schema_org: SchemaOrgProps['schema'] = {
+		'@type': 'WebPage',
+		name: 'Welcome to My Site',
+		description: 'This is a simple web page example.',
+		url: 'https://example.com/welcome',
+	};
+</script>
+
+<Head {seo_config} />
+<SchemaOrg schema={schema_org} />
+
+<h1>Welcome to My Site</h1>
+<p>This is a simple web page example.</p>
+```
 
 ## Props
 
@@ -54,205 +81,84 @@ It takes the following props:
 | `twitter_handle`    | `string`           | The Twitter handle of the content creator or site.           | No       |
 | `twitter_card_type` | `string`           | The type of Twitter card. Defaults to 'summary_large_image'. | No       |
 
-## JSON-LD Properties
+## SchemaOrg Component
 
-The following tables lists the JSON-LD properties supported by
-'svead'. These properties help you structure your metadata in a way
-that is recognized by search engines, enhancing your SEO and the way
-your content is understood and presented in search results.
+The SchemaOrg component allows you to add structured data to your web
+pages using JSON-LD format. This helps search engines better
+understand your content and can potentially improve your site's
+appearance in search results.
 
-### `schema_org_search_url_template`
-
-| Property                         | Type     | Description                                                        | Required |
-| -------------------------------- | -------- | ------------------------------------------------------------------ | -------- |
-| `schema_org_search_url_template` | `string` | A URL template for the Schema.org potentialAction search property. | No       |
-
-### `SchemaOrgArticle` Properties
-
-| Property           | Type               | Description                                | Required |
-| ------------------ | ------------------ | ------------------------------------------ | -------- |
-| `@type`            | `'Article'`        | The type of the object. Must be 'Article'. | Yes      |
-| `isPartOf`         | `Identifiable`     | The parent object this article is part of. | Yes      |
-| `author`           | `Identifiable`     | The author of the article.                 | Yes      |
-| `headline`         | `string`           | The headline of the article.               | Yes      |
-| `datePublished`    | `Date` \| `string` | The date the article was published.        | Yes      |
-| `dateModified`     | `Date` \| `string` | The date the article was last modified.    | Yes      |
-| `mainEntityOfPage` | `Identifiable`     | The main entity described in the article.  | Yes      |
-| `publisher`        | `Identifiable`     | The publisher of the article.              | Yes      |
-| `image`            | `Identifiable`     | An image that represents the article.      | Yes      |
-| `articleSection`   | `string[]`         | The sections the article belongs to.       | Yes      |
-| `inLanguage`       | `string`           | The language of the article.               | Yes      |
-
-### `SchemaOrgWebsite` Properties
-
-| Property          | Type             | Description                                           | Required |
-| ----------------- | ---------------- | ----------------------------------------------------- | -------- |
-| `@type`           | `'WebSite'`      | The type of the object. Must be 'WebSite'.            | Yes      |
-| `url`             | `string`         | The URL of the website.                               | Yes      |
-| `name`            | `string`         | The name of the website.                              | Yes      |
-| `description`     | `string`         | A description of the website.                         | Yes      |
-| `publisher`       | `Identifiable`   | The publisher of the website.                         | Yes      |
-| `potentialAction` | `SearchAction[]` | An array of potential search actions for the website. | Yes      |
-| `inLanguage`      | `string`         | The language of the website.                          | Yes      |
-
-### `SchemaOrgWebPage` Properties
-
-| Property             | Type               | Description                                          | Required |
-| -------------------- | ------------------ | ---------------------------------------------------- | -------- |
-| `@type`              | `'WebPage'`        | The type of the object. Must be 'WebPage'.           | Yes      |
-| `url`                | `string`           | The URL of the web page.                             | Yes      |
-| `name`               | `string`           | The name of the web page.                            | Yes      |
-| `isPartOf`           | `Identifiable`     | The parent website the web page is part of.          | Yes      |
-| `primaryImageOfPage` | `Identifiable`     | The primary image of the web page.                   | Yes      |
-| `datePublished`      | `Date` \| `string` | The date the web page was published.                 | Yes      |
-| `dateModified`       | `Date` \| `string` | The date the web page was last modified.             | Yes      |
-| `author`             | `Identifiable`     | The author of the web page.                          | Yes      |
-| `description`        | `string`           | A description of the web page.                       | Yes      |
-| `breadcrumb`         | `Identifiable`     | The breadcrumb for the web page.                     | Yes      |
-| `inLanguage`         | `string`           | The language of the web page.                        | Yes      |
-| `potentialAction`    | `ReadAction[]`     | An array of potential read actions for the web page. | Yes      |
-
-### `SchemaOrgEntity` Properties
-
-| Property | Type                   | Description                                      | Required |
-| -------- | ---------------------- | ------------------------------------------------ | -------- |
-| `@type`  | `MainEntityType[]`     | An array of types for the entity.                | Yes      |
-| `@id`    | `string`               | A unique identifier for the entity.              | Yes      |
-| `name`   | `string`               | The name of the entity.                          | Yes      |
-| `image`  | `SchemaOrgImageObject` | An image that represents the entity.             | Yes      |
-| `logo`   | `Identifiable`         | A logo associated with the entity.               | Yes      |
-| `sameAs` | `string[]`             | An array of URLs that also represent the entity. | Yes      |
-
-### `SchemaOrgPublisher` Properties
-
-| Property | Type                   | Description                                         | Required |
-| -------- | ---------------------- | --------------------------------------------------- | -------- |
-| `@type`  | `MainEntityType[]`     | An array of types for the publisher.                | Yes      |
-| `name`   | `string`               | The name of the publisher.                          | Yes      |
-| `image`  | `SchemaOrgImageObject` | An image that represents the publisher.             | Yes      |
-| `logo`   | `Identifiable`         | A logo associated with the publisher.               | Yes      |
-| `sameAs` | `string[]`             | An array of URLs that also represent the publisher. | Yes      |
-
-### `SchemaOrgImageObject` Properties
-
-| Property     | Type            | Description                                    | Required |
-| ------------ | --------------- | ---------------------------------------------- | -------- |
-| `@type`      | `'ImageObject'` | The type of the object. Must be 'ImageObject'. | Yes      |
-| `@id`        | `string`        | A unique identifier for the image.             | Yes      |
-| `inLanguage` | `string`        | The language of the image.                     | Yes      |
-| `url`        | `string`        | The URL of the image.                          | Yes      |
-| `contentUrl` | `string`        | An alternative URL for the image.              | No       |
-| `width`      | `number`        | The width of the image in pixels.              | Yes      |
-| `height`     | `number`        | The height of the image in pixels.             | Yes      |
-| `caption`    | `string`        | A caption describing the image.                | Yes      |
-
-### `SchemaOrgBreadcrumbList` Properties
-
-| Property          | Type               | Description                                               | Required |
-| ----------------- | ------------------ | --------------------------------------------------------- | -------- |
-| `@type`           | `'BreadcrumbList'` | The type of the object. Must be 'BreadcrumbList'.         | Yes      |
-| `itemListElement` | `ListItem[]`       | An array of list items representing the breadcrumb trail. | Yes      |
-
-### `ListItem` Properties
-
-| Property   | Type                                            | Description                                 | Required |
-| ---------- | ----------------------------------------------- | ------------------------------------------- | -------- |
-| `@type`    | `'ListItem'`                                    | The type of the object. Must be 'ListItem'. | Yes      |
-| `position` | `number`                                        | The position of the item in the list.       | Yes      |
-| `item`     | `Identifiable & { name: string; url: string; }` | The item represented by this list node.     | Yes      |
-
-### Additional Notes:
-
-- **Refer to Schema Documentation**: For a detailed understanding of
-  each property and how it's used in structured data, refer to the
-  [schema.org documentation](https://schema.org).
-- **Advanced Configuration**: Some properties accept complex objects
-  or arrays. Please refer to the respective schema definitions for
-  such cases.
-- **Best Practices**: Ensure the accuracy and relevance of the
-  information provided for each property to maximize SEO benefits.
-
-This table is not exhaustive and may be updated as new properties are
-added or existing ones are modified. Stay tuned to the project's
-repository for the latest updates.
-
-## Use it
-
-```bash
-npm install svead
-```
-
-Import it into your Svelte pages and use:
+### Usage
 
 ```svelte
 <script lang="ts">
-	import { Head, type SeoConfig } from 'svead';
+	import { SchemaOrg, type SchemaOrgProps } from 'svead';
 
-	const seo_config: SeoConfig = {
-		url: 'https://example.com/web-page',
-		title: 'Web Page',
-		description: 'This is a sample web page.',
-		date_published: '2023-04-05T10:00:00Z',
-		date_modified: '2023-04-05T12:00:00Z',
+	const schema_org: SchemaOrgProps['schema'] = {
+		'@type': 'BlogPosting',
+		headline: 'My First Blog Post',
+		description: 'This is an example of a blog post using svead.',
+		author: {
+			'@type': 'Person',
+			name: 'John Doe',
+		},
+		datePublished: '2023-08-22T10:00:00Z',
 	};
 </script>
 
-<Head {seo_config} />
+<SchemaOrg schema={schema_org} />
 ```
 
-## Managing the `lang` Attribute in `app.html`
+### `SchemaOrgProps` Props
 
-The `lang` attribute in your SvelteKit application is crucial for
-specifying the primary language of your content. This attribute is
-essential for accessibility and SEO, as it helps search engines and
-assistive technologies understand the language of your text.
+| Property | Type            | Description                                                 | Required |
+| -------- | --------------- | ----------------------------------------------------------- | -------- |
+| `schema` | `SchemaOrgType` | The structured data object following schema.org vocabulary. | Yes      |
 
-### Default Language Setting
+### `SchemaOrgType`
 
-Typically, the `lang` attribute is set in the `app.html` file of your
-SvelteKit project. Here's a typical example:
+`SchemaOrgType` is a union type that includes:
 
-```html
-<!doctype html>
-<html lang="en">
-	<!-- ... other tags ... -->
-</html>
+- `Thing`: Represents the most generic type of item in schema.org.
+- `WithContext<Thing>`: A Thing with an added `@context` property.
+
+You can use any valid schema.org type as defined in the
+[schema.org documentation](https://schema.org).
+
+### Additional Notes:
+
+- The `@context` property is automatically added by the component if
+  not provided.
+- You can include multiple schema types by nesting them within the
+  main schema object.
+- Always validate your structured data using tools like
+  [Google's Rich Results Test](https://search.google.com/test/rich-results)
+  to ensure it's correctly formatted.
+
+### Example with Multiple Schema Types
+
+```svelte
+<script lang="ts">
+	import { SchemaOrg, type SchemaOrgProps } from 'svead';
+
+	const schema_org: SchemaOrgProps['schema'] = {
+		'@type': 'WebPage',
+		name: 'My Blog Post',
+		description: 'An example blog post with structured data',
+		mainEntity: {
+			'@type': 'BlogPosting',
+			headline: 'My First Blog Post',
+			author: {
+				'@type': 'Person',
+				name: 'John Doe',
+			},
+			datePublished: '2023-08-22T10:00:00Z',
+		},
+	};
+</script>
+
+<SchemaOrg schema={schema_org} />
 ```
-
-In this snippet, `lang="en"` sets the language of the document to
-English.
-
-### Customizing the Language
-
-To customize the language for your application:
-
-1. **Static Setting:** If your site is primarily in one language,
-   simply replace the `en` in `lang="en"` with the appropriate
-   language code (e.g., `fr` for French).
-
-2. **Dynamic Setting:** If your site supports multiple languages and
-   you need to change the language dynamically based on user
-   preferences or other criteria, you'll need to handle this at the
-   server level or through client-side scripting. Here are some
-   strategies:
-
-- **Server-Side Rendering (SSR):** Adapt your SSR setup to insert the
-  correct `lang` attribute based on the request's context or user
-  settings.
-- **Client-Side Script:** Use client-side JavaScript to set
-  `document.documentElement.lang` based on user interaction or other
-  indicators. This method is less preferred due to potential SEO and
-  user experience implications.
-
-### Note on svead Usage
-
-The svead package is designed to enhance your application's SEO and
-accessibility through structured data and other optimizations.
-However, managing the `lang` attribute in the `app.html` file is
-outside the scope of svead. As such, you'll need to manage this
-attribute as part of your general SvelteKit application setup.
-Following the best practices for setting the `lang` attribute will
-complement the enhancements provided by svead.
 
 ## Packaging for NPM
 
