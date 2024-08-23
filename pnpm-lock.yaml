@@ -119,7 +119,7 @@ importers:
         specifier: ^2.3.4
         version: 2.3.4(svelte@5.0.0-next.203)(typescript@5.5.4)
       '@sveltejs/vite-plugin-svelte':
-        specifier: ^3.1.1
+        specifier: ^3.1.2
         version: 3.1.2(svelte@5.0.0-next.203)(vite@5.4.2)
       '@testing-library/svelte':
         specifier: ^5.2.1
@@ -164,7 +164,7 @@ importers:
         specifier: 5.0.0-next.203
         version: 5.0.0-next.203
       svelte-check:
-        specifier: ^3.8.5
+        specifier: ^3.8.6
         version: 3.8.6(postcss-load-config@6.0.1)(postcss@8.4.41)(svelte@5.0.0-next.203)
       tslib:
         specifier: ^2.6.3
