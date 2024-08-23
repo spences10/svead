@@ -68,7 +68,7 @@ It takes the following props:
 ### `SeoConfig` Props
 
 | Property            | Type               | Description                                                  | Required |
-| ------------------- | ------------------ | ------------------------------------------------------------ | -------- |
+| :------------------ | :----------------- | :----------------------------------------------------------- | :------- |
 | `title`             | `string`           | The title of the web page.                                   | Yes      |
 | `description`       | `string`           | A description of the web page.                               | Yes      |
 | `url`               | `string`           | The URL of the web page.                                     | Yes      |
@@ -112,7 +112,7 @@ appearance in search results.
 ### `SchemaOrgProps` Props
 
 | Property | Type            | Description                                                 | Required |
-| -------- | --------------- | ----------------------------------------------------------- | -------- |
+| :------- | :-------------- | :---------------------------------------------------------- | :------- |
 | `schema` | `SchemaOrgType` | The structured data object following schema.org vocabulary. | Yes      |
 
 ### `SchemaOrgType`
