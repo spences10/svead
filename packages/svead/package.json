@@ -59,7 +59,7 @@
 		"@sveltejs/package": "^2.3.4",
 		"@sveltejs/vite-plugin-svelte": "^3.1.2",
 		"@testing-library/svelte": "^5.2.1",
-		"@types/eslint": "9.6.0",
+		"@types/eslint": "9.6.1",
 		"@typescript-eslint/eslint-plugin": "^8.2.0",
 		"@typescript-eslint/parser": "^8.2.0",
 		"@vitest/coverage-v8": "^2.0.5",
