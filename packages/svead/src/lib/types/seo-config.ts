@@ -19,6 +19,12 @@ export interface SeoConfig {
 	 * The description of the web page.
 	 * Used in the description meta tag, og:description, and 
 	 * twitter:description properties.
+	 * 
+	 * Best practices suggest keeping the description between 50-160 characters.
+	 * Search engines may truncate descriptions longer than 155-160 characters.
+	 * 
+	 * Note: The Head component does not enforce these limits,
+	 * it's up to the developer to ensure appropriate length.
 	 *
 	 * @type {string}
 	 */
