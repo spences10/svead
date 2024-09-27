@@ -78,7 +78,7 @@ importers:
         version: 3.2.6(prettier@3.3.3)(svelte@5.0.0-next.259)
       prettier-plugin-tailwindcss:
         specifier: ^0.6.6
-        version: 0.6.6(prettier-plugin-svelte@3.2.6)(prettier@3.3.3)
+        version: 0.6.7(prettier-plugin-svelte@3.2.6)(prettier@3.3.3)
       rehype-autolink-headings:
         specifier: ^7.1.0
         version: 7.1.0
@@ -2815,8 +2815,8 @@ packages:
       svelte: 5.0.0-next.259
     dev: true
 
-  /prettier-plugin-tailwindcss@0.6.6(prettier-plugin-svelte@3.2.6)(prettier@3.3.3):
-    resolution: {integrity: sha512-OPva5S7WAsPLEsOuOWXATi13QrCKACCiIonFgIR6V4lYv4QLp++UXVhZSzRbZxXGimkQtQT86CC6fQqTOybGng==}
+  /prettier-plugin-tailwindcss@0.6.7(prettier-plugin-svelte@3.2.6)(prettier@3.3.3):
+    resolution: {integrity: sha512-Gr9C8SURB46Fm9MQcb9gFxNfMiPgmhvq8St4We8I55r0GroqAptCgjzaKAastoDpjsdHkl6dxjcPMZCa4WCTLw==}
     engines: {node: '>=14.21.3'}
     peerDependencies:
       '@ianvs/prettier-plugin-sort-imports': '*'
