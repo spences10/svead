@@ -15,7 +15,12 @@
 		"coverage:svead": "pnpm run build:packages && pnpm --filter=svead coverage",
 		"build:packages": "pnpm -r --filter=\"./packages/*\" run build",
 		"format": "pnpm -r --filter=\"./apps/*\" --filter=\"./packages/*\" run format",
-		"lint": "pnpm -r --filter=\"./apps/*\" --filter=\"./packages/*\" run lint"
+		"lint": "pnpm -r --filter=\"./apps/*\" --filter=\"./packages/*\" run lint",
+		"changeset": "changeset",
+		"version": "changeset version",
+		"release": "pnpm run build && changeset publish"
 	},
-	"devDependencies": {}
+	"devDependencies": {
+		"@changesets/cli": "^2.27.12"
+	}
 }
