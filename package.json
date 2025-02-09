@@ -18,7 +18,7 @@
 		"lint": "pnpm -r --filter=\"./apps/*\" --filter=\"./packages/*\" run lint",
 		"changeset": "changeset",
 		"version": "changeset version",
-		"release": "pnpm run build && changeset publish"
+		"release": "pnpm run build:packages && changeset publish"
 	},
 	"devDependencies": {
 		"@changesets/cli": "^2.27.12"
