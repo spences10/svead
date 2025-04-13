@@ -45,7 +45,7 @@
 		"svead": "workspace:*",
 		"svelte": "5.26.2",
 		"svelte-check": "^4.1.4",
-		"tailwindcss": "^3.4.17",
+		"tailwindcss": "^4.0.0",
 		"tslib": "^2.8.1",
 		"typescript": "^5.7.3",
 		"vite": "^6.0.11",
