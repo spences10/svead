@@ -1,12 +1,9 @@
-import type { PlaywrightTestConfig } from '@playwright/test';
+import { defineConfig } from '@playwright/test';
 
-const config: PlaywrightTestConfig = {
+export default defineConfig({
 	webServer: {
 		command: 'pnpm run build && pnpm run preview',
 		port: 4173,
 	},
-	testDir: 'tests',
-	testMatch: /(.+\.)?(test|spec)\.[jt]s/,
-};
-
-export default config;
+	testDir: 'e2e',
+});

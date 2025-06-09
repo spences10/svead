@@ -1,0 +1,65 @@
+@import 'tailwindcss';
+
+/* Plugin configurations */
+@plugin "@tailwindcss/typography";
+@plugin "daisyui" {
+	themes:
+		light --default,
+		dark --prefersdark;
+}
+
+@layer utilities {
+	/* Handle headers with rehype-autolink-headings 'wrap' behavior */
+	/* Structure: <h1><a>content</a></h1> */
+	.prose h1 a,
+	.prose h1 {
+		@apply text-primary leading-normal font-black tracking-wide drop-shadow-lg;
+	}
+
+	.prose h2 a,
+	.prose h2 {
+		@apply text-secondary font-bold tracking-tight drop-shadow-sm;
+	}
+
+	.prose h3 a,
+	.prose h3 {
+		@apply text-secondary font-semibold tracking-tight;
+	}
+
+	.prose h4 a,
+	.prose h5 a,
+	.prose h6 a,
+	.prose h4,
+	.prose h5,
+	.prose h6 {
+		@apply text-secondary font-medium;
+	}
+
+	/* Ensure anchor links inside headers don't show underlines */
+	.prose h1 a,
+	.prose h2 a,
+	.prose h3 a,
+	.prose h4 a,
+	.prose h5 a,
+	.prose h6 a {
+		@apply no-underline;
+		text-decoration: none;
+	}
+
+	/* Add some nice text effects for emphasis */
+	.prose strong {
+		@apply text-secondary font-bold;
+	}
+
+	.prose em {
+		@apply text-secondary italic;
+	}
+
+	.prose code {
+		@apply text-lg;
+	}
+
+	.prose blockquote {
+		@apply border-primary bg-primary/40 text-primary-content border-l-4 italic;
+	}
+}
