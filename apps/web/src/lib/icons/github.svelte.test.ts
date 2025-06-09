@@ -15,7 +15,7 @@ describe('github.svelte', () => {
 		});
 
 		it('should render with custom dimensions', async () => {
-			render(GitHub, { props: { width: '50', height: '40' } });
+			render(GitHub, { width: '50', height: '40' });
 
 			const svg = page.getByRole('img');
 			await expect.element(svg).toHaveAttribute('width', '50');
@@ -23,7 +23,7 @@ describe('github.svelte', () => {
 		});
 
 		it('should render with custom fill class', async () => {
-			render(GitHub, { props: { fill: 'fill-red-500' } });
+			render(GitHub, { fill: 'fill-red-500' });
 
 			const svg = page.getByRole('img');
 			await expect.element(svg).toHaveClass('fill-red-500');

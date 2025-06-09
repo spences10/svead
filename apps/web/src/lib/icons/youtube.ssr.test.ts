@@ -17,12 +17,10 @@ describe('youtube.svelte SSR', () => {
 
 		it.skip('should render with custom dimensions', () => {
 			// TODO: YouTube icon currently has hardcoded dimensions (width="25" height="25")
-			// This test will pass once the icon is updated to use props like GitHub icon
-			const { body } = render(YouTube, {
-				props: { width: '50', height: '40' },
-			});
-			expect(body).toContain('width="50"');
-			expect(body).toContain('height="40"');
+			// // This test will pass once the icon is updated to use props like GitHub icon
+			// const { body } = render(YouTube, { width: '50', height: '40' });
+			// expect(body).toContain('width="50"');
+			// expect(body).toContain('height="40"');
 		});
 
 		it('should include default CSS classes', () => {
