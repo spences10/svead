@@ -29,5 +29,9 @@ describe('index +page.ts load function', () => {
 		// Verify the Copy function exists and is callable
 		expect(result.Copy).toBeDefined();
 		expect(typeof result.Copy).toBe('function');
+
+		// Actually call the Copy function to get function coverage
+		const copy_result = result.Copy();
+		expect(copy_result).toBeDefined();
 	});
 });
