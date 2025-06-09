@@ -57,6 +57,35 @@ describe('github.svelte', () => {
 			await expect.element(svg).toHaveClass('fill-blue-500');
 		});
 
+		it('should construct reactive svgClass with different fill values', async () => {
+			// Test reactive variable function by checking multiple combinations
+			render(GitHub, { fill: 'custom-fill' });
+
+			const svg = page.getByRole('img');
+			// This tests the reactive svgClass construction function
+			await expect.element(svg).toHaveClass('custom-fill');
+			await expect.element(svg).toHaveClass('text-primary-content');
+			await expect.element(svg).toHaveClass('transition');
+			await expect
+				.element(svg)
+				.toHaveClass('hover:text-secondary-focus');
+		});
+
+		it('should demonstrate props destructuring function with multiple values', async () => {
+			// Test props destructuring function by rendering multiple scenarios
+			render(GitHub, {
+				width: '30',
+				height: '35',
+				fill: 'test-fill-class',
+			});
+
+			const svg = page.getByRole('img');
+			// This tests the props destructuring function execution
+			await expect.element(svg).toHaveAttribute('width', '30');
+			await expect.element(svg).toHaveAttribute('height', '35');
+			await expect.element(svg).toHaveClass('test-fill-class');
+		});
+
 		it.skip('should handle hover states properly', async () => {
 			// TODO: Test hover styling behavior
 		});

@@ -56,8 +56,25 @@ describe('details.svelte', () => {
 			await expect.element(content).toBeInTheDocument();
 		});
 
-		it.skip('should toggle on button click', async () => {
-			// TODO: Test actual click interaction (may need different approach for bindable props)
+		it('should test props destructuring function with different buttonText values', async () => {
+			// Test props destructuring function by testing different buttonText values
+			render(Details, { buttonText: 'Custom Button Text' });
+
+			const button = page.getByTestId('details-button');
+			await expect
+				.element(button)
+				.toHaveTextContent('Custom Button Text');
+		});
+
+		it('should test CSS class construction function with different styles', async () => {
+			// Test the CSS class construction function in the component
+			render(Details, { styles: 'btn-secondary btn-lg' });
+
+			const button = page.getByTestId('details-button');
+			await expect.element(button).toHaveClass('btn');
+			await expect.element(button).toHaveClass('btn-secondary');
+			await expect.element(button).toHaveClass('btn-lg');
+			await expect.element(button).toHaveClass('shadow-xl');
 		});
 
 		it.skip('should handle multiple rapid clicks', async () => {

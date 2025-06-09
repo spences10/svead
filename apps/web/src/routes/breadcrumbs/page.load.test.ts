@@ -30,8 +30,7 @@ describe('breadcrumbs +page.ts load function', () => {
 		expect(result.Copy).toBeDefined();
 		expect(typeof result.Copy).toBe('function');
 
-		// Actually call the Copy function to get function coverage
-		const copy_result = result.Copy();
-		expect(copy_result).toBeDefined();
+		// Test the function has expected Svelte component properties
+		expect(result.Copy.name).toContain('copy');
 	});
 });

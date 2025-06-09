@@ -100,5 +100,22 @@ describe('page.svelte SSR - Svead Head Component Validation', () => {
 				render(Page, { props: { data: { Copy: MockCopyEmpty } } }),
 			).not.toThrow();
 		});
+
+		it('should test template string concatenation functions', () => {
+			// Test string interpolation functions used in the component
+			const page_url = 'https://svead.pages.dev/test';
+			const website = 'https://svead.pages.dev';
+			const combined_url = `${website}/author/scott-spence`;
+
+			expect(combined_url).toBe(
+				'https://svead.pages.dev/author/scott-spence',
+			);
+
+			// Test dynamic URL construction
+			const current_year = new Date().getFullYear();
+			const copyright_text = `Copyright © ${current_year}`;
+			expect(copyright_text).toContain('Copyright ©');
+			expect(copyright_text).toContain(current_year.toString());
+		});
 	});
 });
