@@ -13,6 +13,9 @@ jobs:
   test:
     name: Unit Tests & Coverage
     runs-on: ubuntu-24.04
+    container:
+      image: mcr.microsoft.com/playwright:v1.52.0-noble
+      options: --user 1001
     timeout-minutes: 10
     concurrency:
       group: ${{ github.workflow }}-${{ github.ref }}
@@ -50,16 +53,50 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
+      - name: Verify Playwright versions match
+        run: |
+          # Extract Playwright version from apps/web/package.json
+          PACKAGE_VERSION=$(node -p "require('./apps/web/package.json').devDependencies.playwright.replace(/[\^~]/, '')")
+
+          # Extract version from container image (from this workflow file)
+          CONTAINER_VERSION=$(grep -o 'playwright:v[0-9.]*' .github/workflows/unit-test.yml | sed 's/playwright:v//')
+
+          echo "📦 Package.json Playwright version: $PACKAGE_VERSION"
+          echo "🐳 Container image Playwright version: $CONTAINER_VERSION"
+
+          if [ "$PACKAGE_VERSION" != "$CONTAINER_VERSION" ]; then
+            echo "❌ ERROR: Playwright versions don't match!"
+            echo "   Package.json: $PACKAGE_VERSION"
+            echo "   Container: $CONTAINER_VERSION"
+            echo "   Please update either:"
+            echo "   - apps/web/package.json devDependencies.playwright to ^$CONTAINER_VERSION"
+            echo "   - Container image to mcr.microsoft.com/playwright:v$PACKAGE_VERSION-noble"
+            exit 1
+          else
+            echo "✅ Playwright versions match: $PACKAGE_VERSION"
+          fi
+
       - name: Build svead package
         run: pnpm run build:packages
 
-      - name: Run unit tests
+      - name: Run unit tests (svead)
         run: pnpm run test:ci
         working-directory: packages/svead
         env:
           PUBLIC_FATHOM_ID: ${{ secrets.PUBLIC_FATHOM_ID }}
           PUBLIC_FATHOM_URL: ${{ secrets.PUBLIC_FATHOM_URL }}
 
-      - name: Coverage
+      - name: Run unit tests (web)
+        run: pnpm run test:unit -- --run
+        working-directory: apps/web
+        env:
+          PUBLIC_FATHOM_ID: ${{ secrets.PUBLIC_FATHOM_ID }}
+          PUBLIC_FATHOM_URL: ${{ secrets.PUBLIC_FATHOM_URL }}
+
+      - name: Coverage (svead)
         run: pnpm run coverage
         working-directory: packages/svead
+
+      - name: Coverage (web)
+        run: pnpm run coverage
+        working-directory: apps/web
