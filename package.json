@@ -18,7 +18,8 @@
 		"lint": "pnpm -r --filter=\"./apps/*\" --filter=\"./packages/*\" run lint",
 		"changeset": "changeset",
 		"version": "changeset version",
-		"release": "pnpm run build:packages && changeset publish"
+		"release": "pnpm run build:packages && changeset publish",
+		"package:readme": "cp README.md packages/svead/README.md"
 	},
 	"devDependencies": {
 		"@changesets/cli": "^2.29.4",
