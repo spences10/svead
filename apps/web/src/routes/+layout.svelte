@@ -18,7 +18,7 @@
 
 	onMount(() => {
 		Fathom.load(PUBLIC_FATHOM_ID!, {
-			url: PUBLIC_FATHOM_URL
+			url: PUBLIC_FATHOM_URL,
 		});
 	});
 
@@ -35,25 +35,38 @@
 		<div class="flex-none items-center">
 			<a
 				aria-label="Github"
-				onclick={() => Fathom.trackEvent(`GitHub svead project clicked`)}
+				onclick={() =>
+					Fathom.trackEvent(`GitHub svead project clicked`)}
 				target="_blank"
 				href="https://github.com/spences10/svead"
 				rel="noopener noreferrer"
 				class="btn btn-square btn-ghost drawer-button normal-case"
 			>
-				<GitHub height="30" width="30" fill="fill-white fill-primary" />
+				<GitHub
+					height="30"
+					width="30"
+					fill="fill-white fill-primary"
+				/>
 			</a>
 		</div>
 	</span>
 </header>
 
-<main class="prose prose-xl container mx-auto mb-20 max-w-3xl flex-grow px-4">
+<main
+	class="prose prose-xl container mx-auto mb-20 max-w-3xl flex-grow px-4"
+>
 	{@render children?.()}
 </main>
 
-<footer class="footer footer-center bg-primary text-primary-content p-10">
+<footer
+	class="footer footer-center bg-primary text-primary-content p-10"
+>
 	<div class="text-xl">
-		<img src="spencee.png" alt="Scott avatar" class="h-20 rounded-full" />
+		<img
+			src="spencee.png"
+			alt="Scott avatar"
+			class="h-20 rounded-full"
+		/>
 		<p class="font-bold">
 			Made with <span role="img" aria-label="red heart">❤️</span> by
 			<a

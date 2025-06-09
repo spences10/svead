@@ -13,7 +13,7 @@
 		open_graph_image:
 			'https://og.tailgraph.com/og?fontFamily=Roboto&title=This+is+Svead&titleTailwind=text-gray-800+font-bold+text-6xl&text=Set+Head+meta+tag+information&textTailwind=text-gray-700+text-2xl+mt-4&logoTailwind=h-8&bgTailwind=bg-white&footer=svead.pages.dev&footerTailwind=text-teal-600',
 		website: 'https://svead.pages.dev',
-		url: page.url.toString()
+		url: page.url.toString(),
 	};
 </script>
 

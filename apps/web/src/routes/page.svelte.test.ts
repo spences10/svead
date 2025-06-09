@@ -28,6 +28,7 @@ describe('page.svelte - Main Svead Demo Page', () => {
 
 		it.skip('should render Copy component content', async () => {
 			// TODO: Test that Copy component from data prop is rendered
+			// This requires understanding the actual component structure
 		});
 
 		it.skip('should pass correct SEO config to Head component', async () => {

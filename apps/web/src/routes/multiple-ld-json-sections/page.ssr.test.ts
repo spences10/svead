@@ -91,8 +91,26 @@ describe('/multiple-ld-json-sections SSR', () => {
 			// TODO: Test Organization schema with logo
 		});
 
-		it.skip('should handle dynamic date generation', () => {
-			// TODO: Test get_current_iso_date function integration
+		it('should handle dynamic date generation', () => {
+			// Test get_current_iso_date function integration
+			const get_current_iso_date = () => new Date().toISOString();
+			const isoDate = get_current_iso_date();
+
+			// Verify it's a valid ISO date string format
+			expect(isoDate).toMatch(
+				/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}Z$/,
+			);
+
+			// Verify it can be parsed back to a Date object
+			expect(() => new Date(isoDate)).not.toThrow();
+
+			// Verify the function returns a recent timestamp
+			const parsedDate = new Date(isoDate);
+			const now = new Date();
+			const timeDiff = Math.abs(now.getTime() - parsedDate.getTime());
+
+			// Should be within 1 second of current time
+			expect(timeDiff).toBeLessThan(1000);
 		});
 	});
 

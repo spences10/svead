@@ -49,8 +49,12 @@ describe('github.svelte', () => {
 				);
 		});
 
-		it.skip('should combine custom fill with default classes', async () => {
-			// TODO: Test class combination logic
+		it('should apply custom fill class', async () => {
+			// ✅ ROBUST: Test user-visible styling behavior
+			render(GitHub, { fill: 'fill-blue-500' });
+
+			const svg = page.getByRole('img');
+			await expect.element(svg).toHaveClass('fill-blue-500');
 		});
 
 		it.skip('should handle hover states properly', async () => {
@@ -90,8 +94,13 @@ describe('github.svelte', () => {
 	});
 
 	describe('Props Validation', () => {
-		it.skip('should handle string dimensions correctly', async () => {
-			// TODO: Test that width/height accept string values
+		it('should handle string dimensions correctly', async () => {
+			// Test that width/height accept string values (props destructuring function)
+			render(GitHub, { width: '100', height: '80' });
+
+			const svg = page.getByRole('img');
+			await expect.element(svg).toHaveAttribute('width', '100');
+			await expect.element(svg).toHaveAttribute('height', '80');
 		});
 
 		it.skip('should handle missing props gracefully', async () => {

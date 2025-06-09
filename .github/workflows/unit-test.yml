@@ -79,24 +79,16 @@ jobs:
       - name: Build svead package
         run: pnpm run build:packages
 
-      - name: Run unit tests (svead)
-        run: pnpm run test:ci
+      - name: Tests & Coverage (svead)
+        run: pnpm run coverage
         working-directory: packages/svead
         env:
           PUBLIC_FATHOM_ID: ${{ secrets.PUBLIC_FATHOM_ID }}
           PUBLIC_FATHOM_URL: ${{ secrets.PUBLIC_FATHOM_URL }}
 
-      - name: Run unit tests (web)
-        run: pnpm run test:unit -- --run
+      - name: Tests & Coverage (web)
+        run: pnpm run coverage
         working-directory: apps/web
         env:
           PUBLIC_FATHOM_ID: ${{ secrets.PUBLIC_FATHOM_ID }}
           PUBLIC_FATHOM_URL: ${{ secrets.PUBLIC_FATHOM_URL }}
-
-      - name: Coverage (svead)
-        run: pnpm run coverage
-        working-directory: packages/svead
-
-      - name: Coverage (web)
-        run: pnpm run coverage
-        working-directory: apps/web

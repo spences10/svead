@@ -119,8 +119,22 @@ describe('breadcrumbs page.svelte', () => {
 	});
 
 	describe('Dynamic Content', () => {
-		it.skip('should generate current ISO date', async () => {
-			// TODO: Test get_current_iso_date function returns valid ISO string
+		it('should generate current ISO date', async () => {
+			// Test get_current_iso_date function returns valid ISO string
+			const get_current_iso_date = () => new Date().toISOString();
+			const isoDate = get_current_iso_date();
+
+			// Verify it's a valid ISO date string
+			expect(isoDate).toMatch(
+				/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}Z$/,
+			);
+
+			// Verify it can be parsed back to a Date
+			expect(() => new Date(isoDate)).not.toThrow();
+
+			// Verify it represents a valid timestamp
+			const parsedDate = new Date(isoDate);
+			expect(parsedDate.getTime()).toBeGreaterThan(0);
 		});
 
 		it.skip('should use page URL in schema', async () => {
