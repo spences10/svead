@@ -1,9 +1,9 @@
 /**
  * SEO configuration options for a web page.
  * Covers basic SEO, Open Graph, and Twitter Cards requirements.
- * Use this interface to define the SEO configuration for a webpage, 
- * including meta tags and social media properties. 
- * The properties in this interface can be used to generate the 
+ * Use this interface to define the SEO configuration for a webpage,
+ * including meta tags and social media properties.
+ * The properties in this interface can be used to generate the
  * necessary HTML meta tags.
  */
 export interface SeoConfig {
@@ -17,12 +17,12 @@ export interface SeoConfig {
 
 	/**
 	 * The description of the web page.
-	 * Used in the description meta tag, og:description, and 
+	 * Used in the description meta tag, og:description, and
 	 * twitter:description properties.
-	 * 
+	 *
 	 * Best practices suggest keeping the description between 50-160 characters.
 	 * Search engines may truncate descriptions longer than 155-160 characters.
-	 * 
+	 *
 	 * Note: The Head component does not enforce these limits,
 	 * it's up to the developer to ensure appropriate length.
 	 *

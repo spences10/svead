@@ -45,13 +45,13 @@
 </header>
 
 <main
-	class="prose prose-xl container mx-auto mb-20 max-w-3xl flex-grow px-4"
+	class="container prose prose-xl mx-auto mb-20 max-w-3xl flex-grow px-4"
 >
 	<slot />
 </main>
 
 <footer
-	class="footer footer-center bg-primary text-primary-content p-10"
+	class="footer footer-center bg-primary p-10 text-primary-content"
 >
 	<div class="text-xl">
 		<img
@@ -62,7 +62,7 @@
 		<p class="font-bold">
 			Made with <span role="img" aria-label="red heart">❤️</span> by
 			<a
-				class="link hover:text-secondary transition"
+				class="link transition hover:text-secondary"
 				on:click={() => Fathom.trackEvent(`scottspence.com clicked`)}
 				href="https://scottspence.com"
 				target="_blank"

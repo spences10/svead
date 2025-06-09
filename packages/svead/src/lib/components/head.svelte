@@ -23,21 +23,33 @@
 	<meta property="og:description" content={seo_config.description} />
 	{#if seo_config.open_graph_image}
 		<meta property="og:image" content={seo_config.open_graph_image} />
-		<meta property="og:image:alt" content={seo_config.open_graph_image_alt || seo_config.title} />
+		<meta
+			property="og:image:alt"
+			content={seo_config.open_graph_image_alt || seo_config.title}
+		/>
 	{/if}
 	{#if seo_config.site_name}
 		<meta property="og:site_name" content={seo_config.site_name} />
 	{/if}
 
 	<!-- Twitter Meta Tags -->
-	<meta name="twitter:card" content={seo_config.twitter_card_type || "summary_large_image"} />
+	<meta
+		name="twitter:card"
+		content={seo_config.twitter_card_type || 'summary_large_image'}
+	/>
 	<meta name="twitter:title" content={seo_config.title} />
 	<meta name="twitter:description" content={seo_config.description} />
 	{#if seo_config.open_graph_image}
-		<meta name="twitter:image" content={seo_config.open_graph_image} />
+		<meta
+			name="twitter:image"
+			content={seo_config.open_graph_image}
+		/>
 	{/if}
 	{#if seo_config.twitter_handle}
-		<meta name="twitter:creator" content={seo_config.twitter_handle} />
+		<meta
+			name="twitter:creator"
+			content={seo_config.twitter_handle}
+		/>
 	{/if}
 	{#if seo_config.website}
 		<meta property="twitter:domain" content={seo_config.website} />

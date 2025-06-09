@@ -15,19 +15,19 @@ export default [
 		languageOptions: {
 			globals: {
 				...globals.browser,
-				...globals.node
-			}
-		}
+				...globals.node,
+			},
+		},
 	},
 	{
 		files: ['**/*.svelte'],
 		languageOptions: {
 			parserOptions: {
-				parser: ts.parser
-			}
-		}
+				parser: ts.parser,
+			},
+		},
 	},
 	{
-		ignores: ['build/', '.svelte-kit/', 'dist/']
-	}
+		ignores: ['build/', '.svelte-kit/', 'dist/'],
+	},
 ];
