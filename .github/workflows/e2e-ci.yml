@@ -1,39 +1,86 @@
-name: 'Tests: E2E'
+name: E2E Tests
+
 on:
-  push:
-    branches: [main]
   pull_request:
     branches: [main]
-    types: [opened, synchronize]
+  push:
+    branches: [main]
+
+env:
+  CI: true
 
 jobs:
-  tests_e2e:
-    name: Run end-to-end tests
-    runs-on: ubuntu-latest
+  e2e:
+    name: End-to-End Tests
+    runs-on: ubuntu-24.04
+    container:
+      image: mcr.microsoft.com/playwright:v1.52.0-noble
+      options: --user 1001
+    timeout-minutes: 15
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.ref }}
+      cancel-in-progress: true
+
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
-          node-version: 18.x
-      - uses: actions/cache@v4
+          node-version: '22'
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
         with:
-          path: ~/.pnpm-store
-          # prettier-ignore
-          key: ${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
-          restore-keys: ${{ runner.os }}-pnpm-
-      - uses: pnpm/action-setup@v4.1.0
+          version: latest
+
+      - name: Get pnpm store directory
+        shell: bash
+        run: |
+          echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
+
+      - name: Setup pnpm cache
+        uses: actions/cache@v4
         with:
-          version: '^8.0.0'
+          path: ${{ env.STORE_PATH }}
+          key:
+            ${{ runner.os }}-pnpm-store-${{
+            hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+
       - name: Install dependencies
-        run: pnpm i
+        run: pnpm install
+
+      - name: Verify Playwright versions match
+        run: |
+          # Extract Playwright version from apps/web/package.json
+          PACKAGE_VERSION=$(node -p "require('./apps/web/package.json').devDependencies.playwright.replace(/[\^~]/, '')")
+
+          # Extract version from container image (from this workflow file)
+          CONTAINER_VERSION=$(grep -o 'playwright:v[0-9.]*' .github/workflows/e2e-ci.yml | sed 's/playwright:v//')
+
+          echo "📦 Package.json Playwright version: $PACKAGE_VERSION"
+          echo "🐳 Container image Playwright version: $CONTAINER_VERSION"
+
+          if [ "$PACKAGE_VERSION" != "$CONTAINER_VERSION" ]; then
+            echo "❌ ERROR: Playwright versions don't match!"
+            echo "   Package.json: $PACKAGE_VERSION"
+            echo "   Container: $CONTAINER_VERSION"
+            echo "   Please update either:"
+            echo "   - apps/web/package.json devDependencies.playwright to ^$CONTAINER_VERSION"
+            echo "   - Container image to mcr.microsoft.com/playwright:v$PACKAGE_VERSION-noble"
+            exit 1
+          else
+            echo "✅ Playwright versions match: $PACKAGE_VERSION"
+          fi
+
       - name: Build svead package
-        run: pnpm run build
-        working-directory: packages/svead
-      - name: Install playwright browsers
-        run: npx playwright install --with-deps
-        working-directory: apps/web
-      - name: Test
-        run: pnpm run test
+        run: pnpm run build:packages
+
+      - name: Run E2E tests
+        run: pnpm run test:e2e
         working-directory: apps/web
         env:
           PUBLIC_FATHOM_ID: ${{ secrets.PUBLIC_FATHOM_ID }}
