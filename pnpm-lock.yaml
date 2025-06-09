@@ -9,8 +9,14 @@ importers:
   .:
     devDependencies:
       '@changesets/cli':
-        specifier: ^2.27.12
+        specifier: ^2.29.4
         version: 2.29.4
+      prettier:
+        specifier: ^3.4.2
+        version: 3.4.2
+      prettier-plugin-svelte:
+        specifier: ^3.3.3
+        version: 3.3.3(prettier@3.4.2)(svelte@5.26.2)
 
   apps/web:
     devDependencies:
@@ -115,6 +121,10 @@ importers:
         version: 3.0.5(jiti@1.21.6)(jsdom@26.0.0)(yaml@2.6.0)
 
   packages/svead:
+    dependencies:
+      schema-dts:
+        specifier: ^1.1.2
+        version: 1.1.2(typescript@5.7.3)
     devDependencies:
       '@playwright/test':
         specifier: ^1.50.1
@@ -167,9 +177,6 @@ importers:
       publint:
         specifier: ^0.3.2
         version: 0.3.2
-      schema-dts:
-        specifier: ^1.1.2
-        version: 1.1.2(typescript@5.7.3)
       svelte:
         specifier: 5.26.2
         version: 5.26.2
