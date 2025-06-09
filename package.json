@@ -21,6 +21,8 @@
 		"release": "pnpm run build:packages && changeset publish"
 	},
 	"devDependencies": {
-		"@changesets/cli": "^2.27.12"
+		"@changesets/cli": "^2.29.4",
+		"prettier": "^3.4.2",
+		"prettier-plugin-svelte": "^3.3.3"
 	}
 }
