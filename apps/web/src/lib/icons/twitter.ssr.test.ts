@@ -1,21 +1,21 @@
 import { render } from 'svelte/server';
-import { describe, expect, test } from 'vitest';
+import { describe, expect, it } from 'vitest';
 import Twitter from './twitter.svelte';
 
 describe('twitter.svelte SSR', () => {
 	describe('Server-Side Rendering', () => {
-		test('should render without errors', () => {
+		it('should render without errors', () => {
 			expect(() => render(Twitter)).not.toThrow();
 		});
 
-		test('should render SVG with default dimensions', () => {
+		it('should render SVG with default dimensions', () => {
 			const { body } = render(Twitter);
 			expect(body).toContain('<svg');
 			expect(body).toContain('width="25"');
 			expect(body).toContain('height="25"');
 		});
 
-		test.skip('should render with custom dimensions', () => {
+		it.skip('should render with custom dimensions', () => {
 			// TODO: Twitter icon currently has hardcoded dimensions (width="25" height="25")
 			// This test will pass once the icon is updated to use props like GitHub icon
 			const { body } = render(Twitter, {
@@ -25,69 +25,69 @@ describe('twitter.svelte SSR', () => {
 			expect(body).toContain('height="40"');
 		});
 
-		test('should include default CSS classes', () => {
+		it('should include default CSS classes', () => {
 			const { body } = render(Twitter);
 			expect(body).toContain('text-primary-content');
 			expect(body).toContain('transition');
 			expect(body).toContain('hover:text-secondary-focus');
 		});
 
-		test('should have proper SVG attributes', () => {
+		it('should have proper SVG attributes', () => {
 			const { body } = render(Twitter);
 			expect(body).toContain('role="img"');
 			expect(body).toContain('viewBox="0 0 24 24"');
 		});
 
-		test.skip('should include Twitter/X path element', () => {
+		it.skip('should include Twitter/X path element', () => {
 			// TODO: Test SVG path element exists (avoid testing exact path data)
 		});
 
-		test.skip('should handle missing props gracefully', () => {
+		it.skip('should handle missing props gracefully', () => {
 			// TODO: Test SSR with undefined props
 		});
 
-		test.skip('should not include interactive attributes', () => {
+		it.skip('should not include interactive attributes', () => {
 			// TODO: Test no onclick or focus handlers in SSR
 		});
 
-		test.skip('should generate consistent markup', () => {
+		it.skip('should generate consistent markup', () => {
 			// TODO: Test markup consistency across renders
 		});
 	});
 
 	describe('Hydration Compatibility', () => {
-		test.skip('should generate hydration-safe SVG', () => {
+		it.skip('should generate hydration-safe SVG', () => {
 			// TODO: Test SVG is hydration compatible
 		});
 
-		test.skip('should handle class binding properly', () => {
+		it.skip('should handle class binding properly', () => {
 			// TODO: Test class binding works in SSR
 		});
 	});
 
 	describe('Performance', () => {
-		test.skip('should render SVG efficiently', () => {
+		it.skip('should render SVG efficiently', () => {
 			// TODO: Test SVG rendering performance
 		});
 	});
 
 	describe('Accessibility in SSR', () => {
-		test('should include role="img" in SSR', () => {
+		it('should include role="img" in SSR', () => {
 			const { body } = render(Twitter);
 			expect(body).toContain('role="img"');
 		});
 
-		test.skip('should be screen reader friendly', () => {
+		it.skip('should be screen reader friendly', () => {
 			// TODO: Test accessibility attributes in SSR for Twitter/X branding
 		});
 	});
 
 	describe('Brand Consistency in SSR', () => {
-		test.skip('should represent current Twitter/X branding', () => {
+		it.skip('should represent current Twitter/X branding', () => {
 			// TODO: Test icon represents current X (Twitter) branding in SSR
 		});
 
-		test.skip('should render with brand-appropriate styling', () => {
+		it.skip('should render with brand-appropriate styling', () => {
 			// TODO: Test Twitter brand color compatibility in SSR
 		});
 	});

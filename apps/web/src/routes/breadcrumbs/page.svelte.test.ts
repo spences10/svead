@@ -1,5 +1,5 @@
 import { page } from '@vitest/browser/context';
-import { beforeEach, describe, expect, test, vi } from 'vitest';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { render } from 'vitest-browser-svelte';
 import BreadcrumbsPage from './+page.svelte';
 
@@ -31,7 +31,7 @@ describe('breadcrumbs page.svelte', () => {
 	});
 
 	describe('Initial Rendering', () => {
-		test('should render page title and description', async () => {
+		it('should render page title and description', async () => {
 			render(BreadcrumbsPage, { data: mock_data });
 
 			const heading = page.getByRole('heading', { level: 1 });
@@ -49,119 +49,119 @@ describe('breadcrumbs page.svelte', () => {
 				.toBeInTheDocument();
 		});
 
-		test.skip('should render Head component with SEO config', async () => {
+		it.skip('should render Head component with SEO config', async () => {
 			// TODO: Test Head component receives correct seo_config
 		});
 
-		test.skip('should render SchemaOrg component with breadcrumb schema', async () => {
+		it.skip('should render SchemaOrg component with breadcrumb schema', async () => {
 			// TODO: Test SchemaOrg component receives correct schema
 		});
 
-		test.skip('should render Copy component', async () => {
+		it.skip('should render Copy component', async () => {
 			// TODO: Test Copy component from data prop is rendered
 		});
 	});
 
 	describe('SEO Configuration', () => {
-		test.skip('should have correct page title for SEO', async () => {
+		it.skip('should have correct page title for SEO', async () => {
 			// TODO: Test seo_config.title value
 		});
 
-		test.skip('should have descriptive meta description', async () => {
+		it.skip('should have descriptive meta description', async () => {
 			// TODO: Test seo_config.description value
 		});
 
-		test.skip('should include open graph image', async () => {
+		it.skip('should include open graph image', async () => {
 			// TODO: Test seo_config.open_graph_image value
 		});
 
-		test.skip('should have proper URL configuration', async () => {
+		it.skip('should have proper URL configuration', async () => {
 			// TODO: Test seo_config.url matches page URL
 		});
 
-		test.skip('should include author and Twitter information', async () => {
+		it.skip('should include author and Twitter information', async () => {
 			// TODO: Test author_name and twitter_handle in seo_config
 		});
 	});
 
 	describe('Schema.org Structured Data', () => {
-		test.skip('should have WebPage schema type', async () => {
+		it.skip('should have WebPage schema type', async () => {
 			// TODO: Test schema has @type: 'WebPage'
 		});
 
-		test.skip('should include breadcrumb list structure', async () => {
+		it.skip('should include breadcrumb list structure', async () => {
 			// TODO: Test breadcrumb.itemListElement structure
 		});
 
-		test.skip('should have correct breadcrumb hierarchy', async () => {
+		it.skip('should have correct breadcrumb hierarchy', async () => {
 			// TODO: Test Home -> Category -> Page breadcrumb order
 		});
 
-		test.skip('should include primary image information', async () => {
+		it.skip('should include primary image information', async () => {
 			// TODO: Test primaryImageOfPage schema
 		});
 
-		test.skip('should have proper date information', async () => {
+		it.skip('should have proper date information', async () => {
 			// TODO: Test datePublished and dateModified
 		});
 
-		test.skip('should include author schema', async () => {
+		it.skip('should include author schema', async () => {
 			// TODO: Test author Person schema
 		});
 
-		test.skip('should have ReadAction potential action', async () => {
+		it.skip('should have ReadAction potential action', async () => {
 			// TODO: Test potentialAction ReadAction schema
 		});
 
-		test.skip('should include Article main entity', async () => {
+		it.skip('should include Article main entity', async () => {
 			// TODO: Test mainEntity Article schema
 		});
 	});
 
 	describe('Dynamic Content', () => {
-		test.skip('should generate current ISO date', async () => {
+		it.skip('should generate current ISO date', async () => {
 			// TODO: Test get_current_iso_date function returns valid ISO string
 		});
 
-		test.skip('should use page URL in schema', async () => {
+		it.skip('should use page URL in schema', async () => {
 			// TODO: Test schema URLs match current page URL
 		});
 
-		test.skip('should handle URL changes', async () => {
+		it.skip('should handle URL changes', async () => {
 			// TODO: Test schema updates when page URL changes
 		});
 	});
 
 	describe('Accessibility', () => {
-		test.skip('should have proper heading hierarchy', async () => {
+		it.skip('should have proper heading hierarchy', async () => {
 			// TODO: Test h1 is properly structured
 		});
 
-		test.skip('should have descriptive page content', async () => {
+		it.skip('should have descriptive page content', async () => {
 			// TODO: Test page description is accessible
 		});
 	});
 
 	describe('Integration with Data', () => {
-		test.skip('should handle missing Copy component gracefully', async () => {
+		it.skip('should handle missing Copy component gracefully', async () => {
 			// TODO: Test behavior when data.Copy is undefined
 		});
 
-		test.skip('should render Copy component content', async () => {
+		it.skip('should render Copy component content', async () => {
 			// TODO: Test Copy component renders expected content
 		});
 	});
 
 	describe('Edge Cases', () => {
-		test.skip('should handle invalid URL gracefully', async () => {
+		it.skip('should handle invalid URL gracefully', async () => {
 			// TODO: Test behavior with malformed URLs
 		});
 
-		test.skip('should handle missing data prop', async () => {
+		it.skip('should handle missing data prop', async () => {
 			// TODO: Test component behavior without data prop
 		});
 
-		test.skip('should generate valid JSON-LD', async () => {
+		it.skip('should generate valid JSON-LD', async () => {
 			// TODO: Test schema generates valid JSON-LD structure
 		});
 	});

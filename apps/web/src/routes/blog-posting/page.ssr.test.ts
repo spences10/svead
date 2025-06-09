@@ -1,5 +1,5 @@
 import { render } from 'svelte/server';
-import { describe, expect, test, vi } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 import Page from './+page.svelte';
 
 // Mock SvelteKit stores
@@ -30,140 +30,140 @@ const mock_data = {
 
 describe('/blog-posting SSR', () => {
 	describe('Page Rendering', () => {
-		test('should render without errors', () => {
+		it('should render without errors', () => {
 			expect(() =>
 				render(Page, { props: { data: mock_data } }),
 			).not.toThrow();
 		});
 
-		test('should render main article element', () => {
+		it('should render main article element', () => {
 			const { body } = render(Page, { props: { data: mock_data } });
 			expect(body).toContain('<article>');
 		});
 
-		test('should render page title in h1', () => {
+		it('should render page title in h1', () => {
 			const { body } = render(Page, { props: { data: mock_data } });
 			expect(body).toContain('<h1>My Blog Post</h1>');
 		});
 
-		test('should render page description', () => {
+		it('should render page description', () => {
 			const { body } = render(Page, { props: { data: mock_data } });
 			expect(body).toContain(
 				'This is an example blog post showcasing',
 			);
 		});
 
-		test.skip('should include Copy component content', () => {
+		it.skip('should include Copy component content', () => {
 			// TODO: Test Copy component renders in SSR
 		});
 	});
 
 	describe('SEO Configuration', () => {
-		test.skip('should configure proper SEO title', () => {
+		it.skip('should configure proper SEO title', () => {
 			// TODO: Test SEO title configuration for blog post
 		});
 
-		test.skip('should configure proper SEO description', () => {
+		it.skip('should configure proper SEO description', () => {
 			// TODO: Test SEO description for blog post
 		});
 
-		test.skip('should configure proper Open Graph image', () => {
+		it.skip('should configure proper Open Graph image', () => {
 			// TODO: Test Open Graph image configuration
 		});
 
-		test.skip('should configure author information', () => {
+		it.skip('should configure author information', () => {
 			// TODO: Test author name and URL configuration
 		});
 
-		test.skip('should configure site branding', () => {
+		it.skip('should configure site branding', () => {
 			// TODO: Test site name and website URL
 		});
 	});
 
 	describe('Schema.org BlogPosting', () => {
-		test.skip('should include WebPage schema', () => {
+		it.skip('should include WebPage schema', () => {
 			// TODO: Test WebPage schema includes proper @type, @id, url
 		});
 
-		test.skip('should include BlogPosting as mainEntity', () => {
+		it.skip('should include BlogPosting as mainEntity', () => {
 			// TODO: Test BlogPosting schema structure
 		});
 
-		test.skip('should include proper publish dates', () => {
+		it.skip('should include proper publish dates', () => {
 			// TODO: Test datePublished and dateModified are ISO format
 		});
 
-		test.skip('should include author schema', () => {
+		it.skip('should include author schema', () => {
 			// TODO: Test Person schema for author with name and URL
 		});
 
-		test.skip('should include publisher schema', () => {
+		it.skip('should include publisher schema', () => {
 			// TODO: Test Organization schema for publisher
 		});
 
-		test.skip('should include image schema', () => {
+		it.skip('should include image schema', () => {
 			// TODO: Test ImageObject schema for blog post image
 		});
 
-		test.skip('should include ReadAction', () => {
+		it.skip('should include ReadAction', () => {
 			// TODO: Test ReadAction potentialAction schema
 		});
 
-		test.skip('should link mainEntityOfPage correctly', () => {
+		it.skip('should link mainEntityOfPage correctly', () => {
 			// TODO: Test mainEntityOfPage relationship
 		});
 	});
 
 	describe('Content Structure', () => {
-		test.skip('should have semantic HTML structure', () => {
+		it.skip('should have semantic HTML structure', () => {
 			// TODO: Test proper article/header/content hierarchy
 		});
 
-		test.skip('should include proper heading hierarchy', () => {
+		it.skip('should include proper heading hierarchy', () => {
 			// TODO: Test h1 is unique and properly structured
 		});
 	});
 
 	describe('Performance in SSR', () => {
-		test.skip('should render efficiently', () => {
+		it.skip('should render efficiently', () => {
 			// TODO: Test SSR rendering performance
 		});
 
-		test.skip('should generate consistent HTML', () => {
+		it.skip('should generate consistent HTML', () => {
 			// TODO: Test HTML output consistency across renders
 		});
 	});
 
 	describe('Integration with svead', () => {
-		test.skip('should integrate Head component properly', () => {
+		it.skip('should integrate Head component properly', () => {
 			// TODO: Test Head component receives correct seo_config
 		});
 
-		test.skip('should integrate SchemaOrg component properly', () => {
+		it.skip('should integrate SchemaOrg component properly', () => {
 			// TODO: Test SchemaOrg component receives correct schema
 		});
 
-		test.skip('should handle dynamic ISO date generation', () => {
+		it.skip('should handle dynamic ISO date generation', () => {
 			// TODO: Test get_current_iso_date function integration
 		});
 	});
 
 	describe('Data Dependencies', () => {
-		test.skip('should handle missing data gracefully', () => {
+		it.skip('should handle missing data gracefully', () => {
 			// TODO: Test graceful handling of missing Copy component
 		});
 
-		test.skip('should work with different data structures', () => {
+		it.skip('should work with different data structures', () => {
 			// TODO: Test flexibility with various data prop structures
 		});
 	});
 
 	describe('URL and Route Integration', () => {
-		test.skip('should use correct page URL in schema', () => {
+		it.skip('should use correct page URL in schema', () => {
 			// TODO: Test $page.url.href integration in schema
 		});
 
-		test.skip('should handle different URL structures', () => {
+		it.skip('should handle different URL structures', () => {
 			// TODO: Test blog post works with various URL patterns
 		});
 	});

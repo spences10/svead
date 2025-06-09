@@ -104,29 +104,29 @@ vi.mocked(database.create_user).mockResolvedValue({
 ```typescript
 describe('ComponentName', () => {
 	describe('Initial Rendering', () => {
-		test('should render with default props', async () => {
+		it('should render with default props', async () => {
 			// Implemented test
 		});
 
-		test.skip('should render with all prop variants', async () => {
+		it.skip('should render with all prop variants', async () => {
 			// TODO: Test all type combinations
 		});
 	});
 
 	describe('User Interactions', () => {
-		test.skip('should handle click events', async () => {
+		it.skip('should handle click events', async () => {
 			// TODO: Real browser click events
 		});
 	});
 
 	describe('Edge Cases', () => {
-		test.skip('should handle empty data gracefully', async () => {
+		it.skip('should handle empty data gracefully', async () => {
 			// TODO: Test with null/undefined/empty arrays
 		});
 	});
 
 	describe('Accessibility', () => {
-		test.skip('should have proper ARIA roles', async () => {
+		it.skip('should have proper ARIA roles', async () => {
 			// TODO: Test accessibility features
 		});
 	});
@@ -138,11 +138,11 @@ describe('ComponentName', () => {
 ```typescript
 import { render } from 'svelte/server';
 
-test('should render without errors', () => {
+it('should render without errors', () => {
 	expect(() => render(ComponentName)).not.toThrow();
 });
 
-test('should render essential content', () => {
+it('should render essential content', () => {
 	const { body } = render(ComponentName);
 	expect(body).toContain('expected-content');
 });

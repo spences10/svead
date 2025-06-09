@@ -1,5 +1,5 @@
 import { render } from 'svelte/server';
-import { describe, expect, test, vi } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 import NewsArticlePage from './+page.svelte';
 
 // Mock the page store
@@ -20,13 +20,13 @@ describe('news-article page.svelte SSR - NewsArticle Schema & SEO Validation', (
 	};
 
 	describe('Core SSR Functionality', () => {
-		test('should render without errors', () => {
+		it('should render without errors', () => {
 			expect(() =>
 				render(NewsArticlePage, { props: { data: mock_data } }),
 			).not.toThrow();
 		});
 
-		test('should render news article content structure', () => {
+		it('should render news article content structure', () => {
 			const { body } = render(NewsArticlePage, {
 				props: { data: mock_data },
 			});
@@ -34,141 +34,141 @@ describe('news-article page.svelte SSR - NewsArticle Schema & SEO Validation', (
 			expect(body).not.toContain('null');
 		});
 
-		test.skip('should include HEAD component for news SEO', () => {
+		it.skip('should include HEAD component for news SEO', () => {
 			// TODO: Test Head component generates news-specific meta tags
 		});
 
-		test.skip('should include NewsArticle SchemaOrg output', () => {
+		it.skip('should include NewsArticle SchemaOrg output', () => {
 			// TODO: Test SchemaOrg component generates NewsArticle JSON-LD
 		});
 	});
 
 	describe('NewsArticle Schema.org Structure', () => {
-		test.skip('should generate NewsArticle schema type', () => {
+		it.skip('should generate NewsArticle schema type', () => {
 			// TODO: Test @type: 'NewsArticle' in JSON-LD output
 		});
 
-		test.skip('should include article headline', () => {
+		it.skip('should include article headline', () => {
 			// TODO: Test headline property for news discovery
 		});
 
-		test.skip('should include publication and modification dates', () => {
+		it.skip('should include publication and modification dates', () => {
 			// TODO: Test datePublished and dateModified are valid ISO dates
 		});
 
-		test.skip('should include author Person schema', () => {
+		it.skip('should include author Person schema', () => {
 			// TODO: Test author: { @type: 'Person', name: '...' }
 		});
 
-		test.skip('should include publisher Organization schema', () => {
+		it.skip('should include publisher Organization schema', () => {
 			// TODO: Test publisher: { @type: 'Organization', name: '...' }
 		});
 
-		test.skip('should include news article image', () => {
+		it.skip('should include news article image', () => {
 			// TODO: Test image ImageObject schema for news
 		});
 
-		test.skip('should include article body content', () => {
+		it.skip('should include article body content', () => {
 			// TODO: Test articleBody property
 		});
 	});
 
 	describe('News-Specific Schema Properties', () => {
-		test.skip('should include news article section', () => {
+		it.skip('should include news article section', () => {
 			// TODO: Test articleSection for news categorization
 		});
 
-		test.skip('should include news keywords', () => {
+		it.skip('should include news keywords', () => {
 			// TODO: Test keywords array for news discovery
 		});
 
-		test.skip('should include location information', () => {
+		it.skip('should include location information', () => {
 			// TODO: Test contentLocation for news geography
 		});
 
-		test.skip('should include news source information', () => {
+		it.skip('should include news source information', () => {
 			// TODO: Test mainEntityOfPage for news source
 		});
 
-		test.skip('should handle breaking news indicators', () => {
+		it.skip('should handle breaking news indicators', () => {
 			// TODO: Test urgent or breaking news schema properties
 		});
 	});
 
 	describe('SEO Meta Tags for News', () => {
-		test.skip('should generate news-specific title', () => {
+		it.skip('should generate news-specific title', () => {
 			// TODO: Test title optimized for news SEO
 		});
 
-		test.skip('should generate news meta description', () => {
+		it.skip('should generate news meta description', () => {
 			// TODO: Test description tailored for news content
 		});
 
-		test.skip('should include news Open Graph tags', () => {
+		it.skip('should include news Open Graph tags', () => {
 			// TODO: Test og:type="article", og:article:section, og:article:published_time
 		});
 
-		test.skip('should include Twitter Card for news', () => {
+		it.skip('should include Twitter Card for news', () => {
 			// TODO: Test twitter:card optimized for news sharing
 		});
 
-		test.skip('should include canonical URL for news', () => {
+		it.skip('should include canonical URL for news', () => {
 			// TODO: Test canonical link for news SEO
 		});
 	});
 
 	describe('News Article Accessibility', () => {
-		test.skip('should have proper news article structure', () => {
+		it.skip('should have proper news article structure', () => {
 			// TODO: Test semantic HTML for news content
 		});
 
-		test.skip('should be accessible to screen readers', () => {
+		it.skip('should be accessible to screen readers', () => {
 			// TODO: Test ARIA attributes for news content
 		});
 
-		test.skip('should have proper heading hierarchy', () => {
+		it.skip('should have proper heading hierarchy', () => {
 			// TODO: Test h1, h2, h3 structure for news
 		});
 	});
 
 	describe('Dynamic News Content', () => {
-		test.skip('should generate current timestamps', () => {
+		it.skip('should generate current timestamps', () => {
 			// TODO: Test datePublished reflects current time
 		});
 
-		test.skip('should handle news URL updates', () => {
+		it.skip('should handle news URL updates', () => {
 			// TODO: Test schema updates with different news URLs
 		});
 
-		test.skip('should support news categorization', () => {
+		it.skip('should support news categorization', () => {
 			// TODO: Test articleSection reflects news category
 		});
 	});
 
 	describe('News Error Handling', () => {
-		test.skip('should handle missing news data gracefully', () => {
+		it.skip('should handle missing news data gracefully', () => {
 			// TODO: Test with incomplete news information
 		});
 
-		test.skip('should handle invalid news URLs', () => {
+		it.skip('should handle invalid news URLs', () => {
 			// TODO: Test with malformed news URLs
 		});
 
-		test.skip('should not break on missing Copy component', () => {
+		it.skip('should not break on missing Copy component', () => {
 			// TODO: Test graceful degradation for news content
 		});
 	});
 
 	describe('News JSON-LD Validation', () => {
-		test.skip('should generate valid NewsArticle JSON-LD', () => {
+		it.skip('should generate valid NewsArticle JSON-LD', () => {
 			// TODO: Test JSON-LD passes NewsArticle schema validation
 		});
 
-		test.skip('should be Google News compatible', () => {
+		it.skip('should be Google News compatible', () => {
 			// TODO: Test against Google News structured data requirements
 		});
 
-		test.skip('should support Rich Results for news', () => {
+		it.skip('should support Rich Results for news', () => {
 			// TODO: Test compatibility with Google Rich Results for news
 		});
 	});
