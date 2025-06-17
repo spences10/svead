@@ -50,7 +50,7 @@
 		"typescript": "^5.8.3",
 		"typescript-eslint": "^8.33.1",
 		"vite": "^6.3.5",
-		"vitest": "3.2.2",
+		"vitest": "3.2.4",
 		"vitest-browser-svelte": "^0.1.0"
 	}
 }
