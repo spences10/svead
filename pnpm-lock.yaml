@@ -146,7 +146,7 @@ importers:
         version: 5.0.3(svelte@5.34.1)(vite@6.0.11(jiti@2.4.2)(lightningcss@1.30.1)(yaml@2.6.0))
       '@testing-library/svelte':
         specifier: ^5.2.6
-        version: 5.2.6(svelte@5.34.1)(vite@6.0.11(jiti@2.4.2)(lightningcss@1.30.1)(yaml@2.6.0))(vitest@3.0.5(jiti@2.4.2)(jsdom@26.0.0)(lightningcss@1.30.1)(yaml@2.6.0))
+        version: 5.2.8(svelte@5.34.1)(vite@6.0.11(jiti@2.4.2)(lightningcss@1.30.1)(yaml@2.6.0))(vitest@3.0.5(jiti@2.4.2)(jsdom@26.0.0)(lightningcss@1.30.1)(yaml@2.6.0))
       '@types/eslint':
         specifier: 9.6.1
         version: 9.6.1
@@ -212,6 +212,10 @@ packages:
     resolution: {integrity: sha512-BcYH1CVJBO9tvyIZ2jVeXgSIMvGZ2FDRvDdOIVQyuklNKSsx+eppDEBq/g47Ayw+RqNFE+URvOShmf+f/qwAlA==}
     engines: {node: '>=6.9.0'}
 
+  '@babel/code-frame@7.27.1':
+    resolution: {integrity: sha512-cjQ7ZlQ0Mv3b47hABuTevyTuYN4i+loJKGeV9flcCgIK37cCXRh+L1bd3iBHlynerhQ7BhCkn2BPbQUL+rGqFg==}
+    engines: {node: '>=6.9.0'}
+
   '@babel/helper-string-parser@7.25.9':
     resolution: {integrity: sha512-4A/SCr/2KLd5jrtOMFzaKjVtAei3+2r/NChoBNoZ3EyP/+GlhoaEGoWOZUmFmoITP7zOJyHIMm+DYRd8o3PvHA==}
     engines: {node: '>=6.9.0'}
@@ -224,6 +228,10 @@ packages:
     resolution: {integrity: sha512-Ed61U6XJc3CVRfkERJWDz4dJwKe7iLmmJsbOGu9wSloNSFttHV0I8g6UAgb7qnK5ly5bGLPd4oXZlxCdANBOWQ==}
     engines: {node: '>=6.9.0'}
 
+  '@babel/helper-validator-identifier@7.27.1':
+    resolution: {integrity: sha512-D2hP9eA+Sqx1kBZgzxZh0y1trbuU+JoDkiEwqhQ36nodYqJwyEIhPSdMNd7lOm/4io72luTPWH20Yda0xOuUow==}
+    engines: {node: '>=6.9.0'}
+
   '@babel/highlight@7.24.7':
     resolution: {integrity: sha512-EStJpq4OuY8xYfhGVXngigBJRWxftKX9ksiGDnmlY3o7B/V7KIAc9X4oiK87uPJSc/vs5L869bem5fhZa8caZw==}
     engines: {node: '>=6.9.0'}
@@ -233,12 +241,12 @@ packages:
     engines: {node: '>=6.0.0'}
     hasBin: true
 
-  '@babel/runtime@7.24.7':
-    resolution: {integrity: sha512-UwgBRMjJP+xv857DCngvqXI3Iq6J4v0wXmwc6sapg+zyhbwmQX67LUEFrkK5tbyJ30jGuG3ZvWpBiB9LCy1kWw==}
-    engines: {node: '>=6.9.0'}
-
   '@babel/runtime@7.27.4':
     resolution: {integrity: sha512-t3yaEOuGu9NlIZ+hIeGbBjFtZT7j2cb2tg0fuaJKeGotchRjjLfrBA9Kwf8quhpP1EUuxModQg04q/mBwyg8uA==}
+    engines: {node: '>=6.9.0'}
+
+  '@babel/runtime@7.28.2':
+    resolution: {integrity: sha512-KHp2IflsnGywDjBWDkR9iEqiWSpc8GIi0lgTT3mOElT0PP1tG26P4tmFI2YvAdzgq9RGyoHZQEIEdZy6Ec5xCA==}
     engines: {node: '>=6.9.0'}
 
   '@babel/types@7.26.0':
@@ -1154,16 +1162,16 @@ packages:
     peerDependencies:
       vite: ^5.2.0 || ^6
 
-  '@testing-library/dom@10.2.0':
-    resolution: {integrity: sha512-CytIvb6tVOADRngTHGWNxH8LPgO/3hi/BdCEHOf7Qd2GvZVClhVP0Wo/QHzWhpki49Bk0b4VT6xpt3fx8HTSIw==}
-    engines: {node: '>=18'}
-
   '@testing-library/dom@10.4.0':
     resolution: {integrity: sha512-pemlzrSESWbdAloYml3bAJMEfNh1Z7EduzqPKprCH5S341frlpYnUEW0H72dLxa6IsYr+mPno20GiSm+h9dEdQ==}
     engines: {node: '>=18'}
 
-  '@testing-library/svelte@5.2.6':
-    resolution: {integrity: sha512-1Y8cEg/BtV4J6g9irkY0ksz+ueDFYLiikjTLiqvQPkOUeDzR4gg2zECBf8yrOrCy3e2TAOYMcaysFa0bQMyk1w==}
+  '@testing-library/dom@10.4.1':
+    resolution: {integrity: sha512-o4PXJQidqJl82ckFaXUeoAW+XysPLauYI43Abki5hABd853iMhitooc6znOnczgbTYmEP6U6/y1ZyKAIsvMKGg==}
+    engines: {node: '>=18'}
+
+  '@testing-library/svelte@5.2.8':
+    resolution: {integrity: sha512-ucQOtGsJhtawOEtUmbR4rRh53e6RbM1KUluJIXRmh6D4UzxR847iIqqjRtg9mHNFmGQ8Vkam9yVcR5d1mhIHKA==}
     engines: {node: '>= 10'}
     peerDependencies:
       svelte: ^3 || ^4 || ^5 || ^5.0.0-next.0
@@ -2640,9 +2648,6 @@ packages:
     resolution: {integrity: sha512-yDMz9g+VaZkqBYS/ozoBJwaBhTbZo3UNYQHNRw1D3UFQB8oHB4uS/tAODO+ZLjGWmUbKnIlOWO+aaIiAxrUWHA==}
     engines: {node: '>= 14.16.0'}
 
-  regenerator-runtime@0.14.1:
-    resolution: {integrity: sha512-dYnhHh0nJoMfnkZs6GmmhFknAGRrLznOu5nc9ML+EJxGvrx6H7teuevqVqCuPcPK//3eDrrjQhehXVx9cnkGdw==}
-
   rehype-autolink-headings@7.1.0:
     resolution: {integrity: sha512-rItO/pSdvnvsP4QRB1pmPiNHUskikqtPojZKJPPPAVx9Hj8i8TwMBhofrrAYRhYOOBZH9tgmG5lPqDLuIWPWmw==}
 
@@ -3289,11 +3294,19 @@ snapshots:
       '@babel/highlight': 7.24.7
       picocolors: 1.1.1
 
+  '@babel/code-frame@7.27.1':
+    dependencies:
+      '@babel/helper-validator-identifier': 7.27.1
+      js-tokens: 4.0.0
+      picocolors: 1.1.1
+
   '@babel/helper-string-parser@7.25.9': {}
 
   '@babel/helper-validator-identifier@7.24.7': {}
 
   '@babel/helper-validator-identifier@7.25.9': {}
+
+  '@babel/helper-validator-identifier@7.27.1': {}
 
   '@babel/highlight@7.24.7':
     dependencies:
@@ -3306,11 +3319,9 @@ snapshots:
     dependencies:
       '@babel/types': 7.26.0
 
-  '@babel/runtime@7.24.7':
-    dependencies:
-      regenerator-runtime: 0.14.1
-
   '@babel/runtime@7.27.4': {}
+
+  '@babel/runtime@7.28.2': {}
 
   '@babel/types@7.26.0':
     dependencies:
@@ -4113,17 +4124,6 @@ snapshots:
       tailwindcss: 4.1.8
       vite: 6.3.5(jiti@2.4.2)(lightningcss@1.30.1)(yaml@2.6.0)
 
-  '@testing-library/dom@10.2.0':
-    dependencies:
-      '@babel/code-frame': 7.24.7
-      '@babel/runtime': 7.24.7
-      '@types/aria-query': 5.0.4
-      aria-query: 5.3.0
-      chalk: 4.1.2
-      dom-accessibility-api: 0.5.16
-      lz-string: 1.5.0
-      pretty-format: 27.5.1
-
   '@testing-library/dom@10.4.0':
     dependencies:
       '@babel/code-frame': 7.24.7
@@ -4135,9 +4135,20 @@ snapshots:
       lz-string: 1.5.0
       pretty-format: 27.5.1
 
-  '@testing-library/svelte@5.2.6(svelte@5.34.1)(vite@6.0.11(jiti@2.4.2)(lightningcss@1.30.1)(yaml@2.6.0))(vitest@3.0.5(jiti@2.4.2)(jsdom@26.0.0)(lightningcss@1.30.1)(yaml@2.6.0))':
+  '@testing-library/dom@10.4.1':
     dependencies:
-      '@testing-library/dom': 10.2.0
+      '@babel/code-frame': 7.27.1
+      '@babel/runtime': 7.28.2
+      '@types/aria-query': 5.0.4
+      aria-query: 5.3.0
+      dom-accessibility-api: 0.5.16
+      lz-string: 1.5.0
+      picocolors: 1.1.1
+      pretty-format: 27.5.1
+
+  '@testing-library/svelte@5.2.8(svelte@5.34.1)(vite@6.0.11(jiti@2.4.2)(lightningcss@1.30.1)(yaml@2.6.0))(vitest@3.0.5(jiti@2.4.2)(jsdom@26.0.0)(lightningcss@1.30.1)(yaml@2.6.0))':
+    dependencies:
+      '@testing-library/dom': 10.4.1
       svelte: 5.34.1
     optionalDependencies:
       vite: 6.0.11(jiti@2.4.2)(lightningcss@1.30.1)(yaml@2.6.0)
@@ -5673,8 +5684,6 @@ snapshots:
       strip-bom: 3.0.0
 
   readdirp@4.0.2: {}
-
-  regenerator-runtime@0.14.1: {}
 
   rehype-autolink-headings@7.1.0:
     dependencies:
