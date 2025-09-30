@@ -30,7 +30,7 @@
 <header class="flex items-center justify-between px-4 py-2">
 	<a
 		href="/"
-		class="hover:text-primary text-2xl font-bold transition"
+		class="from-primary via-accent to-info animate-none bg-gradient-to-r bg-clip-text text-2xl font-bold text-transparent hover:animate-pulse hover:transition"
 	>
 		Svead
 	</a>
