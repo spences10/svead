@@ -23,7 +23,7 @@
 	});
 
 	onMount(() => {
-		page.url.pathname, browser && Fathom.trackPageview();
+		(page.url.pathname, browser && Fathom.trackPageview());
 	});
 </script>
 
