@@ -436,6 +436,67 @@ For news articles with sections:
 <SchemaOrg schema={schema_org} />
 ```
 
+### Article - General Articles
+
+For general article content (parent type of BlogPosting and
+NewsArticle):
+
+```svelte
+<script lang="ts">
+	import { page } from '$app/stores';
+	import {
+		Head,
+		SchemaOrg,
+		type SeoConfig,
+		type SchemaOrgProps,
+	} from 'svead';
+
+	const seo_config: SeoConfig = {
+		url: $page.url.href,
+		website: 'https://example.com',
+		title: 'Understanding Schema.org',
+		description: 'A comprehensive guide to Schema.org markup',
+		open_graph_image: 'https://example.com/images/article-image.jpg',
+		author_name: 'Jane Doe',
+		language: 'en',
+		site_name: 'Example Site',
+	};
+
+	const article_schema: SchemaOrgProps['schema'] = {
+		'@type': 'Article',
+		'@id': $page.url.href,
+		headline: seo_config.title,
+		description: seo_config.description,
+		image: seo_config.open_graph_image,
+		datePublished: '2023-08-22T10:00:00Z',
+		dateModified: '2023-08-23T14:30:00Z',
+		author: {
+			'@type': 'Person',
+			name: seo_config.author_name,
+			url: `${seo_config.website}/author/jane-doe`,
+		},
+		publisher: {
+			'@type': 'Organization',
+			name: seo_config.site_name,
+			url: seo_config.website,
+			logo: {
+				'@type': 'ImageObject',
+				url: `${seo_config.website}/logo.png`,
+			},
+		},
+		mainEntityOfPage: {
+			'@type': 'WebPage',
+			'@id': $page.url.href,
+		},
+		articleSection: ['Technology', 'Web Development'],
+		inLanguage: seo_config.language,
+	};
+</script>
+
+<Head {seo_config} />
+<SchemaOrg schema={article_schema} />
+```
+
 ### BreadcrumbList - Standalone
 
 Create breadcrumbs as a separate schema:
@@ -471,6 +532,94 @@ Create breadcrumbs as a separate schema:
 	};
 </script>
 
+<SchemaOrg schema={breadcrumb_schema} />
+```
+
+**Multi-level breadcrumbs** (for deep page hierarchies):
+
+```svelte
+<script lang="ts">
+	const multi_level_breadcrumbs: SchemaOrgProps['schema'] = {
+		'@type': 'BreadcrumbList',
+		'@id': `${$page.url.href}#breadcrumb`,
+		itemListElement: [
+			{
+				'@type': 'ListItem',
+				position: 1,
+				name: 'Home',
+				item: 'https://example.com',
+			},
+			{
+				'@type': 'ListItem',
+				position: 2,
+				name: 'Products',
+				item: 'https://example.com/products',
+			},
+			{
+				'@type': 'ListItem',
+				position: 3,
+				name: 'Electronics',
+				item: 'https://example.com/products/electronics',
+			},
+			{
+				'@type': 'ListItem',
+				position: 4,
+				name: 'Laptops',
+				item: 'https://example.com/products/electronics/laptops',
+			},
+			{
+				'@type': 'ListItem',
+				position: 5,
+				name: 'Gaming Laptops',
+				item: $page.url.href,
+			},
+		],
+	};
+</script>
+```
+
+**HTML breadcrumb navigation** (combine with schema for best
+results):
+
+```svelte
+<script lang="ts">
+	import { page } from '$app/stores';
+	import { SchemaOrg, type SchemaOrgProps } from 'svead';
+
+	const breadcrumbs = [
+		{ name: 'Home', url: 'https://example.com' },
+		{ name: 'Blog', url: 'https://example.com/blog' },
+		{ name: 'Current Page', url: $page.url.href },
+	];
+
+	const breadcrumb_schema: SchemaOrgProps['schema'] = {
+		'@type': 'BreadcrumbList',
+		'@id': `${$page.url.href}#breadcrumb`,
+		itemListElement: breadcrumbs.map((crumb, index) => ({
+			'@type': 'ListItem',
+			position: index + 1,
+			name: crumb.name,
+			item: crumb.url,
+		})),
+	};
+</script>
+
+<!-- Accessible HTML breadcrumbs -->
+<nav aria-label="Breadcrumb">
+	<ol class="breadcrumb">
+		{#each breadcrumbs as crumb, index}
+			<li>
+				{#if index < breadcrumbs.length - 1}
+					<a href={crumb.url}>{crumb.name}</a>
+				{:else}
+					<span aria-current="page">{crumb.name}</span>
+				{/if}
+			</li>
+		{/each}
+	</ol>
+</nav>
+
+<!-- Schema markup -->
 <SchemaOrg schema={breadcrumb_schema} />
 ```
 
@@ -1203,6 +1352,128 @@ You can use multiple `SchemaOrg` components on the same page:
 <SchemaOrg schema={breadcrumb_schema} />
 ```
 
+### WebPage as Container with mainEntity
+
+Use WebPage as a wrapper with `mainEntity` to indicate what the page
+is primarily about:
+
+```svelte
+<script lang="ts">
+	import { page } from '$app/stores';
+	import {
+		Head,
+		SchemaOrg,
+		type SeoConfig,
+		type SchemaOrgProps,
+	} from 'svead';
+
+	const seo_config: SeoConfig = {
+		url: $page.url.href,
+		website: 'https://example.com',
+		title: 'My Blog Post',
+		description: 'An example blog post',
+		author_name: 'John Doe',
+	};
+
+	// WebPage wraps the main content
+	const schema_org: SchemaOrgProps['schema'] = {
+		'@type': 'WebPage',
+		'@id': $page.url.href,
+		url: $page.url.href,
+		name: seo_config.title,
+		description: seo_config.description,
+		isPartOf: {
+			'@type': 'WebSite',
+			'@id': seo_config.website,
+		},
+		// The page is primarily about this BlogPosting
+		mainEntity: {
+			'@type': 'BlogPosting',
+			'@id': `${$page.url.href}#article`,
+			headline: seo_config.title,
+			description: seo_config.description,
+			datePublished: '2023-08-22T10:00:00Z',
+			author: {
+				'@type': 'Person',
+				name: seo_config.author_name,
+			},
+			publisher: {
+				'@type': 'Organization',
+				name: 'Example Blog',
+			},
+			mainEntityOfPage: {
+				'@type': 'WebPage',
+				'@id': $page.url.href,
+			},
+		},
+	};
+</script>
+
+<Head {seo_config} />
+<SchemaOrg schema={schema_org} />
+```
+
+This pattern is useful when you want to provide both page-level and
+content-level metadata in a single schema object.
+
+### Adding potentialAction for Interactivity
+
+Use `potentialAction` to indicate actions users can perform on the
+page:
+
+```svelte
+<script lang="ts">
+	import { page } from '$app/stores';
+	import { SchemaOrg, type SchemaOrgProps } from 'svead';
+
+	const schema_org: SchemaOrgProps['schema'] = {
+		'@type': 'WebPage',
+		'@id': $page.url.href,
+		url: $page.url.href,
+		name: 'Article Title',
+		// Indicates this page can be read
+		potentialAction: [
+			{
+				'@type': 'ReadAction',
+				target: [$page.url.href],
+			},
+		],
+	};
+</script>
+
+<SchemaOrg schema={schema_org} />
+```
+
+This helps with:
+
+- Deep linking in mobile apps
+- Progressive Web App integration
+- Better understanding by search engines
+
+**Common action types:**
+
+- `ReadAction` - For articles, blogs, documentation
+- `WatchAction` - For video content
+- `ListenAction` - For podcasts, audio
+- `SearchAction` - For search functionality
+
+```typescript
+// SearchAction example for site search
+const search_action_schema = {
+	'@type': 'WebSite',
+	url: 'https://example.com',
+	potentialAction: {
+		'@type': 'SearchAction',
+		target: {
+			'@type': 'EntryPoint',
+			urlTemplate:
+				'https://example.com/search?q={search_term_string}',
+		},
+		'query-input': 'required name=search_term_string',
+	},
+};
+```
+
 ## Tips & Best Practices
 
 ### Date Formatting
@@ -1657,6 +1928,8 @@ pnpm add -D svead
 | :--------------- | :---------- | :--------------- |
 | Basic SEO        | `Head`      | N/A              |
 | Blog Post        | Both        | `BlogPosting`    |
+| Article          | Both        | `Article`        |
+| News Article     | Both        | `NewsArticle`    |
 | Product Page     | Both        | `Product`        |
 | Recipe           | Both        | `Recipe`         |
 | Event            | Both        | `Event`          |
@@ -1664,7 +1937,6 @@ pnpm add -D svead
 | Tutorial         | Both        | `HowTo`          |
 | Video            | Both        | `VideoObject`    |
 | Course           | Both        | `Course`         |
-| News Article     | Both        | `NewsArticle`    |
 | Breadcrumbs Only | `SchemaOrg` | `BreadcrumbList` |
 
 For more information and full documentation, visit the
