@@ -79,16 +79,5 @@ this project.
 </article>
 ```
 
-## Example Routes
-
-Explore how Svead works with different content types:
-
-- [Breadcrumbs](/breadcrumbs)
-- [Article](/article)
-- [Blog Posting](/blog-posting)
-- [News Article](/news-article)
-- [Web Page](/web-page)
-- [Multiple JSON-LD Sections](/multiple-ld-json-sections)
-
 For more information and full documentation, visit the
 [Svead GitHub repository](https://github.com/spences10/svead).
