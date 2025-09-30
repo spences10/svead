@@ -41,7 +41,7 @@ this project.
 
 ```svelte
 <script lang="ts">
-	import { page } from '$app/stores';
+	import { page } from '$app/state';
 	import {
 		Head,
 		SchemaOrg,
@@ -52,7 +52,7 @@ this project.
 	const seo_config: SeoConfig = {
 		title: 'My Blog Post',
 		description: 'This is an example blog post using Svead.',
-		url: $page.url.href,
+		url: page.url.href,
 		author_name: 'John Doe',
 		site_name: 'My Awesome Blog',
 	};

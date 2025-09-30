@@ -6,7 +6,7 @@ For general web pages with breadcrumbs:
 
 ```svelte
 <script lang="ts">
-	import { page } from '$app/stores';
+	import { page } from '$app/state';
 	import {
 		Head,
 		SchemaOrg,
@@ -15,7 +15,7 @@ For general web pages with breadcrumbs:
 	} from 'svead';
 
 	const seo_config: SeoConfig = {
-		url: $page.url.href,
+		url: page.url.href,
 		website: 'https://example.com',
 		title: 'Sample Web Page',
 		description: 'This is an example of a simple web page.',
@@ -27,8 +27,8 @@ For general web pages with breadcrumbs:
 
 	const schema_org: SchemaOrgProps['schema'] = {
 		'@type': 'WebPage',
-		'@id': $page.url.href,
-		url: $page.url.href,
+		'@id': page.url.href,
+		url: page.url.href,
 		name: seo_config.title,
 		description: seo_config.description,
 		inLanguage: seo_config.language,
@@ -42,7 +42,7 @@ For general web pages with breadcrumbs:
 		},
 		breadcrumb: {
 			'@type': 'BreadcrumbList',
-			'@id': `${$page.url.href}#breadcrumb`,
+			'@id': `${page.url.href}#breadcrumb`,
 			itemListElement: [
 				{
 					'@type': 'ListItem',
@@ -54,7 +54,7 @@ For general web pages with breadcrumbs:
 					'@type': 'ListItem',
 					position: 2,
 					name: seo_config.title,
-					item: $page.url.href,
+					item: page.url.href,
 				},
 			],
 		},
@@ -71,7 +71,7 @@ For blog posts with full metadata:
 
 ```svelte
 <script lang="ts">
-	import { page } from '$app/stores';
+	import { page } from '$app/state';
 	import {
 		Head,
 		SchemaOrg,
@@ -80,7 +80,7 @@ For blog posts with full metadata:
 	} from 'svead';
 
 	const seo_config: SeoConfig = {
-		url: $page.url.href,
+		url: page.url.href,
 		website: 'https://example.com',
 		title: 'My Blog Post',
 		description: 'This is an example blog post.',
@@ -93,8 +93,8 @@ For blog posts with full metadata:
 
 	const schema_org: SchemaOrgProps['schema'] = {
 		'@type': 'BlogPosting',
-		'@id': $page.url.href,
-		url: $page.url.href,
+		'@id': page.url.href,
+		url: page.url.href,
 		headline: seo_config.title,
 		description: seo_config.description,
 		image: seo_config.open_graph_image,
@@ -116,7 +116,7 @@ For blog posts with full metadata:
 		},
 		mainEntityOfPage: {
 			'@type': 'WebPage',
-			'@id': $page.url.href,
+			'@id': page.url.href,
 		},
 		inLanguage: seo_config.language,
 		keywords: ['SvelteKit', 'SEO', 'Blog'],
@@ -133,7 +133,7 @@ For news articles with sections:
 
 ```svelte
 <script lang="ts">
-	import { page } from '$app/stores';
+	import { page } from '$app/state';
 	import {
 		Head,
 		SchemaOrg,
@@ -142,7 +142,7 @@ For news articles with sections:
 	} from 'svead';
 
 	const seo_config: SeoConfig = {
-		url: $page.url.href,
+		url: page.url.href,
 		website: 'https://example.com',
 		title: 'Breaking News: Major Event',
 		description: 'Detailed coverage and analysis of a major event.',
@@ -155,7 +155,7 @@ For news articles with sections:
 
 	const schema_org: SchemaOrgProps['schema'] = {
 		'@type': 'NewsArticle',
-		'@id': $page.url.href,
+		'@id': page.url.href,
 		headline: seo_config.title,
 		description: seo_config.description,
 		image: seo_config.open_graph_image,
@@ -177,7 +177,7 @@ For news articles with sections:
 		},
 		mainEntityOfPage: {
 			'@type': 'WebPage',
-			'@id': $page.url.href,
+			'@id': page.url.href,
 		},
 		articleSection: ['News', 'Breaking News'],
 		inLanguage: seo_config.language,
@@ -195,7 +195,7 @@ NewsArticle):
 
 ```svelte
 <script lang="ts">
-	import { page } from '$app/stores';
+	import { page } from '$app/state';
 	import {
 		Head,
 		SchemaOrg,
@@ -204,7 +204,7 @@ NewsArticle):
 	} from 'svead';
 
 	const seo_config: SeoConfig = {
-		url: $page.url.href,
+		url: page.url.href,
 		website: 'https://example.com',
 		title: 'Understanding Schema.org',
 		description: 'A comprehensive guide to Schema.org markup',
@@ -216,7 +216,7 @@ NewsArticle):
 
 	const article_schema: SchemaOrgProps['schema'] = {
 		'@type': 'Article',
-		'@id': $page.url.href,
+		'@id': page.url.href,
 		headline: seo_config.title,
 		description: seo_config.description,
 		image: seo_config.open_graph_image,
@@ -238,7 +238,7 @@ NewsArticle):
 		},
 		mainEntityOfPage: {
 			'@type': 'WebPage',
-			'@id': $page.url.href,
+			'@id': page.url.href,
 		},
 		articleSection: ['Technology', 'Web Development'],
 		inLanguage: seo_config.language,
@@ -255,12 +255,12 @@ Create breadcrumbs as a separate schema:
 
 ```svelte
 <script lang="ts">
-	import { page } from '$app/stores';
+	import { page } from '$app/state';
 	import { SchemaOrg, type SchemaOrgProps } from 'svead';
 
 	const breadcrumb_schema: SchemaOrgProps['schema'] = {
 		'@type': 'BreadcrumbList',
-		'@id': `${$page.url.href}#breadcrumb`,
+		'@id': `${page.url.href}#breadcrumb`,
 		itemListElement: [
 			{
 				'@type': 'ListItem',
@@ -278,7 +278,7 @@ Create breadcrumbs as a separate schema:
 				'@type': 'ListItem',
 				position: 3,
 				name: 'Current Page',
-				item: $page.url.href,
+				item: page.url.href,
 			},
 		],
 	};
@@ -293,7 +293,7 @@ Create breadcrumbs as a separate schema:
 <script lang="ts">
 	const multi_level_breadcrumbs: SchemaOrgProps['schema'] = {
 		'@type': 'BreadcrumbList',
-		'@id': `${$page.url.href}#breadcrumb`,
+		'@id': `${page.url.href}#breadcrumb`,
 		itemListElement: [
 			{
 				'@type': 'ListItem',
@@ -323,7 +323,7 @@ Create breadcrumbs as a separate schema:
 				'@type': 'ListItem',
 				position: 5,
 				name: 'Gaming Laptops',
-				item: $page.url.href,
+				item: page.url.href,
 			},
 		],
 	};
@@ -335,18 +335,18 @@ results):
 
 ```svelte
 <script lang="ts">
-	import { page } from '$app/stores';
+	import { page } from '$app/state';
 	import { SchemaOrg, type SchemaOrgProps } from 'svead';
 
 	const breadcrumbs = [
 		{ name: 'Home', url: 'https://example.com' },
 		{ name: 'Blog', url: 'https://example.com/blog' },
-		{ name: 'Current Page', url: $page.url.href },
+		{ name: 'Current Page', url: page.url.href },
 	];
 
 	const breadcrumb_schema: SchemaOrgProps['schema'] = {
 		'@type': 'BreadcrumbList',
-		'@id': `${$page.url.href}#breadcrumb`,
+		'@id': `${page.url.href}#breadcrumb`,
 		itemListElement: breadcrumbs.map((crumb, index) => ({
 			'@type': 'ListItem',
 			position: index + 1,

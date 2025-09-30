@@ -6,7 +6,7 @@ Combine multiple schema types using `@graph`:
 
 ```svelte
 <script lang="ts">
-	import { page } from '$app/stores';
+	import { page } from '$app/state';
 	import {
 		Head,
 		SchemaOrg,
@@ -15,7 +15,7 @@ Combine multiple schema types using `@graph`:
 	} from 'svead';
 
 	const seo_config: SeoConfig = {
-		url: $page.url.href,
+		url: page.url.href,
 		title: 'Advanced Page with Multiple Schemas',
 		description: 'Example combining multiple schema types.',
 	};
@@ -23,7 +23,7 @@ Combine multiple schema types using `@graph`:
 	// Create individual schema objects
 	const blog_posting = {
 		'@type': 'BlogPosting',
-		'@id': $page.url.href,
+		'@id': page.url.href,
 		headline: seo_config.title,
 		description: seo_config.description,
 		datePublished: '2023-08-22T10:00:00Z',
@@ -35,7 +35,7 @@ Combine multiple schema types using `@graph`:
 
 	const breadcrumb_list = {
 		'@type': 'BreadcrumbList',
-		'@id': `${$page.url.href}#breadcrumb`,
+		'@id': `${page.url.href}#breadcrumb`,
 		itemListElement: [
 			{
 				'@type': 'ListItem',
@@ -47,7 +47,7 @@ Combine multiple schema types using `@graph`:
 				'@type': 'ListItem',
 				position: 2,
 				name: seo_config.title,
-				item: $page.url.href,
+				item: page.url.href,
 			},
 		],
 	};
@@ -69,7 +69,7 @@ Use conditional spreading to include optional properties:
 
 ```svelte
 <script lang="ts">
-	import { page } from '$app/stores';
+	import { page } from '$app/state';
 	import { SchemaOrg, type SchemaOrgProps } from 'svead';
 
 	const has_image = true;
@@ -78,7 +78,7 @@ Use conditional spreading to include optional properties:
 
 	const schema_org: SchemaOrgProps['schema'] = {
 		'@type': 'WebPage',
-		'@id': $page.url.href,
+		'@id': page.url.href,
 		name: 'Page Title',
 		// Only include image if it exists
 		...(has_image &&
@@ -142,7 +142,7 @@ is primarily about:
 
 ```svelte
 <script lang="ts">
-	import { page } from '$app/stores';
+	import { page } from '$app/state';
 	import {
 		Head,
 		SchemaOrg,
@@ -151,7 +151,7 @@ is primarily about:
 	} from 'svead';
 
 	const seo_config: SeoConfig = {
-		url: $page.url.href,
+		url: page.url.href,
 		website: 'https://example.com',
 		title: 'My Blog Post',
 		description: 'An example blog post',
@@ -161,8 +161,8 @@ is primarily about:
 	// WebPage wraps the main content
 	const schema_org: SchemaOrgProps['schema'] = {
 		'@type': 'WebPage',
-		'@id': $page.url.href,
-		url: $page.url.href,
+		'@id': page.url.href,
+		url: page.url.href,
 		name: seo_config.title,
 		description: seo_config.description,
 		isPartOf: {
@@ -172,7 +172,7 @@ is primarily about:
 		// The page is primarily about this BlogPosting
 		mainEntity: {
 			'@type': 'BlogPosting',
-			'@id': `${$page.url.href}#article`,
+			'@id': `${page.url.href}#article`,
 			headline: seo_config.title,
 			description: seo_config.description,
 			datePublished: '2023-08-22T10:00:00Z',
@@ -186,7 +186,7 @@ is primarily about:
 			},
 			mainEntityOfPage: {
 				'@type': 'WebPage',
-				'@id': $page.url.href,
+				'@id': page.url.href,
 			},
 		},
 	};
@@ -206,19 +206,19 @@ page:
 
 ```svelte
 <script lang="ts">
-	import { page } from '$app/stores';
+	import { page } from '$app/state';
 	import { SchemaOrg, type SchemaOrgProps } from 'svead';
 
 	const schema_org: SchemaOrgProps['schema'] = {
 		'@type': 'WebPage',
-		'@id': $page.url.href,
-		url: $page.url.href,
+		'@id': page.url.href,
+		url: page.url.href,
 		name: 'Article Title',
 		// Indicates this page can be read
 		potentialAction: [
 			{
 				'@type': 'ReadAction',
-				target: [$page.url.href],
+				target: [page.url.href],
 			},
 		],
 	};

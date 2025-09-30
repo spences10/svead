@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { page } from '$app/stores';
+	import { page } from '$app/state';
 	import { Head, type SeoConfig } from 'svead';
 
 	export let data;
@@ -16,7 +16,7 @@
 	const seo_config: SeoConfig = {
 		title: `${title} | Svead Documentation`,
 		description: `${title} documentation for Svead - SEO and Schema.org helpers for SvelteKit`,
-		url: $page.url.href,
+		url: page.url.href,
 		website: 'https://svead.vercel.app',
 		language: 'en',
 		site_name: 'Svead Documentation',
