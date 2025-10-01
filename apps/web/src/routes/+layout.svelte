@@ -2,7 +2,10 @@
 	import { browser } from '$app/environment';
 	import { page } from '$app/state';
 	import { env } from '$env/dynamic/public';
-	import { GitHub, Twitter, YouTube } from '$lib';
+	import { GitHub } from '$lib';
+	import Bluesky from '$lib/icons/bluesky.svelte';
+	import Github from '$lib/icons/github.svelte';
+	import Youtube from '$lib/icons/youtube.svelte';
 	import * as Fathom from 'fathom-client';
 	import { onMount } from 'svelte';
 	import '../app.css';
@@ -65,13 +68,64 @@
 </main>
 
 <footer
-	class="footer footer-center bg-primary text-primary-content p-10"
+	class="footer footer-horizontal footer-center bg-primary rounded p-10 text-xl"
 >
-	<div class="text-xl">
+	<nav class="grid grid-flow-col gap-4">
+		<a
+			href="/quick-reference"
+			class="link hover:text-secondary transition">Quick Reference</a
+		>
+		<a
+			href="/components"
+			class="link hover:text-secondary transition"
+		>
+			Components
+		</a>
+		<a
+			href="/real-world-patterns"
+			class="link hover:text-secondary transition"
+		>
+			Real-World Patterns
+		</a>
+		<a href="/faq" class="link hover:text-secondary transition">FAQ</a
+		>
+	</nav>
+	<nav>
+		<div class="grid grid-flow-col gap-4">
+			<a
+				aria-label="Bluesky"
+				onclick={() => Fathom.trackEvent(`Bluesky clicked`)}
+				target="_blank"
+				rel="noopener noreferrer"
+				href="https://ss10.dev/bluesky"
+			>
+				<Bluesky />
+			</a>
+			<a
+				aria-label="GitHub"
+				onclick={() => Fathom.trackEvent(`GitHub clicked`)}
+				target="_blank"
+				rel="noopener noreferrer"
+				href="https://ss10.dev/git"
+			>
+				<Github />
+			</a>
+			<a
+				aria-label="YouTube"
+				onclick={() => Fathom.trackEvent(`YouTube clicked`)}
+				target="_blank"
+				rel="noopener noreferrer"
+				href="https://ss10.dev/yt"
+			>
+				<Youtube />
+			</a>
+		</div>
+	</nav>
+	<aside>
 		<img
 			src="spencee.png"
 			alt="Scott avatar"
-			class="h-20 rounded-full"
+			class="mb-4 h-10 rounded-full"
 		/>
 		<p class="font-bold">
 			Made with <span role="img" aria-label="red heart">❤️</span> by
@@ -85,40 +139,11 @@
 				Scott Spence
 			</a>
 		</p>
+	</aside>
+	<aside>
 		<p>
 			Copyright © {`${new Date().getFullYear()}`} - All rights reserved
 			<span role="img" aria-label="shrugging emoji">🤷</span>
 		</p>
-	</div>
-	<div>
-		<div class="grid grid-flow-col gap-4">
-			<a
-				aria-label="Twitter"
-				onclick={() => Fathom.trackEvent(`Twitter clicked`)}
-				target="_blank"
-				rel="noopener noreferrer"
-				href="https://twitter.com/spences10"
-			>
-				<Twitter />
-			</a>
-			<a
-				aria-label="GitHub"
-				onclick={() => Fathom.trackEvent(`GitHub clicked`)}
-				target="_blank"
-				rel="noopener noreferrer"
-				href="https://github.com/spences10"
-			>
-				<GitHub />
-			</a>
-			<a
-				aria-label="YouTube"
-				onclick={() => Fathom.trackEvent(`YouTube clicked`)}
-				target="_blank"
-				rel="noopener noreferrer"
-				href="https://ss10/yt"
-			>
-				<YouTube />
-			</a>
-		</div>
-	</div>
+	</aside>
 </footer>

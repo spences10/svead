@@ -9,7 +9,7 @@
 		fill?: string;
 	} = $props();
 
-	let svgClass: string = `${fill} text-primary-content transition hover:text-secondary-focus`;
+	let svgClass: string = `${fill} transition hover:text-secondary`;
 </script>
 
 <svg
