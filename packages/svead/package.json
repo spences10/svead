@@ -63,18 +63,18 @@
 		"coverage": "vp exec vitest run --coverage"
 	},
 	"dependencies": {
-		"schema-dts": "^1.1.5"
+		"schema-dts": "^2.0.0"
 	},
 	"devDependencies": {
 		"@playwright/test": "catalog:",
-		"@sveltejs/adapter-auto": "^6.1.0",
-		"@sveltejs/kit": "^2.60.1",
-		"@sveltejs/package": "^2.5.4",
+		"@sveltejs/adapter-auto": "^7.0.1",
+		"@sveltejs/kit": "^2.61.0",
+		"@sveltejs/package": "^2.5.7",
 		"@sveltejs/vite-plugin-svelte": "^7.1.2",
-		"@testing-library/svelte": "^5.2.8",
+		"@testing-library/svelte": "^5.3.1",
 		"@vitest/coverage-v8": "catalog:",
-		"jsdom": "^27.3.0",
-		"publint": "^0.3.12",
+		"jsdom": "^29.1.1",
+		"publint": "^0.3.21",
 		"svelte": "^5.55.9",
 		"svelte-check": "^4.4.8",
 		"tslib": "^2.8.1",
