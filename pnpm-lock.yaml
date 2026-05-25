@@ -82,7 +82,7 @@ importers:
         version: 16.5.0
       mdsvex:
         specifier: ^0.12.6
-        version: 0.12.6(svelte@5.55.9)
+        version: 0.12.7(svelte@5.55.9)
       playwright:
         specifier: ^1.57.0
         version: 1.57.0
@@ -103,7 +103,7 @@ importers:
         version: 5.55.9
       svelte-check:
         specifier: ^4.3.4
-        version: 4.3.4(picomatch@4.0.4)(svelte@5.55.9)(typescript@6.0.3)
+        version: 4.3.4(picomatch@4.0.3)(svelte@5.55.9)(typescript@6.0.3)
       tailwindcss:
         specifier: ^4.1.17
         version: 4.1.17
@@ -161,7 +161,7 @@ importers:
         version: 5.55.9
       svelte-check:
         specifier: ^4.4.8
-        version: 4.4.8(picomatch@4.0.3)(svelte@5.55.9)(typescript@6.0.3)
+        version: 4.4.8(picomatch@4.0.4)(svelte@5.55.9)(typescript@6.0.3)
       tslib:
         specifier: ^2.8.1
         version: 2.8.1
@@ -990,8 +990,8 @@ packages:
   '@types/trusted-types@2.0.7':
     resolution: {integrity: sha512-ScaPdn1dQczgbl0QFTeTOmVHFULt394XJgOQNoyVhZ6r2vLnMLJfBPd53SB52T/3G36VI1/g2MZaX0cwDuXsfw==}
 
-  '@types/unist@2.0.10':
-    resolution: {integrity: sha512-IfYcSBWE3hLpBg8+X2SEa8LVkJdJEkT2Ese2aaLs3ptGdVtABxndrMaxuFlQ1qdFf9Q5rDvDpxI3WwgvKFAsQA==}
+  '@types/unist@2.0.11':
+    resolution: {integrity: sha512-CmBKiL6NNo/OqgmMn95Fk9Whlp2mtvIv+KNpQKN2F4SjvrEesubTRWGYSg+BnWZOnlCaSTU1sMpsBOzgbYhnsA==}
 
   '@types/unist@3.0.3':
     resolution: {integrity: sha512-ko/gIFJRv177XgZsZcBwnqJN5x/Gien8qNOn0D5bQU/zAzVf9Zt3BlcUiLqhV9y4ARk0GbT3tnUiPNgnTXzc/Q==}
@@ -1808,8 +1808,8 @@ packages:
   mdn-data@2.27.1:
     resolution: {integrity: sha512-9Yubnt3e8A0OKwxYSXyhLymGW4sCufcLG6VdiDdUGVkPhpqLxlvP5vl1983gQjJl3tqbrM731mjaZaP68AgosQ==}
 
-  mdsvex@0.12.6:
-    resolution: {integrity: sha512-pupx2gzWh3hDtm/iDW4WuCpljmyHbHi34r7ktOqpPGvyiM4MyfNgdJ3qMizXdgCErmvYC9Nn/qyjePy+4ss9Wg==}
+  mdsvex@0.12.7:
+    resolution: {integrity: sha512-gx4bReLCUvq+MPErHXYeyX+TEq1hsS2KfiZtEOMNTcbibSouFy8AHc5h04KbGCl+g5tLuo4/lbgRVYRnc7bJZw==}
     peerDependencies:
       svelte: ^3.56.0 || ^4.0.0 || ^5.0.0-next.120
 
@@ -1979,8 +1979,8 @@ packages:
   prism-svelte@0.4.7:
     resolution: {integrity: sha512-yABh19CYbM24V7aS7TuPYRNMqthxwbvx6FF/Rw920YbyBWO3tnyPIqRMgHuSVsLmuHkkBS1Akyof463FVdkeDQ==}
 
-  prismjs@1.29.0:
-    resolution: {integrity: sha512-Kx/1w86q/epKcmte75LNrEoT+lX8pBpavuAbvJWRXar7Hz8jrtF+e3vY751p0R8H9HdArwaCTNDDzHg/ScJK1Q==}
+  prismjs@1.30.0:
+    resolution: {integrity: sha512-DEvV2ZF2r2/63V+tK8hQvrR2ZGn10srHbXviTlcv7Kpzw8jWiNTqbVgjO3IY8RxrrOUF8VPMQQFysYYYv0YZxw==}
     engines: {node: '>=6'}
 
   publint@0.3.12:
@@ -2259,8 +2259,8 @@ packages:
   vfile-message@2.0.4:
     resolution: {integrity: sha512-DjssxRGkMvifUOJre00juHoP9DPWuzjxKuMDrhNbk2TdaYYBNMStsNhEOt3idrtI12VQYM/1+iM0KOzXi4pxwQ==}
 
-  vfile-message@4.0.2:
-    resolution: {integrity: sha512-jRDZ1IMLttGj41KcZvlrYAaI3CfqpLpfpf+Mfig13viT6NKvRzWZ+lXz0Y5D60w6uJIBAOGq9mSHf0gktF0duw==}
+  vfile-message@4.0.3:
+    resolution: {integrity: sha512-QTHzsGd1EhbZs4AsQ20JX1rC3cOlt/IWJruk893DfLRr57lcnOeMaWG4K0JrRta4mIJZKth2Au3mM3u03/JWKw==}
 
   vfile@6.0.3:
     resolution: {integrity: sha512-KzIbH/9tXat2u30jf+smMwFCsno4wHVdNmzFyL+T/L3UGqqk6JKfVqOFOZEpZSHADH1k40ab6NUIXZq422ov3Q==}
@@ -3087,11 +3087,11 @@ snapshots:
 
   '@types/hast@3.0.4':
     dependencies:
-      '@types/unist': 2.0.10
+      '@types/unist': 3.0.3
 
   '@types/mdast@4.0.4':
     dependencies:
-      '@types/unist': 3.0.3
+      '@types/unist': 2.0.11
 
   '@types/node@12.20.55': {}
 
@@ -3101,7 +3101,7 @@ snapshots:
 
   '@types/trusted-types@2.0.7': {}
 
-  '@types/unist@2.0.10': {}
+  '@types/unist@2.0.11': {}
 
   '@types/unist@3.0.3': {}
 
@@ -3119,20 +3119,6 @@ snapshots:
       - msw
       - utf-8-validate
       - vite
-
-  '@vitest/browser-playwright@4.1.7(playwright@1.60.0)(vite@8.0.14(@types/node@25.9.1)(jiti@2.6.1))(vitest@4.1.7)':
-    dependencies:
-      '@vitest/browser': 4.1.7(vite@8.0.14(@types/node@25.9.1)(jiti@2.6.1))(vitest@4.1.7)
-      '@vitest/mocker': 4.1.7(vite@8.0.14(@types/node@25.9.1)(jiti@2.6.1))
-      playwright: 1.60.0
-      tinyrainbow: 3.1.0
-      vitest: 4.1.7(@types/node@25.9.1)(@vitest/browser-playwright@4.1.7)(@vitest/coverage-v8@4.1.7)(jsdom@27.4.0)(vite@8.0.14(@types/node@25.9.1)(jiti@2.6.1))
-    transitivePeerDependencies:
-      - bufferutil
-      - msw
-      - utf-8-validate
-      - vite
-    optional: true
 
   '@vitest/browser@4.1.7(vite@8.0.14(@types/node@25.9.1)(jiti@2.6.1))(vitest@4.1.7)':
     dependencies:
@@ -3487,9 +3473,9 @@ snapshots:
 
   fathom-client@3.7.2: {}
 
-  fdir@6.4.5(picomatch@4.0.4):
+  fdir@6.4.5(picomatch@4.0.3):
     optionalDependencies:
-      picomatch: 4.0.4
+      picomatch: 4.0.3
 
   fdir@6.5.0(picomatch@4.0.3):
     optionalDependencies:
@@ -3809,12 +3795,12 @@ snapshots:
 
   mdn-data@2.27.1: {}
 
-  mdsvex@0.12.6(svelte@5.55.9):
+  mdsvex@0.12.7(svelte@5.55.9):
     dependencies:
       '@types/mdast': 4.0.4
-      '@types/unist': 2.0.10
+      '@types/unist': 2.0.11
       prism-svelte: 0.4.7
-      prismjs: 1.29.0
+      prismjs: 1.30.0
       svelte: 5.55.9
       unist-util-visit: 2.0.3
       vfile-message: 2.0.4
@@ -3991,7 +3977,7 @@ snapshots:
 
   prism-svelte@0.4.7: {}
 
-  prismjs@1.29.0: {}
+  prismjs@1.30.0: {}
 
   publint@0.3.12:
     dependencies:
@@ -4139,11 +4125,11 @@ snapshots:
     dependencies:
       has-flag: 4.0.0
 
-  svelte-check@4.3.4(picomatch@4.0.4)(svelte@5.55.9)(typescript@6.0.3):
+  svelte-check@4.3.4(picomatch@4.0.3)(svelte@5.55.9)(typescript@6.0.3):
     dependencies:
       '@jridgewell/trace-mapping': 0.3.31
       chokidar: 4.0.3
-      fdir: 6.4.5(picomatch@4.0.4)
+      fdir: 6.4.5(picomatch@4.0.3)
       picocolors: 1.1.1
       sade: 1.8.1
       svelte: 5.55.9
@@ -4151,11 +4137,11 @@ snapshots:
     transitivePeerDependencies:
       - picomatch
 
-  svelte-check@4.4.8(picomatch@4.0.3)(svelte@5.55.9)(typescript@6.0.3):
+  svelte-check@4.4.8(picomatch@4.0.4)(svelte@5.55.9)(typescript@6.0.3):
     dependencies:
       '@jridgewell/trace-mapping': 0.3.31
       chokidar: 4.0.3
-      fdir: 6.5.0(picomatch@4.0.3)
+      fdir: 6.5.0(picomatch@4.0.4)
       picocolors: 1.1.1
       sade: 1.8.1
       svelte: 5.55.9
@@ -4263,7 +4249,7 @@ snapshots:
 
   unist-util-stringify-position@2.0.3:
     dependencies:
-      '@types/unist': 2.0.10
+      '@types/unist': 2.0.11
 
   unist-util-stringify-position@4.0.0:
     dependencies:
@@ -4271,7 +4257,7 @@ snapshots:
 
   unist-util-visit-parents@3.1.1:
     dependencies:
-      '@types/unist': 2.0.10
+      '@types/unist': 2.0.11
       unist-util-is: 4.1.0
 
   unist-util-visit-parents@6.0.1:
@@ -4281,7 +4267,7 @@ snapshots:
 
   unist-util-visit@2.0.3:
     dependencies:
-      '@types/unist': 2.0.10
+      '@types/unist': 2.0.11
       unist-util-is: 4.1.0
       unist-util-visit-parents: 3.1.1
 
@@ -4297,10 +4283,10 @@ snapshots:
 
   vfile-message@2.0.4:
     dependencies:
-      '@types/unist': 2.0.10
+      '@types/unist': 2.0.11
       unist-util-stringify-position: 2.0.3
 
-  vfile-message@4.0.2:
+  vfile-message@4.0.3:
     dependencies:
       '@types/unist': 3.0.3
       unist-util-stringify-position: 4.0.0
@@ -4308,7 +4294,7 @@ snapshots:
   vfile@6.0.3:
     dependencies:
       '@types/unist': 3.0.3
-      vfile-message: 4.0.2
+      vfile-message: 4.0.3
 
   vite-plus@0.1.22(@types/node@25.9.1)(@vitest/coverage-v8@4.1.7)(jiti@2.6.1)(jsdom@27.4.0)(publint@0.3.12)(typescript@6.0.3)(vite@8.0.14(@types/node@25.9.1)(jiti@2.6.1)):
     dependencies:
@@ -4405,7 +4391,7 @@ snapshots:
       why-is-node-running: 2.3.0
     optionalDependencies:
       '@types/node': 25.9.1
-      '@vitest/browser-playwright': 4.1.7(playwright@1.60.0)(vite@8.0.14(@types/node@25.9.1)(jiti@2.6.1))(vitest@4.1.7)
+      '@vitest/browser-playwright': 4.1.7(playwright@1.57.0)(vite@8.0.14(@types/node@25.9.1)(jiti@2.6.1))(vitest@4.1.7)
       '@vitest/coverage-v8': 4.1.7(@vitest/browser@4.1.7)(vitest@4.1.7)
       jsdom: 27.4.0
     transitivePeerDependencies:
