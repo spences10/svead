@@ -111,9 +111,9 @@ appearance in search results.
 
 ### `SchemaOrgProps` Props
 
-| Property | Type            | Description                                                 | Required |
-| :------- | :-------------- | :---------------------------------------------------------- | :------- |
-| `schema` | `SchemaOrgType` | The structured data object following schema.org vocabulary. | Yes      |
+| Property | Type                     | Description                                                    | Required |
+| :------- | :----------------------- | :------------------------------------------------------------- | :------- |
+| `schema` | `SchemaOrgType` or array | The structured data object(s) following schema.org vocabulary. | Yes      |
 
 ### `SchemaOrgType`
 
@@ -121,6 +121,7 @@ appearance in search results.
 
 - `Thing`: Represents the most generic type of item in schema.org.
 - `WithContext<Thing>`: A Thing with an added `@context` property.
+- `Graph`: A JSON-LD graph with `@context` and `@graph`.
 
 You can use any valid schema.org type as defined in the
 [schema.org documentation](https://schema.org).
@@ -129,7 +130,9 @@ You can use any valid schema.org type as defined in the
 
 - The `@context` property is automatically added by the component if
   not provided.
-- You can include multiple schema types by nesting them within the
+- Passing an array renders a single JSON-LD `@graph` with one shared
+  `https://schema.org` context.
+- You can also include related schema types by nesting them within the
   main schema object.
 - Always validate your structured data using tools like
   [Google's Rich Results Test](https://search.google.com/test/rich-results)
