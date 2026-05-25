@@ -34,7 +34,7 @@ describe('youtube.svelte', () => {
 					'fill-current',
 					'text-primary-content',
 					'transition',
-					'hover:text-secondary-focus',
+					'hover:text-secondary',
 				);
 		});
 

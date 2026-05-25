@@ -14,7 +14,7 @@
 		"lint": "pnpm -w lint",
 		"test:unit": "vp exec vitest",
 		"test": "pnpm run test:unit -- --run && pnpm run test:e2e",
-		"test:e2e": "vp exec playwright test",
+		"test:e2e": "vp exec playwright install && vp exec playwright test",
 		"coverage": "vp exec vitest run --coverage",
 		"build:packages": "pnpm -r --filter=\"../../packages/*\" run build"
 	},

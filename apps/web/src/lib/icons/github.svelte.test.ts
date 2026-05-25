@@ -45,7 +45,7 @@ describe('github.svelte', () => {
 					'fill-current',
 					'text-primary-content',
 					'transition',
-					'hover:text-secondary-focus',
+					'hover:text-secondary',
 				);
 		});
 
@@ -66,9 +66,7 @@ describe('github.svelte', () => {
 			await expect.element(svg).toHaveClass('custom-fill');
 			await expect.element(svg).toHaveClass('text-primary-content');
 			await expect.element(svg).toHaveClass('transition');
-			await expect
-				.element(svg)
-				.toHaveClass('hover:text-secondary-focus');
+			await expect.element(svg).toHaveClass('hover:text-secondary');
 		});
 
 		it('should demonstrate props destructuring function with multiple values', async () => {

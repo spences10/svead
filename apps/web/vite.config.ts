@@ -1,9 +1,9 @@
 import { sveltekit } from '@sveltejs/kit/vite';
 import tailwindcss from '@tailwindcss/vite';
 import { playwright } from '@vitest/browser-playwright';
-import { coverageConfigDefaults } from 'vitest/config';
+import { coverageConfigDefaults, defineConfig } from 'vitest/config';
 
-export default {
+export default defineConfig({
 	plugins: [tailwindcss(), sveltekit()],
 
 	test: {
@@ -13,7 +13,6 @@ export default {
 				extends: './vite.config.ts',
 				test: {
 					name: 'client',
-					environment: 'browser',
 					// Timeout for browser tests - prevent hanging on element lookups
 					testTimeout: 2000,
 					browser: {
@@ -78,4 +77,4 @@ export default {
 			},
 		},
 	},
-};
+});

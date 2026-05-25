@@ -82,11 +82,11 @@ describe('Utility Functions', () => {
 
 		it('should create dynamic CSS class string', () => {
 			const create_svg_class = (fill: string) =>
-				`${fill} text-primary-content transition hover:text-secondary-focus`;
+				`${fill} text-primary-content transition hover:text-secondary`;
 
 			const class_string = create_svg_class('fill-current');
 			expect(class_string).toBe(
-				'fill-current text-primary-content transition hover:text-secondary-focus',
+				'fill-current text-primary-content transition hover:text-secondary',
 			);
 		});
 	});

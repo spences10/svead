@@ -27,7 +27,7 @@ describe('youtube.svelte SSR', () => {
 			const { body } = render(YouTube);
 			expect(body).toContain('text-primary-content');
 			expect(body).toContain('transition');
-			expect(body).toContain('hover:text-secondary-focus');
+			expect(body).toContain('hover:text-secondary');
 		});
 
 		it('should have proper SVG attributes', () => {

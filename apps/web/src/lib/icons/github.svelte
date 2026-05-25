@@ -9,7 +9,9 @@
 		fill?: string;
 	} = $props();
 
-	let svg_class = $derived(`${fill} transition hover:text-secondary`);
+	let svg_class = $derived(
+		`${fill} text-primary-content transition hover:text-secondary`,
+	);
 </script>
 
 <svg
