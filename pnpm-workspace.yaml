@@ -1,3 +1,19 @@
 packages:
-  - 'apps/*'
-  - 'packages/*'
+  - .
+  - apps/*
+  - packages/*
+
+minimumReleaseAge: 2880
+
+catalog:
+  '@playwright/test': ^1.57.0
+  '@vitest/coverage-v8': ^3.2.4
+  eslint-config-prettier: ^10.1.8
+  prettier-plugin-svelte: ^3.4.0
+  vitest: ^3.2.4
+
+allowBuilds:
+  esbuild: true
+
+onlyBuiltDependencies:
+  - esbuild
