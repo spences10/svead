@@ -30,7 +30,7 @@
 		"@vitest/coverage-v8": "catalog:",
 		"daisyui": "^5.5.8",
 		"fathom-client": "^3.7.2",
-		"globals": "^16.5.0",
+		"globals": "^17.0.0",
 		"mdsvex": "^0.12.6",
 		"playwright": "^1.57.0",
 		"rehype-autolink-headings": "^7.1.0",
