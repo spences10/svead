@@ -63,7 +63,7 @@
 		"coverage": "vp exec vitest run --coverage"
 	},
 	"dependencies": {
-		"schema-dts": "^1.1.5"
+		"schema-dts": "^2.0.0"
 	},
 	"devDependencies": {
 		"@playwright/test": "catalog:",
