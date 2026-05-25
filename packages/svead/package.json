@@ -73,7 +73,7 @@
 		"@sveltejs/vite-plugin-svelte": "^7.1.2",
 		"@testing-library/svelte": "^5.2.8",
 		"@vitest/coverage-v8": "catalog:",
-		"jsdom": "^27.3.0",
+		"jsdom": "^29.0.0",
 		"publint": "^0.3.12",
 		"svelte": "^5.55.9",
 		"svelte-check": "^4.4.8",
