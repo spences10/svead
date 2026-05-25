@@ -87,7 +87,7 @@ describe('page.svelte SSR - Svead Head Component Validation', () => {
 
 	describe('Page Content Integration', () => {
 		it('should render Copy component', () => {
-			const { body } = render(Page, { props: { data: mock_data } });
+			render(Page, { props: { data: mock_data } });
 
 			// Verify the Copy component was called (it's a mock function)
 			expect(MockCopy).toHaveBeenCalled();
@@ -103,7 +103,6 @@ describe('page.svelte SSR - Svead Head Component Validation', () => {
 
 		it('should test template string concatenation functions', () => {
 			// Test string interpolation functions used in the component
-			const page_url = 'https://svead.pages.dev/test';
 			const website = 'https://svead.pages.dev';
 			const combined_url = `${website}/author/scott-spence`;
 

@@ -19,12 +19,13 @@
 	}
 
 	// Process schema
-	const processed_schema = process_schema(schema);
+	const processed_schema = $derived(process_schema(schema));
 
 	// Convert processed schema to JSON-LD script
-	const json_ld_data =
+	const json_ld_data = $derived(
 		`<script type="application/ld+json">${JSON.stringify(processed_schema)}</scr` +
-		`ipt>`;
+			`ipt>`,
+	);
 </script>
 
 <svelte:head>

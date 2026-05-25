@@ -330,8 +330,7 @@ Create breadcrumbs as a separate schema:
 </script>
 ```
 
-**HTML breadcrumb navigation** (combine with schema for best
-results):
+**HTML breadcrumb navigation** (combine with schema for best results):
 
 ```svelte
 <script lang="ts">

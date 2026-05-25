@@ -1,14 +1,22 @@
 # Comprehensive Testing Plan for /web (Svead Demo App)
 
-This document outlines the testing strategy for the svead web application. **Primary Focus: Testing Svead Package Functionality** - validating that the `svead` package (Svelte head component for SEO) works correctly in real applications.
+This document outlines the testing strategy for the svead web
+application. **Primary Focus: Testing Svead Package Functionality** -
+validating that the `svead` package (Svelte head component for SEO)
+works correctly in real applications.
 
 ## Testing Philosophy
 
-- **Svead Functionality First**: Test what the svead package actually does, not implementation details
-- **Non-Brittle Testing**: Use pattern matching and functional validation instead of exact HTML strings
-- **SSR-First Testing**: Primary focus on server-side rendering for SEO validation
-- **Foundation First**: Start with all describe blocks and test stubs using `.skip`
-- **Real Store Mocking**: Properly mock SvelteKit stores with functional subscribe methods
+- **Svead Functionality First**: Test what the svead package actually
+  does, not implementation details
+- **Non-Brittle Testing**: Use pattern matching and functional
+  validation instead of exact HTML strings
+- **SSR-First Testing**: Primary focus on server-side rendering for
+  SEO validation
+- **Foundation First**: Start with all describe blocks and test stubs
+  using `.skip`
+- **Real Store Mocking**: Properly mock SvelteKit stores with
+  functional subscribe methods
 
 ## Test File Structure
 
@@ -18,7 +26,8 @@ Real browser testing with vitest-browser-svelte
 
 ### SSR Tests (`*.ssr.test.ts`)
 
-Server-side rendering validation **focused on svead package functionality**
+Server-side rendering validation **focused on svead package
+functionality**
 
 ### Server Tests (`*.test.ts`)
 
@@ -32,13 +41,16 @@ API routes, utilities, business logic
 
 #### Page SSR Tests - **SVEAD FUNCTIONALITY FOCUSED**
 
-- `src/routes/page.ssr.test.ts` - ✅ **FIXED & PASSING** - Tests svead Head component functionality
-- `src/routes/breadcrumbs/page.ssr.test.ts` - ✅ **FIXED & PASSING** - Tests svead Head + SchemaOrg functionality
+- `src/routes/page.ssr.test.ts` - ✅ **FIXED & PASSING** - Tests svead
+  Head component functionality
+- `src/routes/breadcrumbs/page.ssr.test.ts` - ✅ **FIXED & PASSING** -
+  Tests svead Head + SchemaOrg functionality
 
 #### Layout & Core Components
 
 - `src/routes/layout.svelte.test.ts` - Layout component tests
-- `src/lib/components/details.svelte.test.ts` - Details component tests
+- `src/lib/components/details.svelte.test.ts` - Details component
+  tests
 - `src/lib/components/details.ssr.test.ts` - Details SSR tests
 
 #### Icon Components
@@ -52,26 +64,36 @@ API routes, utilities, business logic
 
 #### Page Components
 
-- `src/routes/breadcrumbs/page.svelte.test.ts` - Breadcrumbs page tests
-- `src/routes/news-article/page.svelte.test.ts` - News article page tests
+- `src/routes/breadcrumbs/page.svelte.test.ts` - Breadcrumbs page
+  tests
+- `src/routes/news-article/page.svelte.test.ts` - News article page
+  tests
 
 ### 🚧 Pending Implementation - **CONVERT TO SVEAD-FOCUSED TESTING**
 
 #### Page SSR Tests (Need svead Testing Pattern)
 
-- `src/routes/blog-posting/page.ssr.test.ts` - **Convert to test svead BlogPosting schema functionality**
-- `src/routes/news-article/page.ssr.test.ts` - **Convert to test svead NewsArticle schema functionality**
-- `src/routes/web-page/page.ssr.test.ts` - **Convert to test svead WebPage schema functionality**
-- `src/routes/article/page.ssr.test.ts` - **Convert to test svead Article schema functionality**
-- `src/routes/multiple-ld-json-sections/page.ssr.test.ts` - **Convert to test svead complex schema functionality**
+- `src/routes/blog-posting/page.ssr.test.ts` - **Convert to test svead
+  BlogPosting schema functionality**
+- `src/routes/news-article/page.ssr.test.ts` - **Convert to test svead
+  NewsArticle schema functionality**
+- `src/routes/web-page/page.ssr.test.ts` - **Convert to test svead
+  WebPage schema functionality**
+- `src/routes/article/page.ssr.test.ts` - **Convert to test svead
+  Article schema functionality**
+- `src/routes/multiple-ld-json-sections/page.ssr.test.ts` - **Convert
+  to test svead complex schema functionality**
 
 #### Page Component Tests (Remaining)
 
-- `src/routes/page.svelte.test.ts` - Update existing root page test with Foundation First
-- `src/routes/blog-posting/page.svelte.test.ts` - Blog posting page tests
+- `src/routes/page.svelte.test.ts` - Update existing root page test
+  with Foundation First
+- `src/routes/blog-posting/page.svelte.test.ts` - Blog posting page
+  tests
 - `src/routes/web-page/page.svelte.test.ts` - Web page tests
 - `src/routes/article/page.svelte.test.ts` - Article page tests
-- `src/routes/multiple-ld-json-sections/page.svelte.test.ts` - Multiple JSON-LD sections tests
+- `src/routes/multiple-ld-json-sections/page.svelte.test.ts` -
+  Multiple JSON-LD sections tests
 
 #### SSR Tests (Remaining)
 
@@ -86,11 +108,15 @@ API routes, utilities, business logic
 #### Page Load Tests
 
 - `src/routes/+page.test.ts` - Root page load function tests
-- `src/routes/breadcrumbs/+page.test.ts` - Breadcrumbs load function tests
-- `src/routes/news-article/+page.test.ts` - News article load function tests
-- `src/routes/blog-posting/+page.test.ts` - Blog posting load function tests
+- `src/routes/breadcrumbs/+page.test.ts` - Breadcrumbs load function
+  tests
+- `src/routes/news-article/+page.test.ts` - News article load function
+  tests
+- `src/routes/blog-posting/+page.test.ts` - Blog posting load function
+  tests
 - `src/routes/web-page/+page.test.ts` - Web page load function tests
-- `src/routes/multiple-ld-json-sections/+page.test.ts` - Multiple JSON-LD load function tests
+- `src/routes/multiple-ld-json-sections/+page.test.ts` - Multiple
+  JSON-LD load function tests
 
 ---
 
@@ -164,7 +190,8 @@ vi.mock('$app/stores', () => {
 **Focus Areas:**
 
 - **Svead Head component functionality** (SEO meta tag generation)
-- **Svead SchemaOrg component functionality** (JSON-LD structured data)
+- **Svead SchemaOrg component functionality** (JSON-LD structured
+  data)
 - **Integration between Head and SchemaOrg** (working together)
 - **Dynamic content with svead** (URL integration, date generation)
 
@@ -214,14 +241,16 @@ vi.mock('$app/stores', () => {
 - **Functional validation** (does it generate SEO tags?)
 - **JSON validation** (is the structured data valid?)
 - **Proper store mocks** with functional subscribe methods
-- `page.getByRole()`, `page.getByTestId()`, `page.getByText()` - Semantic queries
+- `page.getByRole()`, `page.getByTestId()`, `page.getByText()` -
+  Semantic queries
 - `await expect.element()` - Async assertions
 - Foundation First structure with `.skip`
 
 ### ❌ DON'T Use:
 
 - **Exact HTML string matching** (`toContain('<exact html>')`)
-- **Exact JSON-LD content testing** (test structure, not exact content)
+- **Exact JSON-LD content testing** (test structure, not exact
+  content)
 - **Copy component content validation** (not svead functionality)
 - **Complex implementation details** (test what svead does)
 - Direct SVG path testing (test CSS classes instead)
@@ -232,7 +261,8 @@ vi.mock('$app/stores', () => {
 
 ### Required Mocks:
 
-- **SvelteKit Stores**: `$app/stores`, `$app/state` with proper subscribe methods
+- **SvelteKit Stores**: `$app/stores`, `$app/state` with proper
+  subscribe methods
 - **Copy Components**: Mock functions that return simple strings
 - **Fathom Analytics**: `fathom-client`
 - **Environment Variables**: `$env/dynamic/public`
@@ -248,7 +278,8 @@ vi.mock('$app/stores', () => {
 
 ## Priority Implementation Order **UPDATED**
 
-1. **Convert Existing SSR Tests to Svead Pattern** (Quick wins - fix brittle tests)
+1. **Convert Existing SSR Tests to Svead Pattern** (Quick wins - fix
+   brittle tests)
 2. **Complete Page Component Tests** (Core functionality)
 3. **Add Utility/Export Tests** (Coverage completeness)
 4. **Add Page Load Function Tests** (Data integration)
@@ -268,7 +299,8 @@ vi.mock('$app/stores', () => {
 
 ## Next Steps
 
-1. ✅ **COMPLETED:** Fix main page and breadcrumbs SSR tests with proper svead testing
+1. ✅ **COMPLETED:** Fix main page and breadcrumbs SSR tests with
+   proper svead testing
 2. **Convert remaining SSR tests** to use svead testing patterns
 3. **Remove `.skip` from tests** as implementation progresses
 4. **Validate 100% coverage** achievement

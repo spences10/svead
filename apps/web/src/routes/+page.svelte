@@ -3,7 +3,7 @@
 	import { Head, type SeoConfig } from 'svead';
 
 	let { data } = $props();
-	let { Copy } = data;
+	let Copy = $derived(data.Copy);
 
 	const seo_config: SeoConfig = {
 		title: 'This is Svead a Svelte Head Component',

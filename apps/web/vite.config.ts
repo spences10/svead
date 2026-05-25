@@ -1,10 +1,10 @@
 import { sveltekit } from '@sveltejs/kit/vite';
 import tailwindcss from '@tailwindcss/vite';
-import { defineConfig } from 'vite';
+import { playwright } from '@vitest/browser-playwright';
 import { coverageConfigDefaults } from 'vitest/config';
 
-export default defineConfig({
-	plugins: [sveltekit(), tailwindcss()],
+export default {
+	plugins: [tailwindcss(), sveltekit()],
 
 	test: {
 		projects: [
@@ -18,12 +18,8 @@ export default defineConfig({
 					testTimeout: 2000,
 					browser: {
 						enabled: true,
-						provider: 'playwright',
-						instances: [
-							{ browser: 'chromium' },
-							// { browser: 'firefox' },
-							// { browser: 'webkit' },
-						],
+						provider: playwright(),
+						instances: [{ browser: 'chromium', headless: true }],
 					},
 					include: ['src/**/*.svelte.{test,spec}.{js,ts}'],
 					exclude: [
@@ -57,7 +53,6 @@ export default defineConfig({
 			},
 		],
 		coverage: {
-			all: true,
 			reporter: ['text-summary', 'html'],
 			provider: 'v8',
 			exclude: [
@@ -83,4 +78,4 @@ export default defineConfig({
 			},
 		},
 	},
-});
+};

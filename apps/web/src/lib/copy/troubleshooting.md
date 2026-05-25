@@ -7,8 +7,7 @@ Check these:
 1. Image URL is absolute (not relative)
 2. Image is accessible (publicly available)
 3. Image meets size requirements (1200x630px recommended)
-4. Test with
-   [OpenGraph Debugger](https://www.opengraph.xyz/)
+4. Test with [OpenGraph Debugger](https://www.opengraph.xyz/)
 
 ```typescript
 // ✅ Good - absolute URL
@@ -39,8 +38,7 @@ Common issues:
 1. **Missing required fields**: Check
    [Schema.org documentation](https://schema.org) for required
    properties
-2. **Wrong date format**: Use ISO 8601 format
-   (`2023-08-22T10:00:00Z`)
+2. **Wrong date format**: Use ISO 8601 format (`2023-08-22T10:00:00Z`)
 3. **Invalid URL**: Use full URLs with protocol
    (`https://example.com`)
 
@@ -62,8 +60,8 @@ If you see duplicate meta tags:
 
 ## The @context is missing
 
-The `SchemaOrg` component automatically adds `@context` if missing.
-If you need to add it manually:
+The `SchemaOrg` component automatically adds `@context` if missing. If
+you need to add it manually:
 
 ```typescript
 const schema = {

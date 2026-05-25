@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { browser } from '$app/environment';
-	import { page } from '$app/state';
 	import { env } from '$env/dynamic/public';
 	import { GitHub } from '$lib';
 	import Bluesky from '$lib/icons/bluesky.svelte';
@@ -26,7 +25,7 @@
 	});
 
 	onMount(() => {
-		(page.url.pathname, browser && Fathom.trackPageview());
+		if (browser) Fathom.trackPageview();
 	});
 </script>
 

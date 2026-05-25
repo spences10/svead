@@ -37,8 +37,8 @@ Always validate your structured data:
 
 - [Google Rich Results Test](https://search.google.com/test/rich-results)
 - [Schema.org Validator](https://validator.schema.org/)
-- Use browser DevTools to inspect `<script type="application/ld+json">`
-  tags
+- Use browser DevTools to inspect
+  `<script type="application/ld+json">` tags
 
 ## Type Safety
 

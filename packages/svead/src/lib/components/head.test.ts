@@ -2,10 +2,6 @@ import { render } from '@testing-library/svelte/svelte5';
 import { afterEach, describe, expect, it } from 'vitest';
 import Head from './head.svelte';
 
-const clean_html_content = (content: string): string => {
-	return content.replace(/<!--[\s\S]*?-->/g, '');
-};
-
 describe('Head component tests', () => {
 	afterEach(() => {
 		document.head.innerHTML = '';

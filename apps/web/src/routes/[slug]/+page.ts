@@ -8,7 +8,7 @@ export const load = async ({ params }) => {
 			Copy: Copy.default,
 			slug,
 		};
-	} catch (e) {
+	} catch {
 		throw error(404, `Documentation page "${slug}" not found`);
 	}
 };

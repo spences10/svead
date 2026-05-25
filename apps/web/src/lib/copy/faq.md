@@ -150,8 +150,7 @@ Use these tools:
 
 - [Google Rich Results Test](https://search.google.com/test/rich-results)
 - [Schema.org Validator](https://validator.schema.org/)
-- Browser DevTools: Inspect
-  `<script type="application/ld+json">` tags
+- Browser DevTools: Inspect `<script type="application/ld+json">` tags
 
 ## Do I need both Head and SchemaOrg components?
 

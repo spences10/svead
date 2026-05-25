@@ -17,25 +17,34 @@ this project.
 
 ### Getting Started
 
-- **[Components](./components)** - Learn about the `Head` and `SchemaOrg` components
-- **[Quick Reference](./quick-reference)** - Installation and basic usage
+- **[Components](./components)** - Learn about the `Head` and
+  `SchemaOrg` components
+- **[Quick Reference](./quick-reference)** - Installation and basic
+  usage
 
 ### Schema Types
 
-- **[Common Schema Types](./schema-types-content)** - WebPage, BlogPosting, NewsArticle, Article, BreadcrumbList
-- **[Specialty Schema Types](./schema-types-specialty)** - FAQ, Product, Recipe, Event, HowTo, Video, Course
+- **[Common Schema Types](./schema-types-content)** - WebPage,
+  BlogPosting, NewsArticle, Article, BreadcrumbList
+- **[Specialty Schema Types](./schema-types-specialty)** - FAQ,
+  Product, Recipe, Event, HowTo, Video, Course
 
 ### Advanced Usage
 
-- **[Real-World Patterns](./real-world-patterns)** - Default configs, helper functions, and reusable patterns
-- **[schema-dts Type Safety](./schema-dts)** - Leveraging TypeScript types for schema validation
-- **[Advanced Patterns](./advanced-patterns)** - @graph, conditional spreading, mainEntity, potentialAction
+- **[Real-World Patterns](./real-world-patterns)** - Default configs,
+  helper functions, and reusable patterns
+- **[schema-dts Type Safety](./schema-dts)** - Leveraging TypeScript
+  types for schema validation
+- **[Advanced Patterns](./advanced-patterns)** - @graph, conditional
+  spreading, mainEntity, potentialAction
 
 ### Best Practices & Help
 
-- **[Best Practices](./best-practices)** - Tips for dates, images, validation, and more
+- **[Best Practices](./best-practices)** - Tips for dates, images,
+  validation, and more
 - **[FAQ](./faq)** - Frequently asked questions
-- **[Troubleshooting](./troubleshooting)** - Common issues and solutions
+- **[Troubleshooting](./troubleshooting)** - Common issues and
+  solutions
 
 ## Quick Example
 
