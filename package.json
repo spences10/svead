@@ -28,5 +28,5 @@
 		"@types/node": "^25.9.1",
 		"vite-plus": "catalog:"
 	},
-	"packageManager": "pnpm@11.3.0"
+	"packageManager": "pnpm@11.4.0"
 }
