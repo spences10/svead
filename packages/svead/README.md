@@ -64,11 +64,24 @@ when you want structured data too:
 <p>This is a simple web page example.</p>
 ```
 
-## Props
+The [home page](https://svead.pages.dev) has a pint you can type a
+config into to see the tags it produces.
 
-It takes the following props:
+## Head
 
-### `SeoConfig` Props
+`Head` takes one prop, `seo_config`. From just the three required
+options it renders 13 tags:
+
+- the canonical link, `<title>` and the `title` and `description` meta
+  tags
+- Open Graph: `og:url`, `og:type`, `og:title` and `og:description`
+- Twitter: `twitter:card`, `twitter:title` and `twitter:description`
+- `itemprop` `name` and `description`
+
+The optional ones add to that, for example `open_graph_image` adds
+`og:image`, `og:image:alt`, `twitter:image` and `itemprop="image"`.
+
+### `SeoConfig` options
 
 | Property               | Type     | Description                                                  | Required |
 | :--------------------- | :------- | :----------------------------------------------------------- | :------- |
@@ -85,10 +98,10 @@ It takes the following props:
 | `twitter_card_type`    | `string` | The type of Twitter card. Defaults to 'summary_large_image'. | No       |
 | `open_graph_image_alt` | `string` | Alt text for the Open Graph image. Defaults to the title.    | No       |
 
-## SchemaOrg Component
+## SchemaOrg
 
-The SchemaOrg component allows you to add structured data to your web
-pages using JSON-LD format. This helps search engines better
+The `SchemaOrg` component allows you to add structured data to your
+web pages using JSON-LD format. This helps search engines better
 understand your content and can potentially improve your site's
 appearance in search results.
 
@@ -113,7 +126,7 @@ appearance in search results.
 <SchemaOrg schema={schema_org} />
 ```
 
-### `SchemaOrgProps` Props
+### `SchemaOrgProps`
 
 | Property | Type                     | Description                                                    | Required |
 | :------- | :----------------------- | :------------------------------------------------------------- | :------- |
@@ -130,7 +143,7 @@ appearance in search results.
 You can use any valid schema.org type as defined in the
 [schema.org documentation](https://schema.org).
 
-### Additional Notes:
+### Good to know
 
 - The `@context` property is automatically added by the component if
   not provided.
@@ -142,7 +155,7 @@ You can use any valid schema.org type as defined in the
   [Google's Rich Results Test](https://search.google.com/test/rich-results)
   to ensure it's correctly formatted.
 
-### Example with Multiple Schema Types
+### Nesting schema types
 
 ```svelte
 <script lang="ts">
@@ -186,7 +199,7 @@ You can use any valid schema.org type as defined in the
 ## Developing locally
 
 This is a pnpm workspace: the package is in `packages/svead` and the
-docs site in `apps/web`.
+docs site in `apps/web`. It needs Node 24.15 or later.
 
 ```bash
 pnpm install
@@ -194,14 +207,22 @@ pnpm install
 pnpm run dev:web
 # format, lint and type check
 pnpm run check
-# unit tests
+# unit tests for the package and the site
 pnpm run test:ci
+# end-to-end tests for the site, against a production build
+pnpm --filter web run test:e2e
 ```
 
+Tests sit beside the code they cover: `*.svelte.test.ts` runs in a
+real browser, `*.ssr.test.ts` and `*.test.ts` run in Node, and
+`*.e2e.ts` is Playwright.
+
 Each docs page is a Markdown file in `apps/web/src/lib/copy` with an
-entry in `apps/web/src/lib/docs/pages.ts`. After adding or renaming a
-page, run `pnpm run share-cards` in `apps/web` to render its link
-preview image.
+entry in `apps/web/src/lib/docs/pages.ts`, which is what the sidebar,
+the home page list and the command palette read. After adding or
+renaming a page, run `pnpm run share-cards` in `apps/web` to render
+its link preview image. A test fails if a page has no entry or no
+image.
 
 ## Releasing
 
@@ -218,14 +239,6 @@ pnpm run version
 pnpm run release
 # push the tags
 git push --follow-tags
-```
-
-## pnpm workspaces
-
-To add the `svead` package to the `web` workspace:
-
-```bash
-pnpm add -D svead --filter web
 ```
 
 ## Contributors ✨
