@@ -46,18 +46,15 @@
 		}
 	},
 	"scripts": {
-		"dev": "vp dev",
-		"build": "vp build && pnpm run package",
-		"preview": "vp preview",
-		"package": "pnpm run package:readme && svelte-kit sync && svelte-package && publint",
+		"build": "pnpm run package",
+		"package": "pnpm run package:readme && svelte-package && publint",
 		"package:readme": "cp ../../README.md README.md",
 		"prepublishOnly": "pnpm run package",
-		"test": "pnpm run test:integration && pnpm run test:ci",
-		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --tsgo",
-		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch --tsgo",
+		"test": "pnpm run test:ci",
+		"check": "svelte-check --tsconfig ./tsconfig.json --tsgo",
+		"check:watch": "svelte-check --tsconfig ./tsconfig.json --watch --tsgo",
 		"lint": "pnpm -w lint",
 		"format": "pnpm -w format",
-		"test:integration": "playwright test",
 		"test:unit": "vp test",
 		"test:ci": "vp test --run",
 		"coverage": "vp test --run --coverage"
@@ -66,9 +63,6 @@
 		"schema-dts": "^2.0.0"
 	},
 	"devDependencies": {
-		"@playwright/test": "catalog:",
-		"@sveltejs/adapter-auto": "^8.0.0",
-		"@sveltejs/kit": "catalog:",
 		"@sveltejs/package": "^3.0.0",
 		"@sveltejs/vite-plugin-svelte": "catalog:",
 		"@typescript/native": "catalog:",

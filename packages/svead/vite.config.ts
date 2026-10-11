@@ -1,10 +1,9 @@
-import adapter from '@sveltejs/adapter-auto';
-import { sveltekit } from '@sveltejs/kit/vite';
+import { svelte } from '@sveltejs/vite-plugin-svelte';
 import { coverageConfigDefaults, defineConfig } from 'vite-plus';
 import { playwright } from 'vite-plus/test/browser-playwright';
 
 export default defineConfig({
-	plugins: [sveltekit({ adapter: adapter() })],
+	plugins: [svelte()],
 	test: {
 		projects: [
 			{
@@ -40,7 +39,6 @@ export default defineConfig({
 				'**/*.config.{js,ts,cjs}',
 				'**/lib/index.ts',
 				'**/lib/types/**',
-				'**/routes/**',
 			],
 			thresholds: {
 				statements: 75,

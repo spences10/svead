@@ -1,15 +1,21 @@
 {
-	"extends": "$app/tsconfig",
 	"compilerOptions": {
 		"allowJs": true,
 		"checkJs": true,
 		"esModuleInterop": true,
 		"forceConsistentCasingInFileNames": true,
+		"isolatedModules": true,
+		"lib": ["esnext", "DOM", "DOM.Iterable"],
+		"module": "esnext",
+		"moduleResolution": "bundler",
+		"noEmit": true,
 		"resolveJsonModule": true,
 		"skipLibCheck": true,
 		"sourceMap": true,
 		"strict": true,
-		"moduleResolution": "bundler",
-		"types": ["vitest-browser-svelte", "$app/types"]
-	}
+		"target": "esnext",
+		"types": ["vitest-browser-svelte"],
+		"verbatimModuleSyntax": true
+	},
+	"include": ["src", "vite.config.ts"]
 }
