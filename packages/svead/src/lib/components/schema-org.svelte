@@ -8,7 +8,7 @@
 	import type {
 		SchemaOrgProps,
 		SchemaOrgType,
-	} from '$lib/types/schema-org.js';
+	} from '../types/schema-org.js';
 	import type { Graph, Thing, WithContext } from 'schema-dts';
 
 	const { schema }: SchemaOrgProps = $props();

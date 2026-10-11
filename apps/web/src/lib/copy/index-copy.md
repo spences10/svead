@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Details } from '$lib/components'
+  import { Details } from '#lib/components/index.js'
 </script>
 
 # Welcome to Svead 🍺

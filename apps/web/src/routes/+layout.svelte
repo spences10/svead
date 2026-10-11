@@ -1,10 +1,13 @@
 <script lang="ts">
-	import { browser } from '$app/environment';
-	import { env } from '$env/dynamic/public';
-	import { GitHub } from '$lib';
-	import Bluesky from '$lib/icons/bluesky.svelte';
-	import Github from '$lib/icons/github.svelte';
-	import Youtube from '$lib/icons/youtube.svelte';
+	import Bluesky from '#lib/icons/bluesky.svelte';
+	import Github from '#lib/icons/github.svelte';
+	import Youtube from '#lib/icons/youtube.svelte';
+	import { GitHub } from '#lib/index.js';
+	import { browser } from '$app/env';
+	import {
+		PUBLIC_FATHOM_ID,
+		PUBLIC_FATHOM_URL,
+	} from '$app/env/public';
 	import * as Fathom from 'fathom-client';
 	import { onMount } from 'svelte';
 	import '../app.css';
@@ -16,10 +19,9 @@
 
 	let { children }: Props = $props();
 
-	const { PUBLIC_FATHOM_ID, PUBLIC_FATHOM_URL } = env;
-
 	onMount(() => {
-		Fathom.load(PUBLIC_FATHOM_ID!, {
+		if (!PUBLIC_FATHOM_ID) return;
+		Fathom.load(PUBLIC_FATHOM_ID, {
 			url: PUBLIC_FATHOM_URL,
 		});
 	});

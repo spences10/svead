@@ -1,10 +1,20 @@
+import adapter from '@sveltejs/adapter-cloudflare';
 import { sveltekit } from '@sveltejs/kit/vite';
 import tailwindcss from '@tailwindcss/vite';
+import { mdsvex } from 'mdsvex';
 import { coverageConfigDefaults, defineConfig } from 'vite-plus';
 import { playwright } from 'vite-plus/test/browser-playwright';
+import mdsvex_config from './mdsvex.config.js';
 
 export default defineConfig({
-	plugins: [tailwindcss(), sveltekit()],
+	plugins: [
+		tailwindcss(),
+		sveltekit({
+			adapter: adapter(),
+			extensions: ['.svelte', '.md'],
+			preprocess: [mdsvex(mdsvex_config)],
+		}),
+	],
 
 	test: {
 		projects: [

@@ -11,11 +11,9 @@ vi.mock('fathom-client', () => ({
 }));
 
 // Mock environment variables
-vi.mock('$env/dynamic/public', () => ({
-	env: {
-		PUBLIC_FATHOM_ID: 'test-fathom-id',
-		PUBLIC_FATHOM_URL: 'https://test.fathom.com/script.js',
-	},
+vi.mock('$app/env/public', () => ({
+	PUBLIC_FATHOM_ID: 'test-fathom-id',
+	PUBLIC_FATHOM_URL: 'https://test.fathom.com/script.js',
 }));
 
 describe('layout.svelte', () => {
