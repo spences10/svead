@@ -1,5 +1,5 @@
 import type { SchemaOrgProps, SeoConfig } from 'svead';
-import { site } from './config.js';
+import { share_card_url, site } from './config.js';
 import {
 	groups,
 	href_of,
@@ -21,7 +21,7 @@ const author = {
  * so the request URL isn't the one visitors will be on.
  */
 export function seo_config(
-	page: { title: string; description: string },
+	page: { title: string; description: string; card: string },
 	url: string,
 ): SeoConfig {
 	return {
@@ -32,8 +32,8 @@ export function seo_config(
 		site_name: site.name,
 		author_name: site.author.name,
 		language: 'en_GB',
-		open_graph_image: site.share_image,
-		open_graph_image_alt: `${site.name}: Svelte Head and Schema.org components`,
+		open_graph_image: share_card_url(page.card),
+		open_graph_image_alt: `${page.title}, on a card with a pint of mead whose foam is labelled head`,
 	};
 }
 

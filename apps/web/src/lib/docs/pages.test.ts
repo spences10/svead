@@ -13,7 +13,19 @@ const copy = Object.keys(import.meta.glob('../copy/*.md')).map(
 	(path) => path.slice(path.lastIndexOf('/') + 1, -'.md'.length),
 );
 
+const cards = Object.keys(
+	import.meta.glob('../../../static/og/*.png', { query: '?url' }),
+).map((path) =>
+	path.slice(path.lastIndexOf('/') + 1, -'.png'.length),
+);
+
 describe('docs pages', () => {
+	it('has a share card for every page, made by `pnpm run share-cards`', () => {
+		expect(cards.sort()).toEqual(
+			['home', ...pages.map((page) => page.slug)].sort(),
+		);
+	});
+
 	it('has an entry for every Markdown page, and a page for every entry', () => {
 		// home.md is the home page's own content, not a docs page
 		const documented = copy.filter((slug) => slug !== 'home').sort();

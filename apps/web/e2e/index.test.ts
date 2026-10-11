@@ -60,7 +60,7 @@ test.describe('meta tags', () => {
 		const metaOgImage = page.locator('meta[property="og:image"]');
 		await expect(metaOgImage.first()).toHaveAttribute(
 			'content',
-			'https://og.tailgraph.com/og?fontFamily=Roboto&title=This+is+Svead&titleTailwind=text-gray-800+font-bold+text-6xl&text=Set+Head+meta+tag+information&textTailwind=text-gray-700+text-2xl+mt-4&logoTailwind=h-8&bgTailwind=bg-white&footer=svead.pages.dev&footerTailwind=text-teal-600',
+			'https://svead.pages.dev/og/home.png',
 		);
 	});
 
@@ -106,7 +106,7 @@ test.describe('meta tags', () => {
 		);
 		await expect(metaTwitterImage.first()).toHaveAttribute(
 			'content',
-			'https://og.tailgraph.com/og?fontFamily=Roboto&title=This+is+Svead&titleTailwind=text-gray-800+font-bold+text-6xl&text=Set+Head+meta+tag+information&textTailwind=text-gray-700+text-2xl+mt-4&logoTailwind=h-8&bgTailwind=bg-white&footer=svead.pages.dev&footerTailwind=text-teal-600',
+			'https://svead.pages.dev/og/home.png',
 		);
 	});
 });

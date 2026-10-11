@@ -184,3 +184,20 @@ test('unknown pages are a 404', async ({ page }) => {
 
 	expect(response?.status()).toBe(404);
 });
+
+test('pages point at a share card that exists', async ({
+	page,
+	request,
+}) => {
+	for (const path of ['/', '/components', '/faq']) {
+		await page.goto(path);
+		const image = await page
+			.locator('meta[property="og:image"]')
+			.getAttribute('content');
+
+		// The meta tag carries the production origin, the file is local
+		const card = await request.get(new URL(image!).pathname);
+		expect(card.status(), `${path} share card`).toBe(200);
+		expect(card.headers()['content-type']).toBe('image/png');
+	}
+});

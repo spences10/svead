@@ -15,7 +15,9 @@ describe('home page SSR', () => {
 		);
 		expect(head).toMatch(/name="description"/);
 		expect(head).toMatch(/property="og:title"/);
-		expect(head).toMatch(/property="og:image"/);
+		expect(head).toContain(
+			'property="og:image" content="https://svead.pages.dev/og/home.png"',
+		);
 		expect(head).toMatch(/name="twitter:card"/);
 		expect(head).toMatch(/name="author" content="Scott Spence"/);
 	});

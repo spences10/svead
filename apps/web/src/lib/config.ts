@@ -6,10 +6,14 @@ export const site = {
 		'Svead is a pair of Svelte components: Head sets the title, canonical, Open Graph and Twitter tags, and SchemaOrg adds JSON-LD structured data.',
 	repo: 'https://github.com/spences10/svead',
 	npm: 'https://www.npmjs.com/package/svead',
-	share_image:
-		'https://og.tailgraph.com/og?fontFamily=Roboto&title=This+is+Svead&titleTailwind=text-gray-800+font-bold+text-6xl&text=Set+Head+meta+tag+information&textTailwind=text-gray-700+text-2xl+mt-4&logoTailwind=h-8&bgTailwind=bg-white&footer=svead.pages.dev&footerTailwind=text-teal-600',
+	// Made by `pnpm run share-cards`, one per page in static/og
+	share_card: { width: 1200, height: 630 },
 	author: {
 		name: 'Scott Spence',
 		url: 'https://scottspence.com',
 	},
 };
+
+/** The link-preview card for a page, named as in static/og */
+export const share_card_url = (name: string) =>
+	`${site.url}/og/${name}.png`;

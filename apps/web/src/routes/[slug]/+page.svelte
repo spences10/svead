@@ -17,6 +17,7 @@
 		{
 			title: `${doc.title} | ${site.name}`,
 			description: `${doc.description}. Documentation for Svead, the Svelte Head and Schema.org components.`,
+			card: doc.slug,
 		},
 		`${site.url}${page.url.pathname}`,
 	)}

@@ -16,6 +16,7 @@
 		{
 			title: 'Svead: Svelte Head and Schema.org components',
 			description: site.description,
+			card: 'home',
 		},
 		`${site.url}${page.url.pathname}`,
 	)}
