@@ -1,4 +1,4 @@
-# Svead 🍺 - Svelte Head Component
+# Svead 🍺
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 
@@ -12,28 +12,31 @@
 
 [![Tests: Unit](https://github.com/spences10/svead/actions/workflows/unit-test.yml/badge.svg)](https://github.com/spences10/svead/actions/workflows/unit-test.yml)
 
-Svead, a component that allows you to set head meta information,
-canonical, title, Twitter and Facebook Open Graph tags.
+**Put a proper head on every page.**
 
-Also supports JSON-LD for SEO with the `SchemaOrg` component.
+Svead is two Svelte components. `Head` sets your title, canonical,
+Open Graph and Twitter tags. `SchemaOrg` adds JSON-LD structured data.
 
-![svead](.github/svead.svg)
+**[Read the docs at svead.pages.dev](https://svead.pages.dev)**
+
+[![Svead: put a proper head on every page](https://svead.pages.dev/og/home.png)](https://svead.pages.dev)
 
 ## Name
 
 The name was meant to be Svelte + Head, but I like Puru's suggestion
-of Svelte + Mead
+of Svelte + Mead, hence the pint.
 
-## v0.0.4 vs v1
+## Use it
 
-v1 is currently available via `pnpm i -D svead@next` and will be that
-way until Svelte 5 comes out of RC phase.
+```bash
+pnpm add -D svead
+```
 
-v1 has changed compared to v0.0.4. The main change is that the there's
-one config object with `SeoConfig`.
+Svead needs Svelte 5. If you're still on Svelte 4, stay on
+`svead@0.0.9`, which has the older API with one prop per tag.
 
-Separated out the `SchemaOrg` component from the `Head` component
-which can be optionally used to add structured data to your web pages.
+Build a config for the page and hand it to `Head`. Add `SchemaOrg`
+when you want structured data too:
 
 ```svelte
 <script lang="ts">
@@ -164,58 +167,57 @@ You can use any valid schema.org type as defined in the
 <SchemaOrg schema={schema_org} />
 ```
 
-## Packaging for NPM
+## Documentation
+
+- [Quick reference](https://svead.pages.dev/quick-reference): install,
+  basic usage and a cheatsheet
+- [Components](https://svead.pages.dev/components): every option for
+  `Head` and `SchemaOrg`
+- [Common schema types](https://svead.pages.dev/schema-types-content)
+  and
+  [more schema types](https://svead.pages.dev/schema-types-specialty)
+- [Real-world patterns](https://svead.pages.dev/real-world-patterns),
+  [type safety with schema-dts](https://svead.pages.dev/schema-dts)
+  and [advanced patterns](https://svead.pages.dev/advanced-patterns)
+- [Best practices](https://svead.pages.dev/best-practices),
+  [FAQ](https://svead.pages.dev/faq) and
+  [troubleshooting](https://svead.pages.dev/troubleshooting)
+
+## Developing locally
+
+This is a pnpm workspace: the package is in `packages/svead` and the
+docs site in `apps/web`.
+
+```bash
+pnpm install
+# run the docs site against the local package
+pnpm run dev:web
+# format, lint and type check
+pnpm run check
+# unit tests
+pnpm run test:ci
+```
+
+Each docs page is a Markdown file in `apps/web/src/lib/copy` with an
+entry in `apps/web/src/lib/docs/pages.ts`. After adding or renaming a
+page, run `pnpm run share-cards` in `apps/web` to render its link
+preview image.
+
+## Releasing
 
 Scott, this is here for you to remember how to do this 🙃
 
-Although I detailed this in
-[Making npm Packages with SvelteKit](https://scottspence.com/posts/making-npm-packages-with-sveltekit)
-I think it's best to put it here as I always come to the README and
-the instructions are never there! 😅
-
-**Publish the project to NPM**
+Releases are manual and use changesets:
 
 ```bash
-# change to package directory
-cd packages/svead
-# authenticate with npm
-npm login
-# bump version with npm
-npm version 0.0.8
-# package with sveltekit
-pnpm run package
-# publish
-npm publish
-# push tags to github
-git push --tags
-```
-
-**Publish @next package**
-
-Same procedure except use the `--tag` flag:
-
-```bash
-# change to package directory
-cd packages/svead
-# authenticate with npm
-npm login
-# bump version with npm
-npm version 0.0.13
-# package with sveltekit
-pnpm run package
-# publish with tag
-npm publish --tag next
-# push tags to github
-git push --tags
-```
-
-**Move @next package to latest**
-
-```bash
-# authenticate with npm
-npm login
-# move @next to latest
-npm dist-tag add svead@0.0.13 latest
+# describe the change (once per change, commit the file it writes)
+pnpm changeset
+# bump the version and write the changelog
+pnpm run version
+# build and publish to npm
+pnpm run release
+# push the tags
+git push --follow-tags
 ```
 
 ## pnpm workspaces
