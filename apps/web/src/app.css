@@ -13,17 +13,17 @@
 	/* Structure: <h1><a>content</a></h1> */
 	.prose h1 a,
 	.prose h1 {
-		@apply text-primary leading-normal font-black tracking-wide drop-shadow-lg;
+		@apply leading-normal font-black tracking-wide text-primary drop-shadow-lg;
 	}
 
 	.prose h2 a,
 	.prose h2 {
-		@apply text-secondary font-bold tracking-tight drop-shadow-sm;
+		@apply font-bold tracking-tight text-secondary drop-shadow-sm;
 	}
 
 	.prose h3 a,
 	.prose h3 {
-		@apply text-secondary font-semibold tracking-tight;
+		@apply font-semibold tracking-tight text-secondary;
 	}
 
 	.prose h4 a,
@@ -32,7 +32,7 @@
 	.prose h4,
 	.prose h5,
 	.prose h6 {
-		@apply text-secondary font-medium;
+		@apply font-medium text-secondary;
 	}
 
 	/* Ensure anchor links inside headers don't show underlines */
@@ -48,7 +48,7 @@
 
 	/* Add some nice text effects for emphasis */
 	.prose strong {
-		@apply text-secondary font-bold;
+		@apply font-bold text-secondary;
 	}
 
 	.prose em {
@@ -60,6 +60,6 @@
 	}
 
 	.prose blockquote {
-		@apply border-primary bg-primary/40 text-primary-content border-l-4 italic;
+		@apply border-l-4 border-primary bg-primary/40 text-primary-content italic;
 	}
 }

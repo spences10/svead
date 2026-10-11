@@ -1,12 +1,12 @@
-import { page } from '@vitest/browser/context';
 import { describe, expect, it } from 'vitest';
 import { render } from 'vitest-browser-svelte';
+import { page } from 'vitest/browser';
 import Details from './details.svelte';
 
 describe('details.svelte', () => {
 	describe('Initial Rendering', () => {
 		it('should render with default props', async () => {
-			render(Details);
+			await render(Details);
 
 			const button = page.getByTestId('details-button');
 			await expect.element(button).toBeInTheDocument();
@@ -16,7 +16,7 @@ describe('details.svelte', () => {
 		});
 
 		it('should render with custom button text', async () => {
-			render(Details, { buttonText: 'Show Details' });
+			await render(Details, { buttonText: 'Show Details' });
 
 			const button = page.getByTestId('details-button');
 			await expect.element(button).toHaveTextContent('Show Details');
@@ -27,7 +27,7 @@ describe('details.svelte', () => {
 		});
 
 		it('should render closed by default', async () => {
-			render(Details, { buttonText: 'Show Details' });
+			await render(Details, { buttonText: 'Show Details' });
 
 			const button = page.getByTestId('details-button');
 			await expect.element(button).toHaveTextContent('Show Details');
@@ -46,7 +46,10 @@ describe('details.svelte', () => {
 	describe('User Interactions', () => {
 		it('should show different text when isOpen is true', async () => {
 			// Test with isOpen=true to avoid click interaction issues
-			render(Details, { buttonText: 'Show Details', isOpen: true });
+			await render(Details, {
+				buttonText: 'Show Details',
+				isOpen: true,
+			});
 
 			const button = page.getByTestId('details-button');
 			await expect.element(button).toHaveTextContent('Close');
@@ -58,7 +61,7 @@ describe('details.svelte', () => {
 
 		it('should test props destructuring function with different buttonText values', async () => {
 			// Test props destructuring function by testing different buttonText values
-			render(Details, { buttonText: 'Custom Button Text' });
+			await render(Details, { buttonText: 'Custom Button Text' });
 
 			const button = page.getByTestId('details-button');
 			await expect
@@ -68,7 +71,7 @@ describe('details.svelte', () => {
 
 		it('should test CSS class construction function with different styles', async () => {
 			// Test the CSS class construction function in the component
-			render(Details, { styles: 'btn-secondary btn-lg' });
+			await render(Details, { styles: 'btn-secondary btn-lg' });
 
 			const button = page.getByTestId('details-button');
 			await expect.element(button).toHaveClass('btn');

@@ -1,7 +1,7 @@
 import { sveltekit } from '@sveltejs/kit/vite';
 import tailwindcss from '@tailwindcss/vite';
-import { playwright } from '@vitest/browser-playwright';
-import { coverageConfigDefaults, defineConfig } from 'vitest/config';
+import { coverageConfigDefaults, defineConfig } from 'vite-plus';
+import { playwright } from 'vite-plus/test/browser-playwright';
 
 export default defineConfig({
 	plugins: [tailwindcss(), sveltekit()],

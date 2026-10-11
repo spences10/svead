@@ -14,7 +14,7 @@ jobs:
     name: End-to-End Tests
     runs-on: ubuntu-24.04
     container:
-      image: mcr.microsoft.com/playwright:v1.60.0-noble
+      image: mcr.microsoft.com/playwright:v1.63.0-noble
       options: --user 1001
     timeout-minutes: 15
     concurrency:
@@ -53,21 +53,21 @@ jobs:
 
       - name: Verify Playwright versions match
         run: |
-          # Extract Playwright version from apps/web/package.json
-          PACKAGE_VERSION=$(node -p "require('./apps/web/package.json').devDependencies.playwright.replace(/[\^~]/, '')")
+          # Extract the pinned Playwright version from the pnpm catalog
+          PACKAGE_VERSION=$(sed -n 's/^  playwright: //p' pnpm-workspace.yaml)
 
           # Extract version from container image (from this workflow file)
           CONTAINER_VERSION=$(grep -o 'playwright:v[0-9.]*' .github/workflows/e2e-ci.yml | sed 's/playwright:v//')
 
-          echo "📦 Package.json Playwright version: $PACKAGE_VERSION"
+          echo "📦 Catalog Playwright version: $PACKAGE_VERSION"
           echo "🐳 Container image Playwright version: $CONTAINER_VERSION"
 
           if [ "$PACKAGE_VERSION" != "$CONTAINER_VERSION" ]; then
             echo "❌ ERROR: Playwright versions don't match!"
-            echo "   Package.json: $PACKAGE_VERSION"
+            echo "   Catalog: $PACKAGE_VERSION"
             echo "   Container: $CONTAINER_VERSION"
             echo "   Please update either:"
-            echo "   - apps/web/package.json devDependencies.playwright to ^$CONTAINER_VERSION"
+            echo "   - playwright and @playwright/test in pnpm-workspace.yaml to $CONTAINER_VERSION"
             echo "   - Container image to mcr.microsoft.com/playwright:v$PACKAGE_VERSION-noble"
             exit 1
           else

@@ -87,7 +87,8 @@ describe('page.svelte SSR - Svead Head Component Validation', () => {
 
 	describe('Page Content Integration', () => {
 		it('should render Copy component', () => {
-			render(Page, { props: { data: mock_data } });
+			// The render result is lazy, so read the output to run it
+			void render(Page, { props: { data: mock_data } }).body;
 
 			// Verify the Copy component was called (it's a mock function)
 			expect(MockCopy).toHaveBeenCalled();

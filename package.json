@@ -1,6 +1,7 @@
 {
 	"name": "svead-workspace",
 	"private": true,
+	"type": "module",
 	"scripts": {
 		"dev:web": "pnpm run build:packages && pnpm --filter=web dev",
 		"build:web": "pnpm run build:packages && pnpm --filter=web build",
@@ -14,10 +15,12 @@
 		"test:unit:svead": "pnpm run build:packages && pnpm --filter=svead test:unit",
 		"test:int:svead": "pnpm run build:packages && pnpm --filter=svead test:integration",
 		"coverage:svead": "pnpm run build:packages && pnpm --filter=svead coverage",
+		"build": "pnpm run build:packages && pnpm --filter=web exec vp build",
+		"test:ci": "pnpm -r run test:ci",
 		"build:packages": "pnpm -r --filter=\"./packages/*\" run build",
 		"format": "vp check --fix",
 		"lint": "vp check",
-		"check": "vp check && pnpm -r --filter=\"./apps/*\" --filter=\"./packages/*\" run check",
+		"check": "vp check && pnpm -r run check",
 		"changeset": "changeset",
 		"version": "changeset version",
 		"release": "pnpm run build:packages && changeset publish",
@@ -26,7 +29,12 @@
 	"devDependencies": {
 		"@changesets/cli": "^2.31.0",
 		"@types/node": "^25.9.1",
+		"typescript": "catalog:",
+		"vite": "catalog:",
 		"vite-plus": "catalog:"
 	},
-	"packageManager": "pnpm@11.5.0"
+	"engines": {
+		"node": ">=24.15.0"
+	},
+	"packageManager": "pnpm@12.11.1"
 }

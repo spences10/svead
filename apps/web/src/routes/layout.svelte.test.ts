@@ -1,6 +1,6 @@
-import { page } from '@vitest/browser/context';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { render } from 'vitest-browser-svelte';
+import { page } from 'vitest/browser';
 import Layout from './+layout.svelte';
 
 // Mock Fathom analytics
@@ -25,7 +25,7 @@ describe('layout.svelte', () => {
 
 	describe('Initial Rendering', () => {
 		it('should render layout structure without errors', async () => {
-			render(Layout);
+			await render(Layout);
 
 			// Test header exists
 			const header = page.getByRole('banner');

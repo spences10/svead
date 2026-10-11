@@ -1,5 +1,5 @@
-import { render } from '@testing-library/svelte/svelte5';
 import { afterEach, describe, expect, it } from 'vitest';
+import { render } from 'vitest-browser-svelte';
 import SchemaOrg from './schema-org.svelte';
 
 function get_json_ld() {
@@ -10,13 +10,13 @@ function get_json_ld() {
 	return JSON.parse(script?.textContent ?? '{}');
 }
 
-describe('SchemaOrg', () => {
+describe('SchemaOrg', async () => {
 	afterEach(() => {
 		document.head.innerHTML = '';
 	});
 
-	it('adds schema.org context to a single schema object', () => {
-		render(SchemaOrg, {
+	it('adds schema.org context to a single schema object', async () => {
+		await render(SchemaOrg, {
 			schema: {
 				'@type': 'Article',
 				headline: 'Structured data that works',
@@ -30,8 +30,8 @@ describe('SchemaOrg', () => {
 		});
 	});
 
-	it('preserves an explicit context on a single schema object', () => {
-		render(SchemaOrg, {
+	it('preserves an explicit context on a single schema object', async () => {
+		await render(SchemaOrg, {
 			schema: {
 				'@context': 'https://schema.org',
 				'@type': 'Person',
@@ -46,8 +46,8 @@ describe('SchemaOrg', () => {
 		});
 	});
 
-	it('renders multiple schema objects as a single @graph', () => {
-		render(SchemaOrg, {
+	it('renders multiple schema objects as a single @graph', async () => {
+		await render(SchemaOrg, {
 			schema: [
 				{
 					'@type': 'WebSite',

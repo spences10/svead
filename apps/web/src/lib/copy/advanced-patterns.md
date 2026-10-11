@@ -124,9 +124,7 @@ You can use multiple `SchemaOrg` components on the same page:
 
 	const breadcrumb_schema: SchemaOrgProps['schema'] = {
 		'@type': 'BreadcrumbList',
-		itemListElement: [
-			/* ... */
-		],
+		itemListElement: [/* ... */],
 	};
 </script>
 

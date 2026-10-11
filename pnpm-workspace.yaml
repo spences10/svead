@@ -1,25 +1,35 @@
 packages:
-  - .
-  - apps/*
-  - packages/*
+  - 'apps/*'
+  - 'packages/*'
 
 minimumReleaseAge: 2880
 
 catalog:
-  '@playwright/test': ^1.60.0
-  '@vitest/browser': ^4.1.7
-  '@vitest/coverage-v8': ^4.1.7
+  '@playwright/test': 1.63.0
+  '@sveltejs/vite-plugin-svelte': ^7.3.0
+  '@typescript/native': npm:typescript@^7.0.2
+  '@vitest/browser-playwright': 5.0.3
+  '@vitest/coverage-v8': 5.0.3
+  playwright: 1.63.0
+  svelte: ^5.57.1
+  svelte-check: ^4.7.6
   typescript: ^6.0.3
-  vite: ^8.0.14
-  vite-plus: ^0.1.22
-  vitest: ^4.1.7
+  vite: npm:@voidzero-dev/vite-plus-core@1.1.0
+  vite-plus: 1.1.0
+  vitest: 5.0.3
+  vitest-browser-svelte: ^3.1.0
 
 allowBuilds:
+  '@tailwindcss/oxide': true
   esbuild: true
-  sharp: true
+  sharp: false
   workerd: true
 
-onlyBuiltDependencies:
-  - esbuild
-  - sharp
-  - workerd
+overrides:
+  vite@*: 'catalog:'
+  vitest@*: 'catalog:'
+
+peerDependencyRules:
+  allowedVersions:
+    # Vite+ core exposes Vite 8 APIs but uses Vite+'s package version.
+    vite: '1.1.0'
