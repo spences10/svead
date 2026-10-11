@@ -47,12 +47,15 @@ export interface SeoConfig {
 	website?: string;
 
 	/**
-	 * The language of the web page.
-	 * Used as the og:locale property.
-	 * Defaults to 'en'.
+	 * The locale of the web page, in Open Graph's `language_TERRITORY`
+	 * format, for example `en_GB`.
+	 * Used as the og:locale property, which is left out when this is
+	 * not set.
+	 *
+	 * This does not set the `lang` attribute on `<html>`; that lives
+	 * in your app's HTML template.
 	 *
 	 * @type {string}
-	 * @default 'en'
 	 */
 	language?: string;
 

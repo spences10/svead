@@ -64,17 +64,17 @@ const schema: SchemaOrgProps['schema'] = {
 };
 ```
 
-## Default Language
+## Language
 
-The language defaults to `'en'`, but specify it explicitly for
-clarity:
+There is no default language. Set `language` to have `og:locale`
+rendered, using Open Graph's `language_TERRITORY` format:
 
 ```typescript
 const seo_config: SeoConfig = {
 	title: 'Page Title',
 	description: 'Description',
 	url: 'https://example.com',
-	language: 'en', // Explicit is better
+	language: 'en_GB',
 };
 ```
 
