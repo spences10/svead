@@ -1,10 +1,11 @@
 <script lang="ts">
 	import { palette } from '#lib/state/palette.svelte.js';
 	import SearchIcon from '@lucide/svelte/icons/search';
+	import { onMount } from 'svelte';
 
 	// Ctrl on the server and on non-Apple platforms, ⌘ once we know
 	let modifier = $state('Ctrl');
-	$effect(() => {
+	onMount(() => {
 		if (/mac|iphone|ipad/i.test(navigator.userAgent)) modifier = '⌘';
 	});
 </script>

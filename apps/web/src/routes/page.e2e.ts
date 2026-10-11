@@ -27,6 +27,8 @@ test.describe('home page', () => {
 	test('rewrites the pint’s head as the config changes', async ({
 		page,
 	}) => {
+		// The page is prerendered: wait for the app before typing
+		await page.waitForLoadState('networkidle');
 		const head = page.getByRole('list', {
 			name: 'Tags Head renders for this config',
 		});

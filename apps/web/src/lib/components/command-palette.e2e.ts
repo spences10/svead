@@ -60,6 +60,50 @@ test.describe('command palette', () => {
 		await expect(page.getByRole('dialog')).toBeHidden();
 	});
 
+	test('starts clean each time it opens', async ({ page }) => {
+		await open_hydrated(page, '/');
+		await page.keyboard.press('Control+k');
+		const input = page.getByRole('combobox');
+		await input.fill('twitter');
+		await page.keyboard.press('Escape');
+		await expect(page.getByRole('dialog')).toBeHidden();
+
+		await page.keyboard.press('Control+k');
+
+		await expect(input).toHaveValue('');
+		await expect(page.getByRole('option').first()).toContainText(
+			'Home',
+		);
+	});
+
+	test('moves through results with the arrow keys', async ({
+		page,
+	}) => {
+		await open_hydrated(page, '/');
+		await page.keyboard.press('Control+k');
+		const options = page.getByRole('option');
+
+		await expect(options.first()).toHaveAttribute(
+			'aria-selected',
+			'true',
+		);
+
+		await page.keyboard.press('ArrowDown');
+		await expect(options.nth(1)).toHaveAttribute(
+			'aria-selected',
+			'true',
+		);
+
+		// Up from the top wraps to the last result, scrolled into view
+		await page.keyboard.press('ArrowUp');
+		await page.keyboard.press('ArrowUp');
+		await expect(options.last()).toHaveAttribute(
+			'aria-selected',
+			'true',
+		);
+		await expect(options.last()).toBeInViewport();
+	});
+
 	test('switches theme', async ({ page }) => {
 		await open_hydrated(page, '/');
 		await page.keyboard.press('/');

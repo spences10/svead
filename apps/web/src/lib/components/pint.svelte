@@ -73,29 +73,25 @@
 	];
 
 	let foam: HTMLDivElement | undefined;
-	let settled_count: number | undefined;
 
-	// The head wobbles as it grows or shrinks, not on every keystroke
-	$effect(() => {
-		const count = tags.length;
-		if (settled_count !== undefined && count !== settled_count) {
-			const reduced = window.matchMedia(
-				'(prefers-reduced-motion: reduce)',
-			).matches;
-			if (!reduced) {
-				foam?.animate(
-					[
-						{ scale: '1 1' },
-						{ scale: '1.015 0.97' },
-						{ scale: '0.99 1.02' },
-						{ scale: '1 1' },
-					],
-					{ duration: 420, easing: 'ease-out' },
-				);
-			}
-		}
-		settled_count = count;
-	});
+	// The head wobbles as an option pours in or out. Typing changes
+	// what the tags say, not how many there are, so it stays still
+	function wobble() {
+		const reduced = window.matchMedia(
+			'(prefers-reduced-motion: reduce)',
+		).matches;
+		if (reduced) return;
+
+		foam?.animate(
+			[
+				{ scale: '1 1' },
+				{ scale: '1.015 0.97' },
+				{ scale: '0.99 1.02' },
+				{ scale: '1 1' },
+			],
+			{ duration: 420, easing: 'ease-out' },
+		);
+	}
 </script>
 
 {#snippet cloud(fill: boolean)}
@@ -197,6 +193,7 @@
 								<input
 									type="checkbox"
 									bind:checked={enabled[extra.key]}
+									onchange={wobble}
 								/>
 								<span>{extra.key}</span>
 							</label>

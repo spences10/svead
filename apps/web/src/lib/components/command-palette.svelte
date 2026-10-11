@@ -121,7 +121,6 @@
 		},
 	];
 
-	let dialog: HTMLDialogElement | undefined;
 	let query = $state('');
 	let active = $state(0);
 
@@ -148,24 +147,39 @@
 		`palette-option-${item.id}`;
 	const active_item = $derived(results[active]);
 
-	$effect(() => {
-		if (!dialog) return;
+	// A modal dialog can only be opened by calling it, so this
+	// attachment keeps the element in step with the shared open state
+	function modal(dialog: HTMLDialogElement) {
 		if (palette.open && !dialog.open) {
-			query = '';
-			active = 0;
 			dialog.showModal();
 			Fathom.trackEvent('palette open');
 		} else if (!palette.open && dialog.open) {
 			dialog.close();
 		}
-	});
+	}
 
-	$effect(() => {
-		if (!active_item) return;
+	// However it closes (escape, backdrop, picking a result), the next
+	// search starts clean
+	function handle_close() {
+		palette.open = false;
+		query = '';
+		active = 0;
+	}
+
+	// Only for the keyboard: under the pointer the option is in view
+	function move_active(step: number) {
+		if (!results.length) return;
+		active = (active + step + results.length) % results.length;
 		document
-			.getElementById(option_id(active_item))
+			.getElementById(option_id(results[active]))
 			?.scrollIntoView({ block: 'nearest' });
-	});
+	}
+
+	// A new query is a new list, read from the top
+	function handle_input() {
+		active = 0;
+		document.getElementById('palette-results')?.scrollTo({ top: 0 });
+	}
 
 	afterNavigate(() => {
 		palette.open = false;
@@ -199,11 +213,10 @@
 	function handle_input_keydown(event: KeyboardEvent) {
 		if (event.key === 'ArrowDown') {
 			event.preventDefault();
-			active = (active + 1) % Math.max(results.length, 1);
+			move_active(1);
 		} else if (event.key === 'ArrowUp') {
 			event.preventDefault();
-			active =
-				(active - 1 + results.length) % Math.max(results.length, 1);
+			move_active(-1);
 		} else if (event.key === 'Enter' && active_item) {
 			event.preventDefault();
 			// Click the option itself so links stay real navigations
@@ -221,13 +234,19 @@
 
 <!-- svelte-ignore a11y_click_events_have_key_events, a11y_no_noninteractive_element_interactions -->
 <dialog
-	bind:this={dialog}
+	{@attach modal}
 	class="palette"
 	aria-label="Search the docs"
-	onclose={() => (palette.open = false)}
+	oncancel={(event) => {
+		// Escape. Close through the state, so the two never disagree
+		// about whether the palette is open
+		event.preventDefault();
+		palette.open = false;
+	}}
+	onclose={handle_close}
 	onclick={(event) => {
 		// The dialog element itself is only hit on the backdrop
-		if (event.target === dialog) palette.open = false;
+		if (event.target === event.currentTarget) palette.open = false;
 	}}
 >
 	<div class="flex max-h-[min(70vh,34rem)] flex-col">
@@ -256,7 +275,7 @@
 				autocapitalize="off"
 				spellcheck="false"
 				autofocus
-				oninput={() => (active = 0)}
+				oninput={handle_input}
 				onkeydown={handle_input_keydown}
 			/>
 			<kbd

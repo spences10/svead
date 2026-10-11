@@ -6,7 +6,7 @@
 		type ThemeMode,
 	} from '#lib/state/theme.svelte.js';
 	import { Monitor, Moon, Sun, type IconNode } from 'lucide';
-	import { MorphIcon, type MorphHandle } from 'morphicons/svelte';
+	import { MorphIcon } from 'morphicons/svelte';
 	import { onMount } from 'svelte';
 
 	const modes: Record<
@@ -20,25 +20,9 @@
 
 	const mode = $derived(modes[theme.mode]);
 
-	let morph = $state<MorphHandle>();
-	// What the icon is showing. Unset until the stored choice is read,
-	// so that first sync is a jump and only real changes morph
-	let shown: IconNode | undefined;
-
-	onMount(() => {
-		read_stored_mode();
-		shown = modes[theme.mode].icon;
-		morph?.set(shown);
-	});
-
-	// Follows the mode wherever it's set from, the palette included
-	$effect(() => {
-		const { icon } = mode;
-		if (shown && icon !== shown) {
-			shown = icon;
-			morph?.morphTo(icon);
-		}
-	});
+	// The stored choice isn't known on the server, so the icon starts
+	// as the monitor and morphs to it once it's read
+	onMount(read_stored_mode);
 </script>
 
 <button
@@ -48,10 +32,6 @@
 	title="Theme: {mode.label}"
 	onclick={() => set_mode(mode.next)}
 >
-	<MorphIcon
-		bind:this={morph}
-		icon={Monitor}
-		size={20}
-		reducedMotion="user"
-	/>
+	<!-- Follows the mode wherever it's set from, the palette included -->
+	<MorphIcon icon={mode.icon} size={20} reducedMotion="user" />
 </button>

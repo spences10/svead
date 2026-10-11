@@ -7,7 +7,7 @@
 		PUBLIC_FATHOM_ID,
 		PUBLIC_FATHOM_URL,
 	} from '$app/env/public';
-	import { page } from '$app/state';
+	import { afterNavigate } from '$app/navigation';
 	import * as Fathom from 'fathom-client';
 	import { onMount } from 'svelte';
 	import '../app.css';
@@ -22,9 +22,10 @@
 		});
 	});
 
-	$effect(() => {
-		// read the pathname so this re-runs on every navigation
-		void page.url.pathname;
+	// On arrival and on every move to another page. Jumping to a
+	// heading on the same page isn't a new view
+	afterNavigate(({ from, to }) => {
+		if (from?.url.pathname === to?.url.pathname) return;
 		Fathom.trackPageview();
 	});
 </script>
