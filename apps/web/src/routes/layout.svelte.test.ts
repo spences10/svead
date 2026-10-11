@@ -16,6 +16,12 @@ vi.mock('$app/env/public', () => ({
 	PUBLIC_FATHOM_URL: 'https://test.fathom.com/script.js',
 }));
 
+// The layout reads the current page and closes the palette on navigation
+vi.mock('$app/state', () => ({
+	page: { url: new URL('https://svead.pages.dev') },
+}));
+vi.mock('$app/navigation', () => ({ afterNavigate: vi.fn() }));
+
 describe('layout.svelte', () => {
 	beforeEach(() => {
 		vi.clearAllMocks();

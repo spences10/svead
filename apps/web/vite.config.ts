@@ -21,6 +21,13 @@ export default defineConfig({
 			{
 				// Client-side tests (Svelte components)
 				extends: './vite.config.ts',
+				// Name what the components import up front. Left to be
+				// discovered mid-run, a cold cache reloads the page under
+				// the first tests that render them
+				optimizeDeps: {
+					include: ['fathom-client', 'github-slugger', 'lucide'],
+					exclude: ['@lucide/svelte', 'morphicons'],
+				},
 				test: {
 					name: 'client',
 					// Timeout for browser tests - prevent hanging on element lookups

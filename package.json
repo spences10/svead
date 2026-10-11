@@ -23,7 +23,7 @@
 		"package:readme": "cp README.md packages/svead/README.md"
 	},
 	"devDependencies": {
-		"@changesets/cli": "^2.31.0",
+		"@changesets/cli": "^3.0.3",
 		"@types/node": "^25.9.1",
 		"typescript": "catalog:",
 		"vite": "catalog:",
