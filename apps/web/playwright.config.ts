@@ -5,5 +5,7 @@ export default defineConfig({
 		command: 'pnpm run build && pnpm run preview',
 		port: 4173,
 	},
-	testDir: 'e2e',
+	// End-to-end tests sit beside the routes and components they cover
+	testDir: 'src',
+	testMatch: '**/*.e2e.{ts,js}',
 });

@@ -1,10 +1,6 @@
 import { render } from 'svelte/server';
-import { describe, expect, it, vi } from 'vitest';
+import { describe, expect, it } from 'vitest';
 import Page from './+page.svelte';
-
-vi.mock('$app/state', () => ({
-	page: { url: new URL('http://sveltekit-prerender/') },
-}));
 
 describe('home page SSR', () => {
 	it('renders the head tags svead is for', () => {
@@ -20,9 +16,26 @@ describe('home page SSR', () => {
 		);
 		expect(head).toMatch(/name="twitter:card"/);
 		expect(head).toMatch(/name="author" content="Scott Spence"/);
+		expect(head).toMatch(
+			/name="twitter:creator" content="@spences10"/,
+		);
 	});
 
-	it('uses the production origin, not the prerender one', () => {
+	it('tells platforms the share card size up front', () => {
+		const { head } = render(Page);
+
+		expect(head).toContain(
+			'property="og:image:width" content="1200"',
+		);
+		expect(head).toContain(
+			'property="og:image:height" content="630"',
+		);
+		expect(head).toContain(
+			'property="og:image:type" content="image/png"',
+		);
+	});
+
+	it('uses the production origin for its URLs', () => {
 		const { head } = render(Page);
 
 		expect(head).toContain(
@@ -31,7 +44,6 @@ describe('home page SSR', () => {
 		expect(head).toContain(
 			'property="og:url" content="https://svead.pages.dev/"',
 		);
-		expect(head).not.toContain('sveltekit-prerender');
 	});
 
 	it('gives twitter:domain a host, not a URL', () => {
@@ -70,7 +82,8 @@ describe('home page SSR', () => {
 	it('renders the hero and the docs list', () => {
 		const { body } = render(Page);
 
-		expect(body).toContain('Put a proper head on every page.');
+		expect(body).toContain('Put a proper');
+		expect(body).toContain('&lt;Head');
 		expect(body).toContain('On tap');
 		expect(body).toContain('href="/quick-reference"');
 	});

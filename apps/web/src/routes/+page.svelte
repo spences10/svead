@@ -1,38 +1,26 @@
 <script lang="ts">
 	import CopyButton from '#lib/components/copy-button.svelte';
 	import Pint from '#lib/components/pint.svelte';
+	import Seo from '#lib/components/seo.svelte';
 	import TapList from '#lib/components/tap-list.svelte';
-	import { site } from '#lib/config.js';
 	import Install from '#lib/copy/home.md';
-	import { home_schema, seo_config } from '#lib/seo.js';
-	import { page } from '$app/state';
-	import { Head, SchemaOrg } from 'svead';
+	import { home_schema, home_seo } from '#lib/seo.js';
 
 	const install_command = 'pnpm add -D svead';
 </script>
 
-<Head
-	seo_config={seo_config(
-		{
-			title: 'Svead: Svelte Head and Schema.org components',
-			description: site.description,
-			card: 'home',
-		},
-		`${site.url}${page.url.pathname}`,
-	)}
-/>
-<SchemaOrg schema={home_schema()} />
+<Seo page={home_seo} schema={home_schema()} />
 
 <section
-	class="site-width grid items-center gap-x-14 gap-y-12 pt-12 pb-16 lg:grid-cols-[1fr_minmax(0,30rem)] lg:pt-20"
+	class="site-width grid items-center gap-x-14 gap-y-12 pt-12 pb-16 lg:grid-cols-[1fr_minmax(0,30rem)] lg:pt-14"
 >
 	<div>
 		<h1
 			class="text-[clamp(2.75rem,8vw,4.75rem)] leading-[0.98] font-black"
 		>
-			Put a proper head on every page.
+			Put a proper <code class="tag">&lt;Head /&gt;</code> on every page.
 		</h1>
-		<p class="mt-6 max-w-[34rem] text-xl">
+		<p class="mt-6 max-w-136 text-xl">
 			Svead is two Svelte components. <code class="name">Head</code>
 			sets your title, canonical, Open Graph and Twitter tags.
 			<code class="name">SchemaOrg</code> adds JSON-LD structured data.
@@ -72,6 +60,18 @@
 </section>
 
 <style>
+	/* The component, named in the headline as you'd write it */
+	.tag {
+		color: var(--color-primary);
+		font-family: var(--font-mono);
+		font-size: 0.8em;
+		font-weight: 800;
+		letter-spacing: -0.06em;
+		/* A mono space is a wide gap at this size */
+		word-spacing: -0.35em;
+		white-space: nowrap;
+	}
+
 	.name {
 		font-family: var(--font-mono);
 		font-size: 0.9em;

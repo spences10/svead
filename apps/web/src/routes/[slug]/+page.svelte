@@ -1,10 +1,8 @@
 <script lang="ts">
 	import DocsNav from '#lib/components/docs-nav.svelte';
-	import { site } from '#lib/config.js';
+	import Seo from '#lib/components/seo.svelte';
 	import { href_of, neighbours } from '#lib/docs/pages.js';
-	import { doc_schema, seo_config } from '#lib/seo.js';
-	import { page } from '$app/state';
-	import { Head, SchemaOrg } from 'svead';
+	import { doc_schema, doc_seo } from '#lib/seo.js';
 
 	let { data } = $props();
 	let Copy = $derived(data.Copy);
@@ -12,17 +10,7 @@
 	let around = $derived(neighbours(doc.slug));
 </script>
 
-<Head
-	seo_config={seo_config(
-		{
-			title: `${doc.title} | ${site.name}`,
-			description: `${doc.description}. Documentation for Svead, the Svelte Head and Schema.org components.`,
-			card: doc.slug,
-		},
-		`${site.url}${page.url.pathname}`,
-	)}
-/>
-<SchemaOrg schema={doc_schema(doc)} />
+<Seo page={doc_seo(doc)} schema={doc_schema(doc)} />
 
 <div
 	class="site-width grid gap-x-14 pt-10 lg:grid-cols-[14rem_minmax(0,1fr)]"

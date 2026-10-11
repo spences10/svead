@@ -90,6 +90,7 @@ const FONT_FILES = [
 	'bitter/files/bitter-latin-800-normal.woff',
 	'instrument-sans/files/instrument-sans-latin-400-normal.woff',
 	'jetbrains-mono/files/jetbrains-mono-latin-400-normal.woff',
+	'jetbrains-mono/files/jetbrains-mono-latin-800-normal.woff',
 ].map((file, index) => {
 	const path = join(font_dir, `${index}.ttf`);
 	writeFileSync(
@@ -101,6 +102,8 @@ const FONT_FILES = [
 const DISPLAY = 'Bitter';
 const SANS = 'Instrument Sans';
 const MONO = 'JetBrains Mono';
+// The name the heavier static cut gives itself
+const MONO_BOLD = 'JetBrains Mono ExtraBold';
 
 const escape = (text: string) =>
 	text
@@ -122,11 +125,14 @@ function wrap(text: string, max_chars: number) {
 	return lines;
 }
 
+/** Part of a title line: plain text, or a component name set as code */
+type Segment = string | { code: string };
+
 interface Card {
 	file: string;
 	/** Small line beside the wordmark */
 	context: string;
-	title: string[];
+	title: Segment[][];
 	description: string;
 }
 
@@ -141,6 +147,43 @@ const FOAM_BOX = {
 	height: 150,
 };
 
+// The lumps along the top of the head: centre x (from the foam's left
+// edge), radius and how far the centre sits below the foam's top
+const PUFFS = [
+	[26, 30, 34],
+	[78, 42, 18],
+	[136, 34, 26],
+	[196, 48, 10],
+	[254, 36, 26],
+	[294, 28, 38],
+];
+
+/**
+ * The head as one shape. Drawn twice, outlines then fills, so the
+ * lumps merge into a single outlined cloud as they do on the site
+ */
+function cloud(fill: string, grow: number) {
+	const { x, y, width, height } = FOAM_BOX;
+	const rect = (
+		rx: number,
+		ry: number,
+		w: number,
+		h: number,
+		r: number,
+	) =>
+		`<rect x="${rx - grow}" y="${ry - grow}" width="${w + grow * 2}" height="${h + grow * 2}" rx="${r + grow}" fill="${fill}"/>`;
+
+	return [
+		// A run of foam down the outside of the glass
+		rect(x, y + height - 34, 30, 104, 15),
+		rect(x, y + 34, width, height - 34, 34),
+		...PUFFS.map(
+			([cx, r, cy]) =>
+				`<circle cx="${x + cx}" cy="${y + cy + 14}" r="${r + grow}" fill="${fill}"/>`,
+		),
+	].join('');
+}
+
 function pint() {
 	const right = GLASS.x + GLASS.width;
 	const bottom = GLASS.y + GLASS.height;
@@ -152,15 +195,21 @@ function pint() {
   <path d="${handle}" fill="none" stroke="${INK}" stroke-width="34"/>
   <path d="${handle}" fill="none" stroke="${FOAM}" stroke-width="26"/>
   <path d="M${GLASS.x} ${GLASS.y} H${right} V${bottom - 46} a46 46 0 0 1 -46 46 H${GLASS.x + 46} a46 46 0 0 1 -46 -46 Z" fill="url(#mead)" stroke="${INK}" stroke-width="4"/>
-  <rect x="${FOAM_BOX.x}" y="${FOAM_BOX.y + FOAM_BOX.height - 30}" width="30" height="92" rx="15" fill="${FOAM}" stroke="${INK}" stroke-width="4"/>
-  <rect x="${FOAM_BOX.x}" y="${FOAM_BOX.y}" width="${FOAM_BOX.width}" height="${FOAM_BOX.height}" rx="38" fill="${FOAM}" stroke="${INK}" stroke-width="4"/>
+  ${cloud(INK, 4)}
+  ${cloud(FOAM, 0)}
   ${label('head', FOAM_BOX.y + 86)}
   ${label('body', GLASS.y + 190)}`;
 }
 
+const segment = (part: Segment) =>
+	typeof part === 'string'
+		? escape(part)
+		: `<tspan font-family="${MONO_BOLD}" font-size="0.84em" font-weight="800" letter-spacing="-3" word-spacing="-22" fill="${CODE.tag}">${escape(part.code)}</tspan>`;
+
 function render(card: Card) {
-	const title_size = card.title.length > 1 ? 82 : 100;
-	const title_y = 210 + title_size * 0.78;
+	const title_size = [100, 82, 74][card.title.length - 1] ?? 74;
+	const title_y =
+		(card.title.length > 2 ? 186 : 210) + title_size * 0.78;
 	const description_y =
 		title_y + (card.title.length - 1) * title_size * 1.02 + 70;
 
@@ -175,7 +224,12 @@ function render(card: Card) {
   <text x="${LEFT + 168}" y="110" font-family="${SANS}" font-size="26" fill="${MUTED}">${escape(card.context)}</text>
 
   <g font-family="${DISPLAY}" font-size="${title_size}" font-weight="800" fill="${INK}" letter-spacing="-1.5">
-    ${card.title.map((line, index) => `<text x="${LEFT - 3}" y="${title_y + index * title_size * 1.02}">${escape(line)}</text>`).join('')}
+    ${card.title
+			.map(
+				(line, index) =>
+					`<text x="${LEFT - 3}" y="${title_y + index * title_size * 1.02}">${line.map(segment).join('')}</text>`,
+			)
+			.join('')}
   </g>
   <g font-family="${SANS}" font-size="32" fill="${MUTED}">
     ${wrap(card.description, 42)
@@ -195,14 +249,18 @@ const cards: Card[] = [
 	{
 		file: 'home',
 		context: 'Svelte + Head',
-		title: ['Put a proper head', 'on every page.'],
-		description:
-			'Svelte components for meta tags and JSON-LD structured data.',
+		title: [
+			['Put a proper'],
+			[{ code: '<Head />' }, ' on'],
+			['every page.'],
+		],
+		// One line: the three line title leaves no room for a second
+		description: 'Meta tags and JSON-LD for Svelte.',
 	},
 	...pages.map((page): Card => ({
 		file: page.slug,
 		context: groups.find(({ id }) => id === page.group)!.label,
-		title: wrap(page.title, 17),
+		title: wrap(page.title, 17).map((line) => [line]),
 		description: page.description,
 	})),
 ];

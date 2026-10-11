@@ -17,6 +17,7 @@ export default defineConfig({
 	],
 
 	test: {
+		expect: { requireAssertions: true },
 		projects: [
 			{
 				// Client-side tests (Svelte components)
@@ -34,6 +35,8 @@ export default defineConfig({
 					testTimeout: 2000,
 					browser: {
 						enabled: true,
+						// Avoid scaling headless click targets inside the runner UI
+						ui: false,
 						provider: playwright(),
 						instances: [{ browser: 'chromium', headless: true }],
 					},
@@ -75,6 +78,8 @@ export default defineConfig({
 				...coverageConfigDefaults.exclude,
 				'**/config.{js,ts,cjs}',
 				'**/*.config.{js,ts,cjs}',
+				'**/*.e2e.{js,ts}',
+				'scripts/**',
 				'**/+page.svelte',
 				'**/+layout.svelte',
 				'**/+error.svelte',

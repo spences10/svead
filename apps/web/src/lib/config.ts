@@ -11,6 +11,7 @@ export const site = {
 	author: {
 		name: 'Scott Spence',
 		url: 'https://scottspence.com',
+		twitter: '@spences10',
 	},
 };
 
