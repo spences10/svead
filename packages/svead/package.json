@@ -46,45 +46,49 @@
 		}
 	},
 	"scripts": {
-		"dev": "vp exec vite dev",
-		"build": "vp exec vite build && pnpm run package",
-		"preview": "vp exec vite preview",
-		"package": "pnpm run package:readme && vp exec svelte-kit sync && vp exec svelte-package && vp exec publint",
+		"dev": "vp dev",
+		"build": "vp build && pnpm run package",
+		"preview": "vp preview",
+		"package": "pnpm run package:readme && svelte-kit sync && svelte-package && publint",
 		"package:readme": "cp ../../README.md README.md",
 		"prepublishOnly": "pnpm run package",
-		"test": "pnpm run test:integration && pnpm run test:unit -- --run",
-		"check": "vp exec svelte-kit sync && vp exec svelte-check --tsconfig ./tsconfig.json",
-		"check:watch": "vp exec svelte-kit sync && vp exec svelte-check --tsconfig ./tsconfig.json --watch",
+		"test": "pnpm run test:integration && pnpm run test:ci",
+		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --tsgo",
+		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch --tsgo",
 		"lint": "pnpm -w lint",
 		"format": "pnpm -w format",
-		"test:integration": "vp exec playwright test",
-		"test:unit": "vp exec vitest",
-		"test:ci": "vp exec vitest run",
-		"coverage": "vp exec vitest run --coverage"
+		"test:integration": "playwright test",
+		"test:unit": "vp test",
+		"test:ci": "vp test --run",
+		"coverage": "vp test --run --coverage"
 	},
 	"dependencies": {
 		"schema-dts": "^2.0.0"
 	},
 	"devDependencies": {
 		"@playwright/test": "catalog:",
-		"@sveltejs/adapter-auto": "^7.0.1",
-		"@sveltejs/adapter-cloudflare": "^7.2.8",
-		"@sveltejs/kit": "^2.61.0",
-		"@sveltejs/package": "^2.5.7",
-		"@sveltejs/vite-plugin-svelte": "^7.1.2",
-		"@testing-library/svelte": "^5.3.1",
+		"@sveltejs/adapter-auto": "^8.0.0",
+		"@sveltejs/kit": "catalog:",
+		"@sveltejs/package": "^3.0.0",
+		"@sveltejs/vite-plugin-svelte": "catalog:",
+		"@typescript/native": "catalog:",
+		"@vitest/browser-playwright": "catalog:",
 		"@vitest/coverage-v8": "catalog:",
-		"jsdom": "^29.1.1",
+		"playwright": "catalog:",
 		"publint": "^0.3.21",
-		"svelte": "^5.55.9",
-		"svelte-check": "^4.4.8",
+		"svelte": "catalog:",
+		"svelte-check": "catalog:",
 		"tslib": "^2.8.1",
 		"typescript": "catalog:",
 		"vite": "catalog:",
 		"vite-plus": "catalog:",
-		"vitest": "catalog:"
+		"vitest": "catalog:",
+		"vitest-browser-svelte": "catalog:"
 	},
 	"peerDependencies": {
 		"svelte": "^4.0.0 || ^5.0.0"
+	},
+	"engines": {
+		"node": ">=24.15.0"
 	}
 }

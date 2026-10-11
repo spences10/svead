@@ -1,2 +1,2 @@
-/// <reference types="@vitest/browser/matchers" />
-/// <reference types="@vitest/browser/providers/playwright" />
+/// <reference types="vite-plus/test/browser" />
+/// <reference types="vite-plus/test/browser-playwright" />

@@ -1,5 +1,5 @@
-import { render } from '@testing-library/svelte/svelte5';
 import { afterEach, describe, expect, it } from 'vitest';
+import { render } from 'vitest-browser-svelte';
 import Head from './head.svelte';
 
 describe('Head component tests', () => {
@@ -10,7 +10,7 @@ describe('Head component tests', () => {
 	describe('Basic Meta Tags', () => {
 		it('renders canonical link correctly', async () => {
 			const url = 'https://example.com';
-			render(Head, {
+			await render(Head, {
 				seo_config: {
 					url,
 					title: 'Test',
@@ -30,7 +30,7 @@ describe('Head component tests', () => {
 				author_name: 'Test Author',
 				url: 'https://example.com',
 			};
-			render(Head, { seo_config: config });
+			await render(Head, { seo_config: config });
 
 			expect(document.title).toBe(config.title);
 			expect(
@@ -47,7 +47,7 @@ describe('Head component tests', () => {
 
 		it('renders the monetization tag when a payment pointer is provided', async () => {
 			const payment_pointer = '$wallet.example.com/alice';
-			render(Head, {
+			await render(Head, {
 				seo_config: {
 					title: 'Test',
 					description: 'Test',
@@ -74,7 +74,7 @@ describe('Head component tests', () => {
 				site_name: 'Example Site',
 				language: 'en-US',
 			};
-			render(Head, { seo_config: config });
+			await render(Head, { seo_config: config });
 
 			expect(
 				document
@@ -120,7 +120,7 @@ describe('Head component tests', () => {
 				twitter_handle: '@example',
 				twitter_card_type: 'summary_large_image' as const,
 			};
-			render(Head, { seo_config: config });
+			await render(Head, { seo_config: config });
 
 			expect(
 				document

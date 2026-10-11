@@ -1,12 +1,12 @@
-import { page } from '@vitest/browser/context';
 import { describe, expect, it } from 'vitest';
 import { render } from 'vitest-browser-svelte';
+import { page } from 'vitest/browser';
 import GitHub from './github.svelte';
 
 describe('github.svelte', () => {
 	describe('Initial Rendering', () => {
 		it('should render with default props', async () => {
-			render(GitHub);
+			await render(GitHub);
 
 			const svg = page.getByRole('img');
 			await expect.element(svg).toBeInTheDocument();
@@ -15,7 +15,7 @@ describe('github.svelte', () => {
 		});
 
 		it('should render with custom dimensions', async () => {
-			render(GitHub, { width: '50', height: '40' });
+			await render(GitHub, { width: '50', height: '40' });
 
 			const svg = page.getByRole('img');
 			await expect.element(svg).toHaveAttribute('width', '50');
@@ -23,7 +23,7 @@ describe('github.svelte', () => {
 		});
 
 		it('should render with custom fill class', async () => {
-			render(GitHub, { fill: 'fill-red-500' });
+			await render(GitHub, { fill: 'fill-red-500' });
 
 			const svg = page.getByRole('img');
 			await expect.element(svg).toHaveClass('fill-red-500');
@@ -36,7 +36,7 @@ describe('github.svelte', () => {
 
 	describe('CSS Classes and Styling', () => {
 		it('should apply default styling classes', async () => {
-			render(GitHub);
+			await render(GitHub);
 
 			const svg = page.getByRole('img');
 			await expect
@@ -51,7 +51,7 @@ describe('github.svelte', () => {
 
 		it('should apply custom fill class', async () => {
 			// ✅ ROBUST: Test user-visible styling behavior
-			render(GitHub, { fill: 'fill-blue-500' });
+			await render(GitHub, { fill: 'fill-blue-500' });
 
 			const svg = page.getByRole('img');
 			await expect.element(svg).toHaveClass('fill-blue-500');
@@ -59,7 +59,7 @@ describe('github.svelte', () => {
 
 		it('should construct reactive svgClass with different fill values', async () => {
 			// Test reactive variable function by checking multiple combinations
-			render(GitHub, { fill: 'custom-fill' });
+			await render(GitHub, { fill: 'custom-fill' });
 
 			const svg = page.getByRole('img');
 			// This tests the reactive svgClass construction function
@@ -71,7 +71,7 @@ describe('github.svelte', () => {
 
 		it('should demonstrate props destructuring function with multiple values', async () => {
 			// Test props destructuring function by rendering multiple scenarios
-			render(GitHub, {
+			await render(GitHub, {
 				width: '30',
 				height: '35',
 				fill: 'test-fill-class',
@@ -105,7 +105,7 @@ describe('github.svelte', () => {
 
 	describe('Accessibility', () => {
 		it('should have role="img" for screen readers', async () => {
-			render(GitHub);
+			await render(GitHub);
 
 			const svg = page.getByRole('img');
 			await expect.element(svg).toHaveAttribute('role', 'img');
@@ -123,7 +123,7 @@ describe('github.svelte', () => {
 	describe('Props Validation', () => {
 		it('should handle string dimensions correctly', async () => {
 			// Test that width/height accept string values (props destructuring function)
-			render(GitHub, { width: '100', height: '80' });
+			await render(GitHub, { width: '100', height: '80' });
 
 			const svg = page.getByRole('img');
 			await expect.element(svg).toHaveAttribute('width', '100');

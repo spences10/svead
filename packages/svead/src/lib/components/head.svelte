@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { SeoConfig } from '$lib/types/seo-config.js';
+	import type { SeoConfig } from '../types/seo-config.js';
 
 	const { seo_config }: { seo_config: SeoConfig } = $props();
 </script>

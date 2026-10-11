@@ -21,7 +21,7 @@ describe('page.svelte - Main Svead Demo Page', () => {
 
 	describe('Initial Rendering', () => {
 		it('should render without errors', async () => {
-			render(Page, { data: mock_data });
+			await render(Page, { data: mock_data });
 			// Page renders successfully - Head component is mocked, Copy component is rendered
 			expect(true).toBe(true);
 		});

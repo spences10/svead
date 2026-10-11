@@ -1,12 +1,12 @@
-import { page } from '@vitest/browser/context';
 import { describe, expect, it } from 'vitest';
 import { render } from 'vitest-browser-svelte';
+import { page } from 'vitest/browser';
 import YouTube from './youtube.svelte';
 
 describe('youtube.svelte', () => {
 	describe('Initial Rendering', () => {
 		it('should render with default props', async () => {
-			render(YouTube);
+			await render(YouTube);
 
 			const svg = page.getByRole('img');
 			await expect.element(svg).toBeInTheDocument();
@@ -25,7 +25,7 @@ describe('youtube.svelte', () => {
 
 	describe('CSS Classes and Styling', () => {
 		it('should apply default styling classes', async () => {
-			render(YouTube);
+			await render(YouTube);
 
 			const svg = page.getByRole('img');
 			await expect
@@ -55,7 +55,7 @@ describe('youtube.svelte', () => {
 
 	describe('Accessibility', () => {
 		it('should have role="img" for screen readers', async () => {
-			render(YouTube);
+			await render(YouTube);
 
 			const svg = page.getByRole('img');
 			await expect.element(svg).toHaveAttribute('role', 'img');
