@@ -50,7 +50,7 @@
 				target="_blank"
 				href="https://github.com/spences10/svead"
 				rel="noopener noreferrer"
-				class="drawer-button btn btn-square normal-case btn-ghost"
+				class="btn btn-square btn-ghost normal-case drawer-button"
 			>
 				<GitHub
 					height="30"
@@ -69,7 +69,7 @@
 </main>
 
 <footer
-	class="footer-center footer footer-horizontal rounded bg-primary p-10 text-xl"
+	class="footer footer-center footer-horizontal rounded bg-primary p-10 text-xl"
 >
 	<nav class="grid grid-flow-col gap-4">
 		<a
