@@ -12,14 +12,14 @@
 
 [![Tests: Unit](https://github.com/spences10/svead/actions/workflows/unit-test.yml/badge.svg)](https://github.com/spences10/svead/actions/workflows/unit-test.yml)
 
-**Put a proper head on every page.**
+**Put a proper `<Head />` on every page.**
 
 Svead is two Svelte components. `Head` sets your title, canonical,
 Open Graph and Twitter tags. `SchemaOrg` adds JSON-LD structured data.
 
 **[Read the docs at svead.pages.dev](https://svead.pages.dev)**
 
-[![Svead: put a proper head on every page](https://svead.pages.dev/og/home.png)](https://svead.pages.dev)
+[![Svead: put a proper Head on every page](https://svead.pages.dev/og/home.png)](https://svead.pages.dev)
 
 ## Name
 
