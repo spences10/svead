@@ -319,7 +319,7 @@ importers:
         version: 1.54.0
       mdsvex:
         specifier: ^0.12.7
-        version: 0.12.7(svelte@5.57.2)
+        version: 0.12.8(svelte@5.57.2)
       morphicons:
         specifier: ^1.7.1
         version: 1.7.1(svelte@5.57.2)
@@ -2527,8 +2527,8 @@ packages:
   mdn-data@2.27.1:
     resolution: {integrity: sha512-9Yubnt3e8A0OKwxYSXyhLymGW4sCufcLG6VdiDdUGVkPhpqLxlvP5vl1983gQjJl3tqbrM731mjaZaP68AgosQ==}
 
-  mdsvex@0.12.7:
-    resolution: {integrity: sha512-gx4bReLCUvq+MPErHXYeyX+TEq1hsS2KfiZtEOMNTcbibSouFy8AHc5h04KbGCl+g5tLuo4/lbgRVYRnc7bJZw==}
+  mdsvex@0.12.8:
+    resolution: {integrity: sha512-v2sbRA9QWf0tpYWfREI5Kq7OqqrqoUzfmMKbgdOoWGfPDLc1JYU4EgDDF0N9WFhmjFW5agKrYwo/mDVutBKWKw==}
     peerDependencies:
       svelte: ^3.56.0 || ^4.0.0 || ^5.0.0-next.120
 
@@ -4611,7 +4611,7 @@ snapshots:
   mdn-data@2.27.1:
     optional: true
 
-  mdsvex@0.12.7(svelte@5.57.2):
+  mdsvex@0.12.8(svelte@5.57.2):
     dependencies:
       '@types/mdast': 4.0.4
       '@types/unist': 2.0.11
@@ -4758,7 +4758,7 @@ snapshots:
   publint@0.3.21:
     dependencies:
       '@publint/pack': 0.1.4
-      package-manager-detector: 1.6.0
+      package-manager-detector: 1.9.0
       picocolors: 1.1.1
       sade: 1.8.1
 
