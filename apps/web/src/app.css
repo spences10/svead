@@ -1,65 +1,256 @@
 @import 'tailwindcss';
+@import '@fontsource-variable/bitter';
+@import '@fontsource-variable/instrument-sans';
+@import '@fontsource-variable/jetbrains-mono';
 
 /* Plugin configurations */
 @plugin "@tailwindcss/typography";
 @plugin "daisyui" {
-	themes:
-		light --default,
-		dark --prefersdark;
+	themes: false;
 }
 
-@layer utilities {
-	/* Handle headers with rehype-autolink-headings 'wrap' behavior */
-	/* Structure: <h1><a>content</a></h1> */
-	.prose h1 a,
-	.prose h1 {
-		@apply leading-normal font-black tracking-wide text-primary drop-shadow-lg;
+/* A pint of mead: bottle green ink on foam, amber for the one loud
+   moment (the glass on the home page). `light` and `dark` replace
+   daisyUI's built-ins so `data-theme` and prefers-color-scheme keep
+   working. */
+@plugin "daisyui/theme" {
+	name: 'light';
+	default: true;
+	prefersdark: false;
+	color-scheme: light;
+	--color-base-100: #fffdf7;
+	--color-base-200: #f5f0e1;
+	--color-base-300: #e2dac4;
+	--color-base-content: #1d1611;
+	--color-primary: #12543c;
+	--color-primary-content: #fffdf7;
+	--color-secondary: #f2a900;
+	--color-secondary-content: #1d1611;
+	--color-accent: #9a3b12;
+	--color-accent-content: #fffdf7;
+	--color-neutral: #1d1611;
+	--color-neutral-content: #f5f0e1;
+	--color-info: #1d5fa8;
+	--color-info-content: #ffffff;
+	--color-success: #12703f;
+	--color-success-content: #ffffff;
+	--color-warning: #a14d00;
+	--color-warning-content: #ffffff;
+	--color-error: #b3261e;
+	--color-error-content: #ffffff;
+	--radius-selector: 0.5rem;
+	--radius-field: 0.5rem;
+	--radius-box: 0.75rem;
+	--size-selector: 0.25rem;
+	--size-field: 0.25rem;
+	--border: 1px;
+	--depth: 0;
+	--noise: 0;
+}
+
+/* Stout */
+@plugin "daisyui/theme" {
+	name: 'dark';
+	default: false;
+	prefersdark: true;
+	color-scheme: dark;
+	--color-base-100: #17110d;
+	--color-base-200: #211913;
+	--color-base-300: #3a2d22;
+	--color-base-content: #f6efdf;
+	--color-primary: #8fdcae;
+	--color-primary-content: #0d1f16;
+	--color-secondary: #ffbe3b;
+	--color-secondary-content: #1d1611;
+	--color-accent: #ffa477;
+	--color-accent-content: #1d1611;
+	--color-neutral: #f6efdf;
+	--color-neutral-content: #17110d;
+	--color-info: #9cc7ff;
+	--color-info-content: #0d1620;
+	--color-success: #8fdcae;
+	--color-success-content: #0d1f16;
+	--color-warning: #ffbe3b;
+	--color-warning-content: #1d1611;
+	--color-error: #ff9d8a;
+	--color-error-content: #1d1611;
+	--radius-selector: 0.5rem;
+	--radius-field: 0.5rem;
+	--radius-box: 0.75rem;
+	--size-selector: 0.25rem;
+	--size-field: 0.25rem;
+	--border: 1px;
+	--depth: 0;
+	--noise: 0;
+}
+
+@theme {
+	--font-sans:
+		'Instrument Sans Variable', ui-sans-serif, system-ui, sans-serif;
+	--font-display: 'Bitter Variable', ui-serif, Georgia, serif;
+	--font-mono:
+		'JetBrains Mono Variable', ui-monospace, SFMono-Regular, Menlo,
+		Consolas, monospace;
+}
+
+@layer base {
+	:root {
+		/* Quieter text for descriptions and meta, readable on base-100
+		   and base-200 in both themes */
+		--color-muted: color-mix(
+			in oklch,
+			var(--color-base-content) 70%,
+			var(--color-base-100)
+		);
+		--site-gutter: clamp(1rem, 4vw, 2.5rem);
+		/* The glass is the same pour in both themes */
+		--color-foam: #fffaea;
+		--color-mead: #f2a900;
+		--color-mead-deep: #d98600;
+		--color-glass-ink: #1d1611;
 	}
 
-	.prose h2 a,
-	.prose h2 {
-		@apply font-bold tracking-tight text-secondary drop-shadow-sm;
+	html {
+		scroll-behavior: smooth;
+		scroll-padding-top: 5rem;
 	}
 
-	.prose h3 a,
-	.prose h3 {
-		@apply font-semibold tracking-tight text-secondary;
+	@media (prefers-reduced-motion: reduce) {
+		html {
+			scroll-behavior: auto;
+		}
 	}
 
-	.prose h4 a,
-	.prose h5 a,
-	.prose h6 a,
-	.prose h4,
-	.prose h5,
-	.prose h6 {
-		@apply font-medium text-secondary;
+	body {
+		font-family: var(--font-sans);
+		font-size: 1.0625rem;
+		line-height: 1.6;
+		background: var(--color-base-100);
+		color: var(--color-base-content);
+		text-rendering: optimizeLegibility;
 	}
 
-	/* Ensure anchor links inside headers don't show underlines */
-	.prose h1 a,
-	.prose h2 a,
-	.prose h3 a,
-	.prose h4 a,
-	.prose h5 a,
-	.prose h6 a {
-		@apply no-underline;
-		text-decoration: none;
+	h1,
+	h2,
+	h3 {
+		font-family: var(--font-display);
+		letter-spacing: -0.015em;
+		text-wrap: balance;
 	}
 
-	/* Add some nice text effects for emphasis */
-	.prose strong {
-		@apply font-bold text-secondary;
+	:focus-visible {
+		outline: 2px solid var(--color-primary);
+		outline-offset: 2px;
 	}
 
-	.prose em {
-		@apply text-secondary italic;
+	::selection {
+		background: color-mix(
+			in oklch,
+			var(--color-secondary) 55%,
+			transparent
+		);
 	}
+}
 
-	.prose code {
-		@apply text-lg;
-	}
+@utility text-muted {
+	color: var(--color-muted);
+}
 
-	.prose blockquote {
-		@apply border-l-4 border-primary bg-primary/40 text-primary-content italic;
-	}
+@utility site-width {
+	width: 100%;
+	max-width: 74rem;
+	margin-inline: auto;
+	padding-inline: var(--site-gutter);
+}
+
+/* Markdown content. Typography supplies the rhythm, these pull it
+   onto the site's type and colours. */
+.doc {
+	max-width: none;
+	font-size: 1.0625rem;
+	--tw-prose-body: var(--color-base-content);
+	--tw-prose-headings: var(--color-base-content);
+	--tw-prose-links: var(--color-primary);
+	--tw-prose-bold: var(--color-base-content);
+	--tw-prose-code: var(--color-base-content);
+	--tw-prose-hr: var(--color-base-300);
+	--tw-prose-bullets: var(--color-muted);
+	--tw-prose-counters: var(--color-muted);
+	--tw-prose-th-borders: var(--color-base-content);
+	--tw-prose-td-borders: var(--color-base-300);
+}
+
+.doc :where(p, ul, ol) {
+	max-width: 68ch;
+}
+
+.doc :where(h1, h2, h3) {
+	font-family: var(--font-display);
+	letter-spacing: -0.015em;
+}
+
+.doc :where(h1) {
+	margin-bottom: 0.6em;
+	font-size: clamp(2.25rem, 6vw, 3.25rem);
+	font-weight: 800;
+	line-height: 1.05;
+}
+
+.doc :where(h2) {
+	margin-top: 2.5em;
+	font-size: 1.6rem;
+	font-weight: 700;
+}
+
+.doc :where(h3) {
+	font-size: 1.25rem;
+	font-weight: 700;
+}
+
+/* rehype-autolink-headings wraps the heading text in a link */
+.doc :where(h1, h2, h3) > a {
+	color: inherit;
+	font-weight: inherit;
+	text-decoration: none;
+}
+
+.doc :where(h2, h3) > a:hover {
+	text-decoration: underline;
+	text-decoration-color: var(--color-secondary);
+	text-decoration-thickness: 3px;
+	text-underline-offset: 0.2em;
+}
+
+.doc :where(a) {
+	text-underline-offset: 0.2em;
+}
+
+.doc :where(code):not(:where(pre *)) {
+	padding: 0.15em 0.35em;
+	border-radius: 0.3rem;
+	background: var(--color-base-200);
+	font-family: var(--font-mono);
+	font-size: 0.875em;
+	font-weight: 500;
+}
+
+.doc :where(code):not(:where(pre *))::before,
+.doc :where(code):not(:where(pre *))::after {
+	content: none;
+}
+
+/* Props tables are wider than the text column on small screens */
+.doc :where(table) {
+	display: block;
+	overflow-x: auto;
+	font-size: 0.9375rem;
+}
+
+.doc :where(th, td) {
+	white-space: nowrap;
+}
+
+.doc :where(td:nth-child(3)) {
+	min-width: 18rem;
+	white-space: normal;
 }

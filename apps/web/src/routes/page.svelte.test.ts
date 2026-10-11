@@ -1,90 +1,55 @@
 import { describe, expect, it, vi } from 'vitest';
 import { render } from 'vitest-browser-svelte';
+import { page } from 'vitest/browser';
 import Page from './+page.svelte';
 
-// Mock svead components to avoid head manipulation in tests
-vi.mock('svead', () => ({
-	Head: vi.fn(() => null),
-}));
-
-// Mock page state
 vi.mock('$app/state', () => ({
-	page: {
-		url: new URL('https://svead.pages.dev'),
-	},
+	page: { url: new URL('https://svead.pages.dev/') },
 }));
 
-describe('page.svelte - Main Svead Demo Page', () => {
-	const mock_data = {
-		Copy: () => 'Mock copy content',
-	};
+describe('home page', () => {
+	it('says what svead is and how to install it', async () => {
+		await render(Page);
 
-	describe('Initial Rendering', () => {
-		it('should render without errors', async () => {
-			await render(Page, { data: mock_data });
-			// Page renders successfully - Head component is mocked, Copy component is rendered
-			expect(true).toBe(true);
-		});
-
-		it.skip('should render Copy component content', async () => {
-			// TODO: Test that Copy component from data prop is rendered
-			// This requires understanding the actual component structure
-		});
-
-		it.skip('should pass correct SEO config to Head component', async () => {
-			// TODO: Test Head component receives proper seo_config
-		});
+		await expect
+			.element(page.getByRole('heading', { level: 1 }))
+			.toHaveTextContent('Put a proper head on every page.');
+		await expect
+			.element(
+				page.getByRole('button', { name: 'Copy install command' }),
+			)
+			.toBeInTheDocument();
 	});
 
-	describe('SEO Configuration', () => {
-		it.skip('should generate correct title for svead demo', async () => {
-			// TODO: Test seo_config.title: 'This is Svead a Svelte Head Component'
-		});
+	it('rewrites the example head as the fields change', async () => {
+		await render(Page);
 
-		it.skip('should generate proper description', async () => {
-			// TODO: Test seo_config.description about svead functionality
-		});
+		const head = page.getByLabelText(
+			'Tags Head renders for this page',
+		);
+		const head_text = () => head.element().textContent;
+		await expect
+			.poll(head_text)
+			.toContain('<title>The Mead Hall</title>');
 
-		it.skip('should include author information', async () => {
-			// TODO: Test seo_config.author_name: 'Scott Spence'
-		});
+		await page.getByLabelText('Title').fill('Honey & Hops');
 
-		it.skip('should include Open Graph image', async () => {
-			// TODO: Test seo_config.open_graph_image with tailgraph URL
-		});
-
-		it.skip('should set website and URL correctly', async () => {
-			// TODO: Test seo_config.website and url configuration
-		});
+		await expect
+			.poll(head_text)
+			.toContain('<title>Honey & Hops</title>');
+		await expect
+			.poll(head_text)
+			.toContain('<meta property="og:title" content="Honey & Hops">');
 	});
 
-	describe('Data Integration', () => {
-		it.skip('should handle missing data gracefully', async () => {
-			// TODO: Test behavior when data prop is undefined
-		});
+	it('links every documentation page', async () => {
+		await render(Page);
 
-		it.skip('should handle missing Copy component', async () => {
-			// TODO: Test when data.Copy is undefined
-		});
-	});
-
-	describe('URL Integration', () => {
-		it.skip('should use page.url in seo_config', async () => {
-			// TODO: Test that page.url.toString() is used in seo_config.url
-		});
-
-		it.skip('should handle different URL contexts', async () => {
-			// TODO: Test with different page URLs
-		});
-	});
-
-	describe('Component Integration', () => {
-		it.skip('should render Head component with seo_config', async () => {
-			// TODO: Test Head component receives correct props
-		});
-
-		it.skip('should render Copy component from data', async () => {
-			// TODO: Test Copy component is called and rendered
-		});
+		await expect
+			.element(page.getByRole('link', { name: /^Components/ }))
+			.toHaveAttribute('href', '/components');
+		await expect
+			.element(page.getByRole('link', { name: /^Troubleshooting/ }))
+			.toHaveAttribute('href', '/troubleshooting');
 	});
 });

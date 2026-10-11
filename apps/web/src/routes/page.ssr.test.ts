@@ -2,120 +2,74 @@ import { render } from 'svelte/server';
 import { describe, expect, it, vi } from 'vitest';
 import Page from './+page.svelte';
 
-// Mock the page state
 vi.mock('$app/state', () => ({
-	page: {
-		url: new URL('https://svead.pages.dev'),
-	},
+	page: { url: new URL('http://sveltekit-prerender/') },
 }));
 
-// Mock Copy component properly
-const MockCopy = vi.fn(() => 'Mock copy content');
+describe('home page SSR', () => {
+	it('renders the head tags svead is for', () => {
+		const { head } = render(Page);
 
-describe('page.svelte SSR - Svead Head Component Validation', () => {
-	const mock_data = {
-		Copy: MockCopy,
-	};
-
-	describe('Core Svead Head Component Functionality', () => {
-		it('should render without errors', () => {
-			expect(() =>
-				render(Page, { props: { data: mock_data } }),
-			).not.toThrow();
-		});
-
-		it('should generate SEO meta tags', () => {
-			const { head } = render(Page, { props: { data: mock_data } });
-
-			// Test that essential SEO elements are present
-			expect(head).toMatch(/<title>/);
-			expect(head).toMatch(/name="description"/);
-			expect(head).toMatch(/rel="canonical"/);
-		});
-
-		it('should generate Open Graph tags', () => {
-			const { head } = render(Page, { props: { data: mock_data } });
-
-			expect(head).toMatch(/property="og:title"/);
-			expect(head).toMatch(/property="og:description"/);
-			expect(head).toMatch(/property="og:image"/);
-			expect(head).toMatch(/property="og:url"/);
-		});
-
-		it('should generate Twitter Card tags', () => {
-			const { head } = render(Page, { props: { data: mock_data } });
-
-			expect(head).toMatch(/name="twitter:card"/);
-			expect(head).toMatch(/name="twitter:title"/);
-			expect(head).toMatch(/name="twitter:description"/);
-			expect(head).toMatch(/name="twitter:image"/);
-		});
-
-		it('should generate structured data meta tags', () => {
-			const { head } = render(Page, { props: { data: mock_data } });
-
-			// Should include basic structured data elements
-			expect(head).toMatch(/name="author"/);
-		});
-
-		it('should not contain broken or undefined values', () => {
-			const { head } = render(Page, { props: { data: mock_data } });
-
-			expect(head).not.toMatch(/undefined/);
-			expect(head).not.toMatch(/\[object Object\]/);
-			expect(head).not.toMatch(/content=""/);
-		});
+		expect(head).toMatch(
+			/<title>Svead: Svelte Head and Schema.org components<\/title>/,
+		);
+		expect(head).toMatch(/name="description"/);
+		expect(head).toMatch(/property="og:title"/);
+		expect(head).toMatch(/property="og:image"/);
+		expect(head).toMatch(/name="twitter:card"/);
+		expect(head).toMatch(/name="author" content="Scott Spence"/);
 	});
 
-	describe('Svead Component Configuration Validation', () => {
-		it('should use correct SEO configuration values', () => {
-			const { head } = render(Page, { props: { data: mock_data } });
+	it('uses the production origin, not the prerender one', () => {
+		const { head } = render(Page);
 
-			// Validate that svead Head component uses the expected config
-			expect(head).toMatch(/This is Svead a Svelte Head Component/);
-			expect(head).toMatch(/Scott Spence/);
-			expect(head).toMatch(/svead\.pages\.dev/);
-		});
-
-		it('should integrate with SvelteKit page URL', () => {
-			const { head } = render(Page, { props: { data: mock_data } });
-
-			// Should use the mocked URL
-			expect(head).toMatch(/https:\/\/svead\.pages\.dev/);
-		});
+		expect(head).toContain(
+			'<link rel="canonical" href="https://svead.pages.dev/"',
+		);
+		expect(head).toContain(
+			'property="og:url" content="https://svead.pages.dev/"',
+		);
+		expect(head).not.toContain('sveltekit-prerender');
 	});
 
-	describe('Page Content Integration', () => {
-		it('should render Copy component', () => {
-			// The render result is lazy, so read the output to run it
-			void render(Page, { props: { data: mock_data } }).body;
+	it('gives twitter:domain a host, not a URL', () => {
+		const { head } = render(Page);
 
-			// Verify the Copy component was called (it's a mock function)
-			expect(MockCopy).toHaveBeenCalled();
-		});
+		expect(head).toContain(
+			'property="twitter:domain" content="svead.pages.dev"',
+		);
+	});
 
-		it('should handle missing data gracefully', () => {
-			// Test with a proper mock that doesn't throw
-			const MockCopyEmpty = vi.fn(() => '');
-			expect(() =>
-				render(Page, { props: { data: { Copy: MockCopyEmpty } } }),
-			).not.toThrow();
-		});
+	it('describes the site and its docs as structured data', () => {
+		const { head } = render(Page);
+		const json =
+			/<script type="application\/ld\+json">(.*?)<\/script>/s.exec(
+				head,
+			)?.[1];
+		const types = JSON.parse(json!)['@graph'].map(
+			(node: { '@type': string }) => node['@type'],
+		);
 
-		it('should test template string concatenation functions', () => {
-			// Test string interpolation functions used in the component
-			const website = 'https://svead.pages.dev';
-			const combined_url = `${website}/author/scott-spence`;
+		expect(types).toEqual([
+			'WebSite',
+			'SoftwareSourceCode',
+			'ItemList',
+		]);
+	});
 
-			expect(combined_url).toBe(
-				'https://svead.pages.dev/author/scott-spence',
-			);
+	it('leaves no broken values in the head', () => {
+		const { head } = render(Page);
 
-			// Test dynamic URL construction
-			const current_year = new Date().getFullYear();
-			const copyright_text = `Copyright © ${current_year}`;
-			expect(copyright_text).toContain('Copyright ©');
-			expect(copyright_text).toContain(current_year.toString());
-		});
+		expect(head).not.toMatch(/undefined/);
+		expect(head).not.toMatch(/\[object Object\]/);
+		expect(head).not.toMatch(/content=""/);
+	});
+
+	it('renders the hero and the docs list', () => {
+		const { body } = render(Page);
+
+		expect(body).toContain('Put a proper head on every page.');
+		expect(body).toContain('On tap');
+		expect(body).toContain('href="/quick-reference"');
 	});
 });

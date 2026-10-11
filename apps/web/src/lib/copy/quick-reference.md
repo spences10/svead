@@ -1,4 +1,4 @@
-## Quick Reference
+# Quick Reference
 
 ## Installation
 

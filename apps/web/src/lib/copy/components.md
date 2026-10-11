@@ -1,7 +1,3 @@
-<script lang="ts">
-  import { Details } from '#lib/components/index.js'
-</script>
-
 # Components
 
 Svead provides two main components:
@@ -29,23 +25,20 @@ Svead provides two main components:
 
 ### `SeoConfig` Props
 
-<Details buttonText="Click to expand">
-
-| Property            | Type     | Description                                                  | Required |
-| :------------------ | :------- | :----------------------------------------------------------- | :------- |
-| `title`             | `string` | The title of the web page.                                   | Yes      |
-| `description`       | `string` | A description of the web page.                               | Yes      |
-| `url`               | `string` | The URL of the web page.                                     | Yes      |
-| `website`           | `string` | The website the web page belongs to.                         | No       |
-| `language`          | `string` | The locale for `og:locale`, e.g. `en_GB`. Omitted if unset.  | No       |
-| `open_graph_image`  | `string` | The URL of an image to use for Open Graph meta tags.         | No       |
-| `payment_pointer`   | `string` | A payment pointer for Web Monetization.                      | No       |
-| `author_name`       | `string` | The name of the author.                                      | No       |
-| `site_name`         | `string` | The name of the site for og:site_name.                       | No       |
-| `twitter_handle`    | `string` | The Twitter handle of the content creator or site.           | No       |
-| `twitter_card_type` | `string` | The type of Twitter card. Defaults to 'summary_large_image'. | No       |
-
-</Details>
+| Property               | Type     | Description                                                  | Required |
+| :--------------------- | :------- | :----------------------------------------------------------- | :------- |
+| `title`                | `string` | The title of the web page.                                   | Yes      |
+| `description`          | `string` | A description of the web page.                               | Yes      |
+| `url`                  | `string` | The URL of the web page.                                     | Yes      |
+| `website`              | `string` | The website the web page belongs to.                         | No       |
+| `language`             | `string` | The locale for `og:locale`, e.g. `en_GB`. Omitted if unset.  | No       |
+| `open_graph_image`     | `string` | The URL of an image to use for Open Graph meta tags.         | No       |
+| `payment_pointer`      | `string` | A payment pointer for Web Monetization.                      | No       |
+| `author_name`          | `string` | The name of the author.                                      | No       |
+| `site_name`            | `string` | The name of the site for og:site_name.                       | No       |
+| `twitter_handle`       | `string` | The Twitter handle of the content creator or site.           | No       |
+| `twitter_card_type`    | `string` | The type of Twitter card. Defaults to 'summary_large_image'. | No       |
+| `open_graph_image_alt` | `string` | Alt text for the Open Graph image. Defaults to the title.    | No       |
 
 ## SchemaOrg Component
 
@@ -72,13 +65,9 @@ Svead provides two main components:
 
 ### `SchemaOrgProps` Props
 
-<Details buttonText="Click to expand">
-
 | Property | Type            | Description                                                 | Required |
 | :------- | :-------------- | :---------------------------------------------------------- | :------- |
 | `schema` | `SchemaOrgType` | The structured data object following schema.org vocabulary. | Yes      |
-
-</Details>
 
 ### `SchemaOrgType`
 

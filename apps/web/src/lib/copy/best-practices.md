@@ -1,4 +1,4 @@
-## Tips & Best Practices
+# Best Practices
 
 ## Date Formatting
 

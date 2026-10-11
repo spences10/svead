@@ -1,5 +1,6 @@
 import { expect, test } from '@playwright/test';
-let pageURL = 'http://localhost:4173/';
+// Pages are prerendered, so they carry the production origin
+let pageURL = 'https://svead.pages.dev/';
 
 test.beforeEach(async ({ page }) => {
 	await page.goto('/');
@@ -15,7 +16,9 @@ test.afterEach(async ({ page }, testInfo) => {
 
 test('index page has h1', async ({ page }) => {
 	await page.waitForSelector('h1');
-	expect(await page.textContent('h1')).toBe('Welcome to Svead 🍺');
+	expect(await page.textContent('h1')).toBe(
+		'Put a proper head on every page.',
+	);
 });
 
 test.describe('meta tags', () => {
@@ -31,7 +34,7 @@ test.describe('meta tags', () => {
 		const metaDescription = page.locator('meta[name="description"]');
 		await expect(metaDescription.first()).toHaveAttribute(
 			'content',
-			'Svead, a component that allows you to set head meta information, canonical, title, Twitter and Facebook Open Graph tags.',
+			'Svead is a pair of Svelte components: Head sets the title, canonical, Open Graph and Twitter tags, and SchemaOrg adds JSON-LD structured data.',
 		);
 	});
 
@@ -39,7 +42,7 @@ test.describe('meta tags', () => {
 		const metaOgTitle = page.locator('meta[property="og:title"]');
 		await expect(metaOgTitle.first()).toHaveAttribute(
 			'content',
-			'This is Svead a Svelte Head Component',
+			'Svead: Svelte Head and Schema.org components',
 		);
 	});
 
@@ -49,7 +52,7 @@ test.describe('meta tags', () => {
 		);
 		await expect(metaOgDescription.first()).toHaveAttribute(
 			'content',
-			'Svead, a component that allows you to set head meta information, canonical, title, Twitter and Facebook Open Graph tags.',
+			'Svead is a pair of Svelte components: Head sets the title, canonical, Open Graph and Twitter tags, and SchemaOrg adds JSON-LD structured data.',
 		);
 	});
 
@@ -83,7 +86,7 @@ test.describe('meta tags', () => {
 		);
 		await expect(metaTwitterTitle.first()).toHaveAttribute(
 			'content',
-			'This is Svead a Svelte Head Component',
+			'Svead: Svelte Head and Schema.org components',
 		);
 	});
 
@@ -93,7 +96,7 @@ test.describe('meta tags', () => {
 		);
 		await expect(metaTwitterDescription.first()).toHaveAttribute(
 			'content',
-			'Svead, a component that allows you to set head meta information, canonical, title, Twitter and Facebook Open Graph tags.',
+			'Svead is a pair of Svelte components: Head sets the title, canonical, Open Graph and Twitter tags, and SchemaOrg adds JSON-LD structured data.',
 		);
 	});
 
