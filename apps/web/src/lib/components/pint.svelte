@@ -95,17 +95,18 @@
 </script>
 
 {#snippet cloud(fill: boolean)}
+	<!-- Drips first, so they hang from under the head's bottom edge -->
+	{#each drips as drip (drip.x)}
+		<span
+			class="drip"
+			style="--x: {drip.x}%; --w: {drip.w}px; --h: {drip.h}px"
+		></span>
+	{/each}
 	<span class="slab"></span>
 	{#each puffs as puff (puff.x)}
 		<span
 			class="puff"
 			style="--x: {puff.x}%; --d: {puff.d}px; --y: {puff.y}px"
-		></span>
-	{/each}
-	{#each drips as drip (drip.x)}
-		<span
-			class="drip"
-			style="--x: {drip.x}%; --w: {drip.w}px; --h: {drip.h}px"
 		></span>
 	{/each}
 	{#if fill}
@@ -264,7 +265,8 @@
 
 	.slab {
 		inset: 2.5rem 0 0;
-		border-radius: 1.5rem 1.5rem 1.75rem 1.75rem;
+		/* Tighter where the long drip runs off the corner */
+		border-radius: 1.5rem 1.5rem 1.75rem 0.875rem;
 	}
 
 	/* A band of shade where the head sits on the rim */
