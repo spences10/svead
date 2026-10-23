@@ -259,7 +259,7 @@ importers:
         version: 5.3.0
       '@lucide/svelte':
         specifier: ^1.54.0
-        version: 1.60.0(svelte@5.57.2)
+        version: 1.61.0(svelte@5.57.2)
       '@playwright/test':
         specifier: 'catalog:'
         version: 1.63.0
@@ -316,7 +316,7 @@ importers:
         version: 2.0.0
       lucide:
         specifier: ^1.54.0
-        version: 1.60.0
+        version: 1.61.0
       mdsvex:
         specifier: ^0.12.7
         version: 0.12.7(svelte@5.57.2)
@@ -993,8 +993,8 @@ packages:
   '@jridgewell/trace-mapping@0.3.9':
     resolution: {integrity: sha512-3Belt6tdc8bPgAtbcmdtNJlirVoTmEb5e2gC94PnkwEW9jI6CAHUeoG85tjWP5WquqfavoMtMwiG4P926ZKKuQ==}
 
-  '@lucide/svelte@1.60.0':
-    resolution: {integrity: sha512-Q4lkuuBLrhxjBK8yuJ6GjeHZDOzrxlRH5GOzCzI7HJBeCE+Rj1kwi4KsD81XM50bjnfwhPhSFrh/j+D4vn8jUg==}
+  '@lucide/svelte@1.61.0':
+    resolution: {integrity: sha512-Vwj4ADoKgVogLFpEbXv2PS2hh2fj+aAqPuiNydI88Zkyb1l7veL4fXgRrOX3tgpESHhIGneNkSSYhHupvCBshg==}
     peerDependencies:
       svelte: ^5
 
@@ -2505,8 +2505,8 @@ packages:
     resolution: {integrity: sha512-5YgH9UJd7wVb9hIouI2adWpgqrrICkt070Dnj8EUY1+B4B2P9eRLPAkAAo6NICA7CEhOIeBHl46u9zSNpNu7zA==}
     engines: {node: 20 || >=22}
 
-  lucide@1.60.0:
-    resolution: {integrity: sha512-nS9qchK+W+c58GZk8LRR/9X2t+AuC/qs4CeXQauA3l/sqkrl0wzZDjcwLPHSdvoE1HYwnqDZUIs/lYAdWx1a8Q==}
+  lucide@1.61.0:
+    resolution: {integrity: sha512-RPNMBgej6WjPKuCNEODg83CF8lnraCeDOsZ3HZ7KvUYf0O5hdJBzer/Ax/meBHl3xvrp5NmKX0IDA5myyzlvGw==}
 
   lz-string@1.5.0:
     resolution: {integrity: sha512-h5bgJWpxJNswbU7qCrV0tIKQCaS3blPDrqKWx+QxzuzL1zGUzij9XCWLrSLsJPu5t+eWA/ycetzYAO5IOMcWAQ==}
@@ -3504,7 +3504,7 @@ snapshots:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.6.0
 
-  '@lucide/svelte@1.60.0(svelte@5.57.2)':
+  '@lucide/svelte@1.61.0(svelte@5.57.2)':
     dependencies:
       svelte: 5.57.2
 
@@ -4583,7 +4583,7 @@ snapshots:
   lru-cache@11.5.0:
     optional: true
 
-  lucide@1.60.0: {}
+  lucide@1.61.0: {}
 
   lz-string@1.5.0: {}
 
