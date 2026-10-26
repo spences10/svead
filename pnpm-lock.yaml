@@ -321,8 +321,8 @@ importers:
         specifier: ^0.12.7
         version: 0.12.8(svelte@5.57.2)
       morphicons:
-        specifier: ^1.7.1
-        version: 1.7.1(svelte@5.57.2)
+        specifier: ^2.0.2
+        version: 2.0.2(svelte@5.57.2)
       playwright:
         specifier: 'catalog:'
         version: 1.64.1
@@ -2443,8 +2443,8 @@ packages:
     resolution: {integrity: sha512-QNgCA/axizZ7kv7RV3nwbRoz+w4watBlwIsyXjwgYHw4eSw5BrR1F2152s3Kz+Bzy/YxjKFHrZl3LzBRbPgYoQ==}
     engines: {node: '>=22.0.0'}
 
-  morphicons@1.7.1:
-    resolution: {integrity: sha512-q5ylxy5/d7vBg0OAzanlooXf05PekovMYDuuQVpr6vAQZxl99lrJbaIi+jJ32PXQf9WEEaDO2pbNBsx1ZhEnFQ==}
+  morphicons@2.0.2:
+    resolution: {integrity: sha512-/GFSrsZDuyZ3a2QK8wXnVpsHzrVIZ8eLhg0QbGxeeOPyOZmtKUC8i0z3QQ3bbIX5DV/LOLYpp/8unJMWQU0Qgw==}
     peerDependencies:
       react: '>=18'
       react-native: '>=0.71'
@@ -4162,7 +4162,7 @@ snapshots:
   css-tree@3.2.1:
     dependencies:
       mdn-data: 2.27.1
-      source-map-js: 1.2.1
+      source-map-js: 1.2.2
     optional: true
 
   cssesc@3.0.0: {}
@@ -4503,7 +4503,7 @@ snapshots:
       - bufferutil
       - utf-8-validate
 
-  morphicons@1.7.1(svelte@5.57.2):
+  morphicons@2.0.2(svelte@5.57.2):
     optionalDependencies:
       svelte: 5.57.2
 
