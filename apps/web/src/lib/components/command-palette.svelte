@@ -151,6 +151,10 @@
 	// attachment keeps the element in step with the shared open state
 	function modal(dialog: HTMLDialogElement) {
 		if (palette.open && !dialog.open) {
+			// However it last closed (escape, backdrop, picking a
+			// result), the next search starts clean
+			query = '';
+			active = 0;
 			dialog.showModal();
 			Fathom.trackEvent('palette open');
 		} else if (!palette.open && dialog.open) {
@@ -158,12 +162,12 @@
 		}
 	}
 
-	// However it closes (escape, backdrop, picking a result), the next
-	// search starts clean
-	function handle_close() {
-		palette.open = false;
-		query = '';
-		active = 0;
+	// The close event is queued, so it can arrive after the palette
+	// has already been reopened. Only sync the state if it's still shut
+	function handle_close(
+		event: Event & { currentTarget: HTMLDialogElement },
+	) {
+		if (!event.currentTarget.open) palette.open = false;
 	}
 
 	// Only for the keyboard: under the pointer the option is in view
