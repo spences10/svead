@@ -24,7 +24,7 @@
 	},
 	"devDependencies": {
 		"@changesets/cli": "^3.0.3",
-		"@types/node": "^25.9.1",
+		"@types/node": "^26.0.0",
 		"typescript": "catalog:",
 		"vite": "catalog:",
 		"vite-plus": "catalog:"
