@@ -1,5 +1,12 @@
 # svead
 
+## 0.1.1
+
+### Patch Changes
+
+- 26e2337: Escape `<`, `>` and `&` in SchemaOrg JSON-LD to prevent
+  script injection via schema values.
+
 ## 0.1.0
 
 ### Minor Changes
