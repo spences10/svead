@@ -75,4 +75,28 @@ describe('SchemaOrg', async () => {
 			],
 		});
 	});
+
+	it('escapes values that would close the script tag', async () => {
+		const headline =
+			'</script><script id="injected">window.__xss = 1</script>&';
+
+		await render(SchemaOrg, {
+			schema: {
+				'@type': 'Article',
+				headline,
+			},
+		});
+
+		expect(document.getElementById('injected')).toBeNull();
+		expect(
+			document.head.querySelectorAll(
+				'script[type="application/ld+json"]',
+			),
+		).toHaveLength(1);
+		expect(get_json_ld()).toEqual({
+			'@context': 'https://schema.org',
+			'@type': 'Article',
+			headline,
+		});
+	});
 });
