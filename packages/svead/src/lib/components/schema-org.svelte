@@ -5,11 +5,11 @@
  -->
 
 <script lang="ts">
+	import type { Graph, Thing, WithContext } from 'schema-dts';
 	import type {
 		SchemaOrgProps,
 		SchemaOrgType,
 	} from '../types/schema-org.js';
-	import type { Graph, Thing, WithContext } from 'schema-dts';
 
 	const { schema }: SchemaOrgProps = $props();
 
@@ -47,8 +47,18 @@
 
 	const processed_schema = $derived(process_schema(schema));
 
+	// JSON.stringify leaves `<`, `>` and `&` as-is, so a value such as
+	// a closing script tag would end the block and inject markup.
+	// Unicode escapes keep the JSON identical once parsed.
+	function serialise_json_ld(value: unknown): string {
+		return JSON.stringify(value)
+			.replace(/</g, '\\u003c')
+			.replace(/>/g, '\\u003e')
+			.replace(/&/g, '\\u0026');
+	}
+
 	const json_ld_data = $derived(
-		`<script type="application/ld+json">${JSON.stringify(processed_schema)}</scr` +
+		`<script type="application/ld+json">${serialise_json_ld(processed_schema)}</scr` +
 			`ipt>`,
 	);
 </script>
