@@ -91,7 +91,7 @@ describe('pint.svelte', () => {
 
 			await expect.element(og_image).toBeInTheDocument();
 			await expect
-				.element(page.getByText('17 tags'))
+				.element(page.getByText('18 tags'))
 				.toBeInTheDocument();
 
 			await image.click({ force: true });

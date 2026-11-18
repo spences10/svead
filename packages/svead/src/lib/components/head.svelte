@@ -23,6 +23,24 @@
 	<meta property="og:description" content={seo_config.description} />
 	{#if seo_config.open_graph_image}
 		<meta property="og:image" content={seo_config.open_graph_image} />
+		{#if seo_config.open_graph_image_type}
+			<meta
+				property="og:image:type"
+				content={seo_config.open_graph_image_type}
+			/>
+		{/if}
+		{#if seo_config.open_graph_image_width}
+			<meta
+				property="og:image:width"
+				content={String(seo_config.open_graph_image_width)}
+			/>
+		{/if}
+		{#if seo_config.open_graph_image_height}
+			<meta
+				property="og:image:height"
+				content={String(seo_config.open_graph_image_height)}
+			/>
+		{/if}
 		<meta
 			property="og:image:alt"
 			content={seo_config.open_graph_image_alt || seo_config.title}
@@ -43,6 +61,10 @@
 		<meta
 			name="twitter:image"
 			content={seo_config.open_graph_image}
+		/>
+		<meta
+			name="twitter:image:alt"
+			content={seo_config.open_graph_image_alt || seo_config.title}
 		/>
 	{/if}
 	{#if seo_config.twitter_handle}

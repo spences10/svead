@@ -116,9 +116,37 @@ export interface SeoConfig {
 
 	/**
 	 * Alternative text for the Open Graph image.
-	 * Used as the og:image:alt property.
+	 * Used as the og:image:alt and twitter:image:alt properties.
+	 * Falls back to the title when an image is set without it.
 	 *
 	 * @type {string}
 	 */
 	open_graph_image_alt?: string;
+
+	/**
+	 * The MIME type of the Open Graph image, for example `image/png`.
+	 * Used as the og:image:type property, which is left out when this
+	 * or the image is not set.
+	 *
+	 * @type {string}
+	 */
+	open_graph_image_type?: string;
+
+	/**
+	 * The width of the Open Graph image in pixels, for example `1200`.
+	 * Used as the og:image:width property, which is left out when this
+	 * or the image is not set.
+	 *
+	 * @type {number}
+	 */
+	open_graph_image_width?: number;
+
+	/**
+	 * The height of the Open Graph image in pixels, for example `630`.
+	 * Used as the og:image:height property, which is left out when this
+	 * or the image is not set.
+	 *
+	 * @type {number}
+	 */
+	open_graph_image_height?: number;
 }

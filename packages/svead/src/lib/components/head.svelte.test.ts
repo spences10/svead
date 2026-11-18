@@ -154,4 +154,89 @@ describe('Head component tests', () => {
 			).toBe(config.twitter_card_type);
 		});
 	});
+
+	describe('Share-card image tags', () => {
+		const required = {
+			title: 'Test',
+			description: 'Test description',
+			url: 'https://example.com',
+		};
+		const content_of = (selector: string) =>
+			document.querySelector(selector)?.getAttribute('content');
+
+		it('updates the image tags when the config changes, without duplicates', async () => {
+			const { rerender } = await render(Head, {
+				seo_config: {
+					...required,
+					open_graph_image: 'https://example.com/one.png',
+					open_graph_image_alt: 'One',
+					open_graph_image_type: 'image/png',
+					open_graph_image_width: 1200,
+					open_graph_image_height: 630,
+				},
+			});
+
+			expect(content_of('meta[property="og:image:width"]')).toBe(
+				'1200',
+			);
+			expect(content_of('meta[name="twitter:image:alt"]')).toBe(
+				'One',
+			);
+
+			await rerender({
+				seo_config: {
+					...required,
+					open_graph_image: 'https://example.com/two.jpg',
+					open_graph_image_alt: 'Two',
+					open_graph_image_type: 'image/jpeg',
+					open_graph_image_width: 800,
+					open_graph_image_height: 418,
+				},
+			});
+
+			expect(content_of('meta[property="og:image:type"]')).toBe(
+				'image/jpeg',
+			);
+			expect(content_of('meta[property="og:image:width"]')).toBe(
+				'800',
+			);
+			expect(content_of('meta[property="og:image:height"]')).toBe(
+				'418',
+			);
+			expect(content_of('meta[name="twitter:image:alt"]')).toBe(
+				'Two',
+			);
+			for (const selector of [
+				'meta[property="og:image"]',
+				'meta[property="og:image:type"]',
+				'meta[property="og:image:width"]',
+				'meta[property="og:image:height"]',
+				'meta[property="og:image:alt"]',
+				'meta[name="twitter:image"]',
+				'meta[name="twitter:image:alt"]',
+			]) {
+				expect(document.querySelectorAll(selector)).toHaveLength(1);
+			}
+		});
+
+		it('removes the image tags when the image goes away', async () => {
+			const { rerender } = await render(Head, {
+				seo_config: {
+					...required,
+					open_graph_image: 'https://example.com/one.png',
+					open_graph_image_type: 'image/png',
+					open_graph_image_width: 1200,
+					open_graph_image_height: 630,
+				},
+			});
+
+			await rerender({ seo_config: required });
+
+			expect(
+				document.querySelectorAll(
+					'meta[property^="og:image"], meta[name^="twitter:image"]',
+				),
+			).toHaveLength(0);
+		});
+	});
 });

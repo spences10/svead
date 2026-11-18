@@ -45,6 +45,23 @@ export function head_tags(config: SeoConfig): HeadTag[] {
 		meta('property', 'og:description', config.description),
 		image && meta('property', 'og:image', image),
 		image &&
+			config.open_graph_image_type &&
+			meta('property', 'og:image:type', config.open_graph_image_type),
+		image &&
+			config.open_graph_image_width &&
+			meta(
+				'property',
+				'og:image:width',
+				String(config.open_graph_image_width),
+			),
+		image &&
+			config.open_graph_image_height &&
+			meta(
+				'property',
+				'og:image:height',
+				String(config.open_graph_image_height),
+			),
+		image &&
 			meta(
 				'property',
 				'og:image:alt',
@@ -60,6 +77,12 @@ export function head_tags(config: SeoConfig): HeadTag[] {
 		meta('name', 'twitter:title', config.title),
 		meta('name', 'twitter:description', config.description),
 		image && meta('name', 'twitter:image', image),
+		image &&
+			meta(
+				'name',
+				'twitter:image:alt',
+				config.open_graph_image_alt || config.title,
+			),
 		config.twitter_handle &&
 			meta('name', 'twitter:creator', config.twitter_handle),
 		config.website &&
