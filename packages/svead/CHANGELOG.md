@@ -1,5 +1,12 @@
 # svead
 
+## 0.2.0
+
+### Minor Changes
+
+- 6d25ac5: Head: add Open Graph image type, width and height options,
+  and emit `twitter:image:alt`.
+
 ## 0.1.1
 
 ### Patch Changes
