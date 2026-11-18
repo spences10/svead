@@ -41,6 +41,10 @@ export function seo_config(page: PageSeo): SeoConfig {
 		twitter_card_type: 'summary_large_image',
 		open_graph_image: share_card_url(page.card),
 		open_graph_image_alt: page.card_alt,
+		// Every card in static/og is a 1200 x 630 PNG
+		open_graph_image_type: 'image/png',
+		open_graph_image_width: 1200,
+		open_graph_image_height: 630,
 	};
 }
 
