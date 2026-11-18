@@ -79,24 +79,31 @@ options it renders 13 tags:
 - `itemprop` `name` and `description`
 
 The optional ones add to that, for example `open_graph_image` adds
-`og:image`, `og:image:alt`, `twitter:image` and `itemprop="image"`.
+`og:image`, `og:image:alt`, `twitter:image`, `twitter:image:alt` and
+`itemprop="image"`. With an image set, `open_graph_image_type`,
+`open_graph_image_width` and `open_graph_image_height` add
+`og:image:type`, `og:image:width` and `og:image:height` straight after
+`og:image`.
 
 ### `SeoConfig` options
 
-| Property               | Type     | Description                                                  | Required |
-| :--------------------- | :------- | :----------------------------------------------------------- | :------- |
-| `title`                | `string` | The title of the web page.                                   | Yes      |
-| `description`          | `string` | A description of the web page.                               | Yes      |
-| `url`                  | `string` | The URL of the web page.                                     | Yes      |
-| `website`              | `string` | The website the web page belongs to.                         | No       |
-| `language`             | `string` | The locale for `og:locale`, e.g. `en_GB`. Omitted if unset.  | No       |
-| `open_graph_image`     | `string` | The URL of an image to use for Open Graph meta tags.         | No       |
-| `payment_pointer`      | `string` | A payment pointer for Web Monetization.                      | No       |
-| `author_name`          | `string` | The name of the author.                                      | No       |
-| `site_name`            | `string` | The name of the site for og:site_name.                       | No       |
-| `twitter_handle`       | `string` | The Twitter handle of the content creator or site.           | No       |
-| `twitter_card_type`    | `string` | The type of Twitter card. Defaults to 'summary_large_image'. | No       |
-| `open_graph_image_alt` | `string` | Alt text for the Open Graph image. Defaults to the title.    | No       |
+| Property                  | Type     | Description                                                   | Required |
+| :------------------------ | :------- | :------------------------------------------------------------ | :------- |
+| `title`                   | `string` | The title of the web page.                                    | Yes      |
+| `description`             | `string` | A description of the web page.                                | Yes      |
+| `url`                     | `string` | The URL of the web page.                                      | Yes      |
+| `website`                 | `string` | The website the web page belongs to.                          | No       |
+| `language`                | `string` | The locale for `og:locale`, e.g. `en_GB`. Omitted if unset.   | No       |
+| `open_graph_image`        | `string` | The URL of an image to use for Open Graph meta tags.          | No       |
+| `payment_pointer`         | `string` | A payment pointer for Web Monetization.                       | No       |
+| `author_name`             | `string` | The name of the author.                                       | No       |
+| `site_name`               | `string` | The name of the site for og:site_name.                        | No       |
+| `twitter_handle`          | `string` | The Twitter handle of the content creator or site.            | No       |
+| `twitter_card_type`       | `string` | The type of Twitter card. Defaults to 'summary_large_image'.  | No       |
+| `open_graph_image_alt`    | `string` | Alt text for the Open Graph image. Defaults to the title.     | No       |
+| `open_graph_image_type`   | `string` | The image MIME type for `og:image:type`, e.g. `image/png`.    | No       |
+| `open_graph_image_width`  | `number` | The image width in pixels for `og:image:width`, e.g. `1200`.  | No       |
+| `open_graph_image_height` | `number` | The image height in pixels for `og:image:height`, e.g. `630`. | No       |
 
 ## SchemaOrg
 
