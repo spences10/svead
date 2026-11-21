@@ -50,7 +50,7 @@
 		"fathom-client": "^3.7.2",
 		"github-slugger": "^2.0.0",
 		"lucide": "^1.54.0",
-		"mdsvex": "^0.12.7",
+		"mdsvex": "^1.0.0",
 		"morphicons": "^2.0.2",
 		"playwright": "catalog:",
 		"rehype-autolink-headings": "^7.1.0",
